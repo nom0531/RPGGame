@@ -1,0 +1,447 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 061dbcc8808e3084eb5fabd1f9fb670b, type: 3}
+  m_Name: PlayerData
+  m_EditorClassIdentifier: 
+  playerDataList:
+  - PlayerName: "\u30A2\u30BF\u30C3\u30AB\u30FC"
+    PlayerSprite: {fileID: 21300000, guid: c401451bab3c0e54cb3fb04664fecda8, type: 3}
+    PlayerRoll: 0
+    PlayerElement: 02000000020000000000000001000000020000000000000002000000
+    HP: 100
+    SP: 100
+    ATK: 10
+    DEF: 0
+    SPD: 50
+    LUCK: 0
+    skillDataList:
+    - SkillName: "\u30A2\u30A4\u30B93"
+      SkillNumber: 0
+      SkillSprite: {fileID: 21300000, guid: 04969c4fd6e8dd249a36f793a5485840, type: 3}
+      SkillType: 0
+      SkillElement: 1
+      StateAbnormalData:
+        StateName: 
+        StateNumber: 0
+        POW: 0
+        RequiredTime: 0
+        ActorAbnormalState: 0
+      POW: 0
+      SkillNecessary: 0
+      Type: 0
+      EffectRange: 0
+      BuffType: 3
+      EffectTime: 0
+      EnhancementPoint: 0
+      SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u6C37\u5C5E\u6027\u3067\u5927\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u30A2\u30A4\u30B93"
+      SkillNumber: 0
+      SkillSprite: {fileID: 21300000, guid: 04969c4fd6e8dd249a36f793a5485840, type: 3}
+      SkillType: 0
+      SkillElement: 1
+      StateAbnormalData:
+        StateName: 
+        StateNumber: 0
+        POW: 0
+        RequiredTime: 0
+        ActorAbnormalState: 0
+      POW: 0
+      SkillNecessary: 0
+      Type: 0
+      EffectRange: 0
+      BuffType: 3
+      EffectTime: 0
+      EnhancementPoint: 0
+      SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u6C37\u5C5E\u6027\u3067\u5927\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u30A2\u30A4\u30B93"
+      SkillNumber: 0
+      SkillSprite: {fileID: 21300000, guid: 04969c4fd6e8dd249a36f793a5485840, type: 3}
+      SkillType: 0
+      SkillElement: 1
+      StateAbnormalData:
+        StateName: 
+        StateNumber: 0
+        POW: 0
+        RequiredTime: 0
+        ActorAbnormalState: 0
+      POW: 0
+      SkillNecessary: 0
+      Type: 0
+      EffectRange: 0
+      BuffType: 3
+      EffectTime: 0
+      EnhancementPoint: 0
+      SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u6C37\u5C5E\u6027\u3067\u5927\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u30A2\u30A4\u30B93"
+      SkillNumber: 0
+      SkillSprite: {fileID: 21300000, guid: 04969c4fd6e8dd249a36f793a5485840, type: 3}
+      SkillType: 0
+      SkillElement: 1
+      StateAbnormalData:
+        StateName: 
+        StateNumber: 0
+        POW: 0
+        RequiredTime: 0
+        ActorAbnormalState: 0
+      POW: 0
+      SkillNecessary: 0
+      Type: 0
+      EffectRange: 0
+      BuffType: 3
+      EffectTime: 0
+      EnhancementPoint: 0
+      SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u6C37\u5C5E\u6027\u3067\u5927\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u30A2\u30A4\u30B93"
+      SkillNumber: 0
+      SkillSprite: {fileID: 21300000, guid: 04969c4fd6e8dd249a36f793a5485840, type: 3}
+      SkillType: 0
+      SkillElement: 1
+      StateAbnormalData:
+        StateName: 
+        StateNumber: 0
+        POW: 0
+        RequiredTime: 0
+        ActorAbnormalState: 0
+      POW: 0
+      SkillNecessary: 0
+      Type: 0
+      EffectRange: 0
+      BuffType: 3
+      EffectTime: 0
+      EnhancementPoint: 0
+      SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u6C37\u5C5E\u6027\u3067\u5927\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u30A2\u30A4\u30B93"
+      SkillNumber: 0
+      SkillSprite: {fileID: 21300000, guid: 04969c4fd6e8dd249a36f793a5485840, type: 3}
+      SkillType: 0
+      SkillElement: 1
+      StateAbnormalData:
+        StateName: 
+        StateNumber: 0
+        POW: 0
+        RequiredTime: 0
+        ActorAbnormalState: 0
+      POW: 0
+      SkillNecessary: 0
+      Type: 0
+      EffectRange: 0
+      BuffType: 3
+      EffectTime: 0
+      EnhancementPoint: 0
+      SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u6C37\u5C5E\u6027\u3067\u5927\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u30A2\u30A4\u30B93"
+      SkillNumber: 0
+      SkillSprite: {fileID: 21300000, guid: 04969c4fd6e8dd249a36f793a5485840, type: 3}
+      SkillType: 0
+      SkillElement: 1
+      StateAbnormalData:
+        StateName: 
+        StateNumber: 0
+        POW: 0
+        RequiredTime: 0
+        ActorAbnormalState: 0
+      POW: 0
+      SkillNecessary: 0
+      Type: 0
+      EffectRange: 0
+      BuffType: 3
+      EffectTime: 0
+      EnhancementPoint: 0
+      SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u6C37\u5C5E\u6027\u3067\u5927\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+  - PlayerName: "\u30D0\u30C3\u30D5\u30A1\u30FC"
+    PlayerSprite: {fileID: 21300000, guid: bb1adb733fdedfe40936e272ce6aed89, type: 3}
+    PlayerRoll: 0
+    PlayerElement: 00000000010000000200000000000000020000000200000002000000
+    HP: 100
+    SP: 100
+    ATK: 10
+    DEF: 0
+    SPD: 70
+    LUCK: 0
+    skillDataList:
+    - SkillName: 
+      SkillNumber: 0
+      SkillSprite: {fileID: 0}
+      SkillType: 0
+      SkillElement: 0
+      StateAbnormalData:
+        StateName: 
+        StateNumber: 0
+        POW: 0
+        RequiredTime: 0
+        ActorAbnormalState: 0
+      POW: 0
+      SkillNecessary: 0
+      Type: 0
+      EffectRange: 0
+      BuffType: 0
+      EffectTime: 0
+      EnhancementPoint: 0
+      SkillDetail: 
+    - SkillName: 
+      SkillNumber: 0
+      SkillSprite: {fileID: 0}
+      SkillType: 0
+      SkillElement: 0
+      StateAbnormalData:
+        StateName: 
+        StateNumber: 0
+        POW: 0
+        RequiredTime: 0
+        ActorAbnormalState: 0
+      POW: 0
+      SkillNecessary: 0
+      Type: 0
+      EffectRange: 0
+      BuffType: 0
+      EffectTime: 0
+      EnhancementPoint: 0
+      SkillDetail: 
+    - SkillName: 
+      SkillNumber: 0
+      SkillSprite: {fileID: 0}
+      SkillType: 0
+      SkillElement: 0
+      StateAbnormalData:
+        StateName: 
+        StateNumber: 0
+        POW: 0
+        RequiredTime: 0
+        ActorAbnormalState: 0
+      POW: 0
+      SkillNecessary: 0
+      Type: 0
+      EffectRange: 0
+      BuffType: 0
+      EffectTime: 0
+      EnhancementPoint: 0
+      SkillDetail: 
+    - SkillName: 
+      SkillNumber: 0
+      SkillSprite: {fileID: 0}
+      SkillType: 0
+      SkillElement: 0
+      StateAbnormalData:
+        StateName: 
+        StateNumber: 0
+        POW: 0
+        RequiredTime: 0
+        ActorAbnormalState: 0
+      POW: 0
+      SkillNecessary: 0
+      Type: 0
+      EffectRange: 0
+      BuffType: 0
+      EffectTime: 0
+      EnhancementPoint: 0
+      SkillDetail: 
+    - SkillName: 
+      SkillNumber: 0
+      SkillSprite: {fileID: 0}
+      SkillType: 0
+      SkillElement: 0
+      StateAbnormalData:
+        StateName: 
+        StateNumber: 0
+        POW: 0
+        RequiredTime: 0
+        ActorAbnormalState: 0
+      POW: 0
+      SkillNecessary: 0
+      Type: 0
+      EffectRange: 0
+      BuffType: 0
+      EffectTime: 0
+      EnhancementPoint: 0
+      SkillDetail: 
+    - SkillName: 
+      SkillNumber: 0
+      SkillSprite: {fileID: 0}
+      SkillType: 0
+      SkillElement: 0
+      StateAbnormalData:
+        StateName: 
+        StateNumber: 0
+        POW: 0
+        RequiredTime: 0
+        ActorAbnormalState: 0
+      POW: 0
+      SkillNecessary: 0
+      Type: 0
+      EffectRange: 0
+      BuffType: 0
+      EffectTime: 0
+      EnhancementPoint: 0
+      SkillDetail: 
+    - SkillName: 
+      SkillNumber: 0
+      SkillSprite: {fileID: 0}
+      SkillType: 0
+      SkillElement: 0
+      StateAbnormalData:
+        StateName: 
+        StateNumber: 0
+        POW: 0
+        RequiredTime: 0
+        ActorAbnormalState: 0
+      POW: 0
+      SkillNecessary: 0
+      Type: 0
+      EffectRange: 0
+      BuffType: 0
+      EffectTime: 0
+      EnhancementPoint: 0
+      SkillDetail: 
+  - PlayerName: "\u30D2\u30FC\u30E9\u30FC"
+    PlayerSprite: {fileID: 21300000, guid: 3660ec54bc34cdb47b84af818993fd15, type: 3}
+    PlayerRoll: 0
+    PlayerElement: 01000000000000000200000002000000000000000200000002000000
+    HP: 100
+    SP: 100
+    ATK: 10
+    DEF: 0
+    SPD: 45
+    LUCK: 0
+    skillDataList:
+    - SkillName: 
+      SkillNumber: 0
+      SkillSprite: {fileID: 0}
+      SkillType: 0
+      SkillElement: 0
+      StateAbnormalData:
+        StateName: 
+        StateNumber: 0
+        POW: 0
+        RequiredTime: 0
+        ActorAbnormalState: 0
+      POW: 0
+      SkillNecessary: 0
+      Type: 0
+      EffectRange: 0
+      BuffType: 0
+      EffectTime: 0
+      EnhancementPoint: 0
+      SkillDetail: 
+    - SkillName: 
+      SkillNumber: 0
+      SkillSprite: {fileID: 0}
+      SkillType: 0
+      SkillElement: 0
+      StateAbnormalData:
+        StateName: 
+        StateNumber: 0
+        POW: 0
+        RequiredTime: 0
+        ActorAbnormalState: 0
+      POW: 0
+      SkillNecessary: 0
+      Type: 0
+      EffectRange: 0
+      BuffType: 0
+      EffectTime: 0
+      EnhancementPoint: 0
+      SkillDetail: 
+    - SkillName: 
+      SkillNumber: 0
+      SkillSprite: {fileID: 0}
+      SkillType: 0
+      SkillElement: 0
+      StateAbnormalData:
+        StateName: 
+        StateNumber: 0
+        POW: 0
+        RequiredTime: 0
+        ActorAbnormalState: 0
+      POW: 0
+      SkillNecessary: 0
+      Type: 0
+      EffectRange: 0
+      BuffType: 0
+      EffectTime: 0
+      EnhancementPoint: 0
+      SkillDetail: 
+    - SkillName: 
+      SkillNumber: 0
+      SkillSprite: {fileID: 0}
+      SkillType: 0
+      SkillElement: 0
+      StateAbnormalData:
+        StateName: 
+        StateNumber: 0
+        POW: 0
+        RequiredTime: 0
+        ActorAbnormalState: 0
+      POW: 0
+      SkillNecessary: 0
+      Type: 0
+      EffectRange: 0
+      BuffType: 0
+      EffectTime: 0
+      EnhancementPoint: 0
+      SkillDetail: 
+    - SkillName: 
+      SkillNumber: 0
+      SkillSprite: {fileID: 0}
+      SkillType: 0
+      SkillElement: 0
+      StateAbnormalData:
+        StateName: 
+        StateNumber: 0
+        POW: 0
+        RequiredTime: 0
+        ActorAbnormalState: 0
+      POW: 0
+      SkillNecessary: 0
+      Type: 0
+      EffectRange: 0
+      BuffType: 0
+      EffectTime: 0
+      EnhancementPoint: 0
+      SkillDetail: 
+    - SkillName: 
+      SkillNumber: 0
+      SkillSprite: {fileID: 0}
+      SkillType: 0
+      SkillElement: 0
+      StateAbnormalData:
+        StateName: 
+        StateNumber: 0
+        POW: 0
+        RequiredTime: 0
+        ActorAbnormalState: 0
+      POW: 0
+      SkillNecessary: 0
+      Type: 0
+      EffectRange: 0
+      BuffType: 0
+      EffectTime: 0
+      EnhancementPoint: 0
+      SkillDetail: 
+    - SkillName: 
+      SkillNumber: 0
+      SkillSprite: {fileID: 0}
+      SkillType: 0
+      SkillElement: 0
+      StateAbnormalData:
+        StateName: 
+        StateNumber: 0
+        POW: 0
+        RequiredTime: 0
+        ActorAbnormalState: 0
+      POW: 0
+      SkillNecessary: 0
+      Type: 0
+      EffectRange: 0
+      BuffType: 0
+      EffectTime: 0
+      EnhancementPoint: 0
+      SkillDetail: 

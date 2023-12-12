@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4004178743821787674
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7308282543433779640}
+  - component: {fileID: 6306421883961305654}
+  m_Layer: 0
+  m_Name: SaveObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7308282543433779640
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4004178743821787674}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 12.91766, y: 8.7438965, z: 350.94226}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6306421883961305654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4004178743821787674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cd468f07a1e0f54799307938b827fa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerData: {fileID: 11400000, guid: e49d4497244691b48b65c18355d38c89, type: 2}
+  EnemyData: {fileID: 11400000, guid: 08ef62b52432e644a8e65df774e7151a, type: 2}
+  LevelData: {fileID: 11400000, guid: 90bc944d3736a5e4a8728f62fe12ef58, type: 2}
+  GameSaveData:
+    saveData:
+      EnemyRegister: 00000000000000000000000000000000000000000000000000000000000000000000000000
+      ElementRegister:
+      - Elements: 00000000000000
+      - Elements: 00000000000000
+      - Elements: 00000000000000
+      - Elements: 00000000000000
+      - Elements: 00000000000000
+      - Elements: 00000000000000
+      - Elements: 00000000000000
+      - Elements: 00000000000000
+      - Elements: 00000000000000
+      - Elements: 00000000000000
+      - Elements: 00000000000000
+      - Elements: 00000000000000
+      - Elements: 00000000000000
+      - Elements: 00000000000000
+      - Elements: 00000000000000
+      - Elements: 00000000000000
+      - Elements: 00000000000000
+      - Elements: 00000000000000
+      - Elements: 00000000000000
+      - Elements: 00000000000000
+      - Elements: 00000000000000
+      - Elements: 00000000000000
+      - Elements: 00000000000000
+      - Elements: 00000000000000
+      - Elements: 00000000000000
+      - Elements: 00000000000000
+      - Elements: 00000000000000
+      - Elements: 00000000000000
+      - Elements: 00000000000000
+      - Elements: 00000000000000
+      - Elements: 00000000000000
+      - Elements: 00000000000000
+      - Elements: 00000000000000
+      - Elements: 00000000000000
+      - Elements: 00000000000000
+      - Elements: 00000000000000
+      - Elements: 00000000000000
+      Players: []
+      ClearStage: 
+      EnhancementPoint: 500
