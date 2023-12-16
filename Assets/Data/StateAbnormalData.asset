@@ -24,37 +24,37 @@ MonoBehaviour:
     StateNumber: 1
     POW: 70
     EffectTime: 3
-    ActorAbnormalState: 4
-  - StateName: "\u653B\u6483\u529B\u4F4E\u4E0B"
-    StateImage: {fileID: 21300000, guid: d3b593a8ce3185246bd3680e8e69da33, type: 3}
+    ActorAbnormalState: 0
+  - StateName: "\u9632\u5FA1\u529B\u4E0A\u6607"
+    StateImage: {fileID: 21300000, guid: f7dfe993cf47c034987cc4ddb30c4fd6, type: 3}
     StateNumber: 2
     POW: 70
     EffectTime: 3
-    ActorAbnormalState: 4
-  - StateName: "\u9632\u5FA1\u529B\u4E0A\u6607"
-    StateImage: {fileID: 21300000, guid: f7dfe993cf47c034987cc4ddb30c4fd6, type: 3}
+    ActorAbnormalState: 0
+  - StateName: "\u7D20\u65E9\u3055\u4E0A\u6607"
+    StateImage: {fileID: 21300000, guid: 4a565dd08193381488fa4d0598f19b58, type: 3}
     StateNumber: 3
     POW: 70
     EffectTime: 3
-    ActorAbnormalState: 4
-  - StateName: "\u9632\u5FA1\u529B\u4F4E\u4E0B"
-    StateImage: {fileID: 21300000, guid: e4ead59478442c040b05b83e82f5c05b, type: 3}
+    ActorAbnormalState: 0
+  - StateName: "\u653B\u6483\u529B\u4F4E\u4E0B"
+    StateImage: {fileID: 21300000, guid: d3b593a8ce3185246bd3680e8e69da33, type: 3}
     StateNumber: 4
     POW: 70
     EffectTime: 3
-    ActorAbnormalState: 4
-  - StateName: "\u7D20\u65E9\u3055\u4E0A\u6607"
-    StateImage: {fileID: 21300000, guid: 4a565dd08193381488fa4d0598f19b58, type: 3}
+    ActorAbnormalState: 0
+  - StateName: "\u9632\u5FA1\u529B\u4F4E\u4E0B"
+    StateImage: {fileID: 21300000, guid: e4ead59478442c040b05b83e82f5c05b, type: 3}
     StateNumber: 5
     POW: 70
     EffectTime: 3
-    ActorAbnormalState: 4
+    ActorAbnormalState: 0
   - StateName: "\u7D20\u65E9\u3055\u4F4E\u4E0B"
     StateImage: {fileID: 21300000, guid: ee6ae38bba0443d478ab6aa1bcde00d5, type: 3}
     StateNumber: 6
     POW: 70
     EffectTime: 3
-    ActorAbnormalState: 4
+    ActorAbnormalState: 0
   - StateName: "\u6BD2"
     StateImage: {fileID: 21300000, guid: 12f89bfd9b05eb2419e6bd59c4c1a3cf, type: 3}
     StateNumber: 7

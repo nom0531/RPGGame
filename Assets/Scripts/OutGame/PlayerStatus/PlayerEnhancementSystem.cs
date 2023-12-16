@@ -197,7 +197,7 @@ public class PlayerEnhancementSystem : MonoBehaviour
                 gameObjct.GetComponent<TextMeshProUGUI>().text = "à≈";
                 break;
             default:
-                gameObjct.GetComponent<TextMeshProUGUI>().text = "Å[";
+                gameObjct.GetComponent<TextMeshProUGUI>().text = "-";
                 break;
         }
     }

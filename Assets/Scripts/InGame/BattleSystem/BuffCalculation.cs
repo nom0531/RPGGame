@@ -22,8 +22,7 @@ public class BuffCalculation : MonoBehaviour
     /// <returns>•Ï“®Œã‚Ì’l</returns>
     public int GetBuffParam(BuffStatus buffStatus)
     {
-        int param = m_buffTargetParam[(int)buffStatus];
-        return param;
+        return m_buffTargetParam[(int)buffStatus];
     }
 
     /// <summary>

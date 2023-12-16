@@ -180,7 +180,7 @@ public class PlayerSkill : MonoBehaviour
                 gameObjct.GetComponent<TextMeshProUGUI>().text = "ñ≥";
                 break;
             default:
-                gameObjct.GetComponent<TextMeshProUGUI>().text = "Å[";
+                gameObjct.GetComponent<TextMeshProUGUI>().text = "-";
                 break;
         }
     }

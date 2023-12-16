@@ -129,7 +129,6 @@ public class EnemyMove : MonoBehaviour
     {
         RotationSprite();
         m_enemyBattleStatus.HPState = SetHPStatus();
-        IsStateEnDie();
 
         for (int i = 0; i < (int)BuffStatus.enNum; i++)
         {
@@ -315,20 +314,6 @@ public class EnemyMove : MonoBehaviour
     }
 
     /// <summary>
-    /// 自身の状態がひん死なら
-    /// </summary>
-    private void IsStateEnDie()
-    {
-        if (m_enemyBattleStatus.HPState!= ActorHPState.enDie)
-        {
-            return;
-        }
-
-        gameObject.SetActive(false);   // 自身を非表示にする
-        tag = "DieEnemy";              // タグを変更する
-    }
-
-    /// <summary>
     /// ターゲットプレイヤーを選択する処理
     /// </summary>
     /// <returns>プレイヤーの番号</returns>
@@ -495,6 +480,8 @@ public class EnemyMove : MonoBehaviour
     {
         if (EnemyStatus.HP <= HPMIN_VALUE)
         {
+            gameObject.SetActive(false);   // 自身を非表示にする
+            tag = "DieEnemy";              // タグを変更する
             return ActorHPState.enDie;
         }
 

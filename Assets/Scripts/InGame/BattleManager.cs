@@ -194,13 +194,14 @@ public class BattleManager : MonoBehaviour
             m_isPushDown = false;       // フラグを戻す
         }
 
+        PlayerAction_DrawStatus();
+
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            m_playerMoveList[1].ActorAbnormalState = ActorAbnormalState.enConfusion;
-            Debug.Log($"混乱状態");
+            m_playerMoveList[0].ActionEndFlag = true;
+            m_playerMoveList[1].ActionEndFlag = true;
+            m_playerMoveList[2].ActionEndFlag = true;
         }
-
-        PlayerAction_DrawStatus();
     }
 
     private void FixedUpdate()
@@ -479,7 +480,8 @@ public class BattleManager : MonoBehaviour
             m_playerMoveList[(int)m_operatingPlayer].ActorAbnormalState, m_playerMoveList[myNumber].PlayerStatus.HP);
         m_playerMoveList[myNumber].DecrementHP(damage);
 
-        m_playerMoveList[myNumber].gameObject.GetComponent<DrawCommandText>().SetCommandText(actionType, skillNumber);
+        m_playerMoveList[myNumber].gameObject.GetComponent<DrawCommandText>().SetCommandText(
+            actionType, PlayerData.playerDataList[myNumber].skillDataList[skillNumber].SkillNumber);
         // 行動を終了し、次のプレイヤーを選択する
         m_playerMoveList[(int)m_operatingPlayer].ActionEndFlag = true;
         m_operatingPlayer = NextOperatingPlayer();
@@ -599,11 +601,6 @@ public class BattleManager : MonoBehaviour
     /// <param name="skillNumber">スキルの番号</param>
     private void PlayerAction_HPRecover(int myNumber, int targetNumber, int skillNumber)
     {
-        if (PlayerData.playerDataList[myNumber].skillDataList[skillNumber].SkillType == SkillType.enResurrection)
-        {
-
-        }
-
         // 回復量を計算する
         int recverValue = m_battleSystem.SkillHeal(
                 PlayerData.playerDataList[targetNumber].HP,
@@ -643,7 +640,6 @@ public class BattleManager : MonoBehaviour
     {
         // 防御力を計算
         float defensePower = m_playerMoveList[myNumber].Guard();
-        m_playerMoveList[myNumber].SetPlayerBuffStatus(BuffType.enDEF, (int)defensePower, -1, true);
     }
 
     /// <summary>
@@ -734,7 +730,8 @@ public class BattleManager : MonoBehaviour
         }
 
         EnemyAction_Move(number, actionType, skillNumber);
-        m_enemyMoveList[number].gameObject.GetComponent<DrawCommandText>().SetCommandText(actionType, skillNumber);
+        m_enemyMoveList[number].gameObject.GetComponent<DrawCommandText>().SetCommandText(
+            actionType, EnemyData.enemyDataList[number].skillDataList[skillNumber].SkillNumber);
     }
 
     /// <summary>
@@ -953,7 +950,6 @@ public class BattleManager : MonoBehaviour
     private void EnemyAction_Guard(int myNumber)
     {
         int defensePower = m_enemyMoveList[myNumber].Guard();
-        m_enemyMoveList[myNumber].SetEnmeyBuffStatus(BuffType.enDEF, (int)defensePower, -1, true);
     }
 
     /// <summary>

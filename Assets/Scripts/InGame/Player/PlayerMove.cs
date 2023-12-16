@@ -335,6 +335,7 @@ public class PlayerMove : MonoBehaviour
         if(PlayerStatus.HP <= HPMIN_VALUE)
         {
             m_isActionEnd = true;       // 行動ができないので行動終了のフラグを立てる
+            tag = "DiePlayer";
             return ActorHPState.enDie;
         }
 

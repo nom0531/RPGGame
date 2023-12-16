@@ -24,11 +24,11 @@ MonoBehaviour:
     SPD: 50
     LUCK: 0
     skillDataList:
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
-      SkillNumber: 0
+    - SkillName: "\u30A6\u30A3\u30F3\u30C91"
+      SkillNumber: 6
       SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
       SkillType: 0
-      SkillElement: 0
+      SkillElement: 2
       StateAbnormalData:
         StateName: 
         StateImage: {fileID: 0}
@@ -42,12 +42,12 @@ MonoBehaviour:
       EffectRange: 0
       BuffType: 3
       EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
-      SkillNumber: 0
+      SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u98A8\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u30A6\u30A3\u30F3\u30C9\uFF12"
+      SkillNumber: 7
       SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
       SkillType: 0
-      SkillElement: 0
+      SkillElement: 2
       StateAbnormalData:
         StateName: 
         StateImage: {fileID: 0}
@@ -61,12 +61,12 @@ MonoBehaviour:
       EffectRange: 0
       BuffType: 3
       EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
-      SkillNumber: 0
+      SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u98A8\u5C5E\u6027\u3067\u4E2D\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u30A6\u30A3\u30F3\u30C93"
+      SkillNumber: 8
       SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
       SkillType: 0
-      SkillElement: 0
+      SkillElement: 2
       StateAbnormalData:
         StateName: 
         StateImage: {fileID: 0}
@@ -80,12 +80,12 @@ MonoBehaviour:
       EffectRange: 0
       BuffType: 3
       EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
-      SkillNumber: 0
-      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u98A8\u5C5E\u6027\u3067\u5927\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u30C0\u30FC\u30AF1"
+      SkillNumber: 15
+      SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
       SkillType: 0
-      SkillElement: 0
+      SkillElement: 5
       StateAbnormalData:
         StateName: 
         StateImage: {fileID: 0}
@@ -99,12 +99,12 @@ MonoBehaviour:
       EffectRange: 0
       BuffType: 3
       EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
-      SkillNumber: 0
-      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillDetail: "\u65751\u4F53\u306B\u95C7\u5C5E\u6027\u306E\u5373\u6B7B\u52B9\u679C\u3092\u4F4E\u78BA\u7387\u3067\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u30C0\u30FC\u30AF2"
+      SkillNumber: 16
+      SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
       SkillType: 0
-      SkillElement: 0
+      SkillElement: 5
       StateAbnormalData:
         StateName: 
         StateImage: {fileID: 0}
@@ -118,12 +118,12 @@ MonoBehaviour:
       EffectRange: 0
       BuffType: 3
       EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
-      SkillNumber: 0
-      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillDetail: "\u65751\u4F53\u306B\u95C7\u5C5E\u6027\u306E\u5373\u6B7B\u52B9\u679C\u3092\u4F4E\u78BA\u7387\u3067\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u30C0\u30FC\u30AF3"
+      SkillNumber: 17
+      SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
       SkillType: 0
-      SkillElement: 0
+      SkillElement: 5
       StateAbnormalData:
         StateName: 
         StateImage: {fileID: 0}
@@ -137,12 +137,12 @@ MonoBehaviour:
       EffectRange: 0
       BuffType: 3
       EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
-      SkillNumber: 0
-      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillDetail: "\u65751\u4F53\u306B\u95C7\u5C5E\u6027\u306E\u5373\u6B7B\u52B9\u679C\u3092\u4F4E\u78BA\u7387\u3067\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u5358\u4F53\u653B\u64831"
+      SkillNumber: 21
+      SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
       SkillType: 0
-      SkillElement: 0
+      SkillElement: 7
       StateAbnormalData:
         StateName: 
         StateImage: {fileID: 0}
@@ -152,11 +152,106 @@ MonoBehaviour:
         ActorAbnormalState: 0
       POW: 0
       SkillNecessary: 0
-      Type: 0
+      Type: 1
       EffectRange: 0
       BuffType: 3
       EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+      SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u5358\u4F53\u653B\u64832"
+      SkillNumber: 22
+      SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
+      SkillType: 0
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        StateImage: {fileID: 0}
+        StateNumber: 0
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 0
+      SkillNecessary: 0
+      Type: 1
+      EffectRange: 0
+      BuffType: 3
+      EnhancementPoint: 0
+      SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u4E2D\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u5358\u4F53\u653B\u64833"
+      SkillNumber: 23
+      SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
+      SkillType: 0
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        StateImage: {fileID: 0}
+        StateNumber: 0
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 0
+      SkillNecessary: 0
+      Type: 1
+      EffectRange: 0
+      BuffType: 3
+      EnhancementPoint: 0
+      SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u5927\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u5168\u4F53\u653B\u64831"
+      SkillNumber: 24
+      SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
+      SkillType: 0
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        StateImage: {fileID: 0}
+        StateNumber: 0
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 0
+      SkillNecessary: 0
+      Type: 1
+      EffectRange: 1
+      BuffType: 3
+      EnhancementPoint: 0
+      SkillDetail: " \u6575\u5168\u4F53\u306B\u5BFE\u3057\u3066\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u5168\u4F53\u653B\u64832"
+      SkillNumber: 25
+      SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
+      SkillType: 0
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        StateImage: {fileID: 0}
+        StateNumber: 0
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 0
+      SkillNecessary: 0
+      Type: 1
+      EffectRange: 1
+      BuffType: 3
+      EnhancementPoint: 0
+      SkillDetail: " \u6575\u5168\u4F53\u306B\u5BFE\u3057\u3066\u4E2D\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u5168\u4F53\u653B\u64833"
+      SkillNumber: 26
+      SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
+      SkillType: 0
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        StateImage: {fileID: 0}
+        StateNumber: 0
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 0
+      SkillNecessary: 0
+      Type: 1
+      EffectRange: 1
+      BuffType: 3
+      EnhancementPoint: 0
+      SkillDetail: " \u6575\u5168\u4F53\u306B\u5BFE\u3057\u3066\u5927\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
   - PlayerName: "\u30D0\u30C3\u30D5\u30A1\u30FC"
     PlayerSprite: {fileID: 21300000, guid: bb1adb733fdedfe40936e272ce6aed89, type: 3}
     PlayerRoll: 1
@@ -187,8 +282,8 @@ MonoBehaviour:
       BuffType: 3
       EnhancementPoint: 0
       SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
-      SkillNumber: 0
+    - SkillName: "\u30D5\u30A1\u30A4\u30A22"
+      SkillNumber: 1
       SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
       SkillType: 0
       SkillElement: 0
@@ -205,9 +300,9 @@ MonoBehaviour:
       EffectRange: 0
       BuffType: 3
       EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
-      SkillNumber: 0
+      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u4E2D\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u30D5\u30A1\u30A4\u30A23"
+      SkillNumber: 2
       SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
       SkillType: 0
       SkillElement: 0
@@ -224,12 +319,12 @@ MonoBehaviour:
       EffectRange: 0
       BuffType: 3
       EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
-      SkillNumber: 0
+      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5927\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u30B5\u30F3\u30C0\u30FC1"
+      SkillNumber: 9
       SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
       SkillType: 0
-      SkillElement: 0
+      SkillElement: 3
       StateAbnormalData:
         StateName: 
         StateImage: {fileID: 0}
@@ -243,12 +338,12 @@ MonoBehaviour:
       EffectRange: 0
       BuffType: 3
       EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
-      SkillNumber: 0
+      SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u96F7\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u30B5\u30F3\u30C0\u30FC2"
+      SkillNumber: 10
       SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
       SkillType: 0
-      SkillElement: 0
+      SkillElement: 2
       StateAbnormalData:
         StateName: 
         StateImage: {fileID: 0}
@@ -262,12 +357,12 @@ MonoBehaviour:
       EffectRange: 0
       BuffType: 3
       EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
-      SkillNumber: 0
+      SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u96F7\u5C5E\u6027\u3067\u4E2D\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u30B5\u30F3\u30C0\u30FC3"
+      SkillNumber: 11
       SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
       SkillType: 0
-      SkillElement: 0
+      SkillElement: 3
       StateAbnormalData:
         StateName: 
         StateImage: {fileID: 0}
@@ -281,12 +376,12 @@ MonoBehaviour:
       EffectRange: 0
       BuffType: 3
       EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
-      SkillNumber: 0
-      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
-      SkillType: 0
-      SkillElement: 0
+      SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u96F7\u5C5E\u6027\u3067\u5927\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u30D0\u30D51"
+      SkillNumber: 27
+      SkillSprite: {fileID: 21300000, guid: 89f84138f141f6443b97f28ba360be3c, type: 3}
+      SkillType: 1
+      SkillElement: 7
       StateAbnormalData:
         StateName: 
         StateImage: {fileID: 0}
@@ -298,9 +393,104 @@ MonoBehaviour:
       SkillNecessary: 0
       Type: 0
       EffectRange: 0
-      BuffType: 3
+      BuffType: 0
       EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+      SkillDetail: "\u5473\u65B91\u4F53\u306E\u653B\u6483\u529B\u3092\u4E0A\u6607\u3055\u305B\u308B\u3002"
+    - SkillName: "\u30D0\u30D52"
+      SkillNumber: 28
+      SkillSprite: {fileID: 21300000, guid: 89f84138f141f6443b97f28ba360be3c, type: 3}
+      SkillType: 1
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        StateImage: {fileID: 0}
+        StateNumber: 0
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 0
+      SkillNecessary: 0
+      Type: 0
+      EffectRange: 0
+      BuffType: 1
+      EnhancementPoint: 0
+      SkillDetail: "\u5473\u65B91\u4F53\u306E\u9632\u5FA1\u529B\u3092\u4E0A\u6607\u3055\u305B\u308B\u3002"
+    - SkillName: "\u30D0\u30D53"
+      SkillNumber: 29
+      SkillSprite: {fileID: 21300000, guid: 89f84138f141f6443b97f28ba360be3c, type: 3}
+      SkillType: 1
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        StateImage: {fileID: 0}
+        StateNumber: 0
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 0
+      SkillNecessary: 0
+      Type: 0
+      EffectRange: 0
+      BuffType: 2
+      EnhancementPoint: 0
+      SkillDetail: "\u5473\u65B91\u4F53\u306E\u7D20\u65E9\u3055\u3092\u4E0A\u6607\u3055\u305B\u308B\u3002"
+    - SkillName: "\u30C7\u30D0\u30D51"
+      SkillNumber: 30
+      SkillSprite: {fileID: 21300000, guid: da3ecfb2dff2cd6408ca3502c2ee71ea, type: 3}
+      SkillType: 2
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        StateImage: {fileID: 0}
+        StateNumber: 0
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 0
+      SkillNecessary: 0
+      Type: 0
+      EffectRange: 0
+      BuffType: 0
+      EnhancementPoint: 0
+      SkillDetail: "\u65751\u4F53\u306E\u653B\u6483\u529B\u3092\u6E1B\u5C11\u3055\u305B\u308B\u3002"
+    - SkillName: "\u30C7\u30D0\u30D52"
+      SkillNumber: 31
+      SkillSprite: {fileID: 21300000, guid: da3ecfb2dff2cd6408ca3502c2ee71ea, type: 3}
+      SkillType: 2
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        StateImage: {fileID: 0}
+        StateNumber: 0
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 0
+      SkillNecessary: 0
+      Type: 0
+      EffectRange: 0
+      BuffType: 1
+      EnhancementPoint: 0
+      SkillDetail: "\u65751\u4F53\u306E\u9632\u5FA1\u529B\u3092\u6E1B\u5C11\u3055\u305B\u308B\u3002"
+    - SkillName: "\u30C7\u30D0\u30D53"
+      SkillNumber: 32
+      SkillSprite: {fileID: 21300000, guid: da3ecfb2dff2cd6408ca3502c2ee71ea, type: 3}
+      SkillType: 2
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        StateImage: {fileID: 0}
+        StateNumber: 0
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 0
+      SkillNecessary: 0
+      Type: 0
+      EffectRange: 0
+      BuffType: 2
+      EnhancementPoint: 0
+      SkillDetail: "\u65751\u4F53\u306E\u7D20\u65E9\u3055\u3092\u6E1B\u5C11\u3055\u305B\u308B\u3002"
   - PlayerName: "\u30D2\u30FC\u30E9\u30FC"
     PlayerSprite: {fileID: 21300000, guid: 3660ec54bc34cdb47b84af818993fd15, type: 3}
     PlayerRoll: 2
@@ -312,11 +502,11 @@ MonoBehaviour:
     SPD: 45
     LUCK: 0
     skillDataList:
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
-      SkillNumber: 0
+    - SkillName: "\u30A2\u30A4\u30B91"
+      SkillNumber: 3
       SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
       SkillType: 0
-      SkillElement: 0
+      SkillElement: 1
       StateAbnormalData:
         StateName: 
         StateImage: {fileID: 0}
@@ -330,12 +520,12 @@ MonoBehaviour:
       EffectRange: 0
       BuffType: 3
       EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
-      SkillNumber: 0
+      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u6C37\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u30A2\u30A4\u30B92"
+      SkillNumber: 4
       SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
       SkillType: 0
-      SkillElement: 0
+      SkillElement: 1
       StateAbnormalData:
         StateName: 
         StateImage: {fileID: 0}
@@ -349,12 +539,12 @@ MonoBehaviour:
       EffectRange: 0
       BuffType: 3
       EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
-      SkillNumber: 0
+      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u6C37\u5C5E\u6027\u3067\u4E2D\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u30A2\u30A4\u30B93"
+      SkillNumber: 5
       SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
       SkillType: 0
-      SkillElement: 0
+      SkillElement: 1
       StateAbnormalData:
         StateName: 
         StateImage: {fileID: 0}
@@ -368,12 +558,12 @@ MonoBehaviour:
       EffectRange: 0
       BuffType: 3
       EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
-      SkillNumber: 0
-      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u6C37\u5C5E\u6027\u3067\u5927\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u30B7\u30E3\u30A4\u30F31"
+      SkillNumber: 12
+      SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
       SkillType: 0
-      SkillElement: 0
+      SkillElement: 4
       StateAbnormalData:
         StateName: 
         StateImage: {fileID: 0}
@@ -387,12 +577,12 @@ MonoBehaviour:
       EffectRange: 0
       BuffType: 3
       EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
-      SkillNumber: 0
-      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillDetail: "\u65751\u4F53\u306B\u5149\u5C5E\u6027\u306E\u5373\u6B7B\u52B9\u679C\u3092\u4F4E\u78BA\u7387\u3067\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u30B7\u30E3\u30A4\u30F32"
+      SkillNumber: 13
+      SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
       SkillType: 0
-      SkillElement: 0
+      SkillElement: 4
       StateAbnormalData:
         StateName: 
         StateImage: {fileID: 0}
@@ -406,12 +596,12 @@ MonoBehaviour:
       EffectRange: 0
       BuffType: 3
       EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
-      SkillNumber: 0
-      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillDetail: "\u65751\u4F53\u306B\u5149\u5C5E\u6027\u306E\u5373\u6B7B\u52B9\u679C\u3092\u4E2D\u78BA\u7387\u3067\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u30B7\u30E3\u30A4\u30F33"
+      SkillNumber: 14
+      SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
       SkillType: 0
-      SkillElement: 0
+      SkillElement: 4
       StateAbnormalData:
         StateName: 
         StateImage: {fileID: 0}
@@ -425,12 +615,126 @@ MonoBehaviour:
       EffectRange: 0
       BuffType: 3
       EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
-      SkillNumber: 0
-      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
-      SkillType: 0
-      SkillElement: 0
+      SkillDetail: "\u65751\u4F53\u306B\u5149\u5C5E\u6027\u306E\u5373\u6B7B\u52B9\u679C\u3092\u4F4E\u78BA\u7387\u3067\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u30D2\u30FC\u30EB1"
+      SkillNumber: 33
+      SkillSprite: {fileID: 21300000, guid: 797588158c4fd6943aa087189d0bf32a, type: 3}
+      SkillType: 3
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        StateImage: {fileID: 0}
+        StateNumber: 0
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 25
+      SkillNecessary: 0
+      Type: 0
+      EffectRange: 0
+      BuffType: 3
+      EnhancementPoint: 0
+      SkillDetail: "\u5473\u65B91\u4F53\u306E\u4F53\u529B\u3092\u5C0F\u56DE\u5FA9\u3059\u308B\u3002"
+    - SkillName: "\u30D2\u30FC\u30EB2"
+      SkillNumber: 34
+      SkillSprite: {fileID: 21300000, guid: 797588158c4fd6943aa087189d0bf32a, type: 3}
+      SkillType: 3
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        StateImage: {fileID: 0}
+        StateNumber: 0
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 50
+      SkillNecessary: 0
+      Type: 0
+      EffectRange: 0
+      BuffType: 3
+      EnhancementPoint: 0
+      SkillDetail: "\u5473\u65B91\u4F53\u306E\u4F53\u529B\u3092\u4E2D\u56DE\u5FA9\u3059\u308B\u3002"
+    - SkillName: "\u30D2\u30FC\u30EB3"
+      SkillNumber: 35
+      SkillSprite: {fileID: 21300000, guid: 797588158c4fd6943aa087189d0bf32a, type: 3}
+      SkillType: 3
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        StateImage: {fileID: 0}
+        StateNumber: 0
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 100
+      SkillNecessary: 0
+      Type: 0
+      EffectRange: 0
+      BuffType: 3
+      EnhancementPoint: 0
+      SkillDetail: "\u5473\u65B91\u4F53\u306E\u4F53\u529B\u3092\u5168\u56DE\u5FA9\u3059\u308B\u3002"
+    - SkillName: "\u30D2\u30FC\u30EA\u30F3\u30B01"
+      SkillNumber: 36
+      SkillSprite: {fileID: 21300000, guid: 797588158c4fd6943aa087189d0bf32a, type: 3}
+      SkillType: 3
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        StateImage: {fileID: 0}
+        StateNumber: 0
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 25
+      SkillNecessary: 0
+      Type: 0
+      EffectRange: 0
+      BuffType: 3
+      EnhancementPoint: 0
+      SkillDetail: "\u5473\u65B91\u4F53\u306E\u4F53\u529B\u3092\u5C0F\u56DE\u5FA9\u3057\u3066\u5FA9\u6D3B\u3055\u305B\u308B\u3002"
+    - SkillName: "\u30D2\u30FC\u30EA\u30F3\u30B02"
+      SkillNumber: 37
+      SkillSprite: {fileID: 21300000, guid: 797588158c4fd6943aa087189d0bf32a, type: 3}
+      SkillType: 3
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        StateImage: {fileID: 0}
+        StateNumber: 0
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 25
+      SkillNecessary: 0
+      Type: 0
+      EffectRange: 0
+      BuffType: 3
+      EnhancementPoint: 0
+      SkillDetail: "\u5473\u65B91\u4F53\u306E\u4F53\u529B\u3092\u4E2D\u56DE\u5FA9\u3057\u3066\u5FA9\u6D3B\u3055\u305B\u308B\u3002"
+    - SkillName: "\u30D2\u30FC\u30EA\u30F3\u30B03"
+      SkillNumber: 38
+      SkillSprite: {fileID: 21300000, guid: 797588158c4fd6943aa087189d0bf32a, type: 3}
+      SkillType: 3
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        StateImage: {fileID: 0}
+        StateNumber: 0
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 100
+      SkillNecessary: 0
+      Type: 0
+      EffectRange: 0
+      BuffType: 3
+      EnhancementPoint: 0
+      SkillDetail: "\u5473\u65B91\u4F53\u306E\u4F53\u529B\u3092\u5168\u56DE\u5FA9\u3057\u3066\u5FA9\u6D3B\u3055\u305B\u308B\u3002"
+    - SkillName: "\u30AD\u30E5\u30A21"
+      SkillNumber: 39
+      SkillSprite: {fileID: 21300000, guid: 797588158c4fd6943aa087189d0bf32a, type: 3}
+      SkillType: 3
+      SkillElement: 7
       StateAbnormalData:
         StateName: 
         StateImage: {fileID: 0}
@@ -444,4 +748,4 @@ MonoBehaviour:
       EffectRange: 0
       BuffType: 3
       EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+      SkillDetail: "\u5473\u65B91\u4F53\u306E\u72B6\u614B\u7570\u5E38\u3092\u56DE\u5FA9\u3055\u305B\u308B\u3002"
