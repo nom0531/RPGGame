@@ -9,6 +9,8 @@ TagManager:
   - BattleSystem
   - DieEnemy
   - Enemy
+  - SkillIcon
+  - DiePlayer
   layers:
   - Default
   - TransparentFX
