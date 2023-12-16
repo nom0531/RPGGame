@@ -154,7 +154,7 @@ public class PlayerEnhancementSystem : MonoBehaviour
         GetElement(Data_Element, number, m_playerNumber);
 
         // 既に使用できる状態ならボタンが押せないようにする
-        if (m_saveDataManager.SaveData.saveData.Players[m_playerNumber].PlayerEnhancement[number] == true)
+        if (m_saveDataManager.SaveData.saveData.SkillRegisters[m_playerNumber].PlayerSkills[number] == true)
         {
             SkillReleaseButton.GetComponent<Button>().interactable = false;
             SkillReleaseButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "解放済み";

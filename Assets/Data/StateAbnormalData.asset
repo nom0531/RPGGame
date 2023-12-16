@@ -17,65 +17,65 @@ MonoBehaviour:
     StateImage: {fileID: 0}
     StateNumber: 0
     POW: 0
-    RequiredTime: 0
+    EffectTime: 0
     ActorAbnormalState: 0
   - StateName: "\u653B\u6483\u529B\u4E0A\u6607"
     StateImage: {fileID: 21300000, guid: c765d158def7297479032052def496af, type: 3}
-    StateNumber: 0
+    StateNumber: 1
     POW: 70
-    RequiredTime: 3
+    EffectTime: 3
     ActorAbnormalState: 4
   - StateName: "\u653B\u6483\u529B\u4F4E\u4E0B"
     StateImage: {fileID: 21300000, guid: d3b593a8ce3185246bd3680e8e69da33, type: 3}
-    StateNumber: 0
+    StateNumber: 2
     POW: 70
-    RequiredTime: 3
+    EffectTime: 3
     ActorAbnormalState: 4
   - StateName: "\u9632\u5FA1\u529B\u4E0A\u6607"
     StateImage: {fileID: 21300000, guid: f7dfe993cf47c034987cc4ddb30c4fd6, type: 3}
-    StateNumber: 0
+    StateNumber: 3
     POW: 70
-    RequiredTime: 3
+    EffectTime: 3
     ActorAbnormalState: 4
   - StateName: "\u9632\u5FA1\u529B\u4F4E\u4E0B"
     StateImage: {fileID: 21300000, guid: e4ead59478442c040b05b83e82f5c05b, type: 3}
-    StateNumber: 0
+    StateNumber: 4
     POW: 70
-    RequiredTime: 3
+    EffectTime: 3
     ActorAbnormalState: 4
   - StateName: "\u7D20\u65E9\u3055\u4E0A\u6607"
     StateImage: {fileID: 21300000, guid: 4a565dd08193381488fa4d0598f19b58, type: 3}
-    StateNumber: 0
+    StateNumber: 5
     POW: 70
-    RequiredTime: 3
+    EffectTime: 3
     ActorAbnormalState: 4
   - StateName: "\u7D20\u65E9\u3055\u4F4E\u4E0B"
     StateImage: {fileID: 21300000, guid: ee6ae38bba0443d478ab6aa1bcde00d5, type: 3}
-    StateNumber: 0
+    StateNumber: 6
     POW: 70
-    RequiredTime: 3
+    EffectTime: 3
     ActorAbnormalState: 4
   - StateName: "\u6BD2"
     StateImage: {fileID: 21300000, guid: 12f89bfd9b05eb2419e6bd59c4c1a3cf, type: 3}
-    StateNumber: 0
+    StateNumber: 7
     POW: 5
-    RequiredTime: 3
+    EffectTime: 3
     ActorAbnormalState: 1
   - StateName: "\u9EBB\u75FA"
     StateImage: {fileID: 21300000, guid: 24231b91facce8d4f811dcb82456bb1c, type: 3}
-    StateNumber: 0
+    StateNumber: 8
     POW: 70
-    RequiredTime: 3
+    EffectTime: 3
     ActorAbnormalState: 2
   - StateName: "\u6C88\u9ED9"
     StateImage: {fileID: 21300000, guid: d49e0d80286674947bac2dd777966991, type: 3}
-    StateNumber: 0
+    StateNumber: 9
     POW: 0
-    RequiredTime: 3
+    EffectTime: 3
     ActorAbnormalState: 3
   - StateName: "\u6DF7\u4E71"
     StateImage: {fileID: 21300000, guid: 2ab72dfc7caf3d34d9afae960a639a46, type: 3}
-    StateNumber: 0
+    StateNumber: 10
     POW: 70
-    RequiredTime: 3
+    EffectTime: 3
     ActorAbnormalState: 4

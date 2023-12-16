@@ -12,7 +12,7 @@ public class StateAbnormalData
     public Sprite StateImage;                       // 表示する画像
     public int StateNumber;                         // 識別番号
     public int POW;                                 // ダメージ量・効果発生の割合
-    public int RequiredTime;                        // 解除までに必要なターン数
+    public int EffectTime;                          // ターン数
     public ActorAbnormalState ActorAbnormalState;   // 状態異常の種類
 }
 

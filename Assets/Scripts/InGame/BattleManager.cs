@@ -64,6 +64,7 @@ public class BattleManager : MonoBehaviour
     private List<EnemyMove> m_enemyMoveList;                    // エネミーの行動
     private OperatingPlayer m_operatingPlayer;                  // 操作しているプレイヤー
     private LockOnSystem m_lockOnSystem;                        // ロックオンシステム
+    private StateAbnormalCalculation m_abnormalCalculation;     // 状態異常の計算
     private DrawStatusValue m_drawStatusValue;                  // ステータスを表示するUI
     private DrawBattleResult m_drawBattleResult;                // 演出
     private int m_turnSum = 0;                                  // 総合ターン数
@@ -102,6 +103,7 @@ public class BattleManager : MonoBehaviour
     {
         m_battleSystem = gameObject.GetComponent<BattleSystem>();
         m_lockOnSystem = gameObject.GetComponent<LockOnSystem>();
+        m_abnormalCalculation = GetComponent<StateAbnormalCalculation>();
         m_drawStatusValue = gameObject.GetComponent<DrawStatusValue>();
         m_drawBattleResult = gameObject.GetComponent<DrawBattleResult>();
 
@@ -131,7 +133,7 @@ public class BattleManager : MonoBehaviour
             var sprite = Instantiate(Sprite);
             sprite.transform.SetParent(Content.transform);
             // スプライトを設定する
-            int rand = m_battleSystem.GetRandomValue(0, EnemyData.enemyDataList.Count, false);
+            int rand = m_battleSystem.GetRandomValue(0, 1, false);
             sprite.GetComponent<SpriteRenderer>().sprite = EnemyData.enemyDataList[rand].EnemySprite;
             // サイズを取得する
             var spriteRenderer = sprite.GetComponent<SpriteRenderer>();
@@ -194,9 +196,8 @@ public class BattleManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            m_playerMoveList[0].DecrementHP(200);
-            m_playerMoveList[1].DecrementHP(200);
-            m_playerMoveList[2].DecrementHP(200);
+            m_playerMoveList[1].ActorAbnormalState = ActorAbnormalState.enConfusion;
+            Debug.Log($"混乱状態");
         }
 
         PlayerAction_DrawStatus();
@@ -301,7 +302,7 @@ public class BattleManager : MonoBehaviour
         for(int i = 0; i < m_playerMoveList.Count; i++)
         {
             // 1体でも生存しているならゲームオーバーではない
-            if (m_playerMoveList[i].PlayerStatus.HPState != ActorHPState.enDie)
+            if (m_playerMoveList[i].ActorHPState != ActorHPState.enDie)
             {
                 return;
             }
@@ -384,10 +385,33 @@ public class BattleManager : MonoBehaviour
     /// </summary>
     private void PlayerAction_Move(int myNumber, int targetNumber, ActionType actionType, int skillNumber)
     {
-        switch (actionType)
+        // 麻痺状態なら
+        if (m_abnormalCalculation.Paralysis(m_playerMoveList[myNumber].ActorAbnormalState) == true)
+        {
+            Debug.Log($"{PlayerData.playerDataList[myNumber].PlayerName}は麻痺している");
+            actionType = ActionType.enNull;
+        }
+
+        // 混乱状態なら
+        if (m_abnormalCalculation.Confusion(m_playerMoveList[myNumber].ActorAbnormalState) == true)
+        {
+            Debug.Log($"{PlayerData.playerDataList[myNumber].PlayerName}は混乱している");
+            actionType = ActionType.enAttack;
+            m_playerMoveList[myNumber].Confusion = true;
+        }
+
+            switch (actionType)
         {
             case ActionType.enAttack:
-                PlayerAction_Attack(myNumber, targetNumber);
+                int DEF = m_enemyMoveList[targetNumber].EnemyStatus.DEF;
+                // 混乱状態ならターゲットを再設定する
+                if (m_playerMoveList[myNumber].Confusion == true)
+                {
+                    targetNumber = m_battleSystem.GetRandomValue(0, m_playerMoveList.Count);
+                    DEF = m_playerMoveList[targetNumber].PlayerStatus.DEF;
+                    Debug.Log($"{PlayerData.playerDataList[targetNumber].PlayerName}に攻撃");
+                }
+                PlayerAction_Attack(myNumber, targetNumber, DEF);
                 break;
             case ActionType.enSkillAttack:
                 switch (PlayerData.playerDataList[myNumber].skillDataList[skillNumber].SkillType)
@@ -446,7 +470,14 @@ public class BattleManager : MonoBehaviour
             case ActionType.enGuard:
                 PlayerAction_Guard(myNumber);
                 break;
+            case ActionType.enNull:
+                break;
         }
+
+        // 毒状態ならHPを減らす
+        int damage = m_abnormalCalculation.Poison(
+            m_playerMoveList[(int)m_operatingPlayer].ActorAbnormalState, m_playerMoveList[myNumber].PlayerStatus.HP);
+        m_playerMoveList[myNumber].DecrementHP(damage);
 
         m_playerMoveList[myNumber].gameObject.GetComponent<DrawCommandText>().SetCommandText(actionType, skillNumber);
         // 行動を終了し、次のプレイヤーを選択する
@@ -462,14 +493,19 @@ public class BattleManager : MonoBehaviour
     /// </summary>
     /// <param name="myNumber">自身の番号</param>
     /// <param name="targetNumber">ターゲットの番号</param>
-    private void PlayerAction_Attack(int myNumber, int targetNumber)
+    private void PlayerAction_Attack(int myNumber, int targetNumber, int DEF)
     {
         // ダメージ量を計算
         int damage = m_battleSystem.NormalAttack(
-            m_playerMoveList[myNumber].PlayerStatus.ATK, // 攻撃力
-            m_enemyMoveList[targetNumber].EnemyStatus.DEF// 防御力
+            m_playerMoveList[myNumber].PlayerStatus.ATK,// 攻撃力
+            DEF                                         // 防御力
             );
-
+        // 混乱状態なら
+        if (m_playerMoveList[myNumber].Confusion)
+        {
+            m_playerMoveList[targetNumber].DecrementHP(damage);
+            return;
+        }
         // ダメージを設定する
         m_enemyMoveList[targetNumber].DecrementHP(damage);
     }
@@ -626,7 +662,7 @@ public class BattleManager : MonoBehaviour
                 continue;
             }
             // ひん死なら処理を実行しない
-            if (m_playerMoveList[i].PlayerStatus.HPState == ActorHPState.enDie)
+            if (m_playerMoveList[i].ActorHPState == ActorHPState.enDie)
             {
                 continue;
             }
@@ -679,7 +715,7 @@ public class BattleManager : MonoBehaviour
     /// </summary>
     private void PlayerAction_DrawStatus()
     {
-        m_drawStatusValue.SetStatusBar();
+        m_drawStatusValue.SetStatus();
         m_drawStatusValue.SetStatusText();
     }
 

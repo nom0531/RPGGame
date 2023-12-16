@@ -63,7 +63,6 @@ public class SkillData
     public NecessaryType Type;                                      // 消費するデータの種類
     public EffectRange EffectRange;                                 // スキルの効果範囲
     public BuffType BuffType;                                       // バフのタイプ
-    public int EffectTime;                                          // バフの効果が継続するターン数
     [SerializeField,Header("必要強化ポイント")]
     public int EnhancementPoint;                                    // 必要強化ポイント
     [SerializeField, Header("詳細設定"), Multiline(2)]

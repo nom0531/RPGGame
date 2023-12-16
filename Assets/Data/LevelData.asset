@@ -12,4 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab113a97b97aaef4a9cabcdb62069a98, type: 3}
   m_Name: LevelData
   m_EditorClassIdentifier: 
-  levelDataList: []
+  levelDataList:
+  - LevelName: "\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042\u3042"
+    LocationType: 0
+    LocationTime: 0
+    LevelDetail: "\u30C6\u30AD\u30B9\u30C8\u898B\u672C\n\u30C6\u30AD\u30B9\u30C8\u898B\u672C\n\u30C6\u30AD\u30B9\u30C8\u898B\u672C"
+    enemyDataList: []
+  - LevelName: "\u3042"
+    LocationType: 0
+    LocationTime: 0
+    LevelDetail: 
+    enemyDataList: []
+  - LevelName: "\u3042\u3044\u3046\u3048\u304A"
+    LocationType: 0
+    LocationTime: 0
+    LevelDetail: 
+    enemyDataList: []
+  - LevelName: "\u30C6\u30B9\u30C8"
+    LocationType: 0
+    LocationTime: 0
+    LevelDetail: 
+    enemyDataList: []
+  - LevelName: "\u624By\u30B9tp"
+    LocationType: 0
+    LocationTime: 0
+    LevelDetail: 
+    enemyDataList: []

@@ -2,20 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// バフ・デバフ
-/// </summary>
-public enum BuffStatus
-{
-    enBuff_ATK,
-    enBuff_DEF,
-    enBuff_SPD,
-    enDeBuff_ATK,
-    enDeBuff_DEF,
-    enDeBuff_SPD,
-    enNum
-}
-
 public class BuffCalculation : MonoBehaviour
 {
     private BattleManager m_battleManager;
@@ -146,6 +132,7 @@ public class BuffCalculation : MonoBehaviour
             }
 
             Decrement((BuffStatus)i);
+            Debug.Log("残り効果時間" + m_buffEffectTime[i]);
         }
     }
 
@@ -155,6 +142,12 @@ public class BuffCalculation : MonoBehaviour
     /// <param name="buffStatus">バフのタイプ</param>
     private void Decrement(BuffStatus buffStatus)
     {
+        // 既に終了しているなら実行しない
+        if(m_buffEffectTime[(int)buffStatus] < 0)
+        {
+            return;
+        }
+
         m_buffEffectTime[(int)buffStatus]--;
 
         // もし効果時間が0以下なら

@@ -59,12 +59,12 @@ public class PlayerStatusSystem : MonoBehaviour
         GetResistance(Data_Light, number, (int)ElementType.enLight);
         GetResistance(Data_Dark, number, (int)ElementType.enDark);
         // ステータス
-        Data_HP.GetComponent<TextMeshProUGUI>().text = PlayerDataBase.playerDataList[number].HP.ToString();
-        Data_SP.GetComponent<TextMeshProUGUI>().text = PlayerDataBase.playerDataList[number].SP.ToString();
-        Data_ATK.GetComponent<TextMeshProUGUI>().text = PlayerDataBase.playerDataList[number].ATK.ToString();
-        Data_DEF.GetComponent<TextMeshProUGUI>().text = PlayerDataBase.playerDataList[number].DEF.ToString();
-        Data_SPD.GetComponent<TextMeshProUGUI>().text = PlayerDataBase.playerDataList[number].SPD.ToString();
-        Data_LUCK.GetComponent<TextMeshProUGUI>().text = PlayerDataBase.playerDataList[number].LUCK.ToString();
+        Data_HP.GetComponent<TextMeshProUGUI>().text = PlayerDataBase.playerDataList[number].HP.ToString("000");
+        Data_SP.GetComponent<TextMeshProUGUI>().text = PlayerDataBase.playerDataList[number].SP.ToString("000");
+        Data_ATK.GetComponent<TextMeshProUGUI>().text = PlayerDataBase.playerDataList[number].ATK.ToString("000");
+        Data_DEF.GetComponent<TextMeshProUGUI>().text = PlayerDataBase.playerDataList[number].DEF.ToString("000");
+        Data_SPD.GetComponent<TextMeshProUGUI>().text = PlayerDataBase.playerDataList[number].SPD.ToString("000");
+        Data_LUCK.GetComponent<TextMeshProUGUI>().text = PlayerDataBase.playerDataList[number].LUCK.ToString("000");
     }
 
     // Start is called before the first frame update
@@ -86,7 +86,7 @@ public class PlayerStatusSystem : MonoBehaviour
 
             PlayerButton playerButton = button.GetComponent<PlayerButton>();
             playerButton.SetPlayerStatus(
-                i,                                           // 番号
+                i,                                               // 番号
                 PlayerDataBase.playerDataList[i].PlayerSprite,   // 画像
                 this
                 );
@@ -117,7 +117,7 @@ public class PlayerStatusSystem : MonoBehaviour
                 gameObjct.GetComponent<TextMeshProUGUI>().text = "弱";
                 break;
             case ElementResistance.enNormal:
-                gameObjct.GetComponent<TextMeshProUGUI>().text = "ー";
+                gameObjct.GetComponent<TextMeshProUGUI>().text = "-";
                 break;
         }
     }

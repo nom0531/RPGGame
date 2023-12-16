@@ -38,6 +38,20 @@ public enum ActorAbnormalState
     enNull,                 // 指定なし
 }
 
+/// <summary>
+/// バフ・デバフ
+/// </summary>
+public enum BuffStatus
+{
+    enBuff_ATK,
+    enBuff_DEF,
+    enBuff_SPD,
+    enDeBuff_ATK,
+    enDeBuff_DEF,
+    enDeBuff_SPD,
+    enNum
+}
+
 public class BattleSystem : MonoBehaviour
 {
     private bool m_isOnemore = false;   // 再度行動できるかどうか

@@ -115,6 +115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyData: {fileID: 11400000, guid: 08ef62b52432e644a8e65df774e7151a, type: 2}
   SkillData: {fileID: 11400000, guid: eb2e3ce6b36655d4dabc2c5f2875abc9, type: 2}
+  EnemyMoveData: {fileID: 11400000, guid: cc556e060707d6d489b37b4d6641e710, type: 2}
 --- !u!114 &-8150472034665455355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,7 +128,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 717e9e3ef097d0a4a8cb675a04c18e86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SkillData: {fileID: 11400000, guid: eb2e3ce6b36655d4dabc2c5f2875abc9, type: 2}
 --- !u!114 &6564204634683458435
 MonoBehaviour:
   m_ObjectHideFlags: 0

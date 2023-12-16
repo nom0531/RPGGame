@@ -150,7 +150,7 @@ public class QuestStatusSystem : MonoBehaviour
 
         // 値を更新
         Data_QuestName.GetComponent<TextMeshProUGUI>().text =
-            $"『{LevelData.levelDataList[number].LevelName}』";
+            $"「{LevelData.levelDataList[number].LevelName}」";
         Data_QuestDetail.GetComponent<TextMeshProUGUI>().text =
             LevelData.levelDataList[number].LevelDetail;
 
@@ -191,7 +191,7 @@ public class QuestStatusSystem : MonoBehaviour
                 enemyObject.transform.localScale = Vector3.one;
                 enemyObject.transform.localPosition = Vector3.zero;
 
-                if (m_saveDataManager.SaveData.saveData.EnemyRegister[enemyNumber] != true)
+                if (m_saveDataManager.SaveData.saveData.EnemyRegisters[enemyNumber] != true)
                 {
                     // 発見していないならカラーを変更する
                     enemyObject.GetComponent<Image>().color = Color.black;

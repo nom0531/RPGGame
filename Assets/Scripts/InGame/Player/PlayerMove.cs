@@ -13,6 +13,7 @@ public struct PlayerBattleStatus
     public int ATK;                                 // 現在のATK
     public int DEF;                                 // 現在のDEF
     public int SPD;                                 // 現在のSPD
+    public int LUCK;                                // 現在のLUCK
     public ActorHPState HPState;                    // HPの状態
     public ActorAbnormalState AbnormalState;        // 状態異常
     public ActionType ActionType;                   // 次の行動
@@ -27,7 +28,8 @@ public class PlayerMove : MonoBehaviour
     [SerializeField,Header("自身の番号")]
     private int m_myNumber = 0;
 
-    private const int MIN_VALUE = 0;                // 最小値
+    private const int HPMIN_VALUE = 0;              // HPの最小値
+    private const int SPMIN_VALUE = 0;              // SPの最小値
 
     private BattleSystem m_battleSystem;
     private PlayerBattleStatus m_playerBattleStatus;// 戦闘のステータス
@@ -35,6 +37,7 @@ public class PlayerMove : MonoBehaviour
     private DrawCommandText m_drawCommandText;      // コマンドの表示
     private int m_selectSkillNumber = 0;            // 選択しているスキルの番号
     private bool m_isActionEnd = false;             // 行動が終了しているかどうか
+    private bool m_isConfusion = false;             // 混乱しているかどうか
 
     public int MyNumber
     {
@@ -64,24 +67,57 @@ public class PlayerMove : MonoBehaviour
         get => m_playerBattleStatus;
     }
 
+    public ActorHPState ActorHPState
+    {
+        get => m_playerBattleStatus.HPState;
+    }
+
+    public ActorAbnormalState ActorAbnormalState
+    {
+        get => m_playerBattleStatus.AbnormalState;
+        set => m_playerBattleStatus.AbnormalState = value;
+    }
+
+    public bool Confusion
+    {
+        get => m_isConfusion;
+        set => m_isConfusion = value;
+    }
+
     private void Awake()
     {
-        SaveDataManager saveData = GameManager.Instance.SaveData;
         m_battleSystem = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<BattleSystem>();
         m_buffCalculation = this.gameObject.GetComponent<BuffCalculation>();
         m_drawCommandText = this.gameObject.GetComponent<DrawCommandText>();
         //m_drawDamageText =GameObject.FindGameObjectWithTag("UICanvas").GetComponent<DrawDamageText>();
 
-        // 値を初期化
-        m_playerBattleStatus.HP = PlayerData.playerDataList[m_myNumber].HP;
-        m_playerBattleStatus.SP = PlayerData.playerDataList[m_myNumber].SP;
-        m_playerBattleStatus.ATK = PlayerData.playerDataList[m_myNumber].ATK;
-        m_playerBattleStatus.DEF = PlayerData.playerDataList[m_myNumber].DEF;
-        m_playerBattleStatus.SPD = PlayerData.playerDataList[m_myNumber].SPD;
-        m_playerBattleStatus.HPState = SetPlayerHPStatus(m_playerBattleStatus.HP);
+        SetStatus();
+        SetSkills();
+    }
+
+    /// <summary>
+    /// ステータスを初期化する
+    /// </summary>
+    private void SetStatus()
+    {
+        SaveDataManager saveData = GameManager.Instance.SaveData;
+
+        m_playerBattleStatus.HP = saveData.SaveData.saveData.PlayerList[m_myNumber].HP;
+        m_playerBattleStatus.SP = saveData.SaveData.saveData.PlayerList[m_myNumber].SP;
+        m_playerBattleStatus.ATK = saveData.SaveData.saveData.PlayerList[m_myNumber].ATK;
+        m_playerBattleStatus.DEF = saveData.SaveData.saveData.PlayerList[m_myNumber].DEF;
+        m_playerBattleStatus.SPD = saveData.SaveData.saveData.PlayerList[m_myNumber].SPD;
+        m_playerBattleStatus.LUCK = saveData.SaveData.saveData.PlayerList[m_myNumber].LUCK;
+        m_playerBattleStatus.HPState = SetHPStatus();
         m_playerBattleStatus.AbnormalState = ActorAbnormalState.enNormal;
         m_playerBattleStatus.ActionType = ActionType.enNull;
+    }
 
+    /// <summary>
+    /// スキルデータを初期化する
+    /// </summary>
+    private void SetSkills()
+    {
         for (int skillNumber = 0; skillNumber < PlayerData.playerDataList[m_myNumber].skillDataList.Count; skillNumber++)
         {
             for (int dataNumber = 0; dataNumber < SkillData.skillDataList.Count; dataNumber++)
@@ -110,8 +146,9 @@ public class PlayerMove : MonoBehaviour
     private void FixedUpdate()
     {
         RotationSprite();
+        m_playerBattleStatus.HPState = SetHPStatus();
 
-        for(int i = 0; i < (int)BuffStatus.enNum; i++)
+        for (int i = 0; i < (int)BuffStatus.enNum; i++)
         {
             if (m_buffCalculation.GetEffectEndFlag((BuffStatus)i) == false)
             {
@@ -137,7 +174,7 @@ public class PlayerMove : MonoBehaviour
             m_playerBattleStatus.HP = PlayerData.playerDataList[m_myNumber].HP;
         }
 
-        m_playerBattleStatus.HPState = SetPlayerHPStatus(m_playerBattleStatus.HP);
+        m_playerBattleStatus.HPState = SetHPStatus();
     }
 
     /// <summary>
@@ -149,12 +186,12 @@ public class PlayerMove : MonoBehaviour
         m_playerBattleStatus.HP -= decrementValue;
 
         // 一定以下なら補正
-        if (m_playerBattleStatus.HP <= MIN_VALUE)
+        if (m_playerBattleStatus.HP <= HPMIN_VALUE)
         {
-            m_playerBattleStatus.HP = MIN_VALUE;
+            m_playerBattleStatus.HP = HPMIN_VALUE;
         }
 
-        m_playerBattleStatus.HPState = SetPlayerHPStatus(m_playerBattleStatus.HP);
+        m_playerBattleStatus.HPState = SetHPStatus();
     }
 
     /// <summary>
@@ -166,9 +203,9 @@ public class PlayerMove : MonoBehaviour
         m_playerBattleStatus.SP -= decrementValue;
 
         // 一定以下なら補正
-        if (m_playerBattleStatus.SP <= MIN_VALUE)
+        if (m_playerBattleStatus.SP <= SPMIN_VALUE)
         {
-            m_playerBattleStatus.SP = MIN_VALUE;
+            m_playerBattleStatus.SP = SPMIN_VALUE;
         }
     }
 
@@ -191,12 +228,11 @@ public class PlayerMove : MonoBehaviour
     ///  <param name="isBuff">trueならバフ。falseならデバフ</param>
     public void SetPlayerBuffStatus(BuffType buffType, int statusFloatingValue,int skillNumber, bool isBuff)
     {
-        int effectTime = PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].EffectTime;
-
-        if(skillNumber < 0)
+        int effectTime = 1;
+        // スキルの番号が指定されているなら
+        if(skillNumber >= 0)
         {
-            // もしマイナスが指定されていたら効果時間は1
-            effectTime = 1;
+            effectTime = PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].StateAbnormalData.EffectTime;
         }
 
         switch (buffType)
@@ -294,15 +330,15 @@ public class PlayerMove : MonoBehaviour
     /// </summary>
     /// <param name="NowHP">現在のHP</param>
     /// <returns>HPの状態</returns>
-    private ActorHPState SetPlayerHPStatus(int NowHP)
+    private ActorHPState SetHPStatus()
     {
-        if(NowHP <= MIN_VALUE)
+        if(PlayerStatus.HP <= HPMIN_VALUE)
         {
             m_isActionEnd = true;       // 行動ができないので行動終了のフラグを立てる
             return ActorHPState.enDie;
         }
 
-        if(NowHP <= PlayerData.playerDataList[m_myNumber].HP / 4)
+        if(PlayerStatus.HP <= PlayerData.playerDataList[m_myNumber].HP / 4)
         {
             return ActorHPState.enFewHP;
         }

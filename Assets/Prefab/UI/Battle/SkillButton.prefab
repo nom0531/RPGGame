@@ -68,8 +68,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u30B9\u30AD\u30EB\u540D"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4b34dcb4f00bd9446b1c8008877a90c8, type: 2}
-  m_sharedMaterial: {fileID: -6216889503176697705, guid: 4b34dcb4f00bd9446b1c8008877a90c8,
+  m_fontAsset: {fileID: 11400000, guid: 31b5fb9d162467b47af9cd53293d89bb, type: 2}
+  m_sharedMaterial: {fileID: -3059456664476243073, guid: 31b5fb9d162467b47af9cd53293d89bb,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -94,13 +94,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 23.85
-  m_fontSizeBase: 24
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535

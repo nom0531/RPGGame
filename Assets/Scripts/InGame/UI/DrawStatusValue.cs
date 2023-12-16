@@ -10,6 +10,8 @@ public class DrawStatusValue : MonoBehaviour
     private PlayerDataBase PlayerData;
     [SerializeField]
     private EnemyDataBase EnemyData;
+    [SerializeField]
+    private StateAbnormalDataBase StateAbnormalData;
     [SerializeField, Header("HP")]
     private GameObject[] Data_HPText;
     [SerializeField]
@@ -18,11 +20,14 @@ public class DrawStatusValue : MonoBehaviour
     private GameObject[] Data_SPText;
     [SerializeField]
     private GameObject[] Data_SPBar;
-    [SerializeField]
+    [SerializeField, Header("バフ")]
+    private GameObject[] Content;
+    [SerializeField, Header("状態異常")]
+    private GameObject[] Data_StatusAbnormalImage;
+    [SerializeField, Header("名前を表示するテキスト")]
     private GameObject Data_Name;
 
     private List<PlayerMove> m_playerMove;
-    private List<EnemyMove> m_enemyMove;
 
     public int EnemyName
     {
@@ -48,13 +53,6 @@ public class DrawStatusValue : MonoBehaviour
         m_playerMove.Sort((a, b) => a.MyNumber.CompareTo(b.MyNumber));    // 番号順にソート
     }
 
-    private void Start()
-    {
-        // enemyMoveを人数分用意
-        EnemyMove[] enemyMove = FindObjectsOfType<EnemyMove>();
-        m_enemyMove = new List<EnemyMove>(enemyMove);
-    }
-
     /// <summary>
     /// テキストを設定する
     /// </summary>
@@ -71,9 +69,9 @@ public class DrawStatusValue : MonoBehaviour
     }
 
     /// <summary>
-    /// HP・SPのバーを設定する
+    /// ステータスを設定する
     /// </summary>
-    public void SetStatusBar()
+    public void SetStatus()
     {
         for (int i = 0; i < PlayerData.playerDataList.Count; i++)
         {
@@ -100,5 +98,30 @@ public class DrawStatusValue : MonoBehaviour
     {
         float rate = 0.0f;
         return rate = (float)nowValue / (float)maxValue;
+    }
+
+    /// <summary>
+    /// 状態異常のUIを描画する
+    /// </summary>
+    public void DrawStatusAbnormalImage(int number)
+    {
+        // 状態異常がない場合は描画しない
+        if (m_playerMove[number].ActorAbnormalState == ActorAbnormalState.enNormal)
+        {
+            Data_StatusAbnormalImage[number].SetActive(false);
+            return;
+        }
+
+        Data_StatusAbnormalImage[number].GetComponent<Image>().sprite =
+            StateAbnormalData.stateAbnormalList[0].StateImage;
+        Data_StatusAbnormalImage[number].SetActive(true);
+    }
+
+    /// <summary>
+    /// バフ・デバフのUIを描画する
+    /// </summary>
+    public void DrawBuffStatusImage()
+    {
+
     }
 }

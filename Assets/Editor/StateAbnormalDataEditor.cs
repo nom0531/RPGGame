@@ -4,12 +4,9 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 
-public class LevelDataEditor : EditorWindow
+public class StateAbnormalDataEditor : EditorWindow
 {
-    private const int MAX_TEXTNUM = 14;
-
-    // 対象のデータベース
-    private static LevelDataBase m_levelDataBase;
+    private static StateAbnormalDataBase m_stateAbnormalDataBase;
     // 名前一覧
     private static List<string> m_nameList = new List<string>();
     // スクロール位置
@@ -21,15 +18,15 @@ public class LevelDataEditor : EditorWindow
     private string m_searchText = "";
 
     // ウィンドウを作成
-    [MenuItem("Window/LevelDataBase")]
+    [MenuItem("Window/StateAbnormalDataBase")]
     private static void Open()
     {
         // 読み込み
-        m_levelDataBase = AssetDatabase.LoadAssetAtPath<LevelDataBase>("Assets/Data/LevelData.asset");
+        m_stateAbnormalDataBase = AssetDatabase.LoadAssetAtPath<StateAbnormalDataBase>("Assets/Data/StateAbnormalData.asset");
         // 名前を変更
-        GetWindow<LevelDataEditor>("レベルデータベース");
+        GetWindow<StateAbnormalDataEditor>("ステートデータベース");
         // 変更を通知
-        EditorUtility.SetDirty(m_levelDataBase);
+        EditorUtility.SetDirty(m_stateAbnormalDataBase);
 
         ResetNameList();
     }
@@ -78,7 +75,7 @@ public class LevelDataEditor : EditorWindow
                     }
 
                     // ボタンが押された時の処理
-                    if (GUILayout.Button(i + ":" + m_nameList[i]))
+                    if (GUILayout.Button($"{i}:{m_nameList[i]}"))
                     {
                         // 対象変更
                         m_selectNumber = i;
@@ -106,7 +103,7 @@ public class LevelDataEditor : EditorWindow
             EditorGUILayout.EndHorizontal();
 
             // 項目数
-            GUILayout.Label("項目数:" + m_nameList.Count);
+            GUILayout.Label($"項目数:{m_nameList.Count}");
         }
         EditorGUILayout.EndVertical();
     }
@@ -125,54 +122,42 @@ public class LevelDataEditor : EditorWindow
         EditorGUILayout.BeginVertical(GUI.skin.box);
         {
             // 基礎情報を表示
-            GUILayout.Label($"ID:{m_selectNumber}   Name:{m_nameList[m_selectNumber]}");
+            m_stateAbnormalDataBase.stateAbnormalList[m_selectNumber].StateNumber = m_selectNumber;
+            GUILayout.Label($"ID:{m_stateAbnormalDataBase.stateAbnormalList[m_selectNumber].StateNumber}   Name:{m_nameList[m_selectNumber]}");
 
             // 空白
             EditorGUILayout.Space();
 
             // 設定欄を表示
             // 名前
-            m_levelDataBase.levelDataList[m_selectNumber].LevelName =
+            m_stateAbnormalDataBase.stateAbnormalList[m_selectNumber].StateName=
                 EditorGUILayout.TextField(
                     "名前",
-                    m_levelDataBase.levelDataList[m_selectNumber].LevelName
+                    m_stateAbnormalDataBase.stateAbnormalList[m_selectNumber].StateName
                     );
-            // 出現設定
-            m_levelDataBase.levelDataList[m_selectNumber].LocationType =
-                (LocationType)EditorGUILayout.Popup(
-                    "レベルの環境",
-                    (int)m_levelDataBase.levelDataList[m_selectNumber].LocationType,
-                    new string[] { "平原", "森", "海", "火山", "--" }
+            // 画像
+            m_stateAbnormalDataBase.stateAbnormalList[m_selectNumber].StateImage =
+                EditorGUILayout.ObjectField(
+                    "画像",
+                    m_stateAbnormalDataBase.stateAbnormalList[m_selectNumber].StateImage,
+                    typeof(Sprite), true) as Sprite;
+            // 効果
+            m_stateAbnormalDataBase.stateAbnormalList[m_selectNumber].POW =
+            EditorGUILayout.IntField(
+                    "基礎値(効果発動率)",
+                    m_stateAbnormalDataBase.stateAbnormalList[m_selectNumber].POW
                     );
-            m_levelDataBase.levelDataList[m_selectNumber].LocationTime =
-                (LocationTime)EditorGUILayout.Popup(
-                    "レベルの時間",
-                    (int)m_levelDataBase.levelDataList[m_selectNumber].LocationTime,
-                    new string[] { "朝", "日没前", "夜", "--" }
+            // 必要ターン数
+            m_stateAbnormalDataBase.stateAbnormalList[m_selectNumber].EffectTime =
+                EditorGUILayout.IntField(
+                    "解除までのターン数",
+                    m_stateAbnormalDataBase.stateAbnormalList[m_selectNumber].EffectTime
                     );
-
-            EditorGUILayout.Space();
-
-            // 説明
-            GUILayout.Label("説明");
-            m_levelDataBase.levelDataList[m_selectNumber].LevelDetail =
-                EditorGUILayout.TextArea(m_levelDataBase.levelDataList[m_selectNumber].LevelDetail);
-
-            // 警告を表示
-            if (m_levelDataBase.levelDataList[m_selectNumber].LevelName.Length >= MAX_TEXTNUM)
-            {
-                EditorGUILayout.HelpBox("警告：クエスト名の文字数が多すぎます！", MessageType.Warning);
-            }
-            // 警告を表示
-            if (m_levelDataBase.levelDataList[m_selectNumber].LocationType == LocationType.enAllLocation)
-            {
-                EditorGUILayout.HelpBox("警告：レベルの環境が設定されていません！", MessageType.Warning);
-            }
         }
         EditorGUILayout.EndVertical();
 
         // 保存
-        Undo.RegisterCompleteObjectUndo(m_levelDataBase, "LevelDataBase");
+        Undo.RegisterCompleteObjectUndo(m_stateAbnormalDataBase, "StateAbnormalDataBase");
     }
 
     /// <summary>
@@ -183,9 +168,9 @@ public class LevelDataEditor : EditorWindow
         m_nameList.Clear();
 
         // 名前を入力する
-        foreach (var level in m_levelDataBase.levelDataList)
+        foreach (var stateAbnormalData in m_stateAbnormalDataBase.stateAbnormalList)
         {
-            m_nameList.Add(level.LevelName);
+            m_nameList.Add(stateAbnormalData.StateName);
         }
     }
 
@@ -223,10 +208,10 @@ public class LevelDataEditor : EditorWindow
     /// </summary>
     private void AddData()
     {
-        var newLevelData = new LevelData();
+        var newStateAbnormalData = new StateAbnormalData();
 
         // 追加
-        m_levelDataBase.levelDataList.Add(newLevelData);
+        m_stateAbnormalDataBase.stateAbnormalList.Add(newStateAbnormalData);
     }
 
     /// <summary>
@@ -240,7 +225,7 @@ public class LevelDataEditor : EditorWindow
         }
 
         // 選択位置のデータを削除
-        m_levelDataBase.levelDataList.Remove(m_levelDataBase.levelDataList[m_selectNumber]);
+        m_stateAbnormalDataBase.stateAbnormalList.Remove(m_stateAbnormalDataBase.stateAbnormalList[m_selectNumber]);
         // 調整
         m_selectNumber -= 1;
         m_selectNumber = Mathf.Max(m_selectNumber, 0);

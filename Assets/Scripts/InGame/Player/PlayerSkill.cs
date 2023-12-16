@@ -59,7 +59,6 @@ public class PlayerSkill : MonoBehaviour
 
         foreach (GameObject button in skillButtons)
         {
-            Debug.Log("ボタンを削除");
             Destroy(button);
         }
     }
@@ -75,7 +74,7 @@ public class PlayerSkill : MonoBehaviour
         for (int i = 0; i < PlayerDataBase.playerDataList[m_playerNumber].skillDataList.Count; i++)
         {
             // 既にスキルが解放されているなら
-            if (saveData.SaveData.saveData.Players[m_playerNumber].PlayerEnhancement[i] == false)
+            if (saveData.SaveData.saveData.SkillRegisters[m_playerNumber].PlayerSkills[i] == false)
             {
                 continue;
             }
@@ -90,13 +89,13 @@ public class PlayerSkill : MonoBehaviour
 
             PlayerSkillButton skillButton = gameObject.GetComponent<PlayerSkillButton>();
             skillButton.SetPlayerSkill(
-                i,                                                                  // 番号
+                i,                                                                          // 番号
                 PlayerDataBase.playerDataList[m_playerNumber].skillDataList[i].SkillName,   // 名前
                 Color.black,
                 this
                 );
 
-            skillButton.GetComponent<PlayerSkillButton>().SkillNumber = i;          // 番号を教える
+            skillButton.GetComponent<PlayerSkillButton>().SkillNumber = i;                  // 番号を教える
         }
     }
 

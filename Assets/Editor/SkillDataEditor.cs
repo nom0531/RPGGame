@@ -7,23 +7,25 @@ using UnityEditor.IMGUI.Controls;
 public class SkillDataEditor : EditorWindow
 {
     // 対象のデータベース
-    static SkillDataBase m_skillDataBase;
+    private static SkillDataBase m_skillDataBase;
+    private static StateAbnormalDataBase m_stateAbnormalData;
     // 名前一覧
-    static List<string> m_nameList = new List<string>();
+    private static List<string> m_nameList = new List<string>();
     // スクロール位置
-    Vector2 m_leftScrollPosition = Vector2.zero;
+    private Vector2 m_leftScrollPosition = Vector2.zero;
     // 選択中ナンバー
-    int m_selectNumber = -1;
+    private int m_selectNumber = -1;
     // 検索欄
-    SearchField m_searchField;
-    string m_searchText = "";
+    private SearchField m_searchField;
+    private string m_searchText = "";
 
     // ウィンドウを作成
     [MenuItem("Window/SkillDataBase")]
-    static void Open()
+    private static void Open()
     {
         // 読み込み
         m_skillDataBase = AssetDatabase.LoadAssetAtPath<SkillDataBase>("Assets/Data/SkillData.asset");
+        m_stateAbnormalData = AssetDatabase.LoadAssetAtPath<StateAbnormalDataBase>("Assets/Data/StateAbnormalData.asset");
         // 名前を変更
         GetWindow<SkillDataEditor>("スキルデータベース");
         // 変更を通知
@@ -48,7 +50,7 @@ public class SkillDataEditor : EditorWindow
     /// <summary>
     /// ビュー左側の更新処理
     /// </summary>
-    void LeftUpdate()
+    private void LeftUpdate()
     {
         // サイズを調整
         EditorGUILayout.BeginVertical(GUI.skin.box, GUILayout.Width(160), GUILayout.Height(400));
@@ -76,7 +78,7 @@ public class SkillDataEditor : EditorWindow
                     }
 
                     // ボタンが押された時の処理
-                    if (GUILayout.Button(i + ":" + m_nameList[i]))
+                    if (GUILayout.Button($"{i}:{m_nameList[i]}"))
                     {
                         // 対象変更
                         m_selectNumber = i;
@@ -104,7 +106,7 @@ public class SkillDataEditor : EditorWindow
             EditorGUILayout.EndHorizontal();
 
             // 項目数
-            GUILayout.Label("項目数:" + m_nameList.Count);
+            GUILayout.Label($"項目数:{m_nameList.Count}");
         }
         EditorGUILayout.EndVertical();
     }
@@ -112,7 +114,7 @@ public class SkillDataEditor : EditorWindow
     /// <summary>
     /// ビュー右側の更新処理
     /// </summary>
-    void NameViewUpdate()
+    private void NameViewUpdate()
     {
         if (m_selectNumber < 0)
         {
@@ -124,7 +126,7 @@ public class SkillDataEditor : EditorWindow
         {
             // 基礎情報を表示
             m_skillDataBase.skillDataList[m_selectNumber].SkillNumber = m_selectNumber;
-            GUILayout.Label("ID:" + m_skillDataBase.skillDataList[m_selectNumber].SkillNumber + "   Name:" + m_nameList[m_selectNumber]);
+            GUILayout.Label( $"ID:{m_skillDataBase.skillDataList[m_selectNumber].SkillNumber}   Name:{m_nameList[m_selectNumber]}");
 
             // 空白
             EditorGUILayout.Space();
@@ -157,11 +159,6 @@ public class SkillDataEditor : EditorWindow
 
             EditorGUILayout.Space();
 
-            // 追加効果
-            Draw();
-
-            EditorGUILayout.Space();
-
             // 消費するデータ
             m_skillDataBase.skillDataList[m_selectNumber].Type =
                 (NecessaryType)EditorGUILayout.Popup(
@@ -179,24 +176,14 @@ public class SkillDataEditor : EditorWindow
                     m_skillDataBase.skillDataList[m_selectNumber].POW);
 
             EditorGUILayout.Space();
+
             // スキルの効果範囲
             m_skillDataBase.skillDataList[m_selectNumber].EffectRange =
                 (EffectRange)EditorGUILayout.Popup(
                     "効果範囲",
                     (int)m_skillDataBase.skillDataList[m_selectNumber].EffectRange,
                     new string[] { "単体", "全体" });
-            // バフのタイプ
-            if (m_skillDataBase.skillDataList[m_selectNumber].SkillType != SkillType.enBuff
-                || m_skillDataBase.skillDataList[m_selectNumber].SkillType != SkillType.enDeBuff)
-            {
-                // タイプ無し
-                m_skillDataBase.skillDataList[m_selectNumber].BuffType = BuffType.enNull;
-            }
-            m_skillDataBase.skillDataList[m_selectNumber].BuffType =
-                (BuffType)EditorGUILayout.Popup(
-                    "バフタイプ",
-                    (int)m_skillDataBase.skillDataList[m_selectNumber].BuffType,
-                    new string[] { "ATK", "DEF", "SPD", "--" });
+            DrawBuff();
 
             EditorGUILayout.Space();
 
@@ -213,6 +200,11 @@ public class SkillDataEditor : EditorWindow
             GUILayout.Label("図鑑説明");
             m_skillDataBase.skillDataList[m_selectNumber].SkillDetail =
                 EditorGUILayout.TextArea(m_skillDataBase.skillDataList[m_selectNumber].SkillDetail);
+
+            EditorGUILayout.Space();
+
+            // 追加効果
+            DrawStateAbnormalData();
         }
         EditorGUILayout.EndVertical();
 
@@ -221,39 +213,63 @@ public class SkillDataEditor : EditorWindow
     }
 
     /// <summary>
-    /// 追加効果を表示する
+    /// バフの詳細
     /// </summary>
-    private void Draw()
+    private void DrawBuff()
     {
+        m_skillDataBase.skillDataList[m_selectNumber].BuffType =
+            (BuffType)EditorGUILayout.Popup(
+                "バフタイプ",
+                (int)m_skillDataBase.skillDataList[m_selectNumber].BuffType,
+                new string[] { "ATK", "DEF", "SPD", "--" });
+
+        // バフでないなら
+        if (m_skillDataBase.skillDataList[m_selectNumber].BuffType == BuffType.enNull)
+        {
+            return;
+        }
+
+        // ターン数
+        m_skillDataBase.skillDataList[m_selectNumber].StateAbnormalData.EffectTime =
+            EditorGUILayout.IntField(
+                "ターン数",
+                m_skillDataBase.skillDataList[m_selectNumber].StateAbnormalData.EffectTime);
+    }
+
+    /// <summary>
+    /// 追加効果
+    /// </summary>
+    private void DrawStateAbnormalData()
+    {
+        for (int i = 0; i < m_stateAbnormalData.stateAbnormalList.Count; i++)
+        {
+            if (m_skillDataBase.skillDataList[m_selectNumber].StateAbnormalData.StateNumber != m_stateAbnormalData.stateAbnormalList[i].StateNumber)
+            {
+                continue;
+            }
+            m_skillDataBase.skillDataList[m_selectNumber].StateAbnormalData.StateName = m_stateAbnormalData.stateAbnormalList[i].StateName;
+            m_skillDataBase.skillDataList[m_selectNumber].StateAbnormalData.StateImage = m_stateAbnormalData.stateAbnormalList[i].StateImage;
+            m_skillDataBase.skillDataList[m_selectNumber].StateAbnormalData.POW = m_stateAbnormalData.stateAbnormalList[i].POW;
+            m_skillDataBase.skillDataList[m_selectNumber].StateAbnormalData.EffectTime = m_stateAbnormalData.stateAbnormalList[i].EffectTime;
+        }
+
         // 名前
         m_skillDataBase.skillDataList[m_selectNumber].StateAbnormalData.StateName =
-                EditorGUILayout.TextField(
-                    "追加効果:",
-                    m_skillDataBase.skillDataList[m_selectNumber].StateAbnormalData.StateName
-                    );
-        // 画像
-        m_skillDataBase.skillDataList[m_selectNumber].StateAbnormalData.StateImage = 
-            EditorGUILayout.ObjectField(
-                    "画像",
-                    m_skillDataBase.skillDataList[m_selectNumber].SkillSprite,
-                    typeof(Sprite), true) as Sprite;
-        // 必要ターン数
-        m_skillDataBase.skillDataList[m_selectNumber].StateAbnormalData.RequiredTime =
-            EditorGUILayout.IntField(
-                "解除までのターン数",
-                m_skillDataBase.skillDataList[m_selectNumber].StateAbnormalData.RequiredTime
+            EditorGUILayout.TextField(
+                "追加効果",
+                m_skillDataBase.skillDataList[m_selectNumber].StateAbnormalData.StateName
                 );
     }
 
     /// <summary>
     /// 名前一覧の作成
     /// </summary>
-    static void ResetNameList()
+    private static void ResetNameList()
     {
         m_nameList.Clear();
 
         // 名前を入力する
-        foreach (SkillData skill in m_skillDataBase.skillDataList)
+        foreach (var skill in m_skillDataBase.skillDataList)
         {
             m_nameList.Add(skill.SkillName);
         }
@@ -262,7 +278,7 @@ public class SkillDataEditor : EditorWindow
     /// <summary>
     /// 検索の処理
     /// </summary>
-    void Search()
+    private void Search()
     {
         if (m_searchText == "")
         {
@@ -291,9 +307,9 @@ public class SkillDataEditor : EditorWindow
     /// <summary>
     /// データの追加処理
     /// </summary>
-    void AddData()
+    private void AddData()
     {
-        SkillData newSkillData = new SkillData();
+        var newSkillData = new SkillData();
 
         // 追加
         m_skillDataBase.skillDataList.Add(newSkillData);
@@ -302,7 +318,7 @@ public class SkillDataEditor : EditorWindow
     /// <summary>
     /// データの削除処理
     /// </summary>
-    void DeleteData()
+    private void DeleteData()
     {
         if (m_selectNumber == -1)
         {

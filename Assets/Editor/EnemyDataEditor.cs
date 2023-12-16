@@ -7,20 +7,20 @@ using UnityEditor.IMGUI.Controls;
 public class EnemyDataEditor : EditorWindow
 {
     // 対象のデータベース
-    static EnemyDataBase m_enemyDataBase;
+    private static EnemyDataBase m_enemyDataBase;
     // 名前一覧
-    static List<string> m_nameList = new List<string>();
+    private static List<string> m_nameList = new List<string>();
     // スクロール位置
-    Vector2 m_leftScrollPosition = Vector2.zero;
+    private Vector2 m_leftScrollPosition = Vector2.zero;
     // 選択中ナンバー
-    int m_selectNumber = -1;
+    private int m_selectNumber = -1;
     // 検索欄
-    SearchField m_searchField;
-    string m_searchText = "";
+    private SearchField m_searchField;
+    private string m_searchText = "";
 
     // ウィンドウを作成
     [MenuItem("Window/EnemyDataBase")]
-    static void Open()
+    private static void Open()
     {
         // 読み込み
         m_enemyDataBase = AssetDatabase.LoadAssetAtPath<EnemyDataBase>("Assets/Data/EnemyData.asset");
@@ -48,7 +48,7 @@ public class EnemyDataEditor : EditorWindow
     /// <summary>
     /// ビュー左側の更新処理
     /// </summary>
-    void LeftUpdate()
+    private void LeftUpdate()
     {
         // サイズを調整
         EditorGUILayout.BeginVertical(GUI.skin.box, GUILayout.Width(160), GUILayout.Height(400));
@@ -76,7 +76,7 @@ public class EnemyDataEditor : EditorWindow
                     }
 
                     // ボタンが押された時の処理
-                    if (GUILayout.Button(i + ":" + m_nameList[i]))
+                    if (GUILayout.Button($"{i}:{m_nameList[i]}"))
                     {
                         // 対象変更
                         m_selectNumber = i;
@@ -112,7 +112,7 @@ public class EnemyDataEditor : EditorWindow
     /// <summary>
     /// ビュー右側の更新処理
     /// </summary>
-    void NameViewUpdate()
+    private void NameViewUpdate()
     {
         if (m_selectNumber < 0)
         {
@@ -124,7 +124,7 @@ public class EnemyDataEditor : EditorWindow
         {
             // 基礎情報を表示
             m_enemyDataBase.enemyDataList[m_selectNumber].EnemyNumber = m_selectNumber;
-            GUILayout.Label("ID:" + m_enemyDataBase.enemyDataList[m_selectNumber].EnemyNumber + "   Name:" + m_nameList[m_selectNumber]);
+            GUILayout.Label($"ID:{m_enemyDataBase.enemyDataList[m_selectNumber].EnemyNumber}   Name:{m_nameList[m_selectNumber]}");
 
             // 空白
             EditorGUILayout.Space();
@@ -157,7 +157,7 @@ public class EnemyDataEditor : EditorWindow
                     );
 
             EditorGUILayout.Space();
-            ElementViewUpdate();
+            DrawElement();
             EditorGUILayout.Space();
 
             // ステータス欄
@@ -207,41 +207,47 @@ public class EnemyDataEditor : EditorWindow
     }
 
     /// <summary>
-    /// 属性耐性のビューの更新処理
+    /// 属性耐性
     /// </summary>
-    void ElementViewUpdate()
+    private void DrawElement()
     {
+        // 属性耐性
+        string[] elementText = { "炎", "氷", "風", "雷", "光", "闇", "無" };
+
+        for (int i = 0; i < (int)ElementType.enNum; i++)
         {
-            // 属性耐性
-            string[] elementText = { "炎", "氷", "風", "雷", "光", "闇", "無" };
-
-            for (int i = 0; i < (int)ElementType.enNum; i++)
-            {
-                m_enemyDataBase.enemyDataList[m_selectNumber].EnemyElement[i] =
-                     (ElementResistance)EditorGUILayout.Popup(
-                         elementText[i],
-                         (int)m_enemyDataBase.enemyDataList[m_selectNumber].EnemyElement[i],
-                         new string[] { "耐性", "弱点", "--" }
-                         );
-            }
-
-            // 一定以上設定された場合は警告を表示する
-            if (m_enemyDataBase.enemyDataList[m_selectNumber].EnemyElement.Length > (int)ElementType.enNum)
-            {
-                EditorGUILayout.HelpBox("警告：属性の種類が定義より多く設定されています！", MessageType.Warning);
-            }
+            m_enemyDataBase.enemyDataList[m_selectNumber].EnemyElement[i] =
+                 (ElementResistance)EditorGUILayout.Popup(
+                     elementText[i],
+                     (int)m_enemyDataBase.enemyDataList[m_selectNumber].EnemyElement[i],
+                     new string[] { "耐性", "弱点", "--" }
+                     );
         }
+
+        // 一定以上設定された場合は警告を表示する
+        if (m_enemyDataBase.enemyDataList[m_selectNumber].EnemyElement.Length > (int)ElementType.enNum)
+        {
+            EditorGUILayout.HelpBox("警告：属性の種類が定義より多く設定されています！", MessageType.Warning);
+        }
+    }
+
+    /// <summary>
+    /// 行動処理
+    /// </summary>
+    private void DrawMove()
+    {
+
     }
 
     /// <summary>
     /// 名前一覧の作成
     /// </summary>
-    static void ResetNameList()
+    private static void ResetNameList()
     {
         m_nameList.Clear();
 
         // 名前を入力する
-        foreach (EnemyData enemy in m_enemyDataBase.enemyDataList)
+        foreach (var enemy in m_enemyDataBase.enemyDataList)
         {
             m_nameList.Add(enemy.EnemyName);
         }
@@ -250,7 +256,7 @@ public class EnemyDataEditor : EditorWindow
     /// <summary>
     /// 検索の処理
     /// </summary>
-    void Search()
+    private void Search()
     {
         if (m_searchText == "")
         {
@@ -279,9 +285,9 @@ public class EnemyDataEditor : EditorWindow
     /// <summary>
     /// データの追加処理
     /// </summary>
-    void AddData()
+    private void AddData()
     {
-        EnemyData newEnamyData = new EnemyData();
+        var newEnamyData = new EnemyData();
 
         // 追加
         m_enemyDataBase.enemyDataList.Add(newEnamyData);
@@ -290,7 +296,7 @@ public class EnemyDataEditor : EditorWindow
     /// <summary>
     /// データの削除処理
     /// </summary>
-    void DeleteData()
+    private void DeleteData()
     {
         if (m_selectNumber == -1)
         {

@@ -13,7 +13,6 @@ public class EnemyMoveData
     public ActorHPState ActorHPState;               // HPの状態
     public ActorAbnormalState ActorAbnormalState;   // 状態異常
     public ActionType ActionType;                   // 行動パターン
-    public bool IsMove;                             // 行動を行うかどうか
 }
 
 [CreateAssetMenu(fileName = "EnemyDataMoveBase", menuName = "CreateEnemyMoveDataBase")]

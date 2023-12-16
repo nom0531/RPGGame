@@ -15,6 +15,8 @@ public class SaveDataManager : MonoBehaviour
     private SaveData GameSaveData;
 
     private const bool BOOL = true;
+    private const int DEFAULT_EP_POINT = 500;
+
     private string m_filePath;  // 書き込み先のファイルパス
 
     public SaveData SaveData
@@ -52,7 +54,7 @@ public class SaveDataManager : MonoBehaviour
     /// 現在の状況をロードする
     /// </summary>
     /// <returns>成功したらtrue、失敗したらfalseを返す</returns>
-    public bool Load()
+    private bool Load()
     {
         if (File.Exists(m_filePath))
         {
@@ -73,50 +75,63 @@ public class SaveDataManager : MonoBehaviour
     private void InitData()
     {
         // データを用意する
-        GameSaveData.saveData.EnemyRegister = new bool[EnemyData.enemyDataList.Count];
-        GameSaveData.saveData.ElementRegister = new Element[EnemyData.enemyDataList.Count];
-        GameSaveData.saveData.Players = new Player[PlayerData.playerDataList.Count];
-        GameSaveData.saveData.ClearStage = new bool[LevelData.levelDataList.Count];
+        GameSaveData.saveData.EnemyRegisters = new bool[EnemyData.enemyDataList.Count];                 // エネミーの発見度
+        GameSaveData.saveData.ElementRegisters = new Element[EnemyData.enemyDataList.Count];            // 属性耐性の発見度
+        GameSaveData.saveData.SkillRegisters = new Skill[PlayerData.playerDataList.Count];              // スキルの開放度
+        GameSaveData.saveData.EnhancementRegisters = new Enhancement[PlayerData.playerDataList.Count];  // 強化の開放度
+        GameSaveData.saveData.PlayerList = new PlayerStatus[PlayerData.playerDataList.Count];           // プレイヤーのステータス
+        GameSaveData.saveData.ClearStage = new bool[LevelData.levelDataList.Count];                     // ステージのクリア数
         // 値を初期化
-        GameSaveData.saveData.EnhancementPoint = 500;
+        GameSaveData.saveData.EnhancementPoint = DEFAULT_EP_POINT;                                      // 所持している強化ポイント
         
         // エネミーと戦ったか、エネミーの属性を発見したか
-        for (int i = 0;i< GameSaveData.saveData.EnemyRegister.Length; i++)
+        for (int enemyNumber = 0; enemyNumber < GameSaveData.saveData.EnemyRegisters.Length; enemyNumber++)
         {
             // 発見していない
-            GameSaveData.saveData.EnemyRegister[i] = BOOL;
-            GameSaveData.saveData.ElementRegister[i] = new Element { Elements = new bool[(int)ElementType.enNum] };
+            GameSaveData.saveData.EnemyRegisters[enemyNumber] = BOOL;
+            GameSaveData.saveData.ElementRegisters[enemyNumber] = new Element { Elements = new bool[(int)ElementType.enNum] };
 
-            for(int j = 0; j < (int)ElementType.enNum; j++)
+            for(int elementNumber = 0; elementNumber < (int)ElementType.enNum; elementNumber++)
             {
-                GameSaveData.saveData.ElementRegister[i].Elements[j] = BOOL;
+                GameSaveData.saveData.ElementRegisters[enemyNumber].Elements[elementNumber] = BOOL;
             }
         }
 
-        // スキルの開放度
-        GameSaveData.saveData.Players[0] = new Player { PlayerEnhancement = new bool[PlayerData.playerDataList[0].skillDataList.Count] };
-        for(int i = 0;i< PlayerData.playerDataList[0].skillDataList.Count; i++)
+        // プレイヤー
+        for (int playerNumber = 0; playerNumber < PlayerData.playerDataList.Count; playerNumber++)
         {
-            GameSaveData.saveData.Players[0].PlayerEnhancement[i] = BOOL;
-        }
-
-        GameSaveData.saveData.Players[1] = new Player { PlayerEnhancement = new bool[PlayerData.playerDataList[1].skillDataList.Count] };
-        for (int i = 0; i < PlayerData.playerDataList[1].skillDataList.Count; i++)
-        {
-            GameSaveData.saveData.Players[1].PlayerEnhancement[i] = BOOL;
-        }
-        
-        GameSaveData.saveData.Players[2] = new Player { PlayerEnhancement = new bool[PlayerData.playerDataList[2].skillDataList.Count] };
-        for (int i = 0; i < PlayerData.playerDataList[2].skillDataList.Count; i++)
-        {
-            GameSaveData.saveData.Players[2].PlayerEnhancement[i] = BOOL;
+            // スキルの開放度
+            GameSaveData.saveData.SkillRegisters[playerNumber] =
+                new Skill { PlayerSkills = new bool[PlayerData.playerDataList[playerNumber].skillDataList.Count] };
+            for (int skillNumber = 0; skillNumber < PlayerData.playerDataList[playerNumber].skillDataList.Count; skillNumber++)
+            {
+                GameSaveData.saveData.SkillRegisters[playerNumber].PlayerSkills[skillNumber] = BOOL;
+            }
+            // 強化の開放度
+            GameSaveData.saveData.EnhancementRegisters[playerNumber] =
+                new Enhancement { PlayerEnhancements = new bool[PlayerData.playerDataList[playerNumber].skillDataList.Count] };
+            for (int enhancementNumber = 0; enhancementNumber < PlayerData.playerDataList[playerNumber].skillDataList.Count; enhancementNumber++)
+            {
+                GameSaveData.saveData.EnhancementRegisters[playerNumber].PlayerEnhancements[enhancementNumber] = BOOL;
+            }
+            // ステータスを記録
+            GameSaveData.saveData.PlayerList[playerNumber] =
+                new PlayerStatus
+                {
+                    HP = PlayerData.playerDataList[playerNumber].HP,
+                    SP = PlayerData.playerDataList[playerNumber].SP,
+                    ATK = PlayerData.playerDataList[playerNumber].ATK,
+                    DEF = PlayerData.playerDataList[playerNumber].DEF,
+                    SPD = PlayerData.playerDataList[playerNumber].SPD,
+                    LUCK = PlayerData.playerDataList[playerNumber].LUCK
+                };
         }
 
         // ステージをクリアしているかどうか
-        for (int i = 0;i < LevelData.levelDataList.Count; i++)
+        for (int stageNumber = 0; stageNumber < LevelData.levelDataList.Count; stageNumber++)
         {
             // クリアしていない
-            GameSaveData.saveData.ClearStage[i] = BOOL;
+            GameSaveData.saveData.ClearStage[stageNumber] = BOOL;
         }
 
         Save();

@@ -92,7 +92,7 @@ public class PictureBookSystem : MonoBehaviour
             button.transform.localPosition = Vector3.zero;
 
             // Œ©‚Â‚©‚Á‚Ä‚¢‚È‚¢‚È‚ç‰æ‘œ‚ğˆÃ‚­‚·‚é
-            if (m_saveDataManager.SaveData.saveData.EnemyRegister[i] == false)
+            if (m_saveDataManager.SaveData.saveData.EnemyRegisters[i] == false)
             {
                 button.GetComponent<Image>().color = Color.black;
             }
@@ -103,7 +103,7 @@ public class PictureBookSystem : MonoBehaviour
 
                 for(int elementNumber = 0; elementNumber < (int)ElementType.enNum; elementNumber++)
                 {
-                    if(m_saveDataManager.SaveData.saveData.ElementRegister[i].Elements[elementNumber] != true)
+                    if(m_saveDataManager.SaveData.saveData.ElementRegisters[i].Elements[elementNumber] != true)
                     {
                         break;
                     }
@@ -116,8 +116,8 @@ public class PictureBookSystem : MonoBehaviour
             var enemyButton = button.GetComponent<EnemyButton>();
             enemyButton.SetPictureBook(
                 i,                                                          // ”Ô†
-                EnemyDataBase.enemyDataList[i].EnemySprite,                     // ‰æ‘œ
-                m_saveDataManager.SaveData.saveData.EnemyRegister[i],  // ”­Œ©‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©
+                EnemyDataBase.enemyDataList[i].EnemySprite,                 // ‰æ‘œ
+                m_saveDataManager.SaveData.saveData.EnemyRegisters[i],      // ”­Œ©‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©
                 this
                 );
         }
@@ -154,7 +154,7 @@ public class PictureBookSystem : MonoBehaviour
     void GetResistance(GameObject gameObjct,int enemyNumber,int elementNumber)
     {
         // ”­Œ©‚µ‚Ä‚¢‚È‚¢‚È‚ç
-        if (m_saveDataManager.SaveData.saveData.ElementRegister[enemyNumber].Elements[elementNumber] == false)
+        if (m_saveDataManager.SaveData.saveData.ElementRegisters[enemyNumber].Elements[elementNumber] == false)
         {
             gameObjct.GetComponent<TextMeshProUGUI>().text = "H";
             return;
@@ -172,7 +172,7 @@ public class PictureBookSystem : MonoBehaviour
                 gameObjct.GetComponent<TextMeshProUGUI>().text = "ã";
                 break;
             case ElementResistance.enNormal:
-                gameObjct.GetComponent<TextMeshProUGUI>().text = "[";
+                gameObjct.GetComponent<TextMeshProUGUI>().text = "-";
                 break;
         }
     }

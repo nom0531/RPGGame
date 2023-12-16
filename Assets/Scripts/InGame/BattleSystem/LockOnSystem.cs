@@ -42,7 +42,6 @@ public class LockOnSystem : MonoBehaviour
     private TargetState m_target;                   // ターゲットにする相手
     private int m_operatingPlayer = 0;              // 現在操作しているプレイヤー
     private int m_selectTargetNumber = 0;           // 現在選択しているターゲットの番号
-    private int m_selectPlayerNumber = 0;           // 現在選択しているプレイヤーの番号
     private bool m_isLockOnStart = false;           // ロックオンを開始するかどうか
     private bool m_isButtonDown = false;            // ボタンが押されたかどうか
     private bool m_isActive = false;                // 一度Activeにしたかどうか
@@ -306,7 +305,7 @@ public class LockOnSystem : MonoBehaviour
         }
 
         // 選択していたエネミーがひん死でないなら実行しない
-        if (m_playerMoveList[m_selectTargetNumber].PlayerStatus.HPState != ActorHPState.enDie)
+        if (m_playerMoveList[m_selectTargetNumber].ActorHPState != ActorHPState.enDie)
         {
             return;
         }
@@ -316,7 +315,7 @@ public class LockOnSystem : MonoBehaviour
         for (int i = 0; i < m_playerMoveList.Count; i++)
         {
             // プレイヤーがひん死でないなら
-            if (m_playerMoveList[i].PlayerStatus.HPState != ActorHPState.enDie)
+            if (m_playerMoveList[i].ActorHPState != ActorHPState.enDie)
             {
                 // 値を設定する
                 m_selectTargetNumber = i;

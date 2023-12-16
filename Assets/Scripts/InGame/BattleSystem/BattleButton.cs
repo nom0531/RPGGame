@@ -64,7 +64,12 @@ public class BattleButton : MonoBehaviour
         {
             m_currentTurnPlayerNumber = m_battleManager.OperatingPlayerNumber;
         }
-
+        // 沈黙状態ならボタンを押せない
+        if (m_playerMoveList[m_currentTurnPlayerNumber].ActorAbnormalState == ActorAbnormalState.enSilence)
+        {
+            SkillButton.GetComponent<Button>().interactable = false;
+            return;
+        }
         // スキルを選択したならボタンを押せるようにする
         if (m_playerSkill.SelectSkillNumber >= 0 ){
             OKButton.GetComponent<Button>().interactable = true;

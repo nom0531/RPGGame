@@ -51,7 +51,6 @@ public class DrawCommandText : MonoBehaviour
         if (this.gameObject.GetComponent<BuffCalculation>().GetBuffFlag(buffStatus) == true)
         {
             actionText = "Œø‰ÊŠÔ‚ªL‚Ñ‚½";
-            Debug.Log(actionText);
             return;
         }
 

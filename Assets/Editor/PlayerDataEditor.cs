@@ -7,20 +7,20 @@ using UnityEditor.IMGUI.Controls;
 public class PlayerDataEditor : EditorWindow
 {
     // 対象のデータベース
-    static PlayerDataBase m_playerDataBase;
+    private static PlayerDataBase m_playerDataBase;
     // 名前一覧
-    static List<string> m_nameList = new List<string>();
+    private static List<string> m_nameList = new List<string>();
     // スクロール位置
-    Vector2 m_leftScrollPosition = Vector2.zero;
+    private Vector2 m_leftScrollPosition = Vector2.zero;
     // 選択中ナンバー
-    int m_selectNumber = -1;
+    private int m_selectNumber = -1;
     // 検索欄
-    SearchField m_searchField;
-    string m_searchText = "";
+    private SearchField m_searchField;
+    private string m_searchText = "";
 
     // ウィンドウを作成
     [MenuItem("Window/PlayerDataBase")]
-    static void Open()
+    private static void Open()
     {
         // 読み込み
         m_playerDataBase = AssetDatabase.LoadAssetAtPath<PlayerDataBase>("Assets/Data/PlayerData.asset");
@@ -49,7 +49,7 @@ public class PlayerDataEditor : EditorWindow
     /// <summary>
     /// ビュー左側の更新処理
     /// </summary>
-    void LeftUpdate()
+    private void LeftUpdate()
     {
         // サイズを調整
         EditorGUILayout.BeginVertical(GUI.skin.box, GUILayout.Width(160), GUILayout.Height(400));
@@ -113,7 +113,7 @@ public class PlayerDataEditor : EditorWindow
     /// <summary>
     /// ビュー右側の更新処理
     /// </summary>
-    void NameViewUpdate()
+    private void NameViewUpdate()
     {
         if (m_selectNumber < 0)
         {
@@ -124,7 +124,7 @@ public class PlayerDataEditor : EditorWindow
         EditorGUILayout.BeginVertical(GUI.skin.box);
         {
             // 基礎情報を表示
-            GUILayout.Label("ID:" + m_selectNumber + "   Name:" + m_nameList[m_selectNumber]);
+            GUILayout.Label($"ID:{m_selectNumber}   Name:{m_nameList[m_selectNumber]}");
 
             // 空白
             EditorGUILayout.Space();
@@ -151,7 +151,7 @@ public class PlayerDataEditor : EditorWindow
                     );
 
             EditorGUILayout.Space();
-            ElementViewUpdate();
+            DrawElement();
             EditorGUILayout.Space();
 
             // ステータス欄
@@ -203,7 +203,7 @@ public class PlayerDataEditor : EditorWindow
     /// <summary>
     /// 属性耐性のビューの更新処理
     /// </summary>
-    void ElementViewUpdate()
+    private void DrawElement()
     {
         {
             // 属性耐性
@@ -230,12 +230,12 @@ public class PlayerDataEditor : EditorWindow
     /// <summary>
     /// 名前一覧の作成
     /// </summary>
-    static void ResetNameList()
+    private static void ResetNameList()
     {
         m_nameList.Clear();
 
         // 名前を入力する
-        foreach (PlayerData player in m_playerDataBase.playerDataList)
+        foreach (var player in m_playerDataBase.playerDataList)
         {
             m_nameList.Add(player.PlayerName);
         }
@@ -244,7 +244,7 @@ public class PlayerDataEditor : EditorWindow
     /// <summary>
     /// 検索の処理
     /// </summary>
-    void Search()
+    private void Search()
     {
         if (m_searchText == "")
         {
@@ -273,9 +273,9 @@ public class PlayerDataEditor : EditorWindow
     /// <summary>
     /// データの追加処理
     /// </summary>
-    void AddData()
+    private void AddData()
     {
-        PlayerData newPlayerData = new PlayerData();
+        var newPlayerData = new PlayerData();
 
         // 追加
         m_playerDataBase.playerDataList.Add(newPlayerData);
@@ -284,7 +284,7 @@ public class PlayerDataEditor : EditorWindow
     /// <summary>
     /// データの削除処理
     /// </summary>
-    void DeleteData()
+    private void DeleteData()
     {
         if (m_selectNumber == -1)
         {

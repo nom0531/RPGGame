@@ -67,15 +67,15 @@ public class SkillButton : MonoBehaviour
     /// </summary>
     public void IsUseButtonDown()
     {
-        // セーブデータを取得
         var saveDataManager = GameManager.Instance.SaveData;
+
         // 値を設定する
-        saveDataManager.SaveData.saveData.Players[m_selectPlayerNumber].PlayerEnhancement[m_selectSkillNumber] = true;
-        // 値を更新
+        saveDataManager.SaveData.saveData.SkillRegisters[m_selectPlayerNumber].PlayerSkills[m_selectSkillNumber] = true;
         saveDataManager.SaveData.saveData.EnhancementPoint -= SkillData.skillDataList[m_selectSkillNumber].EnhancementPoint;
         Data_HaveEP.GetComponent<TextMeshProUGUI>().text =
             saveDataManager.SaveData.saveData.EnhancementPoint.ToString();
 
+        // ボタンのテキストを変更する
         GetComponent<Button>().interactable = false;
         transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "解放済み";
 
