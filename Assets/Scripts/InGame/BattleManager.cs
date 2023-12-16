@@ -70,6 +70,7 @@ public class BattleManager : MonoBehaviour
     private int m_turnSum = 0;                                  // 総合ターン数
     private int m_selectQuestNumber = 0;                        // 選択したクエストの番号
     private int m_enemySum = 0;                                 // エネミーの総数
+    private int m_enemyNumber = 0;                              // エネミーの番号
     private bool m_isPause = false;                             // ポーズ画面かどうか
     private bool m_isPushDown = false;                          // ボタンが押されたかどうか
 
@@ -245,7 +246,7 @@ public class BattleManager : MonoBehaviour
                 break;
             // エネミーのターン
             case TurnStatus.enEnemy:
-                for(int enemyNumber = 0; enemyNumber < m_enemyMoveList.Count; enemyNumber++)
+                for(int enemyNumber = m_enemyNumber; enemyNumber < m_enemyMoveList.Count; enemyNumber++)
                 {
                     // 死亡している際は実行しない
                     if (m_enemyMoveList[enemyNumber].ActorHPState == ActorHPState.enDie)
@@ -273,6 +274,8 @@ public class BattleManager : MonoBehaviour
                 // 次の操作キャラクターを決定、カメラを再設定する
                 m_operatingPlayer = NextOperatingPlayer();
                 m_lockOnSystem.ResetCinemachine();
+                // エネミーの番号をリセットする
+                m_enemyNumber = 0;
                 break;
         }
     }
@@ -805,6 +808,8 @@ public class BattleManager : MonoBehaviour
             case ActionType.enNull:
                 break;
         }
+
+        m_enemyNumber++;
     }
 
     /// <summary>
