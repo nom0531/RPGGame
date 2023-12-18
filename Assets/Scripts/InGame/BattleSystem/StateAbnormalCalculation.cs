@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StateAbnormalCalculation : MonoBehaviour
 {
-    private enum StateNumber
+   private enum StateNumber
     {
         enPoison = 7,
         enParalysis,
@@ -16,10 +16,26 @@ public class StateAbnormalCalculation : MonoBehaviour
     private StateAbnormalDataBase StateAbnormalData;
 
     private BattleSystem m_battleSystem;
+    private const int SPENT_PROBABILITY = 80;   // ó‘ÔˆÙí‚É‚©‚©‚éŠm—¦
 
     private void Start()
     {
         m_battleSystem = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<BattleSystem>();
+    }
+
+    /// <summary>
+    /// ó‘ÔˆÙí‚É‚È‚é‚©‚Ç‚¤‚©‚Ì”»’è
+    /// </summary>
+    /// <returns>true‚È‚ç‚©‚©‚Á‚½Bfalse‚È‚ç‚©‚©‚ç‚È‚©‚Á‚½</returns>
+    public bool SpentToStateAbnormal()
+    {
+        int rand = m_battleSystem.GetRandomValue(0, 100);
+        // ˆê’èˆÈ‰º‚È‚çtrue‚ğ•Ô‚·
+        if(rand > SPENT_PROBABILITY)
+        {
+            return true;
+        }
+        return false;
     }
 
     /// <summary>

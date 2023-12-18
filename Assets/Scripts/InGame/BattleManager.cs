@@ -104,7 +104,7 @@ public class BattleManager : MonoBehaviour
     {
         m_battleSystem = gameObject.GetComponent<BattleSystem>();
         m_lockOnSystem = gameObject.GetComponent<LockOnSystem>();
-        m_abnormalCalculation = GetComponent<StateAbnormalCalculation>();
+        m_abnormalCalculation = gameObject.GetComponent<StateAbnormalCalculation>();
         m_drawStatusValue = gameObject.GetComponent<DrawStatusValue>();
         m_drawBattleResult = gameObject.GetComponent<DrawBattleResult>();
 
@@ -261,7 +261,6 @@ public class BattleManager : MonoBehaviour
                     // 再度行動可能なら
                     if (m_battleSystem.OneMore == true)
                     {
-                        enemyNumber--;
                         continue;
                     }
                 }
@@ -367,6 +366,7 @@ public class BattleManager : MonoBehaviour
                     // 攻撃対象が選択されたら以下の処理を実行する
                     await UniTask.WaitUntil(() => m_lockOnSystem.ButtonDown == true);
 
+                    skillNumber = m_playerMoveList[number].SelectSkillNumber;
                     targetNumber = m_lockOnSystem.TargetNumber;
                     PlayerAction_Move(number, targetNumber, actionType, skillNumber);
                     Debug.Log("自分のHP : " + m_playerMoveList[number].PlayerStatus.HP);
@@ -612,6 +612,8 @@ public class BattleManager : MonoBehaviour
 
         // HPを回復させる
         m_playerMoveList[targetNumber].RecoverHP(recverValue);
+
+        Debug.Log($"{PlayerData.playerDataList[targetNumber].PlayerName}は{recverValue}回復した");
 
         PlayerAction_Decrement(myNumber, skillNumber);
     }

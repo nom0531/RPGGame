@@ -86,6 +86,9 @@ public class DrawStatusValue : MonoBehaviour
                     m_playerMove[i].PlayerStatus.SP,
                     PlayerData.playerDataList[i].SP
                     );
+
+            DrawStatusAbnormalImage(i);
+            DrawBuffStatusImage(i);
         }
     }
 
@@ -103,25 +106,66 @@ public class DrawStatusValue : MonoBehaviour
     /// <summary>
     /// 状態異常のUIを描画する
     /// </summary>
-    public void DrawStatusAbnormalImage(int number)
+    private void DrawStatusAbnormalImage(int number)
     {
-        // 状態異常がない場合は描画しない
+        // 状態異常がない(enNormalの)場合は表示しない
         if (m_playerMove[number].ActorAbnormalState == ActorAbnormalState.enNormal)
         {
             Data_StatusAbnormalImage[number].SetActive(false);
             return;
         }
-
-        Data_StatusAbnormalImage[number].GetComponent<Image>().sprite =
-            StateAbnormalData.stateAbnormalList[0].StateImage;
-        Data_StatusAbnormalImage[number].SetActive(true);
+        // 現在の状態異常とデータの状態異常が同じなら
+        for(int i = 0; i < StateAbnormalData.stateAbnormalList.Count; i++)
+        {
+            if(m_playerMove[number].ActorAbnormalState != StateAbnormalData.stateAbnormalList[i].ActorAbnormalState)
+            {
+                continue;
+            }
+            // 番号を設定
+            var stateNumber = (int)StateAbnormalData.stateAbnormalList[i].StateNumber;
+            // スプライトを設定する
+            Data_StatusAbnormalImage[number].GetComponent<Image>().sprite =
+                StateAbnormalData.stateAbnormalList[stateNumber].StateImage;
+            // 表示する
+            Data_StatusAbnormalImage[number].SetActive(true);
+            break;
+        }
     }
 
     /// <summary>
     /// バフ・デバフのUIを描画する
     /// </summary>
-    public void DrawBuffStatusImage()
+    private void DrawBuffStatusImage(int number)
     {
+        if(m_playerMove[number].NextActionType == ActionType.enGuard)
+        {
+            return;
+        }
+        if(m_playerMove[number].ActorAbnormalState != ActorAbnormalState.enNormal)
+        {
+            return;
+        }
 
+        var buffCalculation = m_playerMove[number].GetComponent<BuffCalculation>();
+
+        // バフ・デバフがかかっているなら
+        for(int i = 0; i < Content[number].gameObject.transform.childCount; i++)
+        {
+            for (int j = 0; j < (int)BuffStatus.enNum; j++)
+            {
+                if (buffCalculation.GetBuffFlag((BuffStatus)j) == false)
+                {
+                    Content[number].transform.GetChild(i).gameObject.SetActive(false);
+                    continue;
+                }
+                // 番号を設定
+                var stateNumber = j + 1;
+                // スプライトを設定
+                Content[number].gameObject.transform.GetChild(i).GetComponent<Image>().sprite =
+                    StateAbnormalData.stateAbnormalList[stateNumber].StateImage;
+                Content[number].transform.GetChild(i).gameObject.SetActive(true);
+                break;
+            }
+        }
     }
 }

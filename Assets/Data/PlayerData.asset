@@ -704,7 +704,7 @@ MonoBehaviour:
         POW: 0
         EffectTime: 0
         ActorAbnormalState: 0
-      POW: 25
+      POW: 50
       SkillNecessary: 0
       Type: 0
       EffectRange: 0
