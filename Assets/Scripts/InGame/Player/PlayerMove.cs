@@ -90,7 +90,9 @@ public class PlayerMove : MonoBehaviour
         m_buffCalculation = this.gameObject.GetComponent<BuffCalculation>();
         m_drawCommandText = this.gameObject.GetComponent<DrawCommandText>();
         //m_drawDamageText =GameObject.FindGameObjectWithTag("UICanvas").GetComponent<DrawDamageText>();
-
+    }
+    private void Start()
+    {
         SetStatus();
         SetSkills();
     }
