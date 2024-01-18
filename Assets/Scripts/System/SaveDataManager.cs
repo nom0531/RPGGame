@@ -11,7 +11,7 @@ public class SaveDataManager : MonoBehaviour
     private EnemyDataBase EnemyData;
     [SerializeField, Tooltip("レベルデータ")]
     private LevelDataBase LevelData;
-    [SerializeField, Header("参照オブジェクト")]
+    [SerializeField, Header("セーブデータ")]
     private SaveData GameSaveData;
 
     private const bool BOOL = true;
@@ -32,7 +32,7 @@ public class SaveDataManager : MonoBehaviour
         // セーブデータを読み込む
         m_filePath = $"{Application.persistentDataPath}/.savedata.json";
         var isLoad = Load();
-
+        // セーブデータがないなら
         if (isLoad == false)
         {
             InitData();
@@ -45,7 +45,7 @@ public class SaveDataManager : MonoBehaviour
     public void Save()
     {
         string json = JsonUtility.ToJson(GameSaveData);
-        StreamWriter streamWriter = new StreamWriter(m_filePath);
+        var streamWriter = new StreamWriter(m_filePath);
         streamWriter.Write(json);
         streamWriter.Close();
     }

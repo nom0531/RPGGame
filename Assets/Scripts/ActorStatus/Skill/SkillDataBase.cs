@@ -54,13 +54,15 @@ public class SkillData
     public int SkillNumber;                                         // 自身の番号
     public Sprite SkillSprite;                                      // 画像
     public SkillType SkillType;                                     // スキルの種類
+    public GameObject SkillEffect;                                  // スキルのエフェクト
+    public float EffectScale;                                       // エフェクトのスケール
     [SerializeField, Header("属性")]
     public ElementType SkillElement;                                // スキルの属性
     public StateAbnormalData StateAbnormalData;                     // 追加属性
     [SerializeField, Header("ステータス")]
     public int POW;                                                 // 攻撃、回復の基礎値
     public int SkillNecessary;                                      // 必要SP/HP量
-    public NecessaryType Type;                                      // 消費するデータの種類
+    public NecessaryType Type;                                      // 消費SP/HP
     public EffectRange EffectRange;                                 // スキルの効果範囲
     public BuffType BuffType;                                       // バフのタイプ
     [SerializeField,Header("必要強化ポイント")]

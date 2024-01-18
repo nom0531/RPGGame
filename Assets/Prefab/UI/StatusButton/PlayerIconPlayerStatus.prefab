@@ -124,7 +124,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4946492063734014832}
         m_TargetAssemblyTypeName: PlayerButton, Assembly-CSharp
-        m_MethodName: PlayerStatusButtoonDown
+        m_MethodName: PlayerStatusButtonDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

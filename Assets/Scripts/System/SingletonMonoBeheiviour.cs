@@ -12,7 +12,7 @@ public abstract class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBe
         {
             if (instance == null)
             {
-                Type type = typeof(T);
+                var type = typeof(T);
 
                 instance = (T)FindObjectOfType(type);
                 if (instance == null)

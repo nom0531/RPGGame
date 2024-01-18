@@ -29,7 +29,7 @@ public class PlayerButton : MonoBehaviour
     /// 初期化用の関数。プレイヤーを登録する
     /// </summary>
     /// <param name="number">プレイヤーの番号</param>
-    /// <param name="enemyImage">プレイヤーの画像</param>
+    /// <param name="playerImage">プレイヤーの画像</param>
     public void SetPlayerEnhancement(int number, Sprite playerImage, PlayerEnhancementSystem playerEnhancement)
     {
         // それぞれの値を登録する
@@ -42,7 +42,7 @@ public class PlayerButton : MonoBehaviour
     /// <summary>
     /// ボタンが押された時の処理
     /// </summary>
-    public void PlayerStatusButtoonDown()
+    public void PlayerStatusButtonDown()
     {
         m_playerStatus.DisplaySetValue(m_playerNumber);
     }
@@ -52,6 +52,30 @@ public class PlayerButton : MonoBehaviour
     /// </summary>
     public void PlayerEnhancementButtoonDown()
     {
-        m_playerEnhancement.DisplaySetValue(m_playerNumber);
+        if(m_playerEnhancement.ReferrenceSkillFlag == true)
+        {
+            m_playerEnhancement.DisplaySetSkillData(m_playerNumber);
+            return;
+        }
+        else
+        {
+            m_playerEnhancement.DisplaySetStatusData(m_playerNumber);
+        }
+    }
+
+    /// <summary>
+    /// スキルデータの表示
+    /// </summary>
+    public void PlayerEnhancement_SkillButtonDown()
+    {
+        m_playerEnhancement.DisplaySetSkillData(PlayerNumberManager.PlayerNumber);
+    }
+
+    /// <summary>
+    /// ステータス強化の表示
+    /// </summary>
+    public void PlayerEnhancement_StatusButtonDown()
+    {
+        m_playerEnhancement.DisplaySetStatusData(PlayerNumberManager.PlayerNumber);
     }
 }

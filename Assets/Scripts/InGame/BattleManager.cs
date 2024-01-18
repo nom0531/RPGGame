@@ -12,6 +12,16 @@ public enum TurnStatus
 }
 
 /// <summary>
+/// ゲームのステータス
+/// </summary>
+public enum GameState
+{
+    enPlay,         // ゲーム中
+    enBattleWin,    // バトル終了。勝利
+    enBattleLose,   // バトル終了。敗北
+}
+
+/// <summary>
 /// 操作しているキャラクター
 /// </summary>
 public enum OperatingPlayer
@@ -20,16 +30,6 @@ public enum OperatingPlayer
     enBuffer,   // バッファー
     enHealer,   // ヒーラー
     enNum
-}
-
-/// <summary>
-/// ゲームのステータス
-/// </summary>
-public enum GameState
-{
-    enPlay,         // ゲーム中
-    enBattleWin,    // バトル終了。勝利
-    enBattleLose,   // バトル終了。敗北
 }
 
 public class BattleManager : MonoBehaviour
@@ -54,25 +54,28 @@ public class BattleManager : MonoBehaviour
     private GameObject Content;
     [SerializeField, Header("バトルデータ"), Tooltip("ターン開始時の先行側")]
     private TurnStatus m_turnStatus = TurnStatus.enPlayer;
+    [SerializeField, Tooltip("エネミーのサイズ")]
+    private float EnemySpriteSize = 450.0f;
 
     private const int MAX_ENEMY_NUM = 4;                        // バトルに出現するエネミーの最大数
-    private const float ADD_SIZE = 1.4f;                        // エネミーの画像の乗算サイズ
+    private const float ADD_SIZE = 1.0f;                        // エネミーの画像の乗算サイズ
 
-    private BattleSystem m_battleSystem;                        // バトルシステム
     private GameState m_gameState = GameState.enPlay;           // ゲームの状態
-    private List<PlayerMove> m_playerMoveList;                  // プレイヤーの行動
-    private List<EnemyMove> m_enemyMoveList;                    // エネミーの行動
     private OperatingPlayer m_operatingPlayer;                  // 操作しているプレイヤー
+    private BattleSystem m_battleSystem;                        // バトルシステム
+    private StagingManager m_stagingManager;                    // 演出用システム
     private LockOnSystem m_lockOnSystem;                        // ロックオンシステム
-    private StateAbnormalCalculation m_abnormalCalculation;     // 状態異常の計算
     private DrawStatusValue m_drawStatusValue;                  // ステータスを表示するUI
     private DrawBattleResult m_drawBattleResult;                // 演出
-    private int m_turnSum = 0;                                  // 総合ターン数
+    private List<PlayerMove> m_playerMoveList;                  // プレイヤーの行動
+    private List<EnemyMove> m_enemyMoveList;                    // エネミーの行動
+    private int m_turnSum = 1;                                  // 総合ターン数
     private int m_selectQuestNumber = 0;                        // 選択したクエストの番号
     private int m_enemySum = 0;                                 // エネミーの総数
     private int m_enemyNumber = 0;                              // エネミーの番号
     private bool m_isPause = false;                             // ポーズ画面かどうか
     private bool m_isPushDown = false;                          // ボタンが押されたかどうか
+    private bool m_isTurnEnd = false;                           // ターンを終了する
 
     public bool PauseFlag
     {
@@ -83,6 +86,16 @@ public class BattleManager : MonoBehaviour
     public int OperatingPlayerNumber
     {
         get => (int)m_operatingPlayer;
+    }
+
+    public List<PlayerMove> PlayerMoveList
+    {
+        get => m_playerMoveList;
+    }
+
+    public List<EnemyMove> EnemyMoveList
+    {
+        get => m_enemyMoveList;
     }
 
     public int TurnSum
@@ -104,12 +117,11 @@ public class BattleManager : MonoBehaviour
     {
         m_battleSystem = gameObject.GetComponent<BattleSystem>();
         m_lockOnSystem = gameObject.GetComponent<LockOnSystem>();
-        m_abnormalCalculation = gameObject.GetComponent<StateAbnormalCalculation>();
         m_drawStatusValue = gameObject.GetComponent<DrawStatusValue>();
         m_drawBattleResult = gameObject.GetComponent<DrawBattleResult>();
+        m_stagingManager = gameObject.GetComponent<StagingManager>();
 
-        int SPD = int.MinValue;
-
+        var SPD = int.MinValue;
         for(int i = 0; i < (int)OperatingPlayer.enNum; i++)
         {
             // SPDのパラメータが上なら更新する
@@ -119,15 +131,17 @@ public class BattleManager : MonoBehaviour
                 m_operatingPlayer = (OperatingPlayer)i;
             }
         }
+        var playerMoveList = FindObjectsOfType<PlayerMove>();
+        m_playerMoveList = new List<PlayerMove>(playerMoveList);
+        m_playerMoveList.Sort((a, b) => a.MyNumber.CompareTo(b.MyNumber));    // 番号順にソート
     }
 
     private void Start()
     {
-        PlayerAction_DrawStatus();
+        DrawStatus();
 
         // エネミーを用意する
         m_enemySum = m_battleSystem.GetRandomValue(1, MAX_ENEMY_NUM);
-
         // エネミーの画像を用意する
         for (int i = 0; i < m_enemySum; i++)
         {
@@ -136,18 +150,15 @@ public class BattleManager : MonoBehaviour
             // スプライトを設定する
             int rand = m_battleSystem.GetRandomValue(0, 1, false);
             sprite.GetComponent<SpriteRenderer>().sprite = EnemyData.enemyDataList[rand].EnemySprite;
+            // エネミーに自身の番号を教える
+            sprite.GetComponent<EnemyMove>().MyNumber = EnemyData.enemyDataList[rand].EnemyNumber;
             // サイズを取得する
-            var spriteRenderer = sprite.GetComponent<SpriteRenderer>();
-            float width = spriteRenderer.bounds.size.x * ADD_SIZE;
-            float height = spriteRenderer.bounds.size.y * ADD_SIZE;
+            float width = EnemySpriteSize * ADD_SIZE;
+            float height = EnemySpriteSize * ADD_SIZE;
             // サイズ、座標を調整
             sprite.transform.localScale = new Vector3(width, height, 1.0f);
             sprite.transform.localPosition = Vector3.zero;
             sprite.transform.localRotation = Quaternion.identity;
-            // データを取り出すために番号を取得しておく
-            // エネミーに自身の番号を教える
-            sprite.GetComponent<EnemyMove>().MyNumber = EnemyData.enemyDataList[rand].EnemyNumber;
-
             // 図鑑に未登録なら
             if (sprite.GetComponent<EnemyMove>().GetTrueEnemyRegister(
                 EnemyData.enemyDataList[rand].EnemyNumber) == false)
@@ -157,27 +168,18 @@ public class BattleManager : MonoBehaviour
                     EnemyData.enemyDataList[rand].EnemyNumber);
             }
         }
-
-        // 配列を用意
-        // playerMoveを人数分用意
-        var playerMoveList = FindObjectsOfType<PlayerMove>();
-        m_playerMoveList = new List<PlayerMove>(playerMoveList);
-        m_playerMoveList.Sort((a, b) => a.MyNumber.CompareTo(b.MyNumber));    // 番号順にソート
-
-        // enemyMoveを人数分用意
         var enemyMoveList = FindObjectsOfType<EnemyMove>();
         m_enemyMoveList = new List<EnemyMove>(enemyMoveList);
-
         // 最初の操作キャラクターを決定する
         m_operatingPlayer = NextOperatingPlayer();
-
+        m_enemyNumber = 0;
         // タスクを設定する
         GameClearTask().Forget();
         GameOverTask().Forget();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         // ポーズ処理
         if (m_isPushDown == true)
@@ -194,19 +196,15 @@ public class BattleManager : MonoBehaviour
             m_isPause = !m_isPause;     // フラグを反転させる
             m_isPushDown = false;       // フラグを戻す
         }
-
-        PlayerAction_DrawStatus();
-
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            m_playerMoveList[0].ActionEndFlag = true;
-            m_playerMoveList[1].ActionEndFlag = true;
-            m_playerMoveList[2].ActionEndFlag = true;
-        }
+        //if (Input.GetKeyDown(KeyCode.Tab))
+        //{
+        //    m_playerMoveList[1].DecrementSP(50);
+        //}
     }
 
     private void FixedUpdate()
     {
+        Debug.Log($"現在のターン数：{m_turnSum}ターン目");
         IsGameClear();
         IsGameOver();
 
@@ -215,13 +213,19 @@ public class BattleManager : MonoBehaviour
         {
             return;
         }
-
+        // ポーズしているなら実行しない
         if (PauseFlag == true)
         {
             return;
         }
+        // 演出が開始されたなら実行しない
+        if(m_stagingManager.StangingState == StangingState.enStangingStart)
+        {
+            return;
+        }
 
-        // 行動処理
+        DrawStatus();
+
         switch (m_turnStatus)
         {
             // プレイヤーのターン
@@ -237,7 +241,7 @@ public class BattleManager : MonoBehaviour
                         if (m_battleSystem.OneMore == true)
                         {
                             // ターンを渡す
-                            m_playerMoveList[(int)m_operatingPlayer].ResetPlayerStatus();
+                            m_playerMoveList[(int)m_operatingPlayer].ResetStatus();
                             BattleButton[(int)m_operatingPlayer].ResetStatus();
                             break;
                         }
@@ -251,32 +255,65 @@ public class BattleManager : MonoBehaviour
                     // 死亡している際は実行しない
                     if (m_enemyMoveList[enemyNumber].ActorHPState == ActorHPState.enDie)
                     {
-                        m_enemySum--;
-                        m_enemyMoveList.Remove(m_enemyMoveList[enemyNumber]);
                         continue;
                     }
-
                     EnemyAction(enemyNumber);
-
                     // 再度行動可能なら
                     if (m_battleSystem.OneMore == true)
                     {
+                        // ターンを渡す
+                        m_enemyMoveList[enemyNumber].ResetStatus();
+                        enemyNumber--;
                         continue;
                     }
                 }
-                // ターンを渡す
-                m_turnStatus = TurnStatus.enPlayer;
-                m_turnSum++;    // ターン数を加算
-                // ステータスを初期化
-                PlayerAction_ResetPlayerAction();
-                PlayerAction_ResetBattleButton();
-                // 次の操作キャラクターを決定、カメラを再設定する
-                m_operatingPlayer = NextOperatingPlayer();
-                m_lockOnSystem.ResetCinemachine();
-                // エネミーの番号をリセットする
-                m_enemyNumber = 0;
+                m_enemyNumber++;
                 break;
         }
+        IsTurnEnd();
+    }
+
+    /// <summary>
+    /// ターンを終了しているか判定する
+    /// </summary>
+    private void IsTurnEnd()
+    {
+        // 全員の行動が終了していないなら実行しない
+        for (int playerNumber = 0; playerNumber < m_playerMoveList.Count; playerNumber++)
+        {
+            if (m_playerMoveList[playerNumber].ActionEndFlag == false)
+            {
+                return;
+            }
+        }
+        for (int enemyNumber = 0; enemyNumber < m_enemyMoveList.Count; enemyNumber++)
+        {
+            if (m_enemyMoveList[enemyNumber].ActionEndFlag == false)
+            {
+                return;
+            }
+        }
+        TurnEnd();
+    }
+
+    /// <summary>
+    /// 場のステータスをリセットして、次のターンに移行する
+    /// </summary>
+    private void TurnEnd()
+    {
+        m_isTurnEnd = true;
+        // 次の操作キャラクターを決定、カメラを再設定する
+        m_operatingPlayer = NextOperatingPlayer();
+        m_lockOnSystem.ResetCinemachine();
+        m_enemyNumber = 0;
+        // ターンを渡す
+        m_turnStatus = TurnStatus.enPlayer;
+        m_turnSum++;
+        // ステータスを初期化
+        ResetPlayerAction();
+        ResetEnemyAction();
+        ResetBattleButton();
+        m_isTurnEnd = false;
     }
 
     /// <summary>
@@ -292,7 +329,6 @@ public class BattleManager : MonoBehaviour
                 return;
             }
         }
-        // 相手が全滅した
         m_gameState = GameState.enBattleWin;
     }
 
@@ -301,7 +337,6 @@ public class BattleManager : MonoBehaviour
     /// </summary>
     private void IsGameOver()
     {
-
         for(int i = 0; i < m_playerMoveList.Count; i++)
         {
             // 1体でも生存しているならゲームオーバーではない
@@ -310,7 +345,6 @@ public class BattleManager : MonoBehaviour
                 return;
             }
         }
-        // 全滅した
         m_gameState = GameState.enBattleLose;
     }
 
@@ -319,6 +353,8 @@ public class BattleManager : MonoBehaviour
     /// </summary>
     async UniTask GameClearTask()
     {
+        // 演出が終了したなら以下の処理を実行する
+        await UniTask.WaitUntil(() => m_stagingManager.StangingState == StangingState.enStangingEnd);
         await UniTask.WaitUntil(() => m_gameState == GameState.enBattleWin);
         m_drawBattleResult.GameClearStaging();
     }
@@ -328,6 +364,8 @@ public class BattleManager : MonoBehaviour
     /// </summary>
     async UniTask GameOverTask()
     {
+        // 演出が終了したなら以下の処理を実行する
+        await UniTask.WaitUntil(() => m_stagingManager.StangingState == StangingState.enStangingEnd);
         await UniTask.WaitUntil(() => m_gameState == GameState.enBattleLose);
         m_drawBattleResult.GameOverStaging();
     }
@@ -335,13 +373,17 @@ public class BattleManager : MonoBehaviour
     /// <summary>
     /// プレイヤーの行動
     /// </summary>
-    /// <param name="number">プレイヤーの番号</param>
-    async private void PlayerAction(int number)
+    /// <param name="myNumber">自身の番号</param>
+    async private void PlayerAction(int myNumber)
     {
         Debug.Log(PlayerData.playerDataList[(int)m_operatingPlayer].PlayerName + "のターン");
-
+        // 演出が開始されたなら実行しない
+        if (m_stagingManager.StangingState == StangingState.enStangingStart)
+        {
+            return;
+        }
         // 既に行動しているなら行動はしない
-        if(m_playerMoveList[(int)m_operatingPlayer].ActionEndFlag == true)
+        if (m_playerMoveList[(int)m_operatingPlayer].ActionEndFlag == true)
         {
             m_operatingPlayer = NextOperatingPlayer();
             return;
@@ -349,37 +391,25 @@ public class BattleManager : MonoBehaviour
 
         for (int i = 0; i < BattleButton.Length; i++)
         {
-            // もしいずれかが押されたら
+            // もしいずれかのボタンが押されたら以下の処理を実行する
             if (BattleButton[i].ButtonDown == true)
             {
-                ActionType actionType = m_playerMoveList[number].NextActionType;
-                int skillNumber = m_playerMoveList[number].SelectSkillNumber;
-                int targetNumber = 0;
+                var skillNumber = m_playerMoveList[myNumber].SelectSkillNumber;
+                var targetNumber = 0;
 
                 // ガード以外のコマンド  かつ　単体攻撃なら
-                if (actionType != ActionType.enGuard
-                    && PlayerData.playerDataList[number].skillDataList[skillNumber].EffectRange != EffectRange.enAll)
+                if (PlayerData.playerDataList[myNumber].skillDataList[skillNumber].EffectRange != EffectRange.enAll
+                    && m_playerMoveList[myNumber].NextActionType != ActionType.enGuard)
                 {
-                    // ロックオンの対象を決定する
-                    m_lockOnSystem.SetTargetState(PlayerData.playerDataList[number].skillDataList[skillNumber].SkillNumber, actionType);
-                    m_lockOnSystem.LockOn = true;
+                    m_lockOnSystem.SetTargetState(PlayerData.playerDataList[myNumber].skillDataList[skillNumber].SkillNumber,
+                        m_playerMoveList[myNumber].NextActionType);
                     // 攻撃対象が選択されたら以下の処理を実行する
                     await UniTask.WaitUntil(() => m_lockOnSystem.ButtonDown == true);
-
-                    skillNumber = m_playerMoveList[number].SelectSkillNumber;
+                    // 対象を再設定する
+                    skillNumber = m_playerMoveList[myNumber].SelectSkillNumber;
                     targetNumber = m_lockOnSystem.TargetNumber;
-                    PlayerAction_Move(number, targetNumber, actionType, skillNumber);
-                    Debug.Log("自分のHP : " + m_playerMoveList[number].PlayerStatus.HP);
-                    Debug.Log("相手のHP : " + m_enemyMoveList[targetNumber].EnemyStatus.HP);
-                    break;
                 }
-                // ロックオンせずにダメージ計算を行う
-                m_lockOnSystem.LockOn = false;
-
-                PlayerAction_Move(number, targetNumber, actionType, skillNumber);
-                Debug.Log("自分のHP : " + m_playerMoveList[number].PlayerStatus.HP);
-                Debug.Log("相手のHP : " + m_enemyMoveList[targetNumber].EnemyStatus.HP);
-                break;
+                PlayerAction_Move(myNumber, skillNumber, targetNumber);
             }
         }
     }
@@ -387,35 +417,51 @@ public class BattleManager : MonoBehaviour
     /// <summary>
     /// プレイヤーの行動
     /// </summary>
-    private void PlayerAction_Move(int myNumber, int targetNumber, ActionType actionType, int skillNumber)
+    /// <param name="myNumber">自身の番号</param>
+    /// <param name="skillNumber">スキルの番号</param>
+    /// <param name="targetNumber">ターゲットの番号</param>
+    async private void PlayerAction_Move(int myNumber, int skillNumber, int targetNumber)
     {
-        // 麻痺状態なら
-        if (m_abnormalCalculation.Paralysis(m_playerMoveList[myNumber].ActorAbnormalState) == true)
-        {
-            Debug.Log($"{PlayerData.playerDataList[myNumber].PlayerName}は麻痺している");
-            actionType = ActionType.enNull;
-        }
+        m_playerMoveList[myNumber].CalculationAbnormalState();
+        PlayerAction_Command(myNumber, targetNumber, m_playerMoveList[myNumber].NextActionType, skillNumber);
+        // 演出を開始する
+        m_stagingManager.RegistrationTargets(m_playerMoveList[myNumber].NextActionType, m_turnStatus, targetNumber, myNumber,
+            PlayerData.playerDataList[myNumber].skillDataList[skillNumber].SkillNumber, PlayerData.playerDataList[myNumber].skillDataList[skillNumber].EffectRange);
+        // 行動を終了する
+        m_playerMoveList[myNumber].ActionEnd(m_playerMoveList[myNumber].NextActionType, skillNumber);
+        // 演出が終了したなら以下の処理を実行する
+        await UniTask.WaitUntil(() => m_stagingManager.StangingState == StangingState.enStangingEnd);
+        m_playerMoveList[myNumber].DecrementHP(m_playerMoveList[myNumber].PoisonDamage);
+        // 次のプレイヤーを設定する
+        m_operatingPlayer = NextOperatingPlayer();
+        // ロックオンの設定を初期化・再設定する
+        m_lockOnSystem.ButtonDown = false;
+        m_lockOnSystem.ResetCinemachine();
+    }
 
-        // 混乱状態なら
-        if (m_abnormalCalculation.Confusion(m_playerMoveList[myNumber].ActorAbnormalState) == true)
+    /// <summary>
+    /// 行動処理
+    /// </summary>
+    private void PlayerAction_Command(int myNumber, int targetNumber, ActionType actionType, int skillNumber)
+    {
+        // 既に行動しているなら実行しない
+        if (m_playerMoveList[myNumber].ActionEndFlag == true)
         {
-            Debug.Log($"{PlayerData.playerDataList[myNumber].PlayerName}は混乱している");
-            actionType = ActionType.enAttack;
-            m_playerMoveList[myNumber].Confusion = true;
+            return;
         }
-
-            switch (actionType)
+        // 行動
+        switch (actionType)
         {
             case ActionType.enAttack:
-                int DEF = m_enemyMoveList[targetNumber].EnemyStatus.DEF;
+                var DEF = m_enemyMoveList[targetNumber].EnemyStatus.DEF;
                 // 混乱状態ならターゲットを再設定する
-                if (m_playerMoveList[myNumber].Confusion == true)
+                if (m_playerMoveList[myNumber].ConfusionFlag == true)
                 {
                     targetNumber = m_battleSystem.GetRandomValue(0, m_playerMoveList.Count);
                     DEF = m_playerMoveList[targetNumber].PlayerStatus.DEF;
                     Debug.Log($"{PlayerData.playerDataList[targetNumber].PlayerName}に攻撃");
                 }
-                PlayerAction_Attack(myNumber, targetNumber, DEF);
+                m_playerMoveList[myNumber].PlayerAction_Attack(targetNumber, DEF);
                 break;
             case ActionType.enSkillAttack:
                 switch (PlayerData.playerDataList[myNumber].skillDataList[skillNumber].SkillType)
@@ -424,13 +470,23 @@ public class BattleManager : MonoBehaviour
                         // 効果範囲が全体のとき
                         if (PlayerData.playerDataList[myNumber].skillDataList[skillNumber].EffectRange == EffectRange.enAll)
                         {
-                            for (int enemyNumber = 0; enemyNumber < m_playerMoveList.Count; enemyNumber++)
+                            for (int enemyNumber = 0; enemyNumber < m_enemySum; enemyNumber++)
                             {
-                                PlayerAction_SkillAttack(myNumber, enemyNumber, skillNumber);
+                                m_playerMoveList[myNumber].PlayerAction_SkillAttack(
+                                    skillNumber,                                        // スキルの番号
+                                    enemyNumber,                                        // ターゲットの番号
+                                    m_enemyMoveList[enemyNumber].EnemyStatus.DEF,       // 防御力
+                                    m_enemyMoveList[enemyNumber].MyNumber               // エネミーの番号
+                                    );
                             }
                             break;
                         }
-                        PlayerAction_SkillAttack(myNumber, targetNumber, skillNumber);
+                        m_playerMoveList[myNumber].PlayerAction_SkillAttack(
+                            skillNumber,                                                // スキルの番号
+                            targetNumber,                                               // ターゲットの番号
+                            m_enemyMoveList[targetNumber].EnemyStatus.DEF,              // 防御力
+                            m_enemyMoveList[targetNumber].MyNumber                      // エネミーの番号
+                            );
                         break;
                     case SkillType.enBuff:
                         // 効果範囲が全体のとき
@@ -438,11 +494,21 @@ public class BattleManager : MonoBehaviour
                         {
                             for (int playerNumber = 0; playerNumber < m_playerMoveList.Count; playerNumber++)
                             {
-                                PlayerAction_Buff(myNumber, playerNumber, skillNumber, true);
+                                m_playerMoveList[myNumber].PlayerAction_Buff(
+                                    skillNumber,                                        // スキルの番号
+                                    m_enemyMoveList[playerNumber].EnemyStatus.ATK,      // 攻撃力
+                                    m_enemyMoveList[playerNumber].EnemyStatus.DEF,      // 防御力
+                                    m_enemyMoveList[playerNumber].EnemyStatus.SPD,      // 素早さ
+                                    true);
                             }
                             break;
                         }
-                        PlayerAction_Buff(myNumber, targetNumber, skillNumber, true);
+                        m_playerMoveList[myNumber].PlayerAction_Buff(
+                            skillNumber,                                                // スキルの番号
+                            m_enemyMoveList[targetNumber].EnemyStatus.ATK,              // 攻撃力
+                            m_enemyMoveList[targetNumber].EnemyStatus.DEF,              // 防御力
+                            m_enemyMoveList[targetNumber].EnemyStatus.SPD,              // 素早さ
+                            true);
                         break;
                     case SkillType.enDeBuff:
                         // 効果範囲が全体のとき
@@ -450,11 +516,21 @@ public class BattleManager : MonoBehaviour
                         {
                             for (int enemyNumber = 0; enemyNumber < m_enemyMoveList.Count; enemyNumber++)
                             {
-                                PlayerAction_Buff(myNumber, enemyNumber, skillNumber, false);
+                                m_playerMoveList[myNumber].PlayerAction_Buff(
+                                    skillNumber,                                        // スキルの番号
+                                    m_enemyMoveList[enemyNumber].EnemyStatus.ATK,       // 攻撃力
+                                    m_enemyMoveList[enemyNumber].EnemyStatus.DEF,       // 防御力
+                                    m_enemyMoveList[enemyNumber].EnemyStatus.SPD,       // 素早さ
+                                    false);
                             }
                             break;
                         }
-                        PlayerAction_Buff(myNumber, targetNumber, skillNumber, false);
+                        m_playerMoveList[myNumber].PlayerAction_Buff(
+                            skillNumber,                                                // スキルの番号
+                            m_enemyMoveList[targetNumber].EnemyStatus.ATK,              // 攻撃力
+                            m_enemyMoveList[targetNumber].EnemyStatus.DEF,              // 防御力
+                            m_enemyMoveList[targetNumber].EnemyStatus.SPD,              // 素早さ
+                            false);
                         break;
                     case SkillType.enHeal:
                     case SkillType.enResurrection:
@@ -463,188 +539,59 @@ public class BattleManager : MonoBehaviour
                         {
                             for (int playerNumber = 0; playerNumber < m_playerMoveList.Count; playerNumber++)
                             {
-                                PlayerAction_HPRecover(myNumber, playerNumber, skillNumber);
+                                m_playerMoveList[myNumber].PlayerAction_HPRecover(playerNumber, skillNumber);
                             }
                             break;
                         }
-                        PlayerAction_HPRecover(myNumber, targetNumber, skillNumber);
+                        m_playerMoveList[myNumber].PlayerAction_HPRecover(targetNumber, skillNumber);
                         break;
                 }
                 break;
             case ActionType.enGuard:
-                PlayerAction_Guard(myNumber);
+                m_playerMoveList[myNumber].PlayerAction_Guard();
                 break;
             case ActionType.enNull:
                 break;
         }
-
-        // 毒状態ならHPを減らす
-        int damage = m_abnormalCalculation.Poison(
-            m_playerMoveList[(int)m_operatingPlayer].ActorAbnormalState, m_playerMoveList[myNumber].PlayerStatus.HP);
-        m_playerMoveList[myNumber].DecrementHP(damage);
-
-        m_playerMoveList[myNumber].gameObject.GetComponent<DrawCommandText>().SetCommandText(
-            actionType, PlayerData.playerDataList[myNumber].skillDataList[skillNumber].SkillNumber);
-        // 行動を終了し、次のプレイヤーを選択する
-        m_playerMoveList[(int)m_operatingPlayer].ActionEndFlag = true;
-        m_operatingPlayer = NextOperatingPlayer();
-        // ロックオンの設定を初期化・再設定する
-        m_lockOnSystem.ButtonDown = false;
-        m_lockOnSystem.ResetCinemachine();
     }
 
     /// <summary>
-    /// 通常攻撃の処理
+    /// エネミーにダメージを与える
+    /// </summary>
+    /// <param name="targetNumber">ターゲットの番号</param>
+    /// <param name="damage">ダメージ量</param>
+    public void PlayerAction_DamageEnemy(int targetNumber, int damage)
+    {
+        m_enemyMoveList[targetNumber].DecrementHP(damage);
+    }
+
+    /// <summary>
+    /// エネミーの状態を変更する
+    /// </summary>
+    /// <param name="targetNumber">ターゲットの番号</param>
+    /// <param name="actorAbnormalState">変更先の状態</param>
+    public void PlayerAction_ChangeStateEnemy(int targetNumber, ActorAbnormalState actorAbnormalState)
+    {
+        m_enemyMoveList[targetNumber].ActorAbnormalState = actorAbnormalState;
+    }
+
+    /// <summary>
+    /// 属性耐性の登録処理
     /// </summary>
     /// <param name="myNumber">自身の番号</param>
+    /// <param name="skillNumber">スキルの番号</param>
     /// <param name="targetNumber">ターゲットの番号</param>
-    private void PlayerAction_Attack(int myNumber, int targetNumber, int DEF)
+    public void PlayerAction_Register(int myNumber, int skillNumber, int targetNumber)
     {
-        // ダメージ量を計算
-        int damage = m_battleSystem.NormalAttack(
-            m_playerMoveList[myNumber].PlayerStatus.ATK,// 攻撃力
-            DEF                                         // 防御力
-            );
-        // 混乱状態なら
-        if (m_playerMoveList[myNumber].Confusion)
+        // 既に属性耐性を発見しているなら実行しない
+        if (m_enemyMoveList[targetNumber].GetTrueElementRegister
+            ((int)PlayerData.playerDataList[myNumber].skillDataList[skillNumber].SkillElement) != true)
         {
-            m_playerMoveList[targetNumber].DecrementHP(damage);
             return;
         }
-        // ダメージを設定する
-        m_enemyMoveList[targetNumber].DecrementHP(damage);
-    }
-
-    /// <summary>
-    /// 攻撃タイプのスキル処理
-    /// </summary>
-    /// <param name="myNumber">自身の番号</param>
-    /// <param name="targetNumber">ターゲットの番号</param>
-    /// <param name="skillNumber">スキルの番号</param>
-    private void PlayerAction_SkillAttack(int myNumber,int targetNumber,int skillNumber)
-    {
-        // ダメージ量を計算
-        int damage = m_battleSystem.SkillAttack(
-            m_playerMoveList[myNumber].PlayerStatus.ATK,             // 攻撃力
-            PlayerData.playerDataList[myNumber].skillDataList[skillNumber].POW,     // スキルの基礎値
-            m_enemyMoveList[targetNumber].EnemyStatus.DEF            // 防御力
-            );
-
-        // 無属性でないなら属性を考慮した計算を行う
-        if (PlayerData.playerDataList[myNumber].skillDataList[skillNumber].SkillElement != ElementType.enNone
-            && PlayerData.playerDataList[myNumber].skillDataList[skillNumber].SkillElement != ElementType.enNum)
-        {
-            damage = m_battleSystem.EnemyElementResistance(
-                EnemyData.enemyDataList[targetNumber],                                          // エネミーデータ
-                skillNumber,                                                                // スキルの番号
-                (int)PlayerData.playerDataList[myNumber].skillDataList[skillNumber].SkillElement,   // スキルの属性
-                damage                                                                      // ダメージ
-                );
-
-            // 既に属性耐性を発見していないなら
-            if (m_enemyMoveList[targetNumber].GetTrueElementRegister
-                ((int)PlayerData.playerDataList[myNumber].skillDataList[skillNumber].SkillElement) == false)
-            {
-                // 発見したフラグをtureにする
-                m_enemyMoveList[targetNumber].SetTrueElementRegister
-                    ((int)PlayerData.playerDataList[myNumber].skillDataList[skillNumber].SkillElement);
-            }
-        }
-
-        // ダメージを設定する
-        m_enemyMoveList[targetNumber].DecrementHP(damage);
-        PlayerAction_Decrement(myNumber, skillNumber);
-    }
-
-    /// <summary>
-    /// バフ・デバフの処理
-    /// </summary>
-    /// <param name="myNumber">自身の番号</param>
-    /// <param name="targetNumber">ターゲットの番号</param>
-    /// <param name="skillNumber">スキルの番号</param>
-    /// <param name="isBuff">trueならバフ。falseならデバフ</param>
-    private void PlayerAction_Buff(int myNumber, int targetNumber, int skillNumber, bool isBuff)
-    {
-        // パラメータを参照
-        int param = 0;
-        switch (PlayerData.playerDataList[myNumber].skillDataList[skillNumber].BuffType)
-        {
-            case BuffType.enATK:
-                param = m_playerMoveList[targetNumber].PlayerStatus.ATK;
-                break;
-            case BuffType.enDEF:
-                param = m_playerMoveList[targetNumber].PlayerStatus.DEF;
-                break;
-            case BuffType.enSPD:
-                param = m_playerMoveList[targetNumber].PlayerStatus.SPD;
-                break;
-        }
-        // 値の計算
-        int value = m_battleSystem.SkillBuff(
-            param,
-            PlayerData.playerDataList[myNumber].skillDataList[skillNumber].POW
-            );
-
-        // 値を設定する
-        m_playerMoveList[targetNumber].SetPlayerBuffStatus(
-            PlayerData.playerDataList[myNumber].skillDataList[skillNumber].BuffType,
-            value,
-            skillNumber,
-            isBuff
-            );
-
-        PlayerAction_Decrement(myNumber, skillNumber);
-    }
-
-    /// <summary>
-    /// HPを回復する処理
-    /// </summary>
-    /// <param name="myNumber">自身の番号</param>
-    /// <param name="targetNumber">ターゲットの番号</param>
-    /// <param name="skillNumber">スキルの番号</param>
-    private void PlayerAction_HPRecover(int myNumber, int targetNumber, int skillNumber)
-    {
-        // 回復量を計算する
-        int recverValue = m_battleSystem.SkillHeal(
-                PlayerData.playerDataList[targetNumber].HP,
-                PlayerData.playerDataList[myNumber].skillDataList[skillNumber].POW
-                );
-
-        // HPを回復させる
-        m_playerMoveList[targetNumber].RecoverHP(recverValue);
-
-        Debug.Log($"{PlayerData.playerDataList[targetNumber].PlayerName}は{recverValue}回復した");
-
-        PlayerAction_Decrement(myNumber, skillNumber);
-    }
-
-    /// <summary>
-    /// SP・HPを消費する処理
-    /// </summary>
-    private void PlayerAction_Decrement(int myNumer, int skillNumber)
-    {
-        int necessaryValue = PlayerData.playerDataList[myNumer].skillDataList[skillNumber].SkillNecessary;
-
-        // SP・HPを消費する
-        switch (PlayerData.playerDataList[myNumer].skillDataList[skillNumber].Type)
-        {
-            case NecessaryType.enSP:
-                m_playerMoveList[myNumer].DecrementSP(necessaryValue);
-                break;
-            case NecessaryType.enHP:
-                m_playerMoveList[myNumer].DecrementHP(necessaryValue);
-                break;
-        }
-    }
-
-    /// <summary>
-    /// 1ターン防御する処理
-    /// </summary>
-    /// <param name="myNumber">自身の番号</param>
-    private void PlayerAction_Guard(int myNumber)
-    {
-        // 防御力を計算
-        float defensePower = m_playerMoveList[myNumber].Guard();
+        // フラグをtureにする
+        m_enemyMoveList[targetNumber].SetTrueElementRegister
+            ((int)PlayerData.playerDataList[myNumber].skillDataList[skillNumber].SkillElement);
     }
 
     /// <summary>
@@ -652,8 +599,8 @@ public class BattleManager : MonoBehaviour
     /// </summary>
     private OperatingPlayer NextOperatingPlayer()
     {
-        OperatingPlayer operatingPlayer = OperatingPlayer.enAttacker;
-        int SPD = int.MinValue;
+        var operatingPlayer = OperatingPlayer.enAttacker;
+        var SPD = int.MinValue;
 
         for (int i = 0; i < (int)OperatingPlayer.enNum; i++)
         {
@@ -667,22 +614,19 @@ public class BattleManager : MonoBehaviour
             {
                 continue;
             }
-
-            // SPDのパラメータが上なら更新する
+            // SPDのパラメータが上なら更新
             if (PlayerData.playerDataList[i].SPD >= SPD)
             {
                 SPD = PlayerData.playerDataList[i].SPD;
                 operatingPlayer = (OperatingPlayer)i;
             }
         }
-
+        // 行動が終了しているならターンを渡す
         if (m_playerMoveList[0].ActionEndFlag == true
         && m_playerMoveList[1].ActionEndFlag == true
         && m_playerMoveList[2].ActionEndFlag == true)
         {
-            // 行動が終了しているならターンを渡す
             m_turnStatus = TurnStatus.enEnemy;
-            m_turnSum++;    // ターン数を加算
         }
 
         return operatingPlayer;
@@ -691,19 +635,18 @@ public class BattleManager : MonoBehaviour
     /// <summary>
     /// プレイヤーのステータスをリセットする
     /// </summary>
-    private void PlayerAction_ResetPlayerAction()
+    private void ResetPlayerAction()
     {
-
         for (int i = 0; i < m_playerMoveList.Count; i++)
         {
-            m_playerMoveList[i].ResetPlayerStatus();
+            m_playerMoveList[i].ResetStatus();
         }
     }
 
     /// <summary>
     /// コマンドの状態をリセットする
     /// </summary>
-    public void PlayerAction_ResetBattleButton()
+    public void ResetBattleButton()
     {
         for (int i = 0; i < BattleButton.Length; i++)
         {
@@ -714,7 +657,7 @@ public class BattleManager : MonoBehaviour
     /// <summary>
     /// ステータスを表示する
     /// </summary>
-    private void PlayerAction_DrawStatus()
+    private void DrawStatus()
     {
         m_drawStatusValue.SetStatus();
         m_drawStatusValue.SetStatusText();
@@ -723,258 +666,220 @@ public class BattleManager : MonoBehaviour
     /// <summary>
     /// エネミーの行動
     /// </summary>
-    private void EnemyAction(int number)
+    /// <param name="myNumber">自身の番号</param>
+    private void EnemyAction(int myNumber)
     {
-        Debug.Log(EnemyData.enemyDataList[m_enemyMoveList[number].MyNumber].EnemyName + "のターン");
-        ActionType actionType = m_enemyMoveList[number].SelectAttackType();
-        int skillNumber = m_enemyMoveList[number].SelectSkill();
+        Debug.Log(EnemyData.enemyDataList[m_enemyMoveList[myNumber].MyNumber].EnemyName + "のターン");
 
-        if(m_enemyMoveList[number].ActorHPState == ActorHPState.enDie)
+        // 演出が開始されたなら実行しない
+        if (m_stagingManager.StangingState == StangingState.enStangingStart)
         {
             return;
         }
+        // ひん死なら実行しない
+        if (m_enemyMoveList[myNumber].ActorHPState == ActorHPState.enDie)
+        {
+            return;
+        }
+        var actionType = m_enemyMoveList[myNumber].SelectAttackType();
+        var skillNumber = m_enemyMoveList[myNumber].SelectSkill();
 
-        EnemyAction_Move(number, actionType, skillNumber);
-        m_enemyMoveList[number].gameObject.GetComponent<DrawCommandText>().SetCommandText(
-            actionType, EnemyData.enemyDataList[number].skillDataList[skillNumber].SkillNumber);
+        m_lockOnSystem.SetTargetState(0, actionType);
+        EnemyAction_Move(myNumber, actionType, skillNumber);
     }
 
     /// <summary>
     /// エネミーの行動
     /// </summary>
-    private void EnemyAction_Move(int myNumber, ActionType actionType, int skillNumber)
+    /// <param name="myNumber">自身の番号</param>
+    /// <param name="actionType">行動パターン</param>
+    /// <param name="skillNumber">スキルの番号</param>
+    async private void EnemyAction_Move(int myNumber, ActionType actionType, int skillNumber)
     {
+        m_enemyMoveList[myNumber].CalculationAbnormalState();
+        // ターゲットの番号を取得する
+        var targetNumber = m_enemyMoveList[myNumber].SelectTargetPlayer();
+        EnemyAction_Command(myNumber, actionType, skillNumber, targetNumber);
+        // 演出を開始する
+        m_stagingManager.RegistrationTargets(actionType, m_turnStatus, targetNumber, myNumber);
+        m_enemyMoveList[myNumber].ActionEnd(actionType, skillNumber);
+        // 演出が終了したなら以下の処理を実行する
+        await UniTask.WaitUntil(() => m_stagingManager.StangingState == StangingState.enStangingEnd);
+        // 毒状態時のダメージを与える
+        m_enemyMoveList[myNumber].DecrementHP(m_enemyMoveList[myNumber].PoisonDamage);
+    }
+
+    /// <summary>
+    /// 行動処理
+    /// </summary>
+    private void EnemyAction_Command(int myNumber, ActionType actionType, int skillNumber, int targetNumber)
+    {
+        // 既に行動しているなら実行しない
+        if(m_enemyMoveList[myNumber].ActionEndFlag == true)
+        {
+            return;
+        }
+
         switch (actionType)
         {
             case ActionType.enAttack:
-                EnemyAction_Attack(myNumber);
+                m_enemyMoveList[myNumber].EnemyAction_Attack(targetNumber,m_playerMoveList[targetNumber].PlayerStatus.DEF);
                 break;
             case ActionType.enSkillAttack:
-
                 switch (EnemyData.enemyDataList[myNumber].skillDataList[skillNumber].SkillType)
                 {
+                    // タイプ：攻撃
                     case SkillType.enAttack:
                         // 効果範囲が全体のとき
                         if (EnemyData.enemyDataList[myNumber].skillDataList[skillNumber].EffectRange == EffectRange.enAll)
                         {
                             for (int playerNumber = 0; playerNumber < m_playerMoveList.Count; playerNumber++)
                             {
-                                EnemyAction_SkillAttack(myNumber, playerNumber, skillNumber);
+                                m_enemyMoveList[myNumber].EnemyAction_SkillAttack(
+                                    skillNumber,                                                            // スキルの番号
+                                    playerNumber,                                                           // ターゲットの番号
+                                    m_playerMoveList[playerNumber].PlayerStatus.DEF,                        // 防御力
+                                    m_playerMoveList[playerNumber].MyNumber                                 // プレイヤーの番号
+                                    );
                             }
                             break;
                         }
-                        // ターゲットを選択
-                        int skillTarget = m_enemyMoveList[myNumber].SelectTargetEnemy(m_enemyMoveList.Count);
-                        EnemyAction_SkillAttack(myNumber, skillTarget, skillNumber);
+                        m_enemyMoveList[myNumber].EnemyAction_SkillAttack(
+                            skillNumber,                                                                    // スキルの番号
+                            targetNumber,                                                           // ターゲットの番号
+                            m_playerMoveList[targetNumber].PlayerStatus.DEF,                                // 防御力
+                            m_playerMoveList[targetNumber].MyNumber                                         // プレイヤーの番号
+                            );
                         break;
+                    // タイプ：バフ
                     case SkillType.enBuff:
                         // 効果範囲が全体のとき
                         if (EnemyData.enemyDataList[myNumber].skillDataList[skillNumber].EffectRange == EffectRange.enAll)
                         {
                             for (int enemyNumber = 0; enemyNumber < m_enemyMoveList.Count; enemyNumber++)
                             {
-                                EnemyAction_Buff(myNumber, skillNumber, enemyNumber, true);
+                                m_enemyMoveList[myNumber].EnemyAction_Buff(
+                                    skillNumber,                                                            // スキルの番号
+                                    m_enemyMoveList[enemyNumber].EnemyStatus.ATK,                           // 攻撃力
+                                    m_enemyMoveList[enemyNumber].EnemyStatus.DEF,                           // 防御力
+                                    m_enemyMoveList[enemyNumber].EnemyStatus.SPD,                           // 素早さ
+                                    true);
                             }
                             break;
                         }
-                        // ターゲットを選択
-                        int buffTarget = m_enemyMoveList[myNumber].SelectTargetEnemy(m_enemyMoveList.Count);
-                        EnemyAction_Buff(myNumber, skillNumber, buffTarget, true);
+                        // ターゲットを再選択
+                        targetNumber = m_enemyMoveList[myNumber].SelectTargetEnemy(m_enemyMoveList.Count);
+                        m_enemyMoveList[myNumber].EnemyAction_Buff(
+                            skillNumber,                                                                    // スキルの番号
+                            m_enemyMoveList[targetNumber].EnemyStatus.ATK,                                  // 攻撃力
+                            m_enemyMoveList[targetNumber].EnemyStatus.DEF,                                  // 防御力
+                            m_enemyMoveList[targetNumber].EnemyStatus.SPD,                                  // 素早さ
+                            true);
                         break;
+                    // タイプ：デバフ
                     case SkillType.enDeBuff:
                         // 効果範囲が全体のとき
                         if (EnemyData.enemyDataList[myNumber].skillDataList[skillNumber].EffectRange == EffectRange.enAll)
                         {
                             for (int playerNumber = 0; playerNumber < m_enemyMoveList.Count; playerNumber++)
                             {
-                                EnemyAction_Buff(myNumber, skillNumber, playerNumber, false);
+                                m_enemyMoveList[myNumber].EnemyAction_Buff(
+                                    skillNumber,                                                            // スキルの番号
+                                    m_playerMoveList[playerNumber].PlayerStatus.ATK,                        // 攻撃力
+                                    m_playerMoveList[playerNumber].PlayerStatus.DEF,                        // 防御力
+                                    m_playerMoveList[playerNumber].PlayerStatus.SPD,                        // 素早さ
+                                    false);
                             }
                             break;
                         }
-                        // ターゲットを選択
-                        int debuffTarget = m_enemyMoveList[myNumber].SelectTargetPlayer();
-                        EnemyAction_Buff(myNumber, skillNumber, debuffTarget, false);
+                        m_enemyMoveList[myNumber].EnemyAction_Buff(
+                            skillNumber,                                                                    // スキルの番号
+                            m_playerMoveList[targetNumber].PlayerStatus.ATK,                                // 攻撃力
+                            m_playerMoveList[targetNumber].PlayerStatus.DEF,                                // 防御力
+                            m_playerMoveList[targetNumber].PlayerStatus.SPD,                                // 素早さ
+                            false);
                         break;
+                    // タイプ：回復
                     case SkillType.enHeal:
                     case SkillType.enResurrection:
-                        EnemyAction_HPRecover(myNumber, skillNumber);
+                        // ターゲットを選択
+                        targetNumber = m_enemyMoveList[myNumber].SelectTargetEnemy(m_enemyMoveList.Count);
+                        m_enemyMoveList[myNumber].EnemyAction_HPResurrection(skillNumber, targetNumber);
+                        m_enemyMoveList[myNumber].EnemyAction_HPRecover(m_enemyMoveList[targetNumber].EnemyStatus.HP, skillNumber);
                         break;
                 }
                 break;
             case ActionType.enGuard:
-                EnemyAction_Guard(myNumber);
+                m_enemyMoveList[myNumber].EnemyAction_Guard();
                 break;
             case ActionType.enEscape:
-                EnemyAction_Escape(myNumber);
+                m_enemyMoveList[myNumber].EnemyAction_Escape();
                 break;
             case ActionType.enNull:
                 break;
         }
-
-        m_enemyNumber++;
     }
 
     /// <summary>
-    /// 通常攻撃の処理
+    /// プレイヤーにダメージを与える
     /// </summary>
-    /// <param name="myNumber">自身の番号</param>
-    private void EnemyAction_Attack(int myNumber)
-    {
-        // ターゲットを選択
-        int targetNumber = m_enemyMoveList[myNumber].SelectTargetPlayer();
-        // ダメージ量を計算
-        int damage = m_battleSystem.NormalAttack(
-            m_enemyMoveList[targetNumber].EnemyStatus.ATK,       // 攻撃力
-            m_playerMoveList[targetNumber].PlayerStatus.DEF      // 防御力
-            );
-        // 計算したダメージ量を設定する
-        m_playerMoveList[targetNumber].DecrementHP(damage);
-    }
-
-    /// <summary>
-    /// スキルでの攻撃処理
-    /// </summary>
-    /// <param name="myNumber">自身の番号</param>
-    /// <param name="skillNumber">スキルの番号</param>
-    private void EnemyAction_SkillAttack(int myNumber, int targetNumber, int skillNumber)
-    {
-        // ダメージ量を計算
-        int damage = m_battleSystem.SkillAttack(
-            m_enemyMoveList[targetNumber].EnemyStatus.ATK,              // パラメータ
-            EnemyData.enemyDataList[myNumber].skillDataList[skillNumber].POW,   // スキルの基礎値
-            m_playerMoveList[targetNumber].PlayerStatus.DEF             // 防御力
-            );
-
-        // 無属性でないなら属性を考慮した計算を行う
-        if (EnemyData.enemyDataList[myNumber].skillDataList[skillNumber].SkillElement != ElementType.enNone)
-        {
-            damage = m_battleSystem.PlayerElementResistance(
-                PlayerData.playerDataList[targetNumber],                                    // プレイヤーデータ
-                skillNumber,                                                            // スキルの番号
-                (int)EnemyData.enemyDataList[myNumber].skillDataList[skillNumber].SkillElement, // スキルの属性
-                damage                                                                  // ダメージ
-                );
-        }
-
-        // ダメージを設定する
-        m_playerMoveList[targetNumber].DecrementHP(damage);
-    }
-
-    /// <summary>
-    /// バフ・デバフの処理
-    /// </summary>
-    /// <param name="myNumber">自身の番号</param>
-    /// <param name="skillNumber">スキルの番号</param>
     /// <param name="targetNumber">ターゲットの番号</param>
-    /// <param name="isBuff">trueならバフ。falseならデバフ</param>
-    private void EnemyAction_Buff(int myNumber, int skillNumber, int targetNumber, bool isBuff)
+    /// <param name="damage">ダメージ量</param>
+    public void EnemyAction_DamagePlayer(int targetNumber, int damage)
     {
-        // パラメータを参照
-        int param = 0;
-        switch (EnemyData.enemyDataList[myNumber].skillDataList[skillNumber].BuffType)
-        {
-            case BuffType.enATK:
-                param = m_playerMoveList[targetNumber].PlayerStatus.ATK;
-                break;
-            case BuffType.enDEF:
-                param = m_playerMoveList[targetNumber].PlayerStatus.DEF;
-                break;
-            case BuffType.enSPD:
-                param = m_playerMoveList[targetNumber].PlayerStatus.SPD;
-                break;
-        }
-
-        // 値を計算
-        int value = m_battleSystem.SkillBuff(
-            param,
-            EnemyData.enemyDataList[myNumber].skillDataList[skillNumber].POW
-            );
-        // 値を設定する
-        m_enemyMoveList[targetNumber].SetEnmeyBuffStatus(
-            EnemyData.enemyDataList[myNumber].skillDataList[skillNumber].BuffType,
-            value,
-            skillNumber,
-            isBuff
-            );
+        m_playerMoveList[targetNumber].DecrementHP(damage);
     }
 
     /// <summary>
-    /// HPを回復する
+    /// エネミーの状態を変更する
     /// </summary>
-    /// <param name="myNumber">自身の番号</param>
-    /// <param name="skillNumber">スキルの番号</param>
-    private void EnemyAction_HPRecover(int myNumber, int skillNumber)
+    /// <param name="targetNumber">ターゲットの番号</param>
+    /// <param name="actorAbnormalState">変更先の状態</param>
+    public void EnemyAction_ChangeStatePlayer(int targetNumber, ActorAbnormalState actorAbnormalState)
     {
-        // ターゲットを選択
-        int targetNumber = m_enemyMoveList[myNumber].SelectTargetEnemy(m_enemyMoveList.Count);
+        m_enemyMoveList[targetNumber].ActorAbnormalState = actorAbnormalState;
+    }
 
-        if (EnemyData.enemyDataList[myNumber].skillDataList[skillNumber].SkillType == SkillType.enResurrection)
+    /// <summary>
+    /// エネミーのステータスをリセットする
+    /// </summary>
+    private void ResetEnemyAction()
+    {
+        for (int i = 0; i < m_enemyMoveList.Count; i++)
         {
-            // オブジェクトを取得する
-            GameObject gameObjct = m_enemyMoveList[myNumber].SelectTargetDieEnemy();
-
-            // オブジェクトが存在しないなら何もしない
-            if(gameObject == null)
-            {
-                return;
-            }
-
-            m_enemyMoveList.Add(gameObjct.GetComponent<EnemyMove>());
-
-            gameObject.SetActive(true);
-            targetNumber = (int)m_enemyMoveList.Count - 1;
-
-            gameObject.tag = "Enemy";
-        }
-
-        // 回復量を計算
-        int recoverValue = m_battleSystem.SkillHeal(
-            EnemyData.enemyDataList[targetNumber].HP,
-            EnemyData.enemyDataList[myNumber].skillDataList[skillNumber].POW
-            );
-
-        // 効果範囲が全体のとき
-        if (EnemyData.enemyDataList[myNumber].skillDataList[skillNumber].EffectRange == EffectRange.enAll)
-        {
-            for (int enemyNumber = 0; enemyNumber < m_enemyMoveList.Count; enemyNumber++)
-            {
-                // HPを回復させる
-                m_enemyMoveList[enemyNumber].RecoverHP(recoverValue);
-            }
-        }
-        // 効果範囲が単体のとき
-        else
-        {
-            // HPを回復させる
-            m_enemyMoveList[targetNumber].RecoverHP(recoverValue);
+            m_enemyMoveList[i].ResetStatus();
         }
     }
 
     /// <summary>
-    /// 1ターン防御する
+    /// リストに追加し、番号を再設定する
     /// </summary>
-    /// <param name="myNumber">自身の番号</param>
-    private void EnemyAction_Guard(int myNumber)
+    /// <returns>ターゲットの番号</returns>
+    public int EnemyListAdd(EnemyMove enemyMove)
     {
-        int defensePower = m_enemyMoveList[myNumber].Guard();
+        m_enemyMoveList.Add(enemyMove);
+        return (int)m_enemyMoveList.Count - 1;
     }
 
     /// <summary>
-    /// 逃走処理
+    /// リストから自身を削除する
     /// </summary>
     /// <param name="myNumber">自身の番号</param>
-    private void EnemyAction_Escape(int myNumber)
+    public void EnemyListRemove(int myNumber)
     {
-        // 逃走が成功したかどうか取得する
-        bool isEscape = m_battleSystem.Escape(EnemyData.enemyDataList[myNumber].LUCK);
-
-        if (isEscape == false)
-        {
-            return;
-        }
-
-        // 成功したなら自身を削除
         Destroy(m_enemyMoveList[myNumber].gameObject);
         m_enemyMoveList.Remove(m_enemyMoveList[myNumber]);
+    }
+
+    /// <summary>
+    /// 全体を回復させる
+    /// </summary>
+    /// <param name="recoverValue">回復量</param>
+    public void EnemyAction_AllRecover(int recoverValue)
+    {
+        for (int enemyNumber = 0; enemyNumber < m_enemyMoveList.Count; enemyNumber++)
+        {
+            m_enemyMoveList[enemyNumber].RecoverHP(recoverValue);
+        }
     }
 }

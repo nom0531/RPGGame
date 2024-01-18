@@ -6,8 +6,8 @@ using TMPro;
 
 public class PictureBookSystem : MonoBehaviour
 {
-    [SerializeField, Header("図鑑設定"), Tooltip("エネミーデータ")]
-    private EnemyDataBase EnemyDataBase;
+    [SerializeField, Header("参照データ")]
+    private EnemyDataBase EnemyData;
     [SerializeField, Header("エネミーリスト"), Tooltip("生成するボタン")]
     private GameObject Button;
     [SerializeField,Tooltip("ボタンを追加するオブジェクト")]
@@ -55,9 +55,9 @@ public class PictureBookSystem : MonoBehaviour
         Element_Text.SetActive(true);
 
         // 値を更新する
-        Data_Name.GetComponent<TextMeshProUGUI>().text = EnemyDataBase.enemyDataList[number].EnemyName;
-        Data_Detail.GetComponent<TextMeshProUGUI>().text = EnemyDataBase.enemyDataList[number].EnemyDetail;
-        Data_Sprite.GetComponent<Image>().sprite = EnemyDataBase.enemyDataList[number].EnemySprite;
+        Data_Name.GetComponent<TextMeshProUGUI>().text = EnemyData.enemyDataList[number].EnemyName;
+        Data_Detail.GetComponent<TextMeshProUGUI>().text = EnemyData.enemyDataList[number].EnemyDetail;
+        Data_Sprite.GetComponent<Image>().sprite = EnemyData.enemyDataList[number].EnemySprite;
         Data_EnemyNumber.GetComponent<TextMeshProUGUI>().text = (number + 1).ToString("00");
         // 属性耐性
         GetResistance(Data_Fire, number, (int)ElementType.enFire);
@@ -71,9 +71,6 @@ public class PictureBookSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_enemyCount = 0;
-        m_elementCount = 0;
-
         // 値を非表示にする
         Data_Name.SetActive(false);
         Data_Detail.SetActive(false);
@@ -82,10 +79,11 @@ public class PictureBookSystem : MonoBehaviour
 
         m_saveDataManager = GameManager.Instance.SaveData;
 
-        for (int i = 0; i < EnemyDataBase.enemyDataList.Count; i++)
+        for (int i = 0; i < EnemyData.enemyDataList.Count; i++)
         {
             // ボタンを生成して子オブジェクトにする
             var button = Instantiate(Button);
+
             button.transform.SetParent(Content.transform);
             // サイズ、座標を調整
             button.transform.localScale = Vector3.one;
@@ -116,7 +114,7 @@ public class PictureBookSystem : MonoBehaviour
             var enemyButton = button.GetComponent<EnemyButton>();
             enemyButton.SetPictureBook(
                 i,                                                          // 番号
-                EnemyDataBase.enemyDataList[i].EnemySprite,                 // 画像
+                EnemyData.enemyDataList[i].EnemySprite,                     // 画像
                 m_saveDataManager.SaveData.saveData.EnemyRegisters[i],      // 発見しているかどうか
                 this
                 );
@@ -133,7 +131,7 @@ public class PictureBookSystem : MonoBehaviour
     {
         float rate = 0.0f;
         // エネミーの総数とエレメントの総数
-        int allValue = EnemyDataBase.enemyDataList.Count + (EnemyDataBase.enemyDataList.Count * (int)ElementType.enNum);
+        int allValue = EnemyData.enemyDataList.Count + (EnemyData.enemyDataList.Count * (int)ElementType.enNum);
         // 現在発見しているエネミーの数とエレメントの数
         int Value = m_enemyCount + m_elementCount;
 
@@ -161,7 +159,7 @@ public class PictureBookSystem : MonoBehaviour
         }
 
         // 発見しているなら
-        ElementResistance element = EnemyDataBase.enemyDataList[enemyNumber].EnemyElement[elementNumber];
+        ElementResistance element = EnemyData.enemyDataList[enemyNumber].EnemyElement[elementNumber];
 
         switch (element)
         {

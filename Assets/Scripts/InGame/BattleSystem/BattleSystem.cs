@@ -54,11 +54,27 @@ public enum BuffStatus
 
 public class BattleSystem : MonoBehaviour
 {
+    [SerializeField, Header("参照データ")]
+    private PlayerDataBase PlayerData;
+    [SerializeField]
+    private EnemyDataBase EnemyData;
+
     private bool m_isOnemore = false;   // 再度行動できるかどうか
+    private bool m_isHit = false;       // 攻撃が当たるかどうか
+
+    private const int NORMAL_ATTACK_PROBABILITY = 95;
+    private const int SKILL_ATTACK_PROBABILITY = 95;
+    private const int SKILL_HEAL_PROBABILITY = 100;
+    private const int SKILL_BUFF_PROBABILITY = 95;
 
     public bool OneMore
     {
         get => m_isOnemore;
+    }
+
+    public bool Hit
+    {
+        get => m_isHit;
     }
 
     /// <summary>
@@ -86,12 +102,13 @@ public class BattleSystem : MonoBehaviour
     /// <returns>ダメージ量。小数点以下は切り捨て</returns>
     public int NormalAttack(int attackATK, int attackedDEF)
     {
-        int rand = GetRandomValue(0, 9);    // 補正値
+        var rand = GetRandomValue(0, 9);    // 補正値
 
         float damage =
             (attackATK * 0.5f) - (attackedDEF * 0.25f) + rand;
-
+        // 補正
         damage = Mathf.Max(0.0f, damage);
+        damage = AttackHit(damage, NORMAL_ATTACK_PROBABILITY);
         return (int)damage;
     }
 
@@ -104,12 +121,13 @@ public class BattleSystem : MonoBehaviour
     /// <returns>ダメージ量。小数点以下は切り捨て</returns>
     public int SkillAttack(int attackATK, int skillPOW, int attackedDEF)
     {
-        int rand = GetRandomValue(0, 5);    // 補正値
+        var rand = GetRandomValue(0, 5);    // 補正値
 
         float damage =
             (attackATK + skillPOW * 0.01f) - attackedDEF + rand;
-
+        // 補正
         damage = Mathf.Max(0.0f, damage);
+        damage = AttackHit(damage, SKILL_ATTACK_PROBABILITY);
         return (int)damage;
     }
 
@@ -122,8 +140,9 @@ public class BattleSystem : MonoBehaviour
     public int SkillHeal(int attackedMaxHP, int skillPOW)
     {
         float recoveryQuantity = attackedMaxHP * (skillPOW * 0.01f);
-
+        // 補正
         recoveryQuantity = Mathf.Max(0.0f, recoveryQuantity);
+        recoveryQuantity = AttackHit(recoveryQuantity, SKILL_HEAL_PROBABILITY);
         return (int)recoveryQuantity;
     }
 
@@ -136,28 +155,27 @@ public class BattleSystem : MonoBehaviour
     public int SkillBuff(int attackedParam,int skillPOW)
     {
         float statusFloatingValue = attackedParam * (skillPOW * 0.01f);
-
+        // 補正
         statusFloatingValue = Mathf.Max(0.0f, statusFloatingValue);
+        statusFloatingValue = AttackHit(statusFloatingValue, SKILL_BUFF_PROBABILITY);
         return (int)statusFloatingValue;
     }
 
     /// <summary>
     /// スキル攻撃時の属性耐性を考慮したダメージを計算する
     /// </summary>
-    /// <param name="playerData">プレイヤーデータ</param>
-    /// <param name="skillNumber">スキルの番号</param>
+    /// <param name="playerNumber">プレイヤーの番号</param>
     /// <param name="skillElement">スキルの属性</param>
     /// <param name="damage">属性を考慮しないダメージ</param>
     /// <returns>ダメージ量。小数点以下は切り捨て</returns>
-    public int PlayerElementResistance(PlayerData playerData, int skillNumber, int skillElement, int damage)
+    public int PlayerElementResistance(int playerNumber, int skillElement, int damage)
     {
         float finalDamage = damage;
-        switch(playerData.PlayerElement[skillElement])
+        switch(EnemyData.enemyDataList[playerNumber].EnemyElement[skillElement])
         {
             case global::ElementResistance.enNormal:
                 break;
             case global::ElementResistance.enWeak:
-                Debug.Log("ONE MORE!");
                 finalDamage *= 2.0f;
 
                 // 再度行動できるかどうかのフラグ
@@ -176,7 +194,7 @@ public class BattleSystem : MonoBehaviour
                 finalDamage *= 0.5f;
                 break;
         }
-
+        // 補正
         finalDamage = Mathf.Max(0.0f, finalDamage);
         return (int)finalDamage;
     }
@@ -184,20 +202,18 @@ public class BattleSystem : MonoBehaviour
     /// <summary>
     /// スキル攻撃時の属性耐性を考慮したダメージを計算する
     /// </summary>
-    /// <param name="enemyData">エネミーデータ</param>
-    /// <param name="skillNumber">スキルの番号</param>
+    /// <param name="enemyNumber">エネミーの番号</param>
     /// <param name="skillElement">スキルの属性</param>
     /// <param name="damage">属性を考慮しないダメージ</param>
     /// <returns>ダメージ量。小数点以下は切り捨て</returns>
-    public int EnemyElementResistance(EnemyData enemyData, int skillNumber, int skillElement, int damage)
+    public int EnemyElementResistance(int enemyNumber, int skillElement, int damage)
     {
         float finalDamage = damage;
-        switch (enemyData.EnemyElement[skillElement])
+        switch (EnemyData.enemyDataList[enemyNumber].EnemyElement[skillElement])
         {
             case global::ElementResistance.enNormal:
                 break;
             case global::ElementResistance.enWeak:
-                Debug.Log("ONE MORE!");
                 finalDamage *= 2.0f;
 
                 // 再度行動できるかどうかのフラグ
@@ -216,7 +232,7 @@ public class BattleSystem : MonoBehaviour
                 finalDamage *= 0.5f;
                 break;
         }
-
+        // 補正
         finalDamage = Mathf.Max(0.0f, finalDamage);
         return (int)finalDamage;
     }
@@ -239,8 +255,8 @@ public class BattleSystem : MonoBehaviour
     /// <returns>trueなら成功。falseなら失敗</returns>
     public bool Escape(int LUCK)
     {
-        int rand = GetRandomValue(0, 100);
-        bool flag = false;
+        var rand = GetRandomValue(0, 100);
+        var flag = false;
 
         // 乱数がLUCKのパラメータ以下なら
         if (rand <= LUCK)
@@ -249,5 +265,24 @@ public class BattleSystem : MonoBehaviour
         }
 
         return flag;
+    }
+
+    /// <summary>
+    /// 攻撃が当たるかどうかの判定
+    /// </summary>
+    /// <param name="value">ダメージ</param>
+    /// <param name="probability">攻撃が当たる確率</param>
+    /// <returns>最終ダメージ</returns>
+    private float AttackHit(float value, int probability)
+    {
+        var rand = GetRandomValue(0, 100);
+        // 乱数が確率以下なら
+        if (rand <= probability)
+        {
+            m_isHit = true;
+            return value;
+        }
+        m_isHit = false;
+        return 0;
     }
 }

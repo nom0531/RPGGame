@@ -9,21 +9,26 @@ public class DrawCommandPlayer : MonoBehaviour
     [SerializeField, Tooltip("COMMANDのUI")]
     private GameObject CommandUI;
     [SerializeField, Header("表示データ"), Tooltip("回転量")]
-    private float m_addRotation = -0.5f;
+    private float AddRotation = 0.5f;
+    [SerializeField, Tooltip("移動速度")]
+    private float MoveSpeed = 10.0f;
 
     private BattleManager m_battleManager;
     private int m_operatingPlayer = 0;     // 現在操作しているプレイヤー
+    private float m_timer = 0.0f;          // タイマー
 
     // Start is called before the first frame update
     private void Start()
     {
         m_battleManager = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<BattleManager>();
-        SetUIPosition();
+        m_operatingPlayer = m_battleManager.OperatingPlayerNumber;
+        CommandUI.transform.position = PlayerIcon[m_operatingPlayer].transform.position;
     }
 
     private void FixedUpdate()
     {
         SetUIRotation();
+        SetUIPosition();
 
         // プレイ中でないなら中断
         if (m_battleManager.GameState != GameState.enPlay)
@@ -43,7 +48,7 @@ public class DrawCommandPlayer : MonoBehaviour
             return;
         }
 
-        SetUIPosition();
+        m_timer = 0.0f;
     }
 
     /// <summary>
@@ -51,7 +56,7 @@ public class DrawCommandPlayer : MonoBehaviour
     /// </summary>
     private void SetUIRotation()
     {
-        CommandUI.transform.Rotate(0, 0, m_addRotation);
+        CommandUI.transform.Rotate(0, 0, -AddRotation);
     }
 
     /// <summary>
@@ -59,7 +64,21 @@ public class DrawCommandPlayer : MonoBehaviour
     /// </summary>
     private void SetUIPosition()
     {
+        if(m_timer >= 1.0f)
+        {
+            return;
+        }
+
         m_operatingPlayer = m_battleManager.OperatingPlayerNumber;
-        CommandUI.transform.position = PlayerIcon[m_operatingPlayer].transform.position;
+        // 始点と終点を取得
+        var start = CommandUI.transform.position;
+        var end = PlayerIcon[m_operatingPlayer].transform.position;
+        // 補間位置を計算
+        m_timer =+ Time.deltaTime * MoveSpeed;
+        // -t^2 + 2t
+        float rate = ((Mathf.Pow(m_timer, 2.0f) * -1.0f) + (2.0f * m_timer));
+        rate = Mathf.Min(rate, 1.0f);
+        // 座標を反映
+        CommandUI.transform.position = Vector3.Lerp(start, end, rate);
     }
 }

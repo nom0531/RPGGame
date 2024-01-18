@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using Cysharp.Threading.Tasks;
+using System;
 
 /// <summary>
 /// 戦闘時のプレイヤーのステータス
@@ -14,15 +15,14 @@ public struct PlayerBattleStatus
     public int DEF;                                 // 現在のDEF
     public int SPD;                                 // 現在のSPD
     public int LUCK;                                // 現在のLUCK
-    public ActorHPState HPState;                    // HPの状態
-    public ActorAbnormalState AbnormalState;        // 状態異常
-    public ActionType ActionType;                   // 次の行動
 }
 
 public class PlayerMove : MonoBehaviour
 {
     [SerializeField, Header("参照データ")]
     private PlayerDataBase PlayerData;
+    [SerializeField]
+    private EnemyDataBase EnemyData;
     [SerializeField]
     private SkillDataBase SkillData;
     [SerializeField,Header("自身の番号")]
@@ -31,13 +31,22 @@ public class PlayerMove : MonoBehaviour
     private const int HPMIN_VALUE = 0;              // HPの最小値
     private const int SPMIN_VALUE = 0;              // SPの最小値
 
+    private BattleManager m_battleManager;
     private BattleSystem m_battleSystem;
-    private PlayerBattleStatus m_playerBattleStatus;// 戦闘のステータス
-    private BuffCalculation m_buffCalculation;      // バフの計算
-    private DrawCommandText m_drawCommandText;      // コマンドの表示
-    private int m_selectSkillNumber = 0;            // 選択しているスキルの番号
-    private bool m_isActionEnd = false;             // 行動が終了しているかどうか
-    private bool m_isConfusion = false;             // 混乱しているかどうか
+    private StagingManager m_stagingManager;
+    private StateAbnormalCalculation m_abnormalCalculation;
+    private BuffCalculation m_buffCalculation;
+    private DrawCommandText m_drawCommandText;
+    private PlayerBattleStatus m_playerBattleStatus;                                // プレイヤーのステータス
+    private ActorHPState m_actorHPState = ActorHPState.enMaxHP;                     // HPの状態
+    private ActorAbnormalState m_actorAbnormalState = ActorAbnormalState.enNormal;  // 状態異常
+    private ActionType m_actionType = ActionType.enNull;                            // 次の行動
+    private int m_selectSkillNumber = 0;                                            // 選択しているスキルの番号
+    private int m_basicValue = 0;                                                   // ダメージ量・回復量
+    private int m_defencePower = 0;                                                 // 防御力
+    private int m_poisonDamage = 0;                                                 // 毒状態時のダメージ
+    private bool m_isActionEnd = false;                                             // 行動が終了しているかどうか
+    private bool m_isConfusion = false;                                             // 混乱しているかどうか
 
     public int MyNumber
     {
@@ -58,8 +67,8 @@ public class PlayerMove : MonoBehaviour
 
     public ActionType NextActionType
     {
-        get => m_playerBattleStatus.ActionType;
-        set => m_playerBattleStatus.ActionType = value;
+        get => m_actionType;
+        set => m_actionType = value;
     }
 
     public PlayerBattleStatus PlayerStatus
@@ -69,31 +78,46 @@ public class PlayerMove : MonoBehaviour
 
     public ActorHPState ActorHPState
     {
-        get => m_playerBattleStatus.HPState;
+        get => m_actorHPState;
+        set => m_actorHPState = value;
     }
 
     public ActorAbnormalState ActorAbnormalState
     {
-        get => m_playerBattleStatus.AbnormalState;
-        set => m_playerBattleStatus.AbnormalState = value;
+        get => m_actorAbnormalState;
+        set => m_actorAbnormalState = value;
     }
 
-    public bool Confusion
+    public bool ConfusionFlag
     {
         get => m_isConfusion;
         set => m_isConfusion = value;
     }
 
+    public int PoisonDamage
+    {
+        get => m_poisonDamage;
+        set => m_poisonDamage = value;
+    }
+
+    public int BasicValue
+    {
+        get => m_basicValue;
+        set => m_basicValue = value;
+    }
+
     private void Awake()
     {
+        m_battleManager = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<BattleManager>();
         m_battleSystem = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<BattleSystem>();
-        m_buffCalculation = this.gameObject.GetComponent<BuffCalculation>();
-        m_drawCommandText = this.gameObject.GetComponent<DrawCommandText>();
-        //m_drawDamageText =GameObject.FindGameObjectWithTag("UICanvas").GetComponent<DrawDamageText>();
+        m_stagingManager = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<StagingManager>();
+        m_abnormalCalculation = gameObject.GetComponent<StateAbnormalCalculation>();
+        m_buffCalculation = gameObject.GetComponent<BuffCalculation>();
+        m_drawCommandText = gameObject.GetComponent<DrawCommandText>();
+        SetStatus();
     }
     private void Start()
     {
-        SetStatus();
         SetSkills();
     }
 
@@ -102,17 +126,14 @@ public class PlayerMove : MonoBehaviour
     /// </summary>
     private void SetStatus()
     {
-        SaveDataManager saveData = GameManager.Instance.SaveData;
+        var saveDataManager = GameManager.Instance.SaveData;
 
-        m_playerBattleStatus.HP = saveData.SaveData.saveData.PlayerList[m_myNumber].HP;
-        m_playerBattleStatus.SP = saveData.SaveData.saveData.PlayerList[m_myNumber].SP;
-        m_playerBattleStatus.ATK = saveData.SaveData.saveData.PlayerList[m_myNumber].ATK;
-        m_playerBattleStatus.DEF = saveData.SaveData.saveData.PlayerList[m_myNumber].DEF;
-        m_playerBattleStatus.SPD = saveData.SaveData.saveData.PlayerList[m_myNumber].SPD;
-        m_playerBattleStatus.LUCK = saveData.SaveData.saveData.PlayerList[m_myNumber].LUCK;
-        m_playerBattleStatus.HPState = SetHPStatus();
-        m_playerBattleStatus.AbnormalState = ActorAbnormalState.enNormal;
-        m_playerBattleStatus.ActionType = ActionType.enNull;
+        m_playerBattleStatus.HP = saveDataManager.SaveData.saveData.PlayerList[m_myNumber].HP;
+        m_playerBattleStatus.SP = saveDataManager.SaveData.saveData.PlayerList[m_myNumber].SP;
+        m_playerBattleStatus.ATK = saveDataManager.SaveData.saveData.PlayerList[m_myNumber].ATK;
+        m_playerBattleStatus.DEF = saveDataManager.SaveData.saveData.PlayerList[m_myNumber].DEF;
+        m_playerBattleStatus.SPD = saveDataManager.SaveData.saveData.PlayerList[m_myNumber].SPD;
+        m_playerBattleStatus.LUCK = saveDataManager.SaveData.saveData.PlayerList[m_myNumber].LUCK;
     }
 
     /// <summary>
@@ -148,7 +169,7 @@ public class PlayerMove : MonoBehaviour
     private void FixedUpdate()
     {
         RotationSprite();
-        m_playerBattleStatus.HPState = SetHPStatus();
+        ActorHPState = SetHPStatus();
 
         for (int i = 0; i < (int)BuffStatus.enNum; i++)
         {
@@ -157,68 +178,216 @@ public class PlayerMove : MonoBehaviour
                 continue;
             }
             // 効果時間が終了しているならステータスを戻す
-            ResetPlayerBuffStatus((BuffStatus)i);
+            ResetBuffStatus((BuffStatus)i);
             m_buffCalculation.SetEffectEndFlag((BuffStatus)i, false);
         }
     }
 
     /// <summary>
-    /// HPを回復させる処理
+    /// 通常攻撃の処理
     /// </summary>
-    /// <param name="recoverValue">回復量</param>
-    public void RecoverHP(int recoverValue)
+    /// <param name="targetNumber">ターゲットの番号</param>
+    /// <param name="attackedDEF">防御側の防御力</param>
+    public void PlayerAction_Attack(int targetNumber, int attackedDEF)
     {
-        m_playerBattleStatus.HP += recoverValue;
+        // ダメージ量を計算
+        BasicValue = m_battleSystem.NormalAttack(
+            PlayerStatus.ATK,// 攻撃力
+            attackedDEF                                         // 防御力
+            );
 
-        // 一定以上なら補正
-        if (m_playerBattleStatus.HP >= PlayerData.playerDataList[m_myNumber].HP)
+        // 混乱状態なら
+        if (ConfusionFlag == true)
         {
-            m_playerBattleStatus.HP = PlayerData.playerDataList[m_myNumber].HP;
+            DecrementHP(BasicValue);
+            return;
         }
-
-        m_playerBattleStatus.HPState = SetHPStatus();
+        m_battleManager.PlayerAction_DamageEnemy(targetNumber, BasicValue);
     }
 
     /// <summary>
-    /// HPを減少させる処理
+    /// 攻撃タイプのスキル処理
     /// </summary>
-    /// <param name="decrementValue">ダメージ量</param>
-    public void DecrementHP(int decrementValue)
+    /// <param name="skillNumber">スキルの番号</param>
+    /// <param name="targetNumber">ターゲットの番号</param>
+    /// <param name="attackedDEF">防御側の防御力</param>
+    public void PlayerAction_SkillAttack(int skillNumber, int targetNumber, int attackedDEF, int enemyDataNumber)
     {
-        m_playerBattleStatus.HP -= decrementValue;
-
-        // 一定以下なら補正
-        if (m_playerBattleStatus.HP <= HPMIN_VALUE)
+        // ダメージ量を計算
+        BasicValue = m_battleSystem.SkillAttack(
+            PlayerStatus.ATK,                                                           // 攻撃力
+            PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].POW,       // スキルの基礎値
+            attackedDEF                                                                 // 防御力
+            );
+        // 無属性でないなら属性を考慮した計算を行う
+        if (PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].SkillElement != ElementType.enNone
+            && PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].SkillElement != ElementType.enNum)
         {
-            m_playerBattleStatus.HP = HPMIN_VALUE;
+            BasicValue = m_battleSystem.EnemyElementResistance(
+                enemyDataNumber,                                                                    // エネミーのデータ内での番号
+                (int)PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].SkillElement, // スキルの属性
+                BasicValue                                                                          // ダメージ
+                );
+            // 属性耐性の登録を行う
+            m_battleManager.PlayerAction_Register(m_myNumber, skillNumber, targetNumber);
         }
-
-        m_playerBattleStatus.HPState = SetHPStatus();
+        AddingEffectCalculation(targetNumber, skillNumber);
+        // ダメージを設定する
+        m_battleManager.PlayerAction_DamageEnemy(targetNumber, BasicValue);
+        PlayerAction_Decrement(skillNumber);
     }
 
     /// <summary>
-    /// SPを減少させる処理
+    /// 追加効果の計算
     /// </summary>
-    /// <param name="decrementValue">消費量</param>
-    public void DecrementSP(int decrementValue)
+    /// <param name="skillNumber">スキルの番号</param>
+    private void AddingEffectCalculation(int targetNumber,int skillNumber)
     {
-        m_playerBattleStatus.SP -= decrementValue;
-
-        // 一定以下なら補正
-        if (m_playerBattleStatus.SP <= SPMIN_VALUE)
+        var abnormalState = PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].StateAbnormalData.ActorAbnormalState;
+        // 追加効果がないなら実行しない
+        if (abnormalState == ActorAbnormalState.enNormal)
         {
-            m_playerBattleStatus.SP = SPMIN_VALUE;
+            return;
+        }
+        // 状態異常にかからなかったなら実行しない
+        if(m_abnormalCalculation.SpentToStateAbnormal() != true)
+        {
+            return;
+        }
+
+        // ステートを変更する
+        m_battleManager.PlayerAction_ChangeStateEnemy(targetNumber,abnormalState);
+    }
+
+    /// <summary>
+    /// バフ・デバフの処理
+    /// </summary>
+    /// <param name="skillNumber">スキルの番号</param>
+    /// <param name="attackedATK">防御側の攻撃力</param>
+    /// <param name="attackDEF">防御側の防御力</param>
+    /// <param name="attackSPD">防御側の素早さ</param>
+    /// <param name="isBuff">trueならバフ。falseならデバフ</param>
+    public void PlayerAction_Buff(int skillNumber, int attackedATK, int attackDEF, int attackSPD, bool isBuff)
+    {
+        // パラメータを参照
+        var param = 0;
+        switch (PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].BuffType)
+        {
+            case BuffType.enATK:
+                param = attackedATK;
+                break;
+            case BuffType.enDEF:
+                param = attackDEF;
+                break;
+            case BuffType.enSPD:
+                param = attackSPD;
+                break;
+        }
+        // 値の計算
+        var value = m_battleSystem.SkillBuff(
+            param,
+            PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].POW
+            );
+        // 値を設定する
+        SetBuffStatus(
+            PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].BuffType,
+            value,
+            skillNumber,
+            isBuff
+            );
+        PlayerAction_Decrement(skillNumber);
+    }
+
+    /// <summary>
+    /// HPを回復する処理
+    /// </summary>
+    /// <param name="myNumber">自身の番号</param>
+    /// <param name="targetNumber">ターゲットの番号</param>
+    /// <param name="skillNumber">スキルの番号</param>
+    public void PlayerAction_HPRecover(int targetNumber, int skillNumber)
+    {
+        // 回復量を計算する
+        BasicValue = m_battleSystem.SkillHeal(
+                PlayerData.playerDataList[targetNumber].HP,
+                PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].POW
+                );
+
+        // HPを回復させる
+        RecoverHP(BasicValue);
+        PlayerAction_Decrement(skillNumber);
+    }
+
+    /// <summary>
+    /// SP・HPを消費する処理
+    /// </summary>
+    private void PlayerAction_Decrement(int skillNumber)
+    {
+        // 値を計算する
+        var necessaryValue = PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].SkillNecessary;
+        // SP・HPを消費する
+        switch (PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].Type)
+        {
+            case NecessaryType.enSP:
+                DecrementSP(necessaryValue);
+                break;
+            case NecessaryType.enHP:
+                DecrementHP(necessaryValue);
+                break;
         }
     }
 
     /// <summary>
     /// 防御処理
     /// </summary>
-    /// <returns>防御力。小数点以下は切り捨て</returns>
-    public int Guard()
+    public void PlayerAction_Guard()
     {
-        int defensePower = m_battleSystem.Guard(m_playerBattleStatus.DEF);
-        return defensePower;
+        // 防御力を計算
+        m_defencePower = m_battleSystem.Guard(m_playerBattleStatus.DEF);
+        m_playerBattleStatus.DEF += m_defencePower;
+    }
+
+    /// <summary>
+    /// HPの回復処理
+    /// </summary>
+    /// <param name="recoverValue">回復量</param>
+    public void RecoverHP(int recoverValue)
+    {
+        m_playerBattleStatus.HP += recoverValue;
+        // 一定以上なら補正
+        if (m_playerBattleStatus.HP >= PlayerData.playerDataList[m_myNumber].HP)
+        {
+            m_playerBattleStatus.HP = PlayerData.playerDataList[m_myNumber].HP;
+        }
+        ActorHPState = SetHPStatus();
+    }
+
+    /// <summary>
+    /// HPの減少処理
+    /// </summary>
+    /// <param name="decrementValue">ダメージ量</param>
+    public void DecrementHP(int decrementValue)
+    {
+        m_playerBattleStatus.HP -= decrementValue;
+        // 一定以下なら補正
+        if (m_playerBattleStatus.HP <= HPMIN_VALUE)
+        {
+            m_playerBattleStatus.HP = HPMIN_VALUE;
+        }
+        ActorHPState = SetHPStatus();
+    }
+
+    /// <summary>
+    /// SPの減少処理
+    /// </summary>
+    /// <param name="decrementValue">消費量</param>
+    public void DecrementSP(int decrementValue)
+    {
+        m_playerBattleStatus.SP -= decrementValue;
+        // 一定以下なら補正
+        if (m_playerBattleStatus.SP <= SPMIN_VALUE)
+        {
+            m_playerBattleStatus.SP = SPMIN_VALUE;
+        }
     }
 
     /// <summary>
@@ -228,9 +397,9 @@ public class PlayerMove : MonoBehaviour
     /// <param name="statusFloatingValue">変更する値</param>
     /// <param name="skillNumber">スキルの番号</param>
     ///  <param name="isBuff">trueならバフ。falseならデバフ</param>
-    public void SetPlayerBuffStatus(BuffType buffType, int statusFloatingValue,int skillNumber, bool isBuff)
+    private void SetBuffStatus(BuffType buffType, int statusFloatingValue,int skillNumber, bool isBuff)
     {
-        int effectTime = 1;
+        var effectTime = 1;
         // スキルの番号が指定されているなら
         if(skillNumber >= 0)
         {
@@ -278,31 +447,42 @@ public class PlayerMove : MonoBehaviour
     /// </summary>
     private void RotationSprite()
     {
-        Vector3 lookAtCamera = Camera.main.transform.position;
+        var lookAtCamera = Camera.main.transform.position;
         lookAtCamera.y = transform.position.y;  // 補正
         transform.LookAt(lookAtCamera);
+    }
+    
+    /// <summary>
+    /// 自身の行動を終了する
+    /// </summary>
+    /// <param name="actionType">行動パターン</param>
+    /// <param name="skillNumber">スキルの番号</param>
+    public void ActionEnd(ActionType actionType, int skillNumber)
+    {
+        m_drawCommandText.SetCommandText(actionType, PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].SkillNumber);
+        ActionEndFlag = true;
     }
 
     /// <summary>
     /// プレイヤーの行動をリセットする
     /// </summary>
-    public void ResetPlayerStatus()
+    public void ResetStatus()
     {
         // ガードしていたなら
-        if (m_playerBattleStatus.ActionType == ActionType.enGuard)
+        if (NextActionType == ActionType.enGuard)
         {
             // 防御力を元に戻す
-            m_playerBattleStatus.DEF -= m_buffCalculation.GetBuffParam(BuffStatus.enBuff_DEF);
+            m_playerBattleStatus.DEF -= m_defencePower;
         }
 
-        m_playerBattleStatus.ActionType = ActionType.enNull;
+        NextActionType = ActionType.enNull;
         m_isActionEnd = false;
     }
 
     /// <summary>
-    /// プレイヤーのステータスを元に戻す
+    /// ステータスを元に戻す
     /// </summary>
-    private void ResetPlayerBuffStatus(BuffStatus buffStatus)
+    private void ResetBuffStatus(BuffStatus buffStatus)
     {
         switch (buffStatus)
         {
@@ -330,14 +510,12 @@ public class PlayerMove : MonoBehaviour
     /// <summary>
     /// HPの状態を設定する
     /// </summary>
-    /// <param name="NowHP">現在のHP</param>
     /// <returns>HPの状態</returns>
     private ActorHPState SetHPStatus()
     {
         if(PlayerStatus.HP <= HPMIN_VALUE)
         {
-            m_isActionEnd = true;       // 行動ができないので行動終了のフラグを立てる
-            tag = "DiePlayer";
+            Die();
             return ActorHPState.enDie;
         }
 
@@ -347,5 +525,53 @@ public class PlayerMove : MonoBehaviour
         }
 
         return ActorHPState.enMaxHP;
+    }
+
+    /// <summary>
+    /// 状態異常の計算
+    /// </summary>
+    public void CalculationAbnormalState()
+    {
+        if(ActorAbnormalState == ActorAbnormalState.enNormal || ActorAbnormalState == ActorAbnormalState.enSilence)
+        {
+            return;
+        }
+        if (m_abnormalCalculation.RecoverToAbnormal(ActorAbnormalState) == true)
+        {
+            return;
+        }
+        switch (ActorAbnormalState)
+        {
+            case ActorAbnormalState.enPoison:
+                Debug.Log($"{PlayerData.playerDataList[m_myNumber].PlayerName}は毒を浴びている");
+                PoisonDamage = m_abnormalCalculation.Poison(PlayerStatus.HP);
+                break;
+            case ActorAbnormalState.enParalysis:
+                if (m_abnormalCalculation.Paralysis() == true)
+                {
+                    Debug.Log($"{PlayerData.playerDataList[m_myNumber].PlayerName}は麻痺している");
+                    NextActionType = ActionType.enNull;
+                }
+                break;
+            case ActorAbnormalState.enConfusion:
+                if (m_abnormalCalculation.Confusion() == true)
+                {
+                    Debug.Log($"{PlayerData.playerDataList[m_myNumber].PlayerName}は混乱している");
+                    NextActionType = ActionType.enAttack;
+                    ConfusionFlag = true;
+                }
+                break;
+        }
+    }
+
+    /// <summary>
+    /// 死亡演出
+    /// </summary>
+    async private void Die()
+    {
+        // 演出が終了したら実行する
+        await UniTask.WaitUntil(() => m_stagingManager.StangingState == StangingState.enStangingEnd);
+        m_isActionEnd = true;       // 行動ができないので行動終了のフラグを立てる
+        tag = "DiePlayer";
     }
 }

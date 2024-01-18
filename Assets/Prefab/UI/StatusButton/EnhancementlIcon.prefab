@@ -14,12 +14,12 @@ GameObject:
   - component: {fileID: 3105759790452550541}
   - component: {fileID: 7526323270268735807}
   m_Layer: 5
-  m_Name: SkillIcon
-  m_TagString: SkillIcon
+  m_Name: EnhancementlIcon
+  m_TagString: EnhancementIcon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3105759790452550538
 RectTransform:
   m_ObjectHideFlags: 0
@@ -68,7 +68,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 04969c4fd6e8dd249a36f793a5485840, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

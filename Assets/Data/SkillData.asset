@@ -17,6 +17,8 @@ MonoBehaviour:
     SkillNumber: 0
     SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
     SkillType: 0
+    SkillEffect: {fileID: 0}
+    EffectScale: 0
     SkillElement: 0
     StateAbnormalData:
       StateName: "\u306A\u3057"
@@ -36,6 +38,8 @@ MonoBehaviour:
     SkillNumber: 1
     SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
     SkillType: 0
+    SkillEffect: {fileID: 0}
+    EffectScale: 0
     SkillElement: 0
     StateAbnormalData:
       StateName: "\u306A\u3057"
@@ -55,6 +59,8 @@ MonoBehaviour:
     SkillNumber: 2
     SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
     SkillType: 0
+    SkillEffect: {fileID: 0}
+    EffectScale: 0
     SkillElement: 0
     StateAbnormalData:
       StateName: "\u306A\u3057"
@@ -74,6 +80,8 @@ MonoBehaviour:
     SkillNumber: 3
     SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
     SkillType: 0
+    SkillEffect: {fileID: 0}
+    EffectScale: 0
     SkillElement: 1
     StateAbnormalData:
       StateName: "\u306A\u3057"
@@ -93,6 +101,8 @@ MonoBehaviour:
     SkillNumber: 4
     SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
     SkillType: 0
+    SkillEffect: {fileID: 0}
+    EffectScale: 0
     SkillElement: 1
     StateAbnormalData:
       StateName: "\u306A\u3057"
@@ -112,6 +122,8 @@ MonoBehaviour:
     SkillNumber: 5
     SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
     SkillType: 0
+    SkillEffect: {fileID: 0}
+    EffectScale: 0
     SkillElement: 1
     StateAbnormalData:
       StateName: "\u306A\u3057"
@@ -131,6 +143,8 @@ MonoBehaviour:
     SkillNumber: 6
     SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
     SkillType: 0
+    SkillEffect: {fileID: 0}
+    EffectScale: 0
     SkillElement: 2
     StateAbnormalData:
       StateName: "\u306A\u3057"
@@ -150,6 +164,8 @@ MonoBehaviour:
     SkillNumber: 7
     SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
     SkillType: 0
+    SkillEffect: {fileID: 0}
+    EffectScale: 0
     SkillElement: 2
     StateAbnormalData:
       StateName: "\u306A\u3057"
@@ -169,6 +185,8 @@ MonoBehaviour:
     SkillNumber: 8
     SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
     SkillType: 0
+    SkillEffect: {fileID: 0}
+    EffectScale: 0
     SkillElement: 2
     StateAbnormalData:
       StateName: "\u6DF7\u4E71"
@@ -188,6 +206,8 @@ MonoBehaviour:
     SkillNumber: 9
     SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
     SkillType: 0
+    SkillEffect: {fileID: 0}
+    EffectScale: 0
     SkillElement: 3
     StateAbnormalData:
       StateName: "\u306A\u3057"
@@ -207,7 +227,9 @@ MonoBehaviour:
     SkillNumber: 10
     SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
     SkillType: 0
-    SkillElement: 2
+    SkillEffect: {fileID: 0}
+    EffectScale: 0
+    SkillElement: 3
     StateAbnormalData:
       StateName: "\u306A\u3057"
       StateImage: {fileID: 0}
@@ -226,6 +248,8 @@ MonoBehaviour:
     SkillNumber: 11
     SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
     SkillType: 0
+    SkillEffect: {fileID: 0}
+    EffectScale: 0
     SkillElement: 3
     StateAbnormalData:
       StateName: "\u306A\u3057"
@@ -245,6 +269,8 @@ MonoBehaviour:
     SkillNumber: 12
     SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
     SkillType: 0
+    SkillEffect: {fileID: 0}
+    EffectScale: 0
     SkillElement: 4
     StateAbnormalData:
       StateName: "\u306A\u3057"
@@ -264,6 +290,8 @@ MonoBehaviour:
     SkillNumber: 13
     SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
     SkillType: 0
+    SkillEffect: {fileID: 0}
+    EffectScale: 0
     SkillElement: 4
     StateAbnormalData:
       StateName: "\u306A\u3057"
@@ -283,6 +311,8 @@ MonoBehaviour:
     SkillNumber: 14
     SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
     SkillType: 0
+    SkillEffect: {fileID: 0}
+    EffectScale: 0
     SkillElement: 4
     StateAbnormalData:
       StateName: "\u306A\u3057"
@@ -302,6 +332,8 @@ MonoBehaviour:
     SkillNumber: 15
     SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
     SkillType: 0
+    SkillEffect: {fileID: 0}
+    EffectScale: 0
     SkillElement: 5
     StateAbnormalData:
       StateName: "\u306A\u3057"
@@ -321,6 +353,8 @@ MonoBehaviour:
     SkillNumber: 16
     SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
     SkillType: 0
+    SkillEffect: {fileID: 0}
+    EffectScale: 0
     SkillElement: 5
     StateAbnormalData:
       StateName: "\u306A\u3057"
@@ -340,6 +374,8 @@ MonoBehaviour:
     SkillNumber: 17
     SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
     SkillType: 0
+    SkillEffect: {fileID: 0}
+    EffectScale: 0
     SkillElement: 5
     StateAbnormalData:
       StateName: "\u306A\u3057"
@@ -359,6 +395,9 @@ MonoBehaviour:
     SkillNumber: 18
     SkillSprite: {fileID: 21300000, guid: cda20cb1f6f217f479c94cab09290d8f, type: 3}
     SkillType: 0
+    SkillEffect: {fileID: 8443315704496310910, guid: 6ef35fa36e3a65043b2d800600204bdd,
+      type: 3}
+    EffectScale: 15
     SkillElement: 6
     StateAbnormalData:
       StateName: "\u306A\u3057"
@@ -378,6 +417,9 @@ MonoBehaviour:
     SkillNumber: 19
     SkillSprite: {fileID: 21300000, guid: cda20cb1f6f217f479c94cab09290d8f, type: 3}
     SkillType: 0
+    SkillEffect: {fileID: 8443315704496310910, guid: 6ef35fa36e3a65043b2d800600204bdd,
+      type: 3}
+    EffectScale: 15
     SkillElement: 6
     StateAbnormalData:
       StateName: "\u306A\u3057"
@@ -397,6 +439,9 @@ MonoBehaviour:
     SkillNumber: 20
     SkillSprite: {fileID: 21300000, guid: cda20cb1f6f217f479c94cab09290d8f, type: 3}
     SkillType: 0
+    SkillEffect: {fileID: 8443315704496310910, guid: 6ef35fa36e3a65043b2d800600204bdd,
+      type: 3}
+    EffectScale: 15
     SkillElement: 6
     StateAbnormalData:
       StateName: "\u306A\u3057"
@@ -416,6 +461,9 @@ MonoBehaviour:
     SkillNumber: 21
     SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
     SkillType: 0
+    SkillEffect: {fileID: 2060900179291159282, guid: ca6705a3f9070d14d819d179493bcfa0,
+      type: 3}
+    EffectScale: 15
     SkillElement: 7
     StateAbnormalData:
       StateName: "\u306A\u3057"
@@ -435,6 +483,9 @@ MonoBehaviour:
     SkillNumber: 22
     SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
     SkillType: 0
+    SkillEffect: {fileID: 2060900179291159282, guid: ca6705a3f9070d14d819d179493bcfa0,
+      type: 3}
+    EffectScale: 15
     SkillElement: 7
     StateAbnormalData:
       StateName: "\u306A\u3057"
@@ -454,6 +505,9 @@ MonoBehaviour:
     SkillNumber: 23
     SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
     SkillType: 0
+    SkillEffect: {fileID: 2060900179291159282, guid: ca6705a3f9070d14d819d179493bcfa0,
+      type: 3}
+    EffectScale: 15
     SkillElement: 7
     StateAbnormalData:
       StateName: "\u306A\u3057"
@@ -473,6 +527,9 @@ MonoBehaviour:
     SkillNumber: 24
     SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
     SkillType: 0
+    SkillEffect: {fileID: 1171201465392465800, guid: 4aa9f30a28a77224ba84b2a2c334c71b,
+      type: 3}
+    EffectScale: 15
     SkillElement: 7
     StateAbnormalData:
       StateName: "\u306A\u3057"
@@ -492,6 +549,9 @@ MonoBehaviour:
     SkillNumber: 25
     SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
     SkillType: 0
+    SkillEffect: {fileID: 1171201465392465800, guid: 4aa9f30a28a77224ba84b2a2c334c71b,
+      type: 3}
+    EffectScale: 15
     SkillElement: 7
     StateAbnormalData:
       StateName: "\u306A\u3057"
@@ -511,6 +571,9 @@ MonoBehaviour:
     SkillNumber: 26
     SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
     SkillType: 0
+    SkillEffect: {fileID: 1171201465392465800, guid: 4aa9f30a28a77224ba84b2a2c334c71b,
+      type: 3}
+    EffectScale: 15
     SkillElement: 7
     StateAbnormalData:
       StateName: "\u306A\u3057"
@@ -530,6 +593,9 @@ MonoBehaviour:
     SkillNumber: 27
     SkillSprite: {fileID: 21300000, guid: 89f84138f141f6443b97f28ba360be3c, type: 3}
     SkillType: 1
+    SkillEffect: {fileID: 7155335147208632822, guid: 97c43495f80a3244fad1301dfafbe252,
+      type: 3}
+    EffectScale: 15
     SkillElement: 7
     StateAbnormalData:
       StateName: "\u653B\u6483\u529B\u4E0A\u6607"
@@ -539,7 +605,7 @@ MonoBehaviour:
       EffectTime: 3
       ActorAbnormalState: 5
     POW: 0
-    SkillNecessary: 0
+    SkillNecessary: 50
     Type: 0
     EffectRange: 0
     BuffType: 0
@@ -549,6 +615,9 @@ MonoBehaviour:
     SkillNumber: 28
     SkillSprite: {fileID: 21300000, guid: 89f84138f141f6443b97f28ba360be3c, type: 3}
     SkillType: 1
+    SkillEffect: {fileID: 7155335147208632822, guid: 97c43495f80a3244fad1301dfafbe252,
+      type: 3}
+    EffectScale: 15
     SkillElement: 7
     StateAbnormalData:
       StateName: "\u7D20\u65E9\u3055\u4E0A\u6607"
@@ -558,7 +627,7 @@ MonoBehaviour:
       EffectTime: 3
       ActorAbnormalState: 5
     POW: 0
-    SkillNecessary: 0
+    SkillNecessary: 51
     Type: 0
     EffectRange: 0
     BuffType: 1
@@ -568,6 +637,9 @@ MonoBehaviour:
     SkillNumber: 29
     SkillSprite: {fileID: 21300000, guid: 89f84138f141f6443b97f28ba360be3c, type: 3}
     SkillType: 1
+    SkillEffect: {fileID: 7155335147208632822, guid: 97c43495f80a3244fad1301dfafbe252,
+      type: 3}
+    EffectScale: 15
     SkillElement: 7
     StateAbnormalData:
       StateName: "\u9632\u5FA1\u529B\u4F4E\u4E0B"
@@ -587,6 +659,9 @@ MonoBehaviour:
     SkillNumber: 30
     SkillSprite: {fileID: 21300000, guid: da3ecfb2dff2cd6408ca3502c2ee71ea, type: 3}
     SkillType: 2
+    SkillEffect: {fileID: 6126188424833946103, guid: a58aa9a78f2b45b45bb0f3e2e1e3ad3c,
+      type: 3}
+    EffectScale: 15
     SkillElement: 7
     StateAbnormalData:
       StateName: "\u9632\u5FA1\u529B\u4E0A\u6607"
@@ -606,6 +681,9 @@ MonoBehaviour:
     SkillNumber: 31
     SkillSprite: {fileID: 21300000, guid: da3ecfb2dff2cd6408ca3502c2ee71ea, type: 3}
     SkillType: 2
+    SkillEffect: {fileID: 6126188424833946103, guid: a58aa9a78f2b45b45bb0f3e2e1e3ad3c,
+      type: 3}
+    EffectScale: 15
     SkillElement: 7
     StateAbnormalData:
       StateName: "\u653B\u6483\u529B\u4F4E\u4E0B"
@@ -625,6 +703,9 @@ MonoBehaviour:
     SkillNumber: 32
     SkillSprite: {fileID: 21300000, guid: da3ecfb2dff2cd6408ca3502c2ee71ea, type: 3}
     SkillType: 2
+    SkillEffect: {fileID: 6126188424833946103, guid: a58aa9a78f2b45b45bb0f3e2e1e3ad3c,
+      type: 3}
+    EffectScale: 15
     SkillElement: 7
     StateAbnormalData:
       StateName: "\u7D20\u65E9\u3055\u4F4E\u4E0B"
@@ -644,6 +725,9 @@ MonoBehaviour:
     SkillNumber: 33
     SkillSprite: {fileID: 21300000, guid: 797588158c4fd6943aa087189d0bf32a, type: 3}
     SkillType: 3
+    SkillEffect: {fileID: 9017484664307500583, guid: 1245b8d2997d5b34fb1637be70a7eb05,
+      type: 3}
+    EffectScale: 15
     SkillElement: 7
     StateAbnormalData:
       StateName: "\u306A\u3057"
@@ -663,6 +747,9 @@ MonoBehaviour:
     SkillNumber: 34
     SkillSprite: {fileID: 21300000, guid: 797588158c4fd6943aa087189d0bf32a, type: 3}
     SkillType: 3
+    SkillEffect: {fileID: 9017484664307500583, guid: 1245b8d2997d5b34fb1637be70a7eb05,
+      type: 3}
+    EffectScale: 15
     SkillElement: 7
     StateAbnormalData:
       StateName: "\u306A\u3057"
@@ -682,6 +769,9 @@ MonoBehaviour:
     SkillNumber: 35
     SkillSprite: {fileID: 21300000, guid: 797588158c4fd6943aa087189d0bf32a, type: 3}
     SkillType: 3
+    SkillEffect: {fileID: 9017484664307500583, guid: 1245b8d2997d5b34fb1637be70a7eb05,
+      type: 3}
+    EffectScale: 15
     SkillElement: 7
     StateAbnormalData:
       StateName: "\u306A\u3057"
@@ -701,6 +791,9 @@ MonoBehaviour:
     SkillNumber: 36
     SkillSprite: {fileID: 21300000, guid: 797588158c4fd6943aa087189d0bf32a, type: 3}
     SkillType: 3
+    SkillEffect: {fileID: 9017484664307500583, guid: 1245b8d2997d5b34fb1637be70a7eb05,
+      type: 3}
+    EffectScale: 15
     SkillElement: 7
     StateAbnormalData:
       StateName: "\u306A\u3057"
@@ -720,6 +813,9 @@ MonoBehaviour:
     SkillNumber: 37
     SkillSprite: {fileID: 21300000, guid: 797588158c4fd6943aa087189d0bf32a, type: 3}
     SkillType: 3
+    SkillEffect: {fileID: 9017484664307500583, guid: 1245b8d2997d5b34fb1637be70a7eb05,
+      type: 3}
+    EffectScale: 15
     SkillElement: 7
     StateAbnormalData:
       StateName: "\u306A\u3057"
@@ -739,6 +835,9 @@ MonoBehaviour:
     SkillNumber: 38
     SkillSprite: {fileID: 21300000, guid: 797588158c4fd6943aa087189d0bf32a, type: 3}
     SkillType: 3
+    SkillEffect: {fileID: 9017484664307500583, guid: 1245b8d2997d5b34fb1637be70a7eb05,
+      type: 3}
+    EffectScale: 15
     SkillElement: 7
     StateAbnormalData:
       StateName: "\u306A\u3057"
@@ -758,6 +857,9 @@ MonoBehaviour:
     SkillNumber: 39
     SkillSprite: {fileID: 21300000, guid: 797588158c4fd6943aa087189d0bf32a, type: 3}
     SkillType: 3
+    SkillEffect: {fileID: 9017484664307500583, guid: 1245b8d2997d5b34fb1637be70a7eb05,
+      type: 3}
+    EffectScale: 15
     SkillElement: 7
     StateAbnormalData:
       StateName: "\u306A\u3057"

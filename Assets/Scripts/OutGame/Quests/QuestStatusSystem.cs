@@ -44,7 +44,12 @@ public class QuestStatusSystem : MonoBehaviour
         // エネミーの生成データを削除する
         for(int i = 0; i < LevelData.levelDataList.Count; i++)
         {
-            LevelData.levelDataList[i].enemyDataList.RemoveRange(0, LevelData.levelDataList[i].enemyDataList.Count);
+            // 要素が0なら実行しない
+            if (LevelData.levelDataList[i].enemyDataList.Count > 0)
+            {
+                // 削除
+                LevelData.levelDataList[i].enemyDataList.RemoveRange(0, LevelData.levelDataList[i].enemyDataList.Count);
+            }
         }
 
         m_saveDataManager = GameManager.Instance.SaveData;

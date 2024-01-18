@@ -6,18 +6,18 @@ using TMPro;
 
 public class PlayerEnhancementSystem : MonoBehaviour
 {
-    [SerializeField, Header("参照データ"), Tooltip("プレイヤーデータ")]
+    [SerializeField, Header("参照データ")]
     private PlayerDataBase PlayerData;
-    [SerializeField, Tooltip("スキルデータ")]
+    [SerializeField]
     private SkillDataBase SkillData;
     [SerializeField, Header("プレイヤーリスト"), Tooltip("生成するボタン")]
     private GameObject PlayerIconButton;
     [SerializeField, Tooltip("ボタンを追加するオブジェクト")]
     private GameObject PlayerContent;
     [SerializeField, Header("スキルリスト"), Tooltip("生成するボタン")]
-    private GameObject SkillIconButton;
+    private GameObject IconButton;
     [SerializeField, Tooltip("ボタンを追加するオブジェクト")]
-    private GameObject SkillContent;
+    private GameObject Content;
     [SerializeField, Header("表示用データ"), Tooltip("画像")]
     private GameObject Data_Sprite;
     [SerializeField, Tooltip("名前")]
@@ -36,33 +36,22 @@ public class PlayerEnhancementSystem : MonoBehaviour
     private GameObject SkillStatus;
     [SerializeField]
     private GameObject SkillReleaseButton;
+    [SerializeField]
+    private GameObject SkillButton, StatusButton;
+    [SerializeField, Tooltip("ボタンの画像")]
+    private Sprite ButtonImage;
 
-    private int m_playerNumber = 0;
+    private const string BEFORE_ACQUISITION = "解放";
+    private const string AFTER_ACQUISITION = "解放済み";
+
     private SaveDataManager m_saveDataManager;
     private SkillButton m_skillButton;
+    private bool m_isReferenceSkill = true;     // trueならスキルデータ。falseならステータスを参照する
 
-    public int PlayerNumber
+    public bool ReferrenceSkillFlag
     {
-        get => m_playerNumber;
-        set => m_playerNumber = value;
-    }
-
-    /// <summary>
-    /// 現在選択しているプレイヤーの番号を設定する
-    /// </summary>
-    /// <param name="number">プレイヤーの番号</param>
-    public void SetSelectPlayerNumber(int number)
-    {
-        m_playerNumber = number;
-    }
-
-    /// <summary>
-    /// 現在選択しているプレイヤーの番号を取得する
-    /// </summary>
-    /// <returns>プレイヤーの番号</returns>
-    public int GetSelectPlayerNumber()
-    {
-        return m_playerNumber;
+        get => m_isReferenceSkill;
+        set => m_isReferenceSkill = value;
     }
 
     // Start is called before the first frame update
@@ -75,12 +64,10 @@ public class PlayerEnhancementSystem : MonoBehaviour
         SkillStatus.SetActive(false);
         // プレイヤーデータ
         Data_PlayerName.SetActive(false);
-
         Data_HaveEP.SetActive(true);
         m_saveDataManager = GameManager.Instance.SaveData;
         // 値を更新
-        Data_HaveEP.GetComponent<TextMeshProUGUI>().text =
-            m_saveDataManager.SaveData.saveData.EnhancementPoint.ToString();
+        Data_HaveEP.GetComponent<TextMeshProUGUI>().text = m_saveDataManager.SaveData.saveData.EnhancementPoint.ToString("N0");
 
         SkillReleaseButton.GetComponent<Button>().interactable = false;
 
@@ -95,38 +82,83 @@ public class PlayerEnhancementSystem : MonoBehaviour
 
             var playerButton = playerObject.GetComponent<PlayerButton>();
             playerButton.SetPlayerEnhancement(
-                playerNumber,                                           // 番号
+                playerNumber,                                               // 番号
                 PlayerData.playerDataList[playerNumber].PlayerSprite,       // 画像
                 this
                 );
         }
-
         m_skillButton = SkillReleaseButton.GetComponent<SkillButton>();
-        // 表示する
-        DisplaySetValue(m_playerNumber);
+
+        // 初期化
+        var skillButton = SkillButton.GetComponent<PlayerButton>();
+        skillButton.SetPlayerEnhancement(
+            PlayerNumberManager.PlayerNumber,
+            ButtonImage,       // 画像
+            this
+            );
+        var statusButton = StatusButton.GetComponent<PlayerButton>();
+        statusButton.SetPlayerEnhancement(
+            PlayerNumberManager.PlayerNumber,
+            ButtonImage,       // 画像
+            this
+            );
+
+        if(ReferrenceSkillFlag == true)
+        {
+            DisplaySetSkillData(PlayerNumberManager.PlayerNumber);
+            return;
+        }
+        DisplaySetStatusData(PlayerNumberManager.PlayerNumber);
     }
 
     /// <summary>
-    /// 入力されたデータを表示する処理
+    /// スキルのデータを表示する
     /// </summary>
     /// <param name="number">プレイヤーの番号</param>
-    public void DisplaySetValue(int number)
+    public void DisplaySetSkillData(int number)
     {
-        m_skillButton.SetSelectPlayerNumber(number);
-        DestroySkillIcon();
+        StatusButton.GetComponent<Image>().color = Color.white;
+        SkillButton.GetComponent<Image>().color = Color.gray;
+        StatusButton.GetComponent<Button>().interactable = true;
+        SkillButton.GetComponent<Button>().interactable = false;
 
+        DestroyIcon();
         Data_HaveEP.SetActive(true);
         Data_PlayerName.SetActive(true);
         SkillReleaseButton.GetComponent<Button>().interactable = false;
-
         // 値を更新する
         Data_PlayerName.GetComponent<TextMeshProUGUI>().text =
             PlayerData.playerDataList[number].PlayerName;
-
         // 現在のプレイヤーの番号を記録
-        m_playerNumber = number;
-
+        PlayerNumberManager.PlayerNumber = number;
         InstantiateSkillIcon();
+        // フラグを設定する
+        ReferrenceSkillFlag = true;
+    }
+
+    /// <summary>
+    /// ステータス強化のデータを表示する
+    /// </summary>
+    /// <param name="number">プレイヤーの番号</param>
+    public void DisplaySetStatusData(int number)
+    {
+        StatusButton.GetComponent<Image>().color = Color.gray;
+        SkillButton.GetComponent<Image>().color = Color.white;
+        StatusButton.GetComponent<Button>().interactable = false;
+        SkillButton.GetComponent<Button>().interactable = true;
+
+        DestroyIcon();
+        Data_HaveEP.SetActive(true);
+        Data_PlayerName.SetActive(true);
+        SkillReleaseButton.GetComponent<Button>().interactable = false;
+        // 値を更新する
+        Data_PlayerName.GetComponent<TextMeshProUGUI>().text =
+            PlayerData.playerDataList[number].PlayerName;
+        // 現在のプレイヤーの番号を記録
+        PlayerNumberManager.PlayerNumber = number;
+        InstantiateStatusIcon();
+        // フラグを設定する
+        ReferrenceSkillFlag = false;
     }
 
     /// <summary>
@@ -135,7 +167,7 @@ public class PlayerEnhancementSystem : MonoBehaviour
     /// <param name="number">スキルの番号</param>
     public void DisplaySetSkill(int number)
     {
-        m_skillButton.SetSelectSkillNUmber(number);
+        m_skillButton.SelectNumber = number;
 
         Data_Sprite.SetActive(true);
         Data_Name.SetActive(true);
@@ -144,25 +176,62 @@ public class PlayerEnhancementSystem : MonoBehaviour
 
         // 値を更新する
         Data_Sprite.GetComponent<Image>().sprite =
-            PlayerData.playerDataList[m_playerNumber].skillDataList[number].SkillSprite;
+            PlayerData.playerDataList[PlayerNumberManager.PlayerNumber].skillDataList[number].SkillSprite;
         Data_Name.GetComponent<TextMeshProUGUI>().text =
-            PlayerData.playerDataList[m_playerNumber].skillDataList[number].SkillName;
+            PlayerData.playerDataList[PlayerNumberManager.PlayerNumber].skillDataList[number].SkillName;
         Data_SkilDetail.GetComponent<TextMeshProUGUI>().text =
-            PlayerData.playerDataList[m_playerNumber].skillDataList[number].SkillDetail;
+            PlayerData.playerDataList[PlayerNumberManager.PlayerNumber].skillDataList[number].SkillDetail;
         Data_SkillNecessaryEP.GetComponent<TextMeshProUGUI>().text =
-            PlayerData.playerDataList[m_playerNumber].skillDataList[number].EnhancementPoint.ToString();
-        GetElement(Data_Element, number, m_playerNumber);
+            PlayerData.playerDataList[PlayerNumberManager.PlayerNumber].skillDataList[number].EnhancementPoint.ToString();
+        GetElement(Data_Element, number, PlayerNumberManager.PlayerNumber);
 
         // 既に使用できる状態ならボタンが押せないようにする
-        if (m_saveDataManager.SaveData.saveData.SkillRegisters[m_playerNumber].PlayerSkills[number] == true)
+        if (m_saveDataManager.SaveData.saveData.SkillRegisters[PlayerNumberManager.PlayerNumber].PlayerSkills[number] == true)
         {
             SkillReleaseButton.GetComponent<Button>().interactable = false;
-            SkillReleaseButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "解放済み";
+            SkillReleaseButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = AFTER_ACQUISITION;
         }
         else
         {
             SkillReleaseButton.GetComponent<Button>().interactable = true;
-            SkillReleaseButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "スキル解放";
+            SkillReleaseButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = BEFORE_ACQUISITION;
+        }
+    }
+
+    /// <summary>
+    /// 入力されたステータスデータを表示する
+    /// </summary>
+    /// <param name="number">ステータスの番号</param>
+    public void DisplaySetStatus(int number)
+    {
+        m_skillButton.SelectNumber = number;
+
+        Data_Sprite.SetActive(true);
+        Data_Name.SetActive(true);
+        Data_SkilDetail.SetActive(true);
+        SkillStatus.SetActive(true);
+
+        // 値を更新する
+        Data_Sprite.GetComponent<Image>().sprite =
+            PlayerData.playerDataList[PlayerNumberManager.PlayerNumber].skillDataList[number].SkillSprite;
+        Data_Name.GetComponent<TextMeshProUGUI>().text =
+            PlayerData.playerDataList[PlayerNumberManager.PlayerNumber].skillDataList[number].SkillName;
+        Data_SkilDetail.GetComponent<TextMeshProUGUI>().text =
+            PlayerData.playerDataList[PlayerNumberManager.PlayerNumber].skillDataList[number].SkillDetail;
+        Data_SkillNecessaryEP.GetComponent<TextMeshProUGUI>().text =
+            PlayerData.playerDataList[PlayerNumberManager.PlayerNumber].skillDataList[number].EnhancementPoint.ToString();
+        GetElement(Data_Element, number, PlayerNumberManager.PlayerNumber);
+
+        // 既に使用できる状態ならボタンが押せないようにする
+        if (m_saveDataManager.SaveData.saveData.SkillRegisters[PlayerNumberManager.PlayerNumber].PlayerSkills[number] == true)
+        {
+            SkillReleaseButton.GetComponent<Button>().interactable = false;
+            SkillReleaseButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = AFTER_ACQUISITION;
+        }
+        else
+        {
+            SkillReleaseButton.GetComponent<Button>().interactable = true;
+            SkillReleaseButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = BEFORE_ACQUISITION;
         }
     }
 
@@ -170,11 +239,11 @@ public class PlayerEnhancementSystem : MonoBehaviour
     /// 属性耐性を表示する処理
     /// </summary>
     /// <param name="gameObjct">ゲームオブジェクト</param>
-    /// <param name="skillNumber">スキルの番号</param>
+    /// <param name="number">スキルの番号</param>
     /// <param name="playerNumber">プレイヤーの番号</param>
-    void GetElement(GameObject gameObjct, int skillNumber,int playerNumber)
+    private void GetElement(GameObject gameObjct, int number,int playerNumber)
     {
-        ElementType element = PlayerData.playerDataList[playerNumber].skillDataList[skillNumber].SkillElement;
+        ElementType element = PlayerData.playerDataList[playerNumber].skillDataList[number].SkillElement;
 
         switch (element)
         {
@@ -203,11 +272,11 @@ public class PlayerEnhancementSystem : MonoBehaviour
     }
 
     /// <summary>
-    /// SkillIconタグの付いたオブジェクトを全て削除する処理
+    /// EnhancementIconタグの付いたオブジェクトを全て削除する処理
     /// </summary>
-    private void DestroySkillIcon()
+    private void DestroyIcon()
     {
-        var skillIcons = GameObject.FindGameObjectsWithTag("SkillIcon");
+        var skillIcons = GameObject.FindGameObjectsWithTag("EnhancementIcon");
 
         foreach (var button in skillIcons)
         {
@@ -216,35 +285,34 @@ public class PlayerEnhancementSystem : MonoBehaviour
     }
 
     /// <summary>
-    /// スキルアイコンを生成する処理
+    /// アイコンを生成する処理
     /// </summary>
     private void InstantiateSkillIcon()
     {
-        for (int skillNumber = 0; skillNumber < PlayerData.playerDataList[m_playerNumber].skillDataList.Count; skillNumber++)
+        for (int skillNumber = 0; skillNumber < PlayerData.playerDataList[PlayerNumberManager.PlayerNumber].skillDataList.Count; skillNumber++)
         {
             for (int dataNumber = 0; dataNumber < SkillData.skillDataList.Count; dataNumber++)
             {
                 // 識別番号が同じならデータを初期化する
-                if (PlayerData.playerDataList[m_playerNumber].skillDataList[skillNumber].SkillNumber == SkillData.skillDataList[dataNumber].SkillNumber)
+                if (PlayerData.playerDataList[PlayerNumberManager.PlayerNumber].skillDataList[skillNumber].SkillNumber == SkillData.skillDataList[dataNumber].SkillNumber)
                 {
-                    PlayerData.playerDataList[m_playerNumber].skillDataList[skillNumber].SkillName = SkillData.skillDataList[dataNumber].SkillName;
-                    PlayerData.playerDataList[m_playerNumber].skillDataList[skillNumber].SkillSprite = SkillData.skillDataList[dataNumber].SkillSprite;
-                    PlayerData.playerDataList[m_playerNumber].skillDataList[skillNumber].POW = SkillData.skillDataList[dataNumber].POW;
-                    PlayerData.playerDataList[m_playerNumber].skillDataList[skillNumber].SkillElement = SkillData.skillDataList[dataNumber].SkillElement;
-                    PlayerData.playerDataList[m_playerNumber].skillDataList[skillNumber].SkillNecessary = SkillData.skillDataList[dataNumber].SkillNecessary;
-                    PlayerData.playerDataList[m_playerNumber].skillDataList[skillNumber].SkillDetail = SkillData.skillDataList[dataNumber].SkillDetail;
-                    PlayerData.playerDataList[m_playerNumber].skillDataList[skillNumber].EnhancementPoint = SkillData.skillDataList[dataNumber].EnhancementPoint;
-                    PlayerData.playerDataList[m_playerNumber].skillDataList[skillNumber].Type = SkillData.skillDataList[dataNumber].Type;
-                    PlayerData.playerDataList[m_playerNumber].skillDataList[skillNumber].BuffType = SkillData.skillDataList[dataNumber].BuffType;
-                    PlayerData.playerDataList[m_playerNumber].skillDataList[skillNumber].SkillType = SkillData.skillDataList[dataNumber].SkillType;
-                    PlayerData.playerDataList[m_playerNumber].skillDataList[skillNumber].EffectRange = SkillData.skillDataList[dataNumber].EffectRange;
+                    PlayerData.playerDataList[PlayerNumberManager.PlayerNumber].skillDataList[skillNumber].SkillName = SkillData.skillDataList[dataNumber].SkillName;
+                    PlayerData.playerDataList[PlayerNumberManager.PlayerNumber].skillDataList[skillNumber].SkillSprite = SkillData.skillDataList[dataNumber].SkillSprite;
+                    PlayerData.playerDataList[PlayerNumberManager.PlayerNumber].skillDataList[skillNumber].POW = SkillData.skillDataList[dataNumber].POW;
+                    PlayerData.playerDataList[PlayerNumberManager.PlayerNumber].skillDataList[skillNumber].SkillElement = SkillData.skillDataList[dataNumber].SkillElement;
+                    PlayerData.playerDataList[PlayerNumberManager.PlayerNumber].skillDataList[skillNumber].SkillNecessary = SkillData.skillDataList[dataNumber].SkillNecessary;
+                    PlayerData.playerDataList[PlayerNumberManager.PlayerNumber].skillDataList[skillNumber].SkillDetail = SkillData.skillDataList[dataNumber].SkillDetail;
+                    PlayerData.playerDataList[PlayerNumberManager.PlayerNumber].skillDataList[skillNumber].EnhancementPoint = SkillData.skillDataList[dataNumber].EnhancementPoint;
+                    PlayerData.playerDataList[PlayerNumberManager.PlayerNumber].skillDataList[skillNumber].Type = SkillData.skillDataList[dataNumber].Type;
+                    PlayerData.playerDataList[PlayerNumberManager.PlayerNumber].skillDataList[skillNumber].BuffType = SkillData.skillDataList[dataNumber].BuffType;
+                    PlayerData.playerDataList[PlayerNumberManager.PlayerNumber].skillDataList[skillNumber].SkillType = SkillData.skillDataList[dataNumber].SkillType;
+                    PlayerData.playerDataList[PlayerNumberManager.PlayerNumber].skillDataList[skillNumber].EffectRange = SkillData.skillDataList[dataNumber].EffectRange;
                     break;
                 }
             }
-
             // ボタンを生成
-            var button = Instantiate(SkillIconButton);
-            button.transform.SetParent(SkillContent.transform);
+            var button = Instantiate(IconButton);
+            button.transform.SetParent(Content.transform);
             // サイズを調整する
             button.transform.localPosition = Vector3.zero;
             button.transform.localScale = Vector3.one;
@@ -253,11 +321,56 @@ public class PlayerEnhancementSystem : MonoBehaviour
             var skillButton = button.GetComponent<SkillButton>();
             skillButton.SetPlayerEnhancement(
                 skillNumber,
-                PlayerData.playerDataList[m_playerNumber].skillDataList[skillNumber].SkillSprite,
+                PlayerData.playerDataList[PlayerNumberManager.PlayerNumber].skillDataList[skillNumber].SkillSprite,
                 true,
                 this
                 );
+            button.SetActive(true);
+        }
+    }
 
+    /// <summary>
+    /// アイコンを生成する処理
+    /// </summary>
+    private void InstantiateStatusIcon()
+    {
+        for (int skillNumber = 0; skillNumber < PlayerData.playerDataList[PlayerNumberManager.PlayerNumber].skillDataList.Count; skillNumber++)
+        {
+            for (int dataNumber = 0; dataNumber < SkillData.skillDataList.Count; dataNumber++)
+            {
+                // 識別番号が同じならデータを初期化する
+                if (PlayerData.playerDataList[PlayerNumberManager.PlayerNumber].skillDataList[skillNumber].SkillNumber == SkillData.skillDataList[dataNumber].SkillNumber)
+                {
+                    PlayerData.playerDataList[PlayerNumberManager.PlayerNumber].skillDataList[skillNumber].SkillName = SkillData.skillDataList[dataNumber].SkillName;
+                    PlayerData.playerDataList[PlayerNumberManager.PlayerNumber].skillDataList[skillNumber].SkillSprite = SkillData.skillDataList[dataNumber].SkillSprite;
+                    PlayerData.playerDataList[PlayerNumberManager.PlayerNumber].skillDataList[skillNumber].POW = SkillData.skillDataList[dataNumber].POW;
+                    PlayerData.playerDataList[PlayerNumberManager.PlayerNumber].skillDataList[skillNumber].SkillElement = SkillData.skillDataList[dataNumber].SkillElement;
+                    PlayerData.playerDataList[PlayerNumberManager.PlayerNumber].skillDataList[skillNumber].SkillNecessary = SkillData.skillDataList[dataNumber].SkillNecessary;
+                    PlayerData.playerDataList[PlayerNumberManager.PlayerNumber].skillDataList[skillNumber].SkillDetail = SkillData.skillDataList[dataNumber].SkillDetail;
+                    PlayerData.playerDataList[PlayerNumberManager.PlayerNumber].skillDataList[skillNumber].EnhancementPoint = SkillData.skillDataList[dataNumber].EnhancementPoint;
+                    PlayerData.playerDataList[PlayerNumberManager.PlayerNumber].skillDataList[skillNumber].Type = SkillData.skillDataList[dataNumber].Type;
+                    PlayerData.playerDataList[PlayerNumberManager.PlayerNumber].skillDataList[skillNumber].BuffType = SkillData.skillDataList[dataNumber].BuffType;
+                    PlayerData.playerDataList[PlayerNumberManager.PlayerNumber].skillDataList[skillNumber].SkillType = SkillData.skillDataList[dataNumber].SkillType;
+                    PlayerData.playerDataList[PlayerNumberManager.PlayerNumber].skillDataList[skillNumber].EffectRange = SkillData.skillDataList[dataNumber].EffectRange;
+                    break;
+                }
+            }
+            // ボタンを生成
+            var button = Instantiate(IconButton);
+            button.transform.SetParent(Content.transform);
+            // サイズを調整する
+            button.transform.localPosition = Vector3.zero;
+            button.transform.localScale = Vector3.one;
+            button.transform.localRotation = Quaternion.identity;
+            button.GetComponent<Image>().color = Color.cyan;
+            // コンポーネントを取得
+            var skillButton = button.GetComponent<SkillButton>();
+            skillButton.SetPlayerEnhancement(
+                skillNumber,
+                PlayerData.playerDataList[PlayerNumberManager.PlayerNumber].skillDataList[skillNumber].SkillSprite,
+                true,
+                this
+                );
             button.SetActive(true);
         }
     }

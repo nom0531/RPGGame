@@ -21,16 +21,14 @@ public class LockOnSystem : MonoBehaviour
     private CinemachineVirtualCameraBase[] Vcam_Default;
     [SerializeField,Tooltip("ロックオンカメラ")]
     private CinemachineVirtualCameraBase[] Vcam_LockOn;
-    [SerializeField, Tooltip("プレイヤーのオブジェクト")]
-    private GameObject[] PlayerObject;
     [SerializeField]
     private LockOnButton RightButton, LeftButton, OKButton, CancelButton;
     [SerializeField]
     private GameObject LockOnButtons;
     [SerializeField]
-    private GameObject CommandWindow;
-    [SerializeField]
     private GameObject TargetNameWindow;
+    [SerializeField]
+    private GameObject SkillWindow;
 
     private const int VCAM_PRIORITY = 10;           // カメラ使用時の優先度
     private const int NUM_MIN = 0;                  // 最小番号
@@ -62,6 +60,12 @@ public class LockOnSystem : MonoBehaviour
         get => m_selectTargetNumber;
     }
 
+    public TargetState TargetState
+    {
+        get => m_target;
+        set => m_target = value;
+    }
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -80,19 +84,16 @@ public class LockOnSystem : MonoBehaviour
     private void Start()
     {
         TargetNameWindow.SetActive(false);
-
-        // enemyMoveを人数分用意
-        var enemyMoveList = FindObjectsOfType<EnemyMove>();
-        m_enemyMoveList = new List<EnemyMove>(enemyMoveList);
-        // 名前を設定する
+        // エネミーのリスト
+        m_enemyMoveList = m_battleManager.EnemyMoveList;
         m_drawStatusValue.EnemyName = m_enemyMoveList[m_selectTargetNumber].MyNumber;
-        // playerMoveを人数分用意
-        var playerMoveList = FindObjectsOfType<PlayerMove>();
-        m_playerMoveList = new List<PlayerMove>(playerMoveList);
-        // ソート
+        // プレイヤーのリスト
+        m_playerMoveList = m_battleManager.PlayerMoveList;
         m_playerMoveList.Sort((a, b) => a.MyNumber.CompareTo(b.MyNumber));
-        // 名前を設定する
         m_drawStatusValue.PlayerName = m_playerMoveList[m_selectTargetNumber].MyNumber;
+
+        DrawPlayers(false);
+        m_playerMoveList[m_operatingPlayer].gameObject.SetActive(true);
     }
 
     // Update is called once per frame
@@ -119,6 +120,18 @@ public class LockOnSystem : MonoBehaviour
     }
     
     /// <summary>
+    /// プレイヤーのActiveを設定する
+    /// </summary>
+    /// <param name="flag">trueなら描画。falseなら描画しない</param>
+    private void DrawPlayers(bool flag)
+    {
+        for(int i = 0; i < m_playerMoveList.Count; i++)
+        {
+            m_playerMoveList[i].gameObject.SetActive(flag);
+        }
+    }
+
+    /// <summary>
     /// カメラを切り替える
     /// </summary>
     public void ResetCinemachine()
@@ -139,9 +152,10 @@ public class LockOnSystem : MonoBehaviour
         }
 
         // オブジェクトの表示、非表示を切り替える
-        CommandWindow.SetActive(false);
+        SkillWindow.SetActive(false);
         LockOnButtons.SetActive(true);
         TargetNameWindow.SetActive(true);
+        m_playerMoveList[m_operatingPlayer].gameObject.SetActive(true);
         // ボタンが押せるかどうか設定する
         SetInteractable(true);
         // カメラを設定する
@@ -157,15 +171,16 @@ public class LockOnSystem : MonoBehaviour
         // カメラを元に戻す
         SetCinemachineVirtualCameraPriority(m_operatingPlayer, false, null);
         // オブジェクトの表示、非表示を切り替える
-        CommandWindow.SetActive(true);
         LockOnButtons.SetActive(false);
         TargetNameWindow.SetActive(false);
-        PlayerObject[m_operatingPlayer].SetActive(true);
         // フラグをリセット
         SetInteractable(false);
         LockOn = false;
-        m_battleManager.PlayerAction_ResetBattleButton();
+        m_battleManager.ResetBattleButton();
         m_isActive = false;
+        // プレイヤーの表示を切り替える
+        DrawPlayers(false);
+        m_playerMoveList[m_operatingPlayer].gameObject.SetActive(true);
     }
 
     /// <summary>
@@ -176,18 +191,28 @@ public class LockOnSystem : MonoBehaviour
         // 最大値を設定する
         int max = m_enemyMoveList.Count - 1;
         // ターゲットがプレイヤーなら再設定
-        if (m_target == TargetState.enPlayer)
+        if (TargetState == TargetState.enPlayer)
         {
             max = m_playerMoveList.Count - 1;
+            m_selectTargetNumber--;
+
+            // 一定以下なら補正
+            if (m_selectTargetNumber < NUM_MIN)
+            {
+                // 最大値を選択する
+                m_selectTargetNumber = max;
+            }
         }
-
-        m_selectTargetNumber++;
-
-        // 一定以下なら補正
-        if (m_selectTargetNumber > max)
+        else
         {
-            // 最大値を選択する
-            m_selectTargetNumber = NUM_MIN;
+            m_selectTargetNumber++;
+
+            // 一定以上なら補正
+            if (m_selectTargetNumber > max)
+            {
+                // 最小値を選択する
+                m_selectTargetNumber = NUM_MIN;
+            }
         }
 
         SetCinemachineVirtualCameraPriority(m_operatingPlayer, true, SetLookAtTarget());
@@ -201,18 +226,28 @@ public class LockOnSystem : MonoBehaviour
         // 最大値を設定する
         int max = m_enemyMoveList.Count - 1;
         // ターゲットがプレイヤーなら再設定
-        if (m_target == TargetState.enPlayer)
+        if (TargetState == TargetState.enPlayer)
         {
             max = m_playerMoveList.Count - 1;
+            m_selectTargetNumber++;
+
+            // 一定以上なら補正
+            if (m_selectTargetNumber > max)
+            {
+                // 最小値を選択する
+                m_selectTargetNumber = NUM_MIN;
+            }
         }
-
-        m_selectTargetNumber--;
-
-        // 一定以上なら補正
-        if (m_selectTargetNumber < NUM_MIN)
+        else
         {
-            // 最小値を選択する
-            m_selectTargetNumber = max;
+            m_selectTargetNumber--;
+
+            // 一定以上なら補正
+            if (m_selectTargetNumber < NUM_MIN)
+            {
+                // 最小値を選択する
+                m_selectTargetNumber = max;
+            }
         }
 
         SetCinemachineVirtualCameraPriority(m_operatingPlayer, true, SetLookAtTarget());
@@ -248,8 +283,8 @@ public class LockOnSystem : MonoBehaviour
         if (isLockOn == true)
         {
             // ターゲットを設定する
-            Vcam_LockOn[number].Priority = VCAM_PRIORITY;
-            Vcam_LockOn[number].LookAt = gameObject.transform;
+            Vcam_LockOn[0].Priority = VCAM_PRIORITY;
+            Vcam_LockOn[0].LookAt = gameObject.transform;
             return;
         }
 
@@ -261,10 +296,11 @@ public class LockOnSystem : MonoBehaviour
     /// </summary>
     private void ReSetVcamStatus()
     {
-        for(int i = 0; i < Vcam_Default.Length; i++)
+        Vcam_LockOn[0].Priority = 0;
+
+        for (int i = 0; i < Vcam_Default.Length; i++)
         {
             Vcam_Default[i].Priority = 0;
-            Vcam_LockOn[i].Priority = 0;
         }
     }
 
@@ -273,7 +309,7 @@ public class LockOnSystem : MonoBehaviour
     /// </summary>
     private void ResetSelectEnemyNumber()
     {
-        // 選択していたエネミーがひん死でないなら実行しない
+        // ターゲットがひん死でないなら実行しない
         if (m_enemyMoveList[m_selectTargetNumber].ActorHPState != ActorHPState.enDie)
         {
             return;
@@ -298,13 +334,7 @@ public class LockOnSystem : MonoBehaviour
     /// </summary>
     private void ResetSelectPlayerNumber()
     {
-        // もし要素数以上なら補正する
-        if(m_selectTargetNumber >= m_playerMoveList.Count)
-        {
-            m_selectTargetNumber = 0;
-        }
-
-        // 選択していたエネミーがひん死でないなら実行しない
+        // ターゲットがひん死でないなら実行しない
         if (m_playerMoveList[m_selectTargetNumber].ActorHPState != ActorHPState.enDie)
         {
             return;
@@ -325,25 +355,54 @@ public class LockOnSystem : MonoBehaviour
     }
 
     /// <summary>
-    /// ターゲット先を設定する
+    /// ロックオンの対象を設定する
     /// </summary>
     /// <param name="skillNumber">スキルの番号</param>
     public void SetTargetState(int skillNumber, ActionType actionType)
     {
-        m_target = TargetState.enEnemy;
-
-        // 次の行動が攻撃ならこれ以下の処理は実行しない
-        if(actionType == ActionType.enAttack)
+        switch (m_battleManager.TurnStatus)
         {
-            return;
-        }
+            case TurnStatus.enPlayer:
+                LockOn = true;
+                TargetState = TargetState.enEnemy;
 
-        switch (SkillData.skillDataList[skillNumber].SkillType)
-        {
-            case SkillType.enHeal:
-            case SkillType.enResurrection:
-            case SkillType.enBuff:
-                m_target = TargetState.enPlayer;
+                // 次の行動が攻撃ならこれ以下の処理は実行しない
+                if (actionType == ActionType.enAttack)
+                {
+                    return;
+                }
+
+                switch (SkillData.skillDataList[skillNumber].SkillType)
+                {
+                    case SkillType.enHeal:
+                    case SkillType.enResurrection:
+                    case SkillType.enBuff:
+                        TargetState = TargetState.enPlayer;
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case TurnStatus.enEnemy:
+                LockOn = false;
+                TargetState = TargetState.enPlayer;
+
+                // 次の行動が攻撃ならこれ以下の処理は実行しない
+                if (actionType == ActionType.enAttack)
+                {
+                    return;
+                }
+
+                switch (SkillData.skillDataList[skillNumber].SkillType)
+                {
+                    case SkillType.enHeal:
+                    case SkillType.enResurrection:
+                    case SkillType.enBuff:
+                        TargetState = TargetState.enEnemy;
+                        break;
+                    default:
+                        break;
+                }
                 break;
         }
     }
@@ -354,17 +413,17 @@ public class LockOnSystem : MonoBehaviour
     /// <returns>オブジェクト</returns>
     private GameObject SetLookAtTarget()
     {
-        if(m_target == TargetState.enPlayer)
+        if(TargetState == TargetState.enPlayer)
         {
             ResetSelectPlayerNumber();
             m_drawStatusValue.PlayerName = m_playerMoveList[m_selectTargetNumber].MyNumber;
-            PlayerObject[m_operatingPlayer].SetActive(true);
+            DrawPlayers(true);
             return m_playerMoveList[m_selectTargetNumber].gameObject;
         }
 
         ResetSelectEnemyNumber();
+        m_playerMoveList[m_operatingPlayer].gameObject.SetActive(false);
         m_drawStatusValue.EnemyName = m_enemyMoveList[m_selectTargetNumber].MyNumber;
-        PlayerObject[m_operatingPlayer].SetActive(false);
         return m_enemyMoveList[m_selectTargetNumber].gameObject;
     }
 }

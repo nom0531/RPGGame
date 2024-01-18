@@ -43,6 +43,9 @@ public class PlayerStatusSystem : MonoBehaviour
     /// <param name="number">プレイヤーの番号</param>
     public void DisplaySetValue(int number)
     {
+        // 番号を更新
+        PlayerNumberManager.PlayerNumber = number;
+
         Data_Sprite.SetActive(true);
         Data_Name.SetActive(true);
         Element_Text.SetActive(true);
@@ -78,31 +81,27 @@ public class PlayerStatusSystem : MonoBehaviour
         for (int i = 0; i < PlayerDataBase.playerDataList.Count; i++)
         {
             // ボタンを生成して子オブジェクトにする
-            GameObject button = Instantiate(Button);
+            var button = Instantiate(Button);
             button.transform.SetParent(Content.transform);
             // サイズを調整
             button.transform.localScale = Vector3.one;
             button.transform.localPosition = Vector3.zero;
 
-            PlayerButton playerButton = button.GetComponent<PlayerButton>();
+            var playerButton = button.GetComponent<PlayerButton>();
             playerButton.SetPlayerStatus(
                 i,                                               // 番号
                 PlayerDataBase.playerDataList[i].PlayerSprite,   // 画像
                 this
                 );
         }
-
-        int playerNumber = 0;   // 初期化用のローカル変数
-
         // 表示する
-        DisplaySetValue(playerNumber);
+        DisplaySetValue(PlayerNumberManager.PlayerNumber);
     }
 
     /// <summary>
     /// 属性耐性を表示する処理
     /// </summary>
-    /// <param name="gameObjct">ゲームオブジェクト</param>
-    /// <param name="enemyNumber">エネミーの番号</param>
+    /// <param name="playerNumber">プレイヤーの番号</param>
     /// <param name="elementNumber">属性の識別番号</param>
     void GetResistance(GameObject gameObjct, int playerNumber, int elementNumber)
     {

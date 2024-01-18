@@ -11,22 +11,34 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     public SaveDataManager SaveData
     {
-        get => m_saveDataManager.GetComponent<SaveDataManager>();
+        get
+        {
+            if (m_saveDataManager == null)
+            {
+                // 存在していないなら探す
+                m_saveDataManager = FindObjectOfType<SaveDataManager>();
+            }
+            return m_saveDataManager;
+        }
     }
 
     new private void Awake()
     {
         DontDestroyOnLoad(gameObject);
-        Instantiate(SaveDataObject);
 
-        m_saveDataManager = FindObjectOfType<SaveDataManager>();
+        if (m_saveDataManager == null)
+        {
+            Instantiate(SaveDataObject);
+            // 存在していないなら探す
+            m_saveDataManager = FindObjectOfType<SaveDataManager>();
+        }
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            m_saveDataManager.GetComponent<SaveDataManager>().Save();
+            m_saveDataManager.Save();
             Debug.Log("セーブしたよ！");
         }
     }

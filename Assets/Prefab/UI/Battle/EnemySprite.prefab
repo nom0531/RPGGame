@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3278700855915291045}
   - component: {fileID: -8150472034665455355}
   - component: {fileID: 6564204634683458435}
+  - component: {fileID: 8036122241917982689}
   m_Layer: 5
   m_Name: EnemySprite
   m_TagString: Enemy
@@ -141,3 +142,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SkillData: {fileID: 11400000, guid: eb2e3ce6b36655d4dabc2c5f2875abc9, type: 2}
+--- !u!114 &8036122241917982689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8557275430850057381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97d811a2ad28f1b46a475f7b3393dc69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StateAbnormalData: {fileID: 11400000, guid: bdaaa6fe93354f644a7473153b4b59dd, type: 2}

@@ -30,7 +30,7 @@ public class EnemyButton : MonoBehaviour
     /// <summary>
     /// ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚Ìˆ—
     /// </summary>
-    public void ButttonDown()
+    public void ButtonDown()
     {
         m_pictureBookSystem.DisplaySetValue(m_enemyNumber);
     }

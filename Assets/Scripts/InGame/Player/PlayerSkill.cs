@@ -6,7 +6,7 @@ using TMPro;
 public class PlayerSkill : MonoBehaviour
 {
     [SerializeField, Header("参照データ"), Tooltip("プレイヤーのデータ")]
-    private PlayerDataBase PlayerDataBase;
+    private PlayerDataBase PlayerData;
     [SerializeField, Tooltip("生成するボタン")]
     private GameObject Button;
     [SerializeField, Tooltip("ボタンを追加するオブジェクト")]
@@ -26,13 +26,19 @@ public class PlayerSkill : MonoBehaviour
     [SerializeField]
     private GameObject Skill_NecessaryText;
 
-    private int m_playerNumber;                 // プレイヤーの番号
-    private int m_selectSkillNumber = -1;       // 現在選択しているスキルの番号
     private BattleManager m_battleManager;
+    private bool m_canUseSkill = true;          // スキルが使えるかどうか
+    private int m_playerNumber = 0;             // プレイヤーの番号
+    private int m_selectSkillNumber = -1;       // 現在選択しているスキルの番号
 
     public int SelectSkillNumber
     {
         get => m_selectSkillNumber;
+    }
+
+    public bool UseSkillFlag
+    {
+        get => m_canUseSkill;
     }
 
     // Start is called before the first frame update
@@ -57,7 +63,7 @@ public class PlayerSkill : MonoBehaviour
     {
         GameObject[] skillButtons = GameObject.FindGameObjectsWithTag("SkillButton");
 
-        foreach (GameObject button in skillButtons)
+        foreach (var button in skillButtons)
         {
             Destroy(button);
         }
@@ -68,29 +74,29 @@ public class PlayerSkill : MonoBehaviour
     /// </summary>
     public void InstantiateSkillButton()
     {
-        SaveDataManager saveData = GameManager.Instance.SaveData;
+        var saveDataManager = GameManager.Instance.SaveData;
         m_playerNumber = m_battleManager.OperatingPlayerNumber;
 
-        for (int i = 0; i < PlayerDataBase.playerDataList[m_playerNumber].skillDataList.Count; i++)
+        for (int i = 0; i < PlayerData.playerDataList[m_playerNumber].skillDataList.Count; i++)
         {
             // 既にスキルが解放されているなら
-            if (saveData.SaveData.saveData.SkillRegisters[m_playerNumber].PlayerSkills[i] == false)
+            if (saveDataManager.SaveData.saveData.SkillRegisters[m_playerNumber].PlayerSkills[i] == false)
             {
                 continue;
             }
 
             // ボタンを生成して子オブジェクトにする
-            GameObject gameObject = Instantiate(Button);
+            var gameObject = Instantiate(Button);
             gameObject.transform.SetParent(Content.transform);
             // サイズを調整
             gameObject.transform.localScale = Vector3.one;
             gameObject.transform.localPosition = Vector3.zero;
             gameObject.transform.localRotation = Quaternion.identity;
 
-            PlayerSkillButton skillButton = gameObject.GetComponent<PlayerSkillButton>();
+            var skillButton = gameObject.GetComponent<PlayerSkillButton>();
             skillButton.SetPlayerSkill(
                 i,                                                                          // 番号
-                PlayerDataBase.playerDataList[m_playerNumber].skillDataList[i].SkillName,   // 名前
+                PlayerData.playerDataList[m_playerNumber].skillDataList[i].SkillName,       // 名前
                 Color.black,
                 this
                 );
@@ -115,14 +121,20 @@ public class PlayerSkill : MonoBehaviour
 
         // 値を更新する
         Data_SkilDetail.GetComponent<TextMeshProUGUI>().text =
-            PlayerDataBase.playerDataList[m_playerNumber].skillDataList[number].SkillDetail;
+            PlayerData.playerDataList[m_playerNumber].skillDataList[number].SkillDetail;
         Data_SkillNecessary.GetComponent<TextMeshProUGUI>().text =
-            PlayerDataBase.playerDataList[m_playerNumber].skillDataList[number].SkillNecessary.ToString();
+            PlayerData.playerDataList[m_playerNumber].skillDataList[number].SkillNecessary.ToString();
         GetElement(Data_Element, number, m_playerNumber);
         GetNecessaryText(Data_SkillNecessaryText, number, m_playerNumber);
-
         // 値をセットする
         m_selectSkillNumber = number;
+        m_canUseSkill = true;
+        // SPが足りていないならボタンは押せない
+        if (m_battleManager.PlayerMoveList[m_playerNumber].PlayerStatus.SP <
+            PlayerData.playerDataList[m_playerNumber].skillDataList[number].SkillNecessary)
+        {
+            m_canUseSkill = false;
+        }
     }
 
     /// <summary>
@@ -133,7 +145,7 @@ public class PlayerSkill : MonoBehaviour
     /// <param name="playerNumber">プレイヤーの番号</param>
     private void GetNecessaryText(GameObject gameObject,int skillNumber,int playerNumber)
     {
-        NecessaryType necessary = PlayerDataBase.playerDataList[playerNumber].skillDataList[skillNumber].Type;
+        NecessaryType necessary = PlayerData.playerDataList[playerNumber].skillDataList[skillNumber].Type;
 
         switch(necessary)
         {
@@ -154,7 +166,7 @@ public class PlayerSkill : MonoBehaviour
     /// <param name="playerNumber">プレイヤーの番号</param>
     private void GetElement(GameObject gameObjct, int skillNumber, int playerNumber)
     {
-        ElementType element = PlayerDataBase.playerDataList[playerNumber].skillDataList[skillNumber].SkillElement;
+        ElementType element = PlayerData.playerDataList[playerNumber].skillDataList[skillNumber].SkillElement;
 
         switch (element)
         {

@@ -15,28 +15,15 @@ public class SkillButton : MonoBehaviour
 
     // スキルの番号
     private int m_skillNumber = -1;
-    // 現在選択しているスキルの番号
-    private int m_selectSkillNumber = 0;
-    private int m_selectPlayerNumber = 0;
+    // 現在選択している番号
+    private int m_selectNumber = 0;
     // 図鑑システム
     private PlayerEnhancementSystem m_playerEnhancement;
 
-    /// <summary>
-    /// 選択しているスキルの番号を教える
-    /// </summary>
-    /// <param name="number">スキルの番号</param>
-    public void SetSelectSkillNUmber(int number)
+    public int SelectNumber
     {
-        m_selectSkillNumber = number;
-    }
-
-    /// <summary>
-    /// 選択しているプレイヤーの番号を教える
-    /// </summary>
-    /// <param name="number">プレイヤーの番号</param>
-    public void SetSelectPlayerNumber(int number)
-    {
-        m_selectPlayerNumber = number;
+        get => m_selectNumber;
+        set => m_selectNumber = value;
     }
 
     /// <summary>
@@ -59,7 +46,14 @@ public class SkillButton : MonoBehaviour
     /// </summary>
     public void ButtonDown()
     {
-        m_playerEnhancement.DisplaySetSkill(m_skillNumber);
+        if(m_playerEnhancement.ReferrenceSkillFlag == true)
+        {
+            m_playerEnhancement.DisplaySetSkill(m_skillNumber);
+        }
+        else
+        {
+            m_playerEnhancement.DisplaySetStatus(m_skillNumber);
+        }
     }
 
     /// <summary>
@@ -69,16 +63,42 @@ public class SkillButton : MonoBehaviour
     {
         var saveDataManager = GameManager.Instance.SaveData;
 
-        // 値を設定する
-        saveDataManager.SaveData.saveData.SkillRegisters[m_selectPlayerNumber].PlayerSkills[m_selectSkillNumber] = true;
-        saveDataManager.SaveData.saveData.EnhancementPoint -= SkillData.skillDataList[m_selectSkillNumber].EnhancementPoint;
-        Data_HaveEP.GetComponent<TextMeshProUGUI>().text =
-            saveDataManager.SaveData.saveData.EnhancementPoint.ToString();
+        SaveSkillData(saveDataManager);
+        SaveStatusData(saveDataManager);
 
+        Data_HaveEP.GetComponent<TextMeshProUGUI>().text =
+        saveDataManager.SaveData.saveData.EnhancementPoint.ToString();
         // ボタンのテキストを変更する
         GetComponent<Button>().interactable = false;
         transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "解放済み";
 
         saveDataManager.Save();
+    }
+
+    /// <summary>
+    /// 解放したスキルデータをセーブする
+    /// </summary>
+    private void SaveSkillData(SaveDataManager saveDataManager)
+    {
+        if(m_playerEnhancement.ReferrenceSkillFlag == false)
+        {
+            return;
+        }
+
+        // 値を設定する
+        saveDataManager.SaveData.saveData.SkillRegisters[PlayerNumberManager.PlayerNumber].PlayerSkills[m_selectNumber] = true;
+        saveDataManager.SaveData.saveData.EnhancementPoint -= SkillData.skillDataList[m_selectNumber].EnhancementPoint;
+    }
+
+    /// <summary>
+    /// 解放したステータスのデータをセーブする
+    /// </summary>
+    private void SaveStatusData(SaveDataManager saveDataManager)
+    {
+        if(m_playerEnhancement.ReferrenceSkillFlag == true)
+        {
+            return;
+        }
+        // 値を設定する
     }
 }

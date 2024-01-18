@@ -21,7 +21,7 @@ MonoBehaviour:
     EnhancementPoint: 0
     EnemyElement: 00000000000000000000000000000000000000000000000000000000
     HP: 10
-    ATK: 0
+    ATK: 20
     DEF: 0
     SPD: 0
     LUCK: 0
@@ -31,6 +31,8 @@ MonoBehaviour:
       SkillNumber: 0
       SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
       SkillType: 0
+      SkillEffect: {fileID: 0}
+      EffectScale: 0
       SkillElement: 0
       StateAbnormalData:
         StateName: 
@@ -52,6 +54,16 @@ MonoBehaviour:
       ActorHPState: 3
       ActorAbnormalState: 0
       ActionType: 0
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
+      MoveNumber: 1
+      ActorHPState: 1
+      ActorAbnormalState: 5
+      ActionType: 1
+    - MoveName: "\u9632\u5FA1"
+      MoveNumber: 5
+      ActorHPState: 1
+      ActorAbnormalState: 0
+      ActionType: 2
   - EnemyName: "\u30D4\u30AF\u30B7\u30FC"
     EnemyNumber: 1
     EnemySprite: {fileID: 21300000, guid: ef931405f927a5047b897703d0a5ea37, type: 3}
@@ -293,7 +305,7 @@ MonoBehaviour:
     skillDataList: []
     enemyMoveList: []
   - EnemyName: "\u30C6\u30F3\u30B0"
-    EnemyNumber: 16
+    EnemyNumber: 17
     EnemySprite: {fileID: 21300000, guid: 0dea51efe6bba9848b674bab76289c68, type: 3}
     PopLocation: 0
     PopTime: 0
@@ -323,7 +335,7 @@ MonoBehaviour:
     skillDataList: []
     enemyMoveList: []
   - EnemyName: "\u30B4\u30FC\u30EC\u30E0"
-    EnemyNumber: 18
+    EnemyNumber: 19
     EnemySprite: {fileID: 21300000, guid: a35bc79f0eb8d2b4bb9cfa700cae3097, type: 3}
     PopLocation: 0
     PopTime: 0
@@ -488,7 +500,7 @@ MonoBehaviour:
     skillDataList: []
     enemyMoveList: []
   - EnemyName: "\u30EF\u30FC\u30E0"
-    EnemyNumber: 41
+    EnemyNumber: 30
     EnemySprite: {fileID: 21300000, guid: 380e65d5356de1b45be85dbb73aa572a, type: 3}
     PopLocation: 0
     PopTime: 0
@@ -547,23 +559,8 @@ MonoBehaviour:
     EnemyDetail: 
     skillDataList: []
     enemyMoveList: []
-  - EnemyName: "\u3042"
-    EnemyNumber: 34
-    EnemySprite: {fileID: 21300000, guid: de19f2b9665d3e6438f33048508d8237, type: 3}
-    PopLocation: 0
-    PopTime: 0
-    EnhancementPoint: 0
-    EnemyElement: 00000000000000000000000000000000000000000000000000000000
-    HP: 10
-    ATK: 0
-    DEF: 0
-    SPD: 0
-    LUCK: 0
-    EnemyDetail: 
-    skillDataList: []
-    enemyMoveList: []
   - EnemyName: "\u30C7\u30B9"
-    EnemyNumber: 35
+    EnemyNumber: 34
     EnemySprite: {fileID: 21300000, guid: 6f3aad4ba33bbdc4f80bb42acb77c5b8, type: 3}
     PopLocation: 0
     PopTime: 0
@@ -578,7 +575,7 @@ MonoBehaviour:
     skillDataList: []
     enemyMoveList: []
   - EnemyName: "\u30EF\u30A4\u30D0\u30FC\u30F3"
-    EnemyNumber: 36
+    EnemyNumber: 35
     EnemySprite: {fileID: 21300000, guid: bb2daef099f9b914dbedf80b60e69b7e, type: 3}
     PopLocation: 0
     PopTime: 0
@@ -593,7 +590,7 @@ MonoBehaviour:
     skillDataList: []
     enemyMoveList: []
   - EnemyName: "\u30BD\u30A6\u30EB\u30A4\u30FC\u30BF\u30FC"
-    EnemyNumber: 37
+    EnemyNumber: 36
     EnemySprite: {fileID: 21300000, guid: 5fa42b21ca94d0341af23f4d2f75fcb7, type: 3}
     PopLocation: 0
     PopTime: 0
@@ -608,7 +605,7 @@ MonoBehaviour:
     skillDataList: []
     enemyMoveList: []
   - EnemyName: "\u30EA\u30EA\u30B9"
-    EnemyNumber: 38
+    EnemyNumber: 37
     EnemySprite: {fileID: 21300000, guid: 7826d038be3cd20478aced750fb211b1, type: 3}
     PopLocation: 0
     PopTime: 0
@@ -623,7 +620,7 @@ MonoBehaviour:
     skillDataList: []
     enemyMoveList: []
   - EnemyName: "\u30F4\u30A1\u30F3\u30D1\u30A4\u30A2"
-    EnemyNumber: 39
+    EnemyNumber: 38
     EnemySprite: {fileID: 21300000, guid: afa114ab39484b4499ea52dfb6564d1d, type: 3}
     PopLocation: 0
     PopTime: 0
@@ -638,7 +635,7 @@ MonoBehaviour:
     skillDataList: []
     enemyMoveList: []
   - EnemyName: "\u30AC\u30FC\u30B4\u30A4\u30EB"
-    EnemyNumber: 40
+    EnemyNumber: 39
     EnemySprite: {fileID: 21300000, guid: 67359830c08b8534fafa4b58cf216f1d, type: 3}
     PopLocation: 0
     PopTime: 0
@@ -653,7 +650,7 @@ MonoBehaviour:
     skillDataList: []
     enemyMoveList: []
   - EnemyName: "\u30C7\u30FC\u30E2\u30F3"
-    EnemyNumber: 41
+    EnemyNumber: 40
     EnemySprite: {fileID: 21300000, guid: 5ffaf08ef47fe7c4fa693da37486e145, type: 3}
     PopLocation: 0
     PopTime: 0
@@ -668,7 +665,7 @@ MonoBehaviour:
     skillDataList: []
     enemyMoveList: []
   - EnemyName: "\u30DF\u30DF\u30C3\u30AF"
-    EnemyNumber: 42
+    EnemyNumber: 41
     EnemySprite: {fileID: 21300000, guid: 0346e51b50d24d64eb7c4b29df6df659, type: 3}
     PopLocation: 0
     PopTime: 0

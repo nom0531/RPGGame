@@ -27,7 +27,7 @@ public class DrawDamage : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void Update()
+    private void FixedUpdate()
     {
         // À•W‚ğˆÚ“®‚³‚¹‚é
         m_timeCount += Time.deltaTime;

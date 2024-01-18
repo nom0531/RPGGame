@@ -31,31 +31,36 @@ public class BattleButton : MonoBehaviour
     public bool ButtonDown
     {
         get => m_isButtonDown;
-        private set
-        {
-            AttackButton.GetComponent<Button>().interactable = value;
-            SkillButton.GetComponent<Button>().interactable = value;
-            GuardButton.GetComponent<Button>().interactable = value;
-        }
+        set => m_isButtonDown = value;
+    }
+
+    /// <summary>
+    /// ボタンが押せるかどうか設定する
+    /// </summary>
+    /// <param name="flag">trueなら押せる。falseなら押せない</param>
+    private void SetInteractable(bool flag)
+    {
+        AttackButton.GetComponent<Button>().interactable = flag;
+        SkillButton.GetComponent<Button>().interactable = flag;
+        GuardButton.GetComponent<Button>().interactable = flag;
     }
 
     private void Start()
     {
         ResetStatus();
 
-        var playerMoveList = FindObjectsOfType<PlayerMove>();
-        m_playerMoveList = new List<PlayerMove>(playerMoveList);
-        m_playerMoveList.Sort((a, b) => a.MyNumber.CompareTo(b.MyNumber));    // 番号順にソート
-
         m_battleManager = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<BattleManager>();
-        m_playerSkill = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<PlayerSkill>(); 
+        m_playerSkill = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<PlayerSkill>();
+
+        // playerMoveを人数分用意
+        m_playerMoveList = m_battleManager.PlayerMoveList;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (m_battleManager.GameState != GameState.enPlay)
         {
-            ButtonDown = false;
+            SetInteractable(false);
             return;
         }
 
@@ -70,6 +75,12 @@ public class BattleButton : MonoBehaviour
             SkillButton.GetComponent<Button>().interactable = false;
             return;
         }
+        // スキルが使用不可ならボタンを押せない
+        if (m_playerSkill.UseSkillFlag == false)
+        {
+            OKButton.GetComponent<Button>().interactable = false;
+            return;
+        }
         // スキルを選択したならボタンを押せるようにする
         if (m_playerSkill.SelectSkillNumber >= 0 ){
             OKButton.GetComponent<Button>().interactable = true;
@@ -81,9 +92,9 @@ public class BattleButton : MonoBehaviour
     /// </summary>
     public void AttackButtonDown()
     {
-        m_isButtonDown = true;
+        ButtonDown = true;
         m_playerMoveList[m_currentTurnPlayerNumber].NextActionType = ActionType.enAttack;
-        ButtonDown = false;
+        SetInteractable(false);
         CommandWindow.SetActive(false);
     }
 
@@ -98,7 +109,7 @@ public class BattleButton : MonoBehaviour
             OKButton.GetComponent<Button>().interactable = false;
         }
 
-        ButtonDown = false;
+        SetInteractable(false);
         SkillWindow.SetActive(true);
         SkillStatus.SetActive(true);
 
@@ -111,10 +122,10 @@ public class BattleButton : MonoBehaviour
     /// </summary>
     public void GurdButtonDown()
     {
-        m_isButtonDown = true;
+        ButtonDown = true;
         m_playerMoveList[m_currentTurnPlayerNumber].NextActionType = ActionType.enGuard;
         CommandWindow.SetActive(false);
-        ButtonDown = false;
+        SetInteractable(false);
     }
 
     /// <summary>
@@ -122,7 +133,7 @@ public class BattleButton : MonoBehaviour
     /// </summary>
     public void DeterminationSkillAttack()
     {
-        m_isButtonDown = true;
+        ButtonDown = true;
         m_playerMoveList[m_currentTurnPlayerNumber].SelectSkillNumber = m_playerSkill.SelectSkillNumber;
         m_playerMoveList[m_currentTurnPlayerNumber].NextActionType = ActionType.enSkillAttack;
         SkillWindow.SetActive(false);
@@ -139,7 +150,7 @@ public class BattleButton : MonoBehaviour
 
         SkillWindow.SetActive(false);
         SkillStatus.SetActive(false);
-        ButtonDown = true;
+        SetInteractable(true);
     }
 
     /// <summary>
@@ -147,8 +158,8 @@ public class BattleButton : MonoBehaviour
     /// </summary>
     public void ResetStatus()
     {
-        m_isButtonDown = false;
-        ButtonDown = true;
+        ButtonDown = false;
+        SetInteractable(true);
         CommandWindow.SetActive(true);
     }
 }

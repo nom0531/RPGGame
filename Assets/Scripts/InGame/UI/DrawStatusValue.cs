@@ -88,7 +88,6 @@ public class DrawStatusValue : MonoBehaviour
                     );
 
             DrawStatusAbnormalImage(i);
-            DrawBuffStatusImage(i);
         }
     }
 
@@ -153,11 +152,13 @@ public class DrawStatusValue : MonoBehaviour
         {
             for (int j = 0; j < (int)BuffStatus.enNum; j++)
             {
+                // バフがかかっていないなら描画はしない
                 if (buffCalculation.GetBuffFlag((BuffStatus)j) == false)
                 {
                     Content[number].transform.GetChild(i).gameObject.SetActive(false);
                     continue;
                 }
+
                 // 番号を設定
                 var stateNumber = j + 1;
                 // スプライトを設定

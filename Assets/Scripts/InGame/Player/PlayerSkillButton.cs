@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class PlayerSkillButton : MonoBehaviour
 {
@@ -20,7 +21,7 @@ public class PlayerSkillButton : MonoBehaviour
     /// <param name="number">スキルの番号</param>
     /// <param name="skillName">スキルの名前</param>
     /// <param name="fontColor">文字の色</param>
-    public void SetPlayerSkill(int number, string skillName,Color fontColor, PlayerSkill playerSkill)
+    public void SetPlayerSkill(int number, string skillName, Color fontColor, PlayerSkill playerSkill)
     {
         // それぞれの値を登録する
         m_skillNumber = number;
