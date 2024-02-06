@@ -43,8 +43,8 @@ public class PlayerStatusSystem : MonoBehaviour
     /// <param name="number">プレイヤーの番号</param>
     public void DisplaySetValue(int number)
     {
-        // 番号を更新
-        PlayerNumberManager.PlayerNumber = number;
+        var gameManager = GameManager.Instance;
+        gameManager.PlayerNumber = number;
 
         Data_Sprite.SetActive(true);
         Data_Name.SetActive(true);
@@ -62,12 +62,12 @@ public class PlayerStatusSystem : MonoBehaviour
         GetResistance(Data_Light, number, (int)ElementType.enLight);
         GetResistance(Data_Dark, number, (int)ElementType.enDark);
         // ステータス
-        Data_HP.GetComponent<TextMeshProUGUI>().text = PlayerDataBase.playerDataList[number].HP.ToString("000");
-        Data_SP.GetComponent<TextMeshProUGUI>().text = PlayerDataBase.playerDataList[number].SP.ToString("000");
-        Data_ATK.GetComponent<TextMeshProUGUI>().text = PlayerDataBase.playerDataList[number].ATK.ToString("000");
-        Data_DEF.GetComponent<TextMeshProUGUI>().text = PlayerDataBase.playerDataList[number].DEF.ToString("000");
-        Data_SPD.GetComponent<TextMeshProUGUI>().text = PlayerDataBase.playerDataList[number].SPD.ToString("000");
-        Data_LUCK.GetComponent<TextMeshProUGUI>().text = PlayerDataBase.playerDataList[number].LUCK.ToString("000");
+        Data_HP.GetComponent<TextMeshProUGUI>().text = gameManager.SaveData.SaveData.saveData.PlayerList[number].HP.ToString("000");
+        Data_SP.GetComponent<TextMeshProUGUI>().text = gameManager.SaveData.SaveData.saveData.PlayerList[number].SP.ToString("000");
+        Data_ATK.GetComponent<TextMeshProUGUI>().text = gameManager.SaveData.SaveData.saveData.PlayerList[number].ATK.ToString("000");
+        Data_DEF.GetComponent<TextMeshProUGUI>().text = gameManager.SaveData.SaveData.saveData.PlayerList[number].DEF.ToString("000");
+        Data_SPD.GetComponent<TextMeshProUGUI>().text = gameManager.SaveData.SaveData.saveData.PlayerList[number].SPD.ToString("000");
+        Data_LUCK.GetComponent<TextMeshProUGUI>().text = gameManager.SaveData.SaveData.saveData.PlayerList[number].LUCK.ToString("000");
     }
 
     // Start is called before the first frame update
@@ -95,7 +95,7 @@ public class PlayerStatusSystem : MonoBehaviour
                 );
         }
         // 表示する
-        DisplaySetValue(PlayerNumberManager.PlayerNumber);
+        DisplaySetValue(GameManager.Instance.PlayerNumber);
     }
 
     /// <summary>
@@ -105,8 +105,7 @@ public class PlayerStatusSystem : MonoBehaviour
     /// <param name="elementNumber">属性の識別番号</param>
     void GetResistance(GameObject gameObjct, int playerNumber, int elementNumber)
     {
-        ElementResistance element = PlayerDataBase.playerDataList[playerNumber].PlayerElement[elementNumber];
-
+        var element = PlayerDataBase.playerDataList[playerNumber].PlayerElement[elementNumber];
         switch (element)
         {
             case ElementResistance.enResist:

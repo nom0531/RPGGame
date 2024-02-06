@@ -10,7 +10,7 @@ public class EnemyData
 {
     [SerializeField,Header("エネミー情報")]
     public string EnemyName;                                        // 名前(8文字まで)
-    public int EnemyNumber;                                         // 自身の番号
+    public int ID;                                                  // 自身の番号
     public Sprite EnemySprite;                                      // 画像
     public LocationType PopLocation;                                // スポーンする環境
     public LocationTime PopTime;                                    // スポーンする時間

@@ -40,7 +40,7 @@ public class SaveData
         public bool[] EnemyRegisters;               // エネミーを発見しているかどうか
         public Element[] ElementRegisters;          // 属性の発見状況
         public Skill[] SkillRegisters;              // スキルの開放状況
-        public Enhancement[] EnhancementRegisters; // 強化の開放状況
+        public Enhancement[] EnhancementRegisters;  // 強化の開放状況
         public PlayerStatus[] PlayerList;           // プレイヤーのステータス
         public bool[] ClearStage;                   // ステージをクリアしているかどうか
         public int EnhancementPoint;                // 強化ポイント

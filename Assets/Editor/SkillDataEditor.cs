@@ -125,8 +125,8 @@ public class SkillDataEditor : EditorWindow
         EditorGUILayout.BeginVertical(GUI.skin.box);
         {
             // 基礎情報を表示
-            m_skillDataBase.skillDataList[m_selectNumber].SkillNumber = m_selectNumber;
-            GUILayout.Label( $"ID:{m_skillDataBase.skillDataList[m_selectNumber].SkillNumber}   Name:{m_nameList[m_selectNumber]}");
+            m_skillDataBase.skillDataList[m_selectNumber].ID = m_selectNumber;
+            GUILayout.Label( $"ID:{m_skillDataBase.skillDataList[m_selectNumber].ID}   Name:{m_nameList[m_selectNumber]}");
 
             // 空白
             EditorGUILayout.Space();
@@ -177,12 +177,7 @@ public class SkillDataEditor : EditorWindow
 
             EditorGUILayout.Space();
 
-            // スキルの効果範囲
-            m_skillDataBase.skillDataList[m_selectNumber].EffectRange =
-                (EffectRange)EditorGUILayout.Popup(
-                    "効果範囲",
-                    (int)m_skillDataBase.skillDataList[m_selectNumber].EffectRange,
-                    new string[] { "単体", "全体" });
+
             DrawBuff();
 
             EditorGUILayout.Space();
@@ -210,6 +205,27 @@ public class SkillDataEditor : EditorWindow
 
         // 保存
         Undo.RegisterCompleteObjectUndo(m_skillDataBase, "SkillDataBase");
+    }
+
+    private void DrawRange()
+    {
+        // スキルの効果範囲
+        m_skillDataBase.skillDataList[m_selectNumber].EffectRange =
+            (EffectRange)EditorGUILayout.Popup(
+                "効果範囲",
+                (int)m_skillDataBase.skillDataList[m_selectNumber].EffectRange,
+                new string[] { "単体", "全体" });
+
+        if(m_skillDataBase.skillDataList[m_selectNumber].EffectRange == EffectRange.enOne)
+        {
+            return;
+        }
+
+        m_skillDataBase.skillDataList[m_selectNumber].TargetState =
+            (TargetState)EditorGUILayout.Popup(
+                "対象",
+                (int)m_skillDataBase.skillDataList[m_selectNumber].EffectRange,
+                new string[] { "プレイヤー", "エネミー" });
     }
 
     /// <summary>
@@ -243,7 +259,7 @@ public class SkillDataEditor : EditorWindow
     {
         for (int i = 0; i < m_stateAbnormalData.stateAbnormalList.Count; i++)
         {
-            if (m_skillDataBase.skillDataList[m_selectNumber].StateAbnormalData.StateNumber != m_stateAbnormalData.stateAbnormalList[i].StateNumber)
+            if (m_skillDataBase.skillDataList[m_selectNumber].StateAbnormalData.ID != m_stateAbnormalData.stateAbnormalList[i].ID)
             {
                 continue;
             }

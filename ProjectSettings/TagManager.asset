@@ -9,8 +9,11 @@ TagManager:
   - BattleSystem
   - DieEnemy
   - Enemy
-  - SkillIcon
   - DiePlayer
+  - TargetGroup
+  - SceneManager
+  - PopEnemy
+  - EnhancementIcon
   layers:
   - Default
   - TransparentFX

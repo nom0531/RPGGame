@@ -34,6 +34,8 @@ public class PlayerData
     public int LUCK;                                                // 運
     [SerializeField,Header("スキル一覧")]
     public List<SkillData> skillDataList = new List<SkillData>();
+    [SerializeField, Header("スキルツリー")]
+    public List<EnhancementData> enhancementDataList = new List<EnhancementData>();
 }
 
 [CreateAssetMenu(fileName ="PlayerDataBase",menuName ="CreatePlayerDataBace")]

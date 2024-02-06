@@ -44,7 +44,7 @@ public class SaveDataManager : MonoBehaviour
     /// </summary>
     public void Save()
     {
-        string json = JsonUtility.ToJson(GameSaveData);
+        var json = JsonUtility.ToJson(GameSaveData);
         var streamWriter = new StreamWriter(m_filePath);
         streamWriter.Write(json);
         streamWriter.Close();
@@ -59,7 +59,7 @@ public class SaveDataManager : MonoBehaviour
         if (File.Exists(m_filePath))
         {
             var streamReader = new StreamReader(m_filePath);
-            string data = streamReader.ReadToEnd();
+            var data = streamReader.ReadToEnd();
             streamReader.Close();
             GameSaveData = JsonUtility.FromJson<SaveData>(data);
             // ロードが出来たのでtrueを返す
@@ -109,8 +109,8 @@ public class SaveDataManager : MonoBehaviour
             }
             // 強化の開放度
             GameSaveData.saveData.EnhancementRegisters[playerNumber] =
-                new Enhancement { PlayerEnhancements = new bool[PlayerData.playerDataList[playerNumber].skillDataList.Count] };
-            for (int enhancementNumber = 0; enhancementNumber < PlayerData.playerDataList[playerNumber].skillDataList.Count; enhancementNumber++)
+                new Enhancement { PlayerEnhancements = new bool[PlayerData.playerDataList[playerNumber].enhancementDataList.Count] };
+            for (int enhancementNumber = 0; enhancementNumber < PlayerData.playerDataList[playerNumber].enhancementDataList.Count; enhancementNumber++)
             {
                 GameSaveData.saveData.EnhancementRegisters[playerNumber].PlayerEnhancements[enhancementNumber] = BOOL;
             }

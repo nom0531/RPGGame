@@ -7,6 +7,15 @@ public class DrawCommandText : MonoBehaviour
     [SerializeField, Header("参照データ")]
     private SkillDataBase SkillData;
 
+    private StagingSystem m_stagingSystem;
+    private BuffCalculation m_buffCalculation;
+
+    private void Start()
+    {
+        m_stagingSystem = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<StagingSystem>();
+        m_buffCalculation = gameObject.GetComponent<BuffCalculation>();
+    }
+
     /// <summary>
     /// 行動テキストの表示処理
     /// </summary>
@@ -15,7 +24,6 @@ public class DrawCommandText : MonoBehaviour
     public void SetCommandText(ActionType actionType, int skillNumber = 0)
     {
         string actionText = "";
-
         // テキストの分岐
         switch (actionType)
         {
@@ -35,7 +43,6 @@ public class DrawCommandText : MonoBehaviour
                 actionText = "様子を見ている";
                 break;
         }
-
         Debug.Log(actionText);
     }
 
@@ -48,7 +55,7 @@ public class DrawCommandText : MonoBehaviour
         string actionText = "";
 
         // 既にバフがかかっているならば
-        if (this.gameObject.GetComponent<BuffCalculation>().GetBuffFlag(buffStatus) == true)
+        if (m_buffCalculation.GetBuffFlag(buffStatus) == true)
         {
             actionText = "効果時間が伸びた";
             return;
@@ -75,8 +82,7 @@ public class DrawCommandText : MonoBehaviour
                 actionText = "素早さが下がった";
                 break;
         }
-
-        Debug.Log(actionText);
+        m_stagingSystem.SetAddInfoCommandText(actionText);
     }
 
     /// <summary>

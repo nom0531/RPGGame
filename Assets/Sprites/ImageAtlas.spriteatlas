@@ -20,7 +20,19 @@ SpriteAtlas:
       readable: 0
       crunchedCompression: 0
       sRGB: 1
-    platformSettings: []
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 256
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
     packingSettings:
       serializedVersion: 2
       padding: 4
@@ -56,18 +68,28 @@ SpriteAtlas:
     - {fileID: 2800000, guid: da8cf6e308ed0ae4c934ca248674daf3, type: 3}
     - {fileID: 2800000, guid: a432e449921f41d4a8e9cff3307eec3a, type: 3}
     - {fileID: 2800000, guid: 2ef57e45714e4114ba7c7dfe3faa811f, type: 3}
+    - {fileID: 2800000, guid: b9034603fa6e80b4d95d8bdbff61fe62, type: 3}
+    - {fileID: 2800000, guid: 3b33fc9014bdb3145a501629c7dd315a, type: 3}
+    - {fileID: 2800000, guid: 20e30151685fa4e43b97785c6ac630d6, type: 3}
+    - {fileID: 2800000, guid: dc41a6922a3dd974fac7129ae348b2ec, type: 3}
+    - {fileID: 2800000, guid: dd9794d36792e7443952b235bd687357, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: d49e0d80286674947bac2dd777966991, type: 3}
+  - {fileID: 21300000, guid: 3b33fc9014bdb3145a501629c7dd315a, type: 3}
   - {fileID: 21300000, guid: 4a565dd08193381488fa4d0598f19b58, type: 3}
+  - {fileID: 21300000, guid: 20e30151685fa4e43b97785c6ac630d6, type: 3}
   - {fileID: 21300000, guid: 24231b91facce8d4f811dcb82456bb1c, type: 3}
   - {fileID: 21300000, guid: cda20cb1f6f217f479c94cab09290d8f, type: 3}
+  - {fileID: 21300000, guid: dc41a6922a3dd974fac7129ae348b2ec, type: 3}
   - {fileID: 21300000, guid: da3ecfb2dff2cd6408ca3502c2ee71ea, type: 3}
+  - {fileID: 21300000, guid: b9034603fa6e80b4d95d8bdbff61fe62, type: 3}
   - {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
   - {fileID: 21300000, guid: f7dfe993cf47c034987cc4ddb30c4fd6, type: 3}
+  - {fileID: 21300000, guid: dd9794d36792e7443952b235bd687357, type: 3}
   - {fileID: 21300000, guid: da8cf6e308ed0ae4c934ca248674daf3, type: 3}
   - {fileID: 21300000, guid: e4ead59478442c040b05b83e82f5c05b, type: 3}
   - {fileID: 21300000, guid: 797588158c4fd6943aa087189d0bf32a, type: 3}
@@ -87,12 +109,17 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 0cb1588fd4589fe479981c28519f38e5, type: 3}
   m_PackedSpriteNamesToIndex:
   - game icon_condition_25
+  - buttonImage2
   - game icon_status_5_1
+  - commandImage
   - game icon_condition_22
   - Magic2
+  - statusBar_image
   - Debuff
+  - buttonImage
   - Death
   - game icon_status_7_1
+  - windowImage
   - HP
   - game icon_status_7_3
   - Heal

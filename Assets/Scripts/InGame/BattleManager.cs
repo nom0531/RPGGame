@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
+using System;
 
 /// <summary>
 /// ターンを回す側
@@ -48,17 +49,19 @@ public class BattleManager : MonoBehaviour
     private GameObject[] PlayerIcon;
     [SerializeField, Tooltip("コマンド選択中のアイコン")]
     private GameObject CommandIcon;
-    [SerializeField, Header("バトル用データ"), Tooltip("生成する画像")]
+    [SerializeField, Header("バトルデータ"), Tooltip("生成する画像")]
     private GameObject Sprite;
     [SerializeField, Tooltip("画像を追加するオブジェクト")]
     private GameObject Content;
-    [SerializeField, Header("バトルデータ"), Tooltip("ターン開始時の先行側")]
+    [SerializeField, Tooltip("ターン開始時の先行側")]
     private TurnStatus m_turnStatus = TurnStatus.enPlayer;
     [SerializeField, Tooltip("エネミーのサイズ")]
     private float EnemySpriteSize = 450.0f;
+    [SerializeField, Header("リザルトデータ"), Tooltip("UIを表示するまでの待機時間")]
+    private float WaitTime = 1.0f;
 
     private const int MAX_ENEMY_NUM = 4;                        // バトルに出現するエネミーの最大数
-    private const float ADD_SIZE = 1.0f;                        // エネミーの画像の乗算サイズ
+    private const float ADD_SIZE = 1.6f;                        // エネミーの画像の乗算サイズ
 
     private GameState m_gameState = GameState.enPlay;           // ゲームの状態
     private OperatingPlayer m_operatingPlayer;                  // 操作しているプレイヤー
@@ -70,12 +73,10 @@ public class BattleManager : MonoBehaviour
     private List<PlayerMove> m_playerMoveList;                  // プレイヤーの行動
     private List<EnemyMove> m_enemyMoveList;                    // エネミーの行動
     private int m_turnSum = 1;                                  // 総合ターン数
-    private int m_selectQuestNumber = 0;                        // 選択したクエストの番号
     private int m_enemySum = 0;                                 // エネミーの総数
     private int m_enemyNumber = 0;                              // エネミーの番号
     private bool m_isPause = false;                             // ポーズ画面かどうか
     private bool m_isPushDown = false;                          // ボタンが押されたかどうか
-    private bool m_isTurnEnd = false;                           // ターンを終了する
 
     public bool PauseFlag
     {
@@ -139,7 +140,7 @@ public class BattleManager : MonoBehaviour
     private void Start()
     {
         DrawStatus();
-
+        var levelNumber = GameManager.Instance.LevelNumber;
         // エネミーを用意する
         m_enemySum = m_battleSystem.GetRandomValue(1, MAX_ENEMY_NUM);
         // エネミーの画像を用意する
@@ -148,24 +149,23 @@ public class BattleManager : MonoBehaviour
             var sprite = Instantiate(Sprite);
             sprite.transform.SetParent(Content.transform);
             // スプライトを設定する
-            int rand = m_battleSystem.GetRandomValue(0, 1, false);
-            sprite.GetComponent<SpriteRenderer>().sprite = EnemyData.enemyDataList[rand].EnemySprite;
+            var rand = m_battleSystem.GetRandomValue(0, LevelData.levelDataList[levelNumber].enemyDataList.Count, false);
+            var number = LevelData.levelDataList[levelNumber].enemyDataList[rand].ID;
+            sprite.GetComponent<SpriteRenderer>().sprite = EnemyData.enemyDataList[number].EnemySprite;
             // エネミーに自身の番号を教える
-            sprite.GetComponent<EnemyMove>().MyNumber = EnemyData.enemyDataList[rand].EnemyNumber;
-            // サイズを取得する
-            float width = EnemySpriteSize * ADD_SIZE;
-            float height = EnemySpriteSize * ADD_SIZE;
+            var enemyMove = sprite.GetComponent<EnemyMove>();
+            enemyMove.MyNumber = EnemyData.enemyDataList[number].ID;
             // サイズ、座標を調整
+            var width = EnemySpriteSize * ADD_SIZE;
+            var height = EnemySpriteSize * ADD_SIZE;
             sprite.transform.localScale = new Vector3(width, height, 1.0f);
             sprite.transform.localPosition = Vector3.zero;
             sprite.transform.localRotation = Quaternion.identity;
             // 図鑑に未登録なら
-            if (sprite.GetComponent<EnemyMove>().GetTrueEnemyRegister(
-                EnemyData.enemyDataList[rand].EnemyNumber) == false)
+            if (enemyMove.GetTrueEnemyRegister(enemyMove.MyNumber) == false)
             {
                 // 登録する
-                sprite.GetComponent<EnemyMove>().SetTrueEnemyRegister(
-                    EnemyData.enemyDataList[rand].EnemyNumber);
+                enemyMove.SetTrueEnemyRegister(enemyMove.MyNumber);
             }
         }
         var enemyMoveList = FindObjectsOfType<EnemyMove>();
@@ -192,14 +192,15 @@ public class BattleManager : MonoBehaviour
             {
                 PauseCanvas.SetActive(true);
             }
-
             m_isPause = !m_isPause;     // フラグを反転させる
             m_isPushDown = false;       // フラグを戻す
         }
-        //if (Input.GetKeyDown(KeyCode.Tab))
-        //{
-        //    m_playerMoveList[1].DecrementSP(50);
-        //}
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            m_playerMoveList[0].DecrementHP(999);
+            m_playerMoveList[1].DecrementHP(999);
+            m_playerMoveList[2].DecrementHP(999);
+        }
     }
 
     private void FixedUpdate()
@@ -219,13 +220,10 @@ public class BattleManager : MonoBehaviour
             return;
         }
         // 演出が開始されたなら実行しない
-        if(m_stagingManager.StangingState == StangingState.enStangingStart)
+        if(m_stagingManager.StangingState == StagingState.enStangingStart)
         {
             return;
         }
-
-        DrawStatus();
-
         switch (m_turnStatus)
         {
             // プレイヤーのターン
@@ -270,6 +268,7 @@ public class BattleManager : MonoBehaviour
                 m_enemyNumber++;
                 break;
         }
+        DrawStatus();
         IsTurnEnd();
     }
 
@@ -301,7 +300,6 @@ public class BattleManager : MonoBehaviour
     /// </summary>
     private void TurnEnd()
     {
-        m_isTurnEnd = true;
         // 次の操作キャラクターを決定、カメラを再設定する
         m_operatingPlayer = NextOperatingPlayer();
         m_lockOnSystem.ResetCinemachine();
@@ -313,7 +311,6 @@ public class BattleManager : MonoBehaviour
         ResetPlayerAction();
         ResetEnemyAction();
         ResetBattleButton();
-        m_isTurnEnd = false;
     }
 
     /// <summary>
@@ -347,15 +344,15 @@ public class BattleManager : MonoBehaviour
         }
         m_gameState = GameState.enBattleLose;
     }
-
+    
     /// <summary>
     /// ゲームクリア演出のタスク
     /// </summary>
     async UniTask GameClearTask()
     {
         // 演出が終了したなら以下の処理を実行する
-        await UniTask.WaitUntil(() => m_stagingManager.StangingState == StangingState.enStangingEnd);
         await UniTask.WaitUntil(() => m_gameState == GameState.enBattleWin);
+        await UniTask.Delay(TimeSpan.FromSeconds(WaitTime));
         m_drawBattleResult.GameClearStaging();
     }
 
@@ -365,8 +362,8 @@ public class BattleManager : MonoBehaviour
     async UniTask GameOverTask()
     {
         // 演出が終了したなら以下の処理を実行する
-        await UniTask.WaitUntil(() => m_stagingManager.StangingState == StangingState.enStangingEnd);
         await UniTask.WaitUntil(() => m_gameState == GameState.enBattleLose);
+        await UniTask.Delay(TimeSpan.FromSeconds(WaitTime));
         m_drawBattleResult.GameOverStaging();
     }
 
@@ -378,7 +375,7 @@ public class BattleManager : MonoBehaviour
     {
         Debug.Log(PlayerData.playerDataList[(int)m_operatingPlayer].PlayerName + "のターン");
         // 演出が開始されたなら実行しない
-        if (m_stagingManager.StangingState == StangingState.enStangingStart)
+        if (m_stagingManager.StangingState == StagingState.enStangingStart)
         {
             return;
         }
@@ -401,7 +398,7 @@ public class BattleManager : MonoBehaviour
                 if (PlayerData.playerDataList[myNumber].skillDataList[skillNumber].EffectRange != EffectRange.enAll
                     && m_playerMoveList[myNumber].NextActionType != ActionType.enGuard)
                 {
-                    m_lockOnSystem.SetTargetState(PlayerData.playerDataList[myNumber].skillDataList[skillNumber].SkillNumber,
+                    m_lockOnSystem.SetTargetState(PlayerData.playerDataList[myNumber].skillDataList[skillNumber].ID,
                         m_playerMoveList[myNumber].NextActionType);
                     // 攻撃対象が選択されたら以下の処理を実行する
                     await UniTask.WaitUntil(() => m_lockOnSystem.ButtonDown == true);
@@ -425,12 +422,13 @@ public class BattleManager : MonoBehaviour
         m_playerMoveList[myNumber].CalculationAbnormalState();
         PlayerAction_Command(myNumber, targetNumber, m_playerMoveList[myNumber].NextActionType, skillNumber);
         // 演出を開始する
-        m_stagingManager.RegistrationTargets(m_playerMoveList[myNumber].NextActionType, m_turnStatus, targetNumber, myNumber,
-            PlayerData.playerDataList[myNumber].skillDataList[skillNumber].SkillNumber, PlayerData.playerDataList[myNumber].skillDataList[skillNumber].EffectRange);
+        m_stagingManager.ActionType = m_playerMoveList[myNumber].NextActionType;
+        m_stagingManager.RegistrationTargets(m_turnStatus, targetNumber, myNumber, PlayerData.playerDataList[myNumber].skillDataList[skillNumber].ID, 
+            PlayerData.playerDataList[myNumber].skillDataList[skillNumber].EffectRange);
         // 行動を終了する
         m_playerMoveList[myNumber].ActionEnd(m_playerMoveList[myNumber].NextActionType, skillNumber);
         // 演出が終了したなら以下の処理を実行する
-        await UniTask.WaitUntil(() => m_stagingManager.StangingState == StangingState.enStangingEnd);
+        await UniTask.WaitUntil(() => m_stagingManager.StangingState == StagingState.enStangingEnd);
         m_playerMoveList[myNumber].DecrementHP(m_playerMoveList[myNumber].PoisonDamage);
         // 次のプレイヤーを設定する
         m_operatingPlayer = NextOperatingPlayer();
@@ -464,6 +462,7 @@ public class BattleManager : MonoBehaviour
                 m_playerMoveList[myNumber].PlayerAction_Attack(targetNumber, DEF);
                 break;
             case ActionType.enSkillAttack:
+                var value = 0;
                 switch (PlayerData.playerDataList[myNumber].skillDataList[skillNumber].SkillType)
                 {
                     case SkillType.enAttack:
@@ -494,20 +493,32 @@ public class BattleManager : MonoBehaviour
                         {
                             for (int playerNumber = 0; playerNumber < m_playerMoveList.Count; playerNumber++)
                             {
-                                m_playerMoveList[myNumber].PlayerAction_Buff(
+                                value = m_playerMoveList[myNumber].PlayerAction_Buff(
                                     skillNumber,                                        // スキルの番号
-                                    m_enemyMoveList[playerNumber].EnemyStatus.ATK,      // 攻撃力
-                                    m_enemyMoveList[playerNumber].EnemyStatus.DEF,      // 防御力
-                                    m_enemyMoveList[playerNumber].EnemyStatus.SPD,      // 素早さ
+                                    m_playerMoveList[playerNumber].PlayerStatus.ATK,      // 攻撃力
+                                    m_playerMoveList[playerNumber].PlayerStatus.DEF,      // 防御力
+                                    m_playerMoveList[playerNumber].PlayerStatus.SPD       // 素早さ
+                                    );
+                                // 値を設定する
+                                m_playerMoveList[targetNumber].SetBuffStatus(
+                                    PlayerData.playerDataList[myNumber].skillDataList[skillNumber].BuffType,
+                                    value,
+                                    skillNumber,
                                     true);
                             }
                             break;
                         }
-                        m_playerMoveList[myNumber].PlayerAction_Buff(
+                        value =  m_playerMoveList[myNumber].PlayerAction_Buff(
                             skillNumber,                                                // スキルの番号
-                            m_enemyMoveList[targetNumber].EnemyStatus.ATK,              // 攻撃力
-                            m_enemyMoveList[targetNumber].EnemyStatus.DEF,              // 防御力
-                            m_enemyMoveList[targetNumber].EnemyStatus.SPD,              // 素早さ
+                            m_playerMoveList[targetNumber].PlayerStatus.ATK,              // 攻撃力
+                            m_playerMoveList[targetNumber].PlayerStatus.DEF,              // 防御力
+                            m_playerMoveList[targetNumber].PlayerStatus.SPD               // 素早さ
+                            );
+                        // 値を設定する
+                        m_playerMoveList[targetNumber].SetBuffStatus(
+                            PlayerData.playerDataList[myNumber].skillDataList[skillNumber].BuffType,
+                            value,
+                            skillNumber,
                             true);
                         break;
                     case SkillType.enDeBuff:
@@ -516,20 +527,32 @@ public class BattleManager : MonoBehaviour
                         {
                             for (int enemyNumber = 0; enemyNumber < m_enemyMoveList.Count; enemyNumber++)
                             {
-                                m_playerMoveList[myNumber].PlayerAction_Buff(
+                                value = m_playerMoveList[myNumber].PlayerAction_Buff(
                                     skillNumber,                                        // スキルの番号
                                     m_enemyMoveList[enemyNumber].EnemyStatus.ATK,       // 攻撃力
                                     m_enemyMoveList[enemyNumber].EnemyStatus.DEF,       // 防御力
-                                    m_enemyMoveList[enemyNumber].EnemyStatus.SPD,       // 素早さ
+                                    m_enemyMoveList[enemyNumber].EnemyStatus.SPD        // 素早さ
+                                    );
+                                // 値を設定する
+                                m_enemyMoveList[enemyNumber].SetBuffStatus(
+                                    PlayerData.playerDataList[myNumber].skillDataList[skillNumber].BuffType,
+                                    value,
+                                    skillNumber,
                                     false);
                             }
                             break;
                         }
-                        m_playerMoveList[myNumber].PlayerAction_Buff(
+                        value = m_playerMoveList[myNumber].PlayerAction_Buff(
                             skillNumber,                                                // スキルの番号
                             m_enemyMoveList[targetNumber].EnemyStatus.ATK,              // 攻撃力
                             m_enemyMoveList[targetNumber].EnemyStatus.DEF,              // 防御力
-                            m_enemyMoveList[targetNumber].EnemyStatus.SPD,              // 素早さ
+                            m_enemyMoveList[targetNumber].EnemyStatus.SPD               // 素早さ
+                            );
+                        // 値を設定する
+                        m_enemyMoveList[targetNumber].SetBuffStatus(
+                            PlayerData.playerDataList[myNumber].skillDataList[skillNumber].BuffType,
+                            value,
+                            skillNumber,
                             false);
                         break;
                     case SkillType.enHeal:
@@ -540,10 +563,12 @@ public class BattleManager : MonoBehaviour
                             for (int playerNumber = 0; playerNumber < m_playerMoveList.Count; playerNumber++)
                             {
                                 m_playerMoveList[myNumber].PlayerAction_HPRecover(playerNumber, skillNumber);
+                                m_playerMoveList[playerNumber].RecoverHP(m_playerMoveList[myNumber].BasicValue);
                             }
                             break;
                         }
                         m_playerMoveList[myNumber].PlayerAction_HPRecover(targetNumber, skillNumber);
+                        m_playerMoveList[targetNumber].RecoverHP(m_playerMoveList[myNumber].BasicValue);
                         break;
                 }
                 break;
@@ -560,7 +585,7 @@ public class BattleManager : MonoBehaviour
     /// </summary>
     /// <param name="targetNumber">ターゲットの番号</param>
     /// <param name="damage">ダメージ量</param>
-    public void PlayerAction_DamageEnemy(int targetNumber, int damage)
+    public void DamageEnemy(int targetNumber, int damage)
     {
         m_enemyMoveList[targetNumber].DecrementHP(damage);
     }
@@ -672,7 +697,7 @@ public class BattleManager : MonoBehaviour
         Debug.Log(EnemyData.enemyDataList[m_enemyMoveList[myNumber].MyNumber].EnemyName + "のターン");
 
         // 演出が開始されたなら実行しない
-        if (m_stagingManager.StangingState == StangingState.enStangingStart)
+        if (m_stagingManager.StangingState == StagingState.enStangingStart)
         {
             return;
         }
@@ -701,12 +726,14 @@ public class BattleManager : MonoBehaviour
         var targetNumber = m_enemyMoveList[myNumber].SelectTargetPlayer();
         EnemyAction_Command(myNumber, actionType, skillNumber, targetNumber);
         // 演出を開始する
-        m_stagingManager.RegistrationTargets(actionType, m_turnStatus, targetNumber, myNumber);
+        m_stagingManager.ActionType = actionType;
+        m_stagingManager.RegistrationTargets(m_turnStatus, targetNumber, myNumber);
         m_enemyMoveList[myNumber].ActionEnd(actionType, skillNumber);
         // 演出が終了したなら以下の処理を実行する
-        await UniTask.WaitUntil(() => m_stagingManager.StangingState == StangingState.enStangingEnd);
+        await UniTask.WaitUntil(() => m_stagingManager.StangingState == StagingState.enStangingEnd);
         // 毒状態時のダメージを与える
         m_enemyMoveList[myNumber].DecrementHP(m_enemyMoveList[myNumber].PoisonDamage);
+        m_drawStatusValue.SetStatus();
     }
 
     /// <summary>
@@ -726,6 +753,7 @@ public class BattleManager : MonoBehaviour
                 m_enemyMoveList[myNumber].EnemyAction_Attack(targetNumber,m_playerMoveList[targetNumber].PlayerStatus.DEF);
                 break;
             case ActionType.enSkillAttack:
+                var value = 0;
                 switch (EnemyData.enemyDataList[myNumber].skillDataList[skillNumber].SkillType)
                 {
                     // タイプ：攻撃
@@ -758,22 +786,32 @@ public class BattleManager : MonoBehaviour
                         {
                             for (int enemyNumber = 0; enemyNumber < m_enemyMoveList.Count; enemyNumber++)
                             {
-                                m_enemyMoveList[myNumber].EnemyAction_Buff(
+                                value = m_enemyMoveList[myNumber].EnemyAction_Buff(
                                     skillNumber,                                                            // スキルの番号
                                     m_enemyMoveList[enemyNumber].EnemyStatus.ATK,                           // 攻撃力
                                     m_enemyMoveList[enemyNumber].EnemyStatus.DEF,                           // 防御力
-                                    m_enemyMoveList[enemyNumber].EnemyStatus.SPD,                           // 素早さ
+                                    m_enemyMoveList[enemyNumber].EnemyStatus.SPD                            // 素早さ
+                                    );
+                                m_enemyMoveList[enemyNumber].SetBuffStatus(
+                                    EnemyData.enemyDataList[myNumber].skillDataList[skillNumber].BuffType,
+                                    value,
+                                    skillNumber,
                                     true);
                             }
                             break;
                         }
                         // ターゲットを再選択
                         targetNumber = m_enemyMoveList[myNumber].SelectTargetEnemy(m_enemyMoveList.Count);
-                        m_enemyMoveList[myNumber].EnemyAction_Buff(
+                        value = m_enemyMoveList[myNumber].EnemyAction_Buff(
                             skillNumber,                                                                    // スキルの番号
                             m_enemyMoveList[targetNumber].EnemyStatus.ATK,                                  // 攻撃力
                             m_enemyMoveList[targetNumber].EnemyStatus.DEF,                                  // 防御力
-                            m_enemyMoveList[targetNumber].EnemyStatus.SPD,                                  // 素早さ
+                            m_enemyMoveList[targetNumber].EnemyStatus.SPD                                   // 素早さ
+                            );
+                        m_enemyMoveList[targetNumber].SetBuffStatus(
+                            EnemyData.enemyDataList[myNumber].skillDataList[skillNumber].BuffType,
+                            value,
+                            skillNumber,
                             true);
                         break;
                     // タイプ：デバフ
@@ -783,11 +821,16 @@ public class BattleManager : MonoBehaviour
                         {
                             for (int playerNumber = 0; playerNumber < m_enemyMoveList.Count; playerNumber++)
                             {
-                                m_enemyMoveList[myNumber].EnemyAction_Buff(
+                                value = m_enemyMoveList[myNumber].EnemyAction_Buff(
                                     skillNumber,                                                            // スキルの番号
                                     m_playerMoveList[playerNumber].PlayerStatus.ATK,                        // 攻撃力
                                     m_playerMoveList[playerNumber].PlayerStatus.DEF,                        // 防御力
-                                    m_playerMoveList[playerNumber].PlayerStatus.SPD,                        // 素早さ
+                                    m_playerMoveList[playerNumber].PlayerStatus.SPD                         // 素早さ
+                                    );
+                                m_playerMoveList[playerNumber].SetBuffStatus(
+                                    EnemyData.enemyDataList[myNumber].skillDataList[skillNumber].BuffType,
+                                    value,
+                                    skillNumber,
                                     false);
                             }
                             break;
@@ -796,7 +839,12 @@ public class BattleManager : MonoBehaviour
                             skillNumber,                                                                    // スキルの番号
                             m_playerMoveList[targetNumber].PlayerStatus.ATK,                                // 攻撃力
                             m_playerMoveList[targetNumber].PlayerStatus.DEF,                                // 防御力
-                            m_playerMoveList[targetNumber].PlayerStatus.SPD,                                // 素早さ
+                            m_playerMoveList[targetNumber].PlayerStatus.SPD                                 // 素早さ
+                            );
+                        m_playerMoveList[targetNumber].SetBuffStatus(
+                            EnemyData.enemyDataList[myNumber].skillDataList[skillNumber].BuffType,
+                            value,
+                            skillNumber,
                             false);
                         break;
                     // タイプ：回復
@@ -806,6 +854,14 @@ public class BattleManager : MonoBehaviour
                         targetNumber = m_enemyMoveList[myNumber].SelectTargetEnemy(m_enemyMoveList.Count);
                         m_enemyMoveList[myNumber].EnemyAction_HPResurrection(skillNumber, targetNumber);
                         m_enemyMoveList[myNumber].EnemyAction_HPRecover(m_enemyMoveList[targetNumber].EnemyStatus.HP, skillNumber);
+                        // 効果範囲が全体のとき
+                        if (EnemyData.enemyDataList[myNumber].skillDataList[skillNumber].EffectRange == EffectRange.enAll)
+                        {
+                            EnemyAction_AllRecover(m_enemyMoveList[myNumber].BasicValue);
+                            return;
+                        }
+                        // HPを回復させる
+                        m_enemyMoveList[targetNumber].RecoverHP(m_enemyMoveList[myNumber].BasicValue);
                         break;
                 }
                 break;
@@ -825,7 +881,7 @@ public class BattleManager : MonoBehaviour
     /// </summary>
     /// <param name="targetNumber">ターゲットの番号</param>
     /// <param name="damage">ダメージ量</param>
-    public void EnemyAction_DamagePlayer(int targetNumber, int damage)
+    public void DamagePlayer(int targetNumber, int damage)
     {
         m_playerMoveList[targetNumber].DecrementHP(damage);
     }
@@ -867,8 +923,16 @@ public class BattleManager : MonoBehaviour
     /// <param name="myNumber">自身の番号</param>
     public void EnemyListRemove(int myNumber)
     {
-        Destroy(m_enemyMoveList[myNumber].gameObject);
-        m_enemyMoveList.Remove(m_enemyMoveList[myNumber]);
+        for(int i= 0; i < m_enemyMoveList.Count; i++)
+        {
+            if(m_enemyMoveList[i].MyNumber != myNumber)
+            {
+                continue;
+            }
+            Destroy(m_enemyMoveList[i].gameObject);
+            m_enemyMoveList.Remove(m_enemyMoveList[i]);
+            break;
+        }
     }
 
     /// <summary>

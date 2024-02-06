@@ -31,12 +31,14 @@ public class PlayerMove : MonoBehaviour
     private const int HPMIN_VALUE = 0;              // HPの最小値
     private const int SPMIN_VALUE = 0;              // SPの最小値
 
+    private Animator m_animator;
     private BattleManager m_battleManager;
     private BattleSystem m_battleSystem;
     private StagingManager m_stagingManager;
     private StateAbnormalCalculation m_abnormalCalculation;
     private BuffCalculation m_buffCalculation;
     private DrawCommandText m_drawCommandText;
+    private SaveDataManager m_saveDataManager;                                      // セーブデータ
     private PlayerBattleStatus m_playerBattleStatus;                                // プレイヤーのステータス
     private ActorHPState m_actorHPState = ActorHPState.enMaxHP;                     // HPの状態
     private ActorAbnormalState m_actorAbnormalState = ActorAbnormalState.enNormal;  // 状態異常
@@ -114,6 +116,7 @@ public class PlayerMove : MonoBehaviour
         m_abnormalCalculation = gameObject.GetComponent<StateAbnormalCalculation>();
         m_buffCalculation = gameObject.GetComponent<BuffCalculation>();
         m_drawCommandText = gameObject.GetComponent<DrawCommandText>();
+        m_animator = gameObject.GetComponent<Animator>();
         SetStatus();
     }
     private void Start()
@@ -126,14 +129,14 @@ public class PlayerMove : MonoBehaviour
     /// </summary>
     private void SetStatus()
     {
-        var saveDataManager = GameManager.Instance.SaveData;
+        m_saveDataManager = GameManager.Instance.SaveData;
 
-        m_playerBattleStatus.HP = saveDataManager.SaveData.saveData.PlayerList[m_myNumber].HP;
-        m_playerBattleStatus.SP = saveDataManager.SaveData.saveData.PlayerList[m_myNumber].SP;
-        m_playerBattleStatus.ATK = saveDataManager.SaveData.saveData.PlayerList[m_myNumber].ATK;
-        m_playerBattleStatus.DEF = saveDataManager.SaveData.saveData.PlayerList[m_myNumber].DEF;
-        m_playerBattleStatus.SPD = saveDataManager.SaveData.saveData.PlayerList[m_myNumber].SPD;
-        m_playerBattleStatus.LUCK = saveDataManager.SaveData.saveData.PlayerList[m_myNumber].LUCK;
+        m_playerBattleStatus.HP = m_saveDataManager.SaveData.saveData.PlayerList[m_myNumber].HP;
+        m_playerBattleStatus.SP = m_saveDataManager.SaveData.saveData.PlayerList[m_myNumber].SP;
+        m_playerBattleStatus.ATK = m_saveDataManager.SaveData.saveData.PlayerList[m_myNumber].ATK;
+        m_playerBattleStatus.DEF = m_saveDataManager.SaveData.saveData.PlayerList[m_myNumber].DEF;
+        m_playerBattleStatus.SPD = m_saveDataManager.SaveData.saveData.PlayerList[m_myNumber].SPD;
+        m_playerBattleStatus.LUCK = m_saveDataManager.SaveData.saveData.PlayerList[m_myNumber].LUCK;
     }
 
     /// <summary>
@@ -146,11 +149,10 @@ public class PlayerMove : MonoBehaviour
             for (int dataNumber = 0; dataNumber < SkillData.skillDataList.Count; dataNumber++)
             {
                 // 識別番号が同じならデータを初期化する
-                if (PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].SkillNumber != SkillData.skillDataList[dataNumber].SkillNumber)
+                if (PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].ID != SkillData.skillDataList[dataNumber].ID)
                 {
                     continue;
                 }
-
                 PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].SkillName = SkillData.skillDataList[dataNumber].SkillName;
                 PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].SkillSprite = SkillData.skillDataList[dataNumber].SkillSprite;
                 PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].POW = SkillData.skillDataList[dataNumber].POW;
@@ -158,10 +160,13 @@ public class PlayerMove : MonoBehaviour
                 PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].SkillNecessary = SkillData.skillDataList[dataNumber].SkillNecessary;
                 PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].SkillDetail = SkillData.skillDataList[dataNumber].SkillDetail;
                 PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].EnhancementPoint = SkillData.skillDataList[dataNumber].EnhancementPoint;
+                PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].SkillEffect = SkillData.skillDataList[dataNumber].SkillEffect;
+                PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].EffectScale = SkillData.skillDataList[dataNumber].EffectScale;
                 PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].Type = SkillData.skillDataList[dataNumber].Type;
                 PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].SkillType = SkillData.skillDataList[dataNumber].SkillType;
                 PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].BuffType = SkillData.skillDataList[dataNumber].BuffType;
                 PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].EffectRange = SkillData.skillDataList[dataNumber].EffectRange;
+                PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].TargetState = SkillData.skillDataList[dataNumber].TargetState;
             }
         }
     }
@@ -169,8 +174,14 @@ public class PlayerMove : MonoBehaviour
     private void FixedUpdate()
     {
         RotationSprite();
-        ActorHPState = SetHPStatus();
-
+        if (m_battleManager.GameState != GameState.enPlay)
+        {
+            return;
+        }
+        if (m_battleManager.PauseFlag == true)
+        {
+            return;
+        }
         for (int i = 0; i < (int)BuffStatus.enNum; i++)
         {
             if (m_buffCalculation.GetEffectEndFlag((BuffStatus)i) == false)
@@ -195,14 +206,13 @@ public class PlayerMove : MonoBehaviour
             PlayerStatus.ATK,// 攻撃力
             attackedDEF                                         // 防御力
             );
-
         // 混乱状態なら
         if (ConfusionFlag == true)
         {
-            DecrementHP(BasicValue);
+            m_battleManager.DamagePlayer(targetNumber, BasicValue);
             return;
         }
-        m_battleManager.PlayerAction_DamageEnemy(targetNumber, BasicValue);
+        m_battleManager.DamageEnemy(targetNumber, BasicValue);
     }
 
     /// <summary>
@@ -233,7 +243,7 @@ public class PlayerMove : MonoBehaviour
         }
         AddingEffectCalculation(targetNumber, skillNumber);
         // ダメージを設定する
-        m_battleManager.PlayerAction_DamageEnemy(targetNumber, BasicValue);
+        m_battleManager.DamageEnemy(targetNumber, BasicValue);
         PlayerAction_Decrement(skillNumber);
     }
 
@@ -254,7 +264,6 @@ public class PlayerMove : MonoBehaviour
         {
             return;
         }
-
         // ステートを変更する
         m_battleManager.PlayerAction_ChangeStateEnemy(targetNumber,abnormalState);
     }
@@ -264,10 +273,10 @@ public class PlayerMove : MonoBehaviour
     /// </summary>
     /// <param name="skillNumber">スキルの番号</param>
     /// <param name="attackedATK">防御側の攻撃力</param>
-    /// <param name="attackDEF">防御側の防御力</param>
-    /// <param name="attackSPD">防御側の素早さ</param>
+    /// <param name="attackedDEF">防御側の防御力</param>
+    /// <param name="attackedSPD">防御側の素早さ</param>
     /// <param name="isBuff">trueならバフ。falseならデバフ</param>
-    public void PlayerAction_Buff(int skillNumber, int attackedATK, int attackDEF, int attackSPD, bool isBuff)
+    public int PlayerAction_Buff(int skillNumber, int attackedATK, int attackedDEF, int attackedSPD)
     {
         // パラメータを参照
         var param = 0;
@@ -277,10 +286,10 @@ public class PlayerMove : MonoBehaviour
                 param = attackedATK;
                 break;
             case BuffType.enDEF:
-                param = attackDEF;
+                param = attackedDEF;
                 break;
             case BuffType.enSPD:
-                param = attackSPD;
+                param = attackedSPD;
                 break;
         }
         // 値の計算
@@ -288,20 +297,13 @@ public class PlayerMove : MonoBehaviour
             param,
             PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].POW
             );
-        // 値を設定する
-        SetBuffStatus(
-            PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].BuffType,
-            value,
-            skillNumber,
-            isBuff
-            );
         PlayerAction_Decrement(skillNumber);
+        return value;
     }
 
     /// <summary>
     /// HPを回復する処理
     /// </summary>
-    /// <param name="myNumber">自身の番号</param>
     /// <param name="targetNumber">ターゲットの番号</param>
     /// <param name="skillNumber">スキルの番号</param>
     public void PlayerAction_HPRecover(int targetNumber, int skillNumber)
@@ -312,8 +314,6 @@ public class PlayerMove : MonoBehaviour
                 PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].POW
                 );
 
-        // HPを回復させる
-        RecoverHP(BasicValue);
         PlayerAction_Decrement(skillNumber);
     }
 
@@ -354,9 +354,9 @@ public class PlayerMove : MonoBehaviour
     {
         m_playerBattleStatus.HP += recoverValue;
         // 一定以上なら補正
-        if (m_playerBattleStatus.HP >= PlayerData.playerDataList[m_myNumber].HP)
+        if (m_playerBattleStatus.HP >= m_saveDataManager.SaveData.saveData.PlayerList[MyNumber].HP)
         {
-            m_playerBattleStatus.HP = PlayerData.playerDataList[m_myNumber].HP;
+            m_playerBattleStatus.HP = m_saveDataManager.SaveData.saveData.PlayerList[MyNumber].HP;
         }
         ActorHPState = SetHPStatus();
     }
@@ -373,6 +373,7 @@ public class PlayerMove : MonoBehaviour
         {
             m_playerBattleStatus.HP = HPMIN_VALUE;
         }
+        m_animator.SetTrigger("Damage");            // アニメーションを再生
         ActorHPState = SetHPStatus();
     }
 
@@ -397,13 +398,13 @@ public class PlayerMove : MonoBehaviour
     /// <param name="statusFloatingValue">変更する値</param>
     /// <param name="skillNumber">スキルの番号</param>
     ///  <param name="isBuff">trueならバフ。falseならデバフ</param>
-    private void SetBuffStatus(BuffType buffType, int statusFloatingValue,int skillNumber, bool isBuff)
+    public void SetBuffStatus(BuffType buffType, int statusFloatingValue,int skillNumber, bool isBuff)
     {
         var effectTime = 1;
         // スキルの番号が指定されているなら
         if(skillNumber >= 0)
         {
-            effectTime = PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].StateAbnormalData.EffectTime;
+            effectTime = SkillData.skillDataList[skillNumber].StateAbnormalData.EffectTime;
         }
 
         switch (buffType)
@@ -411,8 +412,7 @@ public class PlayerMove : MonoBehaviour
             case BuffType.enATK:
                 if (isBuff == true)
                 {
-                    m_buffCalculation.CalcBuff(
-                        BuffStatus.enBuff_ATK, statusFloatingValue, m_playerBattleStatus.ATK, effectTime);
+                    m_buffCalculation.CalcBuff(BuffStatus.enBuff_ATK, statusFloatingValue, m_playerBattleStatus.ATK, effectTime);
                     m_drawCommandText.SetStatusText(BuffStatus.enBuff_ATK);
                     break;
                 }
@@ -459,7 +459,7 @@ public class PlayerMove : MonoBehaviour
     /// <param name="skillNumber">スキルの番号</param>
     public void ActionEnd(ActionType actionType, int skillNumber)
     {
-        m_drawCommandText.SetCommandText(actionType, PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].SkillNumber);
+        m_drawCommandText.SetCommandText(actionType, PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].ID);
         ActionEndFlag = true;
     }
 
@@ -515,15 +515,13 @@ public class PlayerMove : MonoBehaviour
     {
         if(PlayerStatus.HP <= HPMIN_VALUE)
         {
-            Die();
+            Die();  // 死亡処理
             return ActorHPState.enDie;
         }
-
         if(PlayerStatus.HP <= PlayerData.playerDataList[m_myNumber].HP / 4)
         {
             return ActorHPState.enFewHP;
         }
-
         return ActorHPState.enMaxHP;
     }
 
@@ -570,7 +568,7 @@ public class PlayerMove : MonoBehaviour
     async private void Die()
     {
         // 演出が終了したら実行する
-        await UniTask.WaitUntil(() => m_stagingManager.StangingState == StangingState.enStangingEnd);
+        await UniTask.WaitUntil(() => m_stagingManager.StangingState == StagingState.enStangingEnd);
         m_isActionEnd = true;       // 行動ができないので行動終了のフラグを立てる
         tag = "DiePlayer";
     }

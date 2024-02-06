@@ -6,7 +6,7 @@ public class BuffCalculation : MonoBehaviour
 {
     private BattleManager m_battleManager;
     private bool[] m_buffFlag =
-        new bool[(int)BuffStatus.enNum];    // バフがかかっているかどうか
+        new bool[(int)BuffStatus.enNum];     // バフがかかっているかどうか
     private bool[] m_effectEndFlag =
         new bool[(int)BuffStatus.enNum];    // 効果時間が終了しているかどうか
     private int[] m_buffTargetParam =
@@ -14,16 +14,6 @@ public class BuffCalculation : MonoBehaviour
     private int[] m_buffEffectTime =
         new int[(int)BuffStatus.enNum];     // バフの効果時間
     private int m_turnSum = 0;              // ターンの総数
-
-    /// <summary>
-    /// 上昇値・下降値を取得する
-    /// </summary>
-    /// <param name="buffStatus">バフのタイプ</param>
-    /// <returns>変動後の値</returns>
-    public int GetBuffParam(BuffStatus buffStatus)
-    {
-        return m_buffTargetParam[(int)buffStatus];
-    }
 
     /// <summary>
     /// 上昇値・下降値を設定する
@@ -113,7 +103,6 @@ public class BuffCalculation : MonoBehaviour
         {
             return;
         }
-
         // 保持している経過ターン数が現在の経過ターン数と同じなら中断
         if(m_turnSum == m_battleManager.TurnSum)
         {
@@ -163,7 +152,6 @@ public class BuffCalculation : MonoBehaviour
     /// <param name="buffStatus">バフのタイプ</param>
     /// <param name="statusFloatingValue">増加値</param>
     /// <param name="originalValue">元の値</param>
-    /// <param name="skillNumber">スキルの番号</param>
     /// <returns>変動後の値</returns>
     public int CalcBuff(BuffStatus buffStatus, int statusFloatingValue, int originalValue, int effectTime)
     {
@@ -173,16 +161,14 @@ public class BuffCalculation : MonoBehaviour
             SetEffectTime(buffStatus, effectTime);  // 効果時間を追加
 
             Debug.Log("効果時間が" + effectTime + "伸びた");
-
             return originalValue;
         }
-
+        // 値を設定する
         SetBuffParam(buffStatus, statusFloatingValue);
         SetBuffFlag(buffStatus, true);
         SetEffectTime(buffStatus, effectTime);
 
         Debug.Log(buffStatus + "が上昇");
-
         return originalValue + statusFloatingValue;
     }
 
@@ -192,7 +178,6 @@ public class BuffCalculation : MonoBehaviour
     /// <param name="buffStatus">バフのタイプ</param>
     /// <param name="statusFloatingValue">減少値</param>
     /// <param name="originalValue">元の値</param>
-    ///     /// <param name="skillNumber">スキルの番号</param>
     /// <returns>変動後の値</returns>
     public int CalcDebuff(BuffStatus buffStatus, int statusFloatingValue, int originalValue, int effectTime)
     {
@@ -204,13 +189,12 @@ public class BuffCalculation : MonoBehaviour
 
             return originalValue;
         }
-
+        // 値を設定する
         SetBuffParam(buffStatus, statusFloatingValue);
         SetBuffFlag(buffStatus, true);
         SetEffectTime(buffStatus, effectTime);
 
         Debug.Log(buffStatus + "が減少");
-
         return originalValue - statusFloatingValue;
     }
 
@@ -223,7 +207,6 @@ public class BuffCalculation : MonoBehaviour
         {
             return originalValue - m_buffTargetParam[(int)buffStatus];
         }
-
         return originalValue + m_buffTargetParam[(int)buffStatus];
     }
 }

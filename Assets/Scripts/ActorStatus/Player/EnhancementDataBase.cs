@@ -19,10 +19,11 @@ public enum EnhancementStatus
 /// プレイヤーの強化の構造体
 /// </summary>
 [System.Serializable]
-public class PlayerEnhancementData
+public class EnhancementData
 {
     [SerializeField, Header("情報")]
     public string EnhancementName;                                  // 名前
+    public int ID;                                                  // 識別番号
     public Sprite EnhancementSprite;                                // 画像
     public EnhancementStatus EnhancementStatus;                     // 強化する対象
     public int AddValue;                                            // 強化値
@@ -30,8 +31,8 @@ public class PlayerEnhancementData
     public int EnhancementPoint;                                    // 必要強化ポイント
 }
 
-[CreateAssetMenu(fileName = "PlayerEnhancementDataBase", menuName = "CreatePlayerEnhancementDataBase")]
-public class PlayerEnhancementDataBase : ScriptableObject
+[CreateAssetMenu(fileName = "EnhancementDataBase", menuName = "CreateEnhancementDataBase")]
+public class EnhancementDataBase : ScriptableObject
 {
-    public List<PlayerEnhancementData> playerEnhancementDataList = new List<PlayerEnhancementData>();
+    public List<EnhancementData> enhancementDataList = new List<EnhancementData>();
 }

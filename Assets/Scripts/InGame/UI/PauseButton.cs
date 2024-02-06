@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class PauseButton : MonoBehaviour
 {
-    [SerializeField, Header("参照オブジェクト")]
-    private GameObject PauseCanvas;
-
     private BattleManager m_battleManager;
 
     private void Start()
@@ -19,7 +16,6 @@ public class PauseButton : MonoBehaviour
     /// </summary>
     public void ButtonDown()
     {
-        PauseCanvas.SetActive(true);
         m_battleManager.PauseFlag = true;
     }
 
@@ -28,7 +24,6 @@ public class PauseButton : MonoBehaviour
     /// </summary>
     public void ReturnGameButtonDown()
     {
-        PauseCanvas.SetActive(false);
         m_battleManager.PauseFlag = false;
     }
 }

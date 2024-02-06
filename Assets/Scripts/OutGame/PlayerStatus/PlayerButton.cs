@@ -40,6 +40,14 @@ public class PlayerButton : MonoBehaviour
     }
 
     /// <summary>
+    /// 初期化用の関数。PlayerEnhancemntだけを教える
+    /// </summary>
+    public void SetPlayerEnhancement(PlayerEnhancementSystem playerEnhancement)
+    {
+        m_playerEnhancement = playerEnhancement;
+    }
+
+    /// <summary>
     /// ボタンが押された時の処理
     /// </summary>
     public void PlayerStatusButtonDown()
@@ -68,7 +76,7 @@ public class PlayerButton : MonoBehaviour
     /// </summary>
     public void PlayerEnhancement_SkillButtonDown()
     {
-        m_playerEnhancement.DisplaySetSkillData(PlayerNumberManager.PlayerNumber);
+        m_playerEnhancement.DisplaySetSkillData(GameManager.Instance.PlayerNumber);
     }
 
     /// <summary>
@@ -76,6 +84,6 @@ public class PlayerButton : MonoBehaviour
     /// </summary>
     public void PlayerEnhancement_StatusButtonDown()
     {
-        m_playerEnhancement.DisplaySetStatusData(PlayerNumberManager.PlayerNumber);
+        m_playerEnhancement.DisplaySetStatusData(GameManager.Instance.PlayerNumber);
     }
 }

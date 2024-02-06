@@ -8,6 +8,8 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     private GameObject SaveDataObject;
 
     private SaveDataManager m_saveDataManager;
+    private int m_selectLevelNumber = 0;
+    private int m_selectPlayerNumber = 0;
 
     public SaveDataManager SaveData
     {
@@ -22,24 +24,34 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         }
     }
 
+    public int PlayerNumber
+    {
+        get => m_selectPlayerNumber;
+        set => m_selectPlayerNumber = value;
+    }
+
+    public int LevelNumber
+    {
+        get => m_selectLevelNumber;
+        set => m_selectLevelNumber = value;
+    }
+
     new private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
-
         if (m_saveDataManager == null)
         {
             Instantiate(SaveDataObject);
             // 存在していないなら探す
             m_saveDataManager = FindObjectOfType<SaveDataManager>();
         }
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
+        else
         {
-            m_saveDataManager.Save();
-            Debug.Log("セーブしたよ！");
+            return;
         }
+
+        DontDestroyOnLoad(gameObject);
+
+        Application.targetFrameRate = 60;
+        Physics.autoSimulation = false;
     }
 }

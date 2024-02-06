@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Cysharp.Threading.Tasks;
+using System;
 
 public class DrawStatusValue : MonoBehaviour
 {
@@ -14,12 +16,18 @@ public class DrawStatusValue : MonoBehaviour
     private StateAbnormalDataBase StateAbnormalData;
     [SerializeField, Header("HP")]
     private GameObject[] Data_HPText;
+    [SerializeField, Header("HPゲージ")]
+    private GameObject[] Data_HPBarGreen;
     [SerializeField]
-    private GameObject[] Data_HPBar;
+    private GameObject[] Data_HPBarRed;
     [SerializeField, Header("SP")]
     private GameObject[] Data_SPText;
+    [SerializeField, Header("SPゲージ")]
+    private GameObject[] Data_SPBarYellow;
     [SerializeField]
-    private GameObject[] Data_SPBar;
+    private GameObject[] Data_SPBarRed;
+    [SerializeField, Header("赤ゲージが減る処理を行う待機時間(秒)")]
+    private float WaitTime = 1.0f;
     [SerializeField, Header("バフ")]
     private GameObject[] Content;
     [SerializeField, Header("状態異常")]
@@ -62,7 +70,6 @@ public class DrawStatusValue : MonoBehaviour
         {
             Data_HPText[i].GetComponent<TextMeshProUGUI>().text =
                 m_playerMove[i].PlayerStatus.HP.ToString();
-
             Data_SPText[i].GetComponent<TextMeshProUGUI>().text =
                 m_playerMove[i].PlayerStatus.SP.ToString();
         }
@@ -75,30 +82,33 @@ public class DrawStatusValue : MonoBehaviour
     {
         for (int i = 0; i < PlayerData.playerDataList.Count; i++)
         {
-            Data_HPBar[i].GetComponent<Image>().fillAmount =
-                CalculateRate(
-                    m_playerMove[i].PlayerStatus.HP,
-                    PlayerData.playerDataList[i].HP
-                    );
-
-            Data_SPBar[i].GetComponent<Image>().fillAmount =
-                CalculateRate(
-                    m_playerMove[i].PlayerStatus.SP,
-                    PlayerData.playerDataList[i].SP
-                    );
-
+            SetFillAmount(i);
             DrawStatusAbnormalImage(i);
+            DrawBuffStatusImage(i);
         }
+    }
+
+    /// <summary>
+    /// バーの割合を設定する
+    /// </summary>
+    async private void SetFillAmount(int number)
+    {
+        Data_HPBarGreen[number].GetComponent<Image>().fillAmount =
+        CalculateRate(m_playerMove[number].PlayerStatus.HP, PlayerData.playerDataList[number].HP);
+        Data_SPBarYellow[number].GetComponent<Image>().fillAmount =
+        CalculateRate(m_playerMove[number].PlayerStatus.SP, PlayerData.playerDataList[number].SP);
+
+        await UniTask.Delay(TimeSpan.FromSeconds(WaitTime));    // 一定秒待機する
     }
 
     /// <summary>
     /// HP・SPの割合を計算する
     /// </summary>
-    /// <param name="nowValue">現在の値</param>
+    /// <param name="nowValue">現在値</param>
     /// <param name="maxValue">最大値</param>
     private float CalculateRate(int nowValue, int maxValue)
     {
-        float rate = 0.0f;
+        var rate = 0.0f;
         return rate = (float)nowValue / (float)maxValue;
     }
 
@@ -121,7 +131,7 @@ public class DrawStatusValue : MonoBehaviour
                 continue;
             }
             // 番号を設定
-            var stateNumber = (int)StateAbnormalData.stateAbnormalList[i].StateNumber;
+            var stateNumber = (int)StateAbnormalData.stateAbnormalList[i].ID;
             // スプライトを設定する
             Data_StatusAbnormalImage[number].GetComponent<Image>().sprite =
                 StateAbnormalData.stateAbnormalList[stateNumber].StateImage;
@@ -146,27 +156,115 @@ public class DrawStatusValue : MonoBehaviour
         }
 
         var buffCalculation = m_playerMove[number].GetComponent<BuffCalculation>();
-
-        // バフ・デバフがかかっているなら
-        for(int i = 0; i < Content[number].gameObject.transform.childCount; i++)
+        if(buffCalculation.GetBuffFlag(BuffStatus.enBuff_ATK) == true)
         {
-            for (int j = 0; j < (int)BuffStatus.enNum; j++)
+            if(buffCalculation.GetBuffFlag(BuffStatus.enDeBuff_ATK) == true)
             {
-                // バフがかかっていないなら描画はしない
-                if (buffCalculation.GetBuffFlag((BuffStatus)j) == false)
-                {
-                    Content[number].transform.GetChild(i).gameObject.SetActive(false);
-                    continue;
-                }
-
-                // 番号を設定
-                var stateNumber = j + 1;
-                // スプライトを設定
-                Content[number].gameObject.transform.GetChild(i).GetComponent<Image>().sprite =
-                    StateAbnormalData.stateAbnormalList[stateNumber].StateImage;
-                Content[number].transform.GetChild(i).gameObject.SetActive(true);
-                break;
+                return;
             }
+            SetImage(number, 0, 1, true);
         }
+        else
+        {
+            if (buffCalculation.GetBuffFlag(BuffStatus.enDeBuff_ATK) == true)
+            {
+                return;
+            }
+            SetImage(number, 0, 1, false);
+        }
+        if (buffCalculation.GetBuffFlag(BuffStatus.enBuff_DEF) == true)
+        {
+            if (buffCalculation.GetBuffFlag(BuffStatus.enDeBuff_DEF) == true)
+            {
+                return;
+            }
+            SetImage(number, 1, 2, true);
+        }
+        else
+        {
+            if (buffCalculation.GetBuffFlag(BuffStatus.enDeBuff_DEF) == true)
+            {
+                return;
+            }
+            SetImage(number, 1, 2, false);
+        }
+        if (buffCalculation.GetBuffFlag(BuffStatus.enBuff_SPD) == true)
+        {
+            if (buffCalculation.GetBuffFlag(BuffStatus.enDeBuff_SPD) == true)
+            {
+                return;
+            }
+            SetImage(number, 2, 3, true);
+        }
+        else
+        {
+            if (buffCalculation.GetBuffFlag(BuffStatus.enDeBuff_SPD) == true)
+            {
+                return;
+            }
+            SetImage(number, 2, 3, false);
+        }
+        if (buffCalculation.GetBuffFlag(BuffStatus.enDeBuff_ATK) == true)
+        {
+            if (buffCalculation.GetBuffFlag(BuffStatus.enBuff_ATK) == true)
+            {
+                return;
+            }
+            SetImage(number, 0, 4, true);
+        }
+        else
+        {
+            if (buffCalculation.GetBuffFlag(BuffStatus.enBuff_ATK) == true)
+            {
+                return;
+            }
+            SetImage(number, 0, 4, false);
+        }
+        if (buffCalculation.GetBuffFlag(BuffStatus.enDeBuff_DEF) == true)
+        {
+            if (buffCalculation.GetBuffFlag(BuffStatus.enBuff_DEF) == true)
+            {
+                return;
+            }
+            SetImage(number, 1, 5, true);
+        }
+        else
+        {
+            if (buffCalculation.GetBuffFlag(BuffStatus.enBuff_DEF) == true)
+            {
+                return;
+            }
+            SetImage(number, 1, 5, false);
+        }
+        if(buffCalculation.GetBuffFlag(BuffStatus.enDeBuff_SPD) == true)
+        {
+            if (buffCalculation.GetBuffFlag(BuffStatus.enBuff_SPD) == true)
+            {
+                return;
+            }
+            SetImage(number, 2, 6, true);
+        }
+        else
+        {
+            if (buffCalculation.GetBuffFlag(BuffStatus.enBuff_DEF) == true)
+            {
+                return;
+            }
+            SetImage(number, 2, 6, false);
+        }
+    }
+
+    /// <summary>
+    /// 画像を設定する
+    /// </summary>
+    /// <param name="contentNumber"></param>
+    /// <param name="childNumber"></param>
+    /// <param name="listNumber"></param>
+    /// <param name="flag">trueなら描画する。falseなら描画しない</param>
+    private void SetImage(int contentNumber, int childNumber, int listNumber, bool flag)
+    {
+        Content[contentNumber].transform.GetChild(childNumber).GetComponent<Image>().sprite = 
+            StateAbnormalData.stateAbnormalList[listNumber].StateImage;
+        Content[contentNumber].transform.GetChild(childNumber).gameObject.SetActive(flag);
     }
 }

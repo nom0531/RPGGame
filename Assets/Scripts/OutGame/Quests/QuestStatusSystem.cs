@@ -27,17 +27,7 @@ public class QuestStatusSystem : MonoBehaviour
 
     private const int MAX_INSTANTIATE_SUM = 3;  // エネミーの画像の最大数
 
-    private SaveDataManager m_saveDataManager;
-    private int m_selectQuestNumber = 0;        // 現在選択しているクエストの番号
-
-    /// <summary>
-    /// 現在選択しているクエストの番号を取得する
-    /// </summary>
-    /// <returns>クエストの番号</returns>
-    public int GetSelectQyestNumber()
-    {
-        return m_selectQuestNumber;
-    }
+    private GameManager m_gameManager;
 
     private void Start()
     {
@@ -52,11 +42,9 @@ public class QuestStatusSystem : MonoBehaviour
             }
         }
 
-        m_saveDataManager = GameManager.Instance.SaveData;
-
+        m_gameManager = GameManager.Instance;
         Data_QuestName.SetActive(false);
         Data_QuestDetail.SetActive(false);
-
         QuestStartButton.GetComponent<Button>().interactable = false;
 
         for (int QuestNumber = 0; QuestNumber < LevelData.levelDataList.Count; QuestNumber++)
@@ -67,14 +55,12 @@ public class QuestStatusSystem : MonoBehaviour
             // サイズを調整
             questObject.transform.localScale = Vector3.one;
             questObject.transform.localPosition = Vector3.zero;
-
             // 既にクリアしているなら
-            if (m_saveDataManager.SaveData.saveData.ClearStage[QuestNumber] == true)
+            if (m_gameManager.SaveData.SaveData.saveData.ClearStage[QuestNumber] == true)
             {
                 // Clearのテキストを表示する
                 questObject.transform.GetChild(1).gameObject.SetActive(true);
             }
-
             var questButton = questObject.GetComponent<QuestButton>();
             questButton.SetQuestStatus(
                 QuestNumber,
@@ -95,13 +81,14 @@ public class QuestStatusSystem : MonoBehaviour
     {
         for (int dataNumber = 0; dataNumber < EnemyData.enemyDataList.Count; dataNumber++)
         {
+            // 環境の判定
             switch (LevelData.levelDataList[number].LocationType)
             {
                 case LocationType.enHell:
                 case LocationType.enForest:
                 case LocationType.enSea:
                 case LocationType.enVolcano:
-
+                    // 全ての環境に対応しているなら処理を飛ばす
                     if (EnemyData.enemyDataList[dataNumber].PopLocation == LocationType.enAllLocation)
                     {
                         break;
@@ -110,16 +97,15 @@ public class QuestStatusSystem : MonoBehaviour
                     {
                         continue;
                     }
-
                     break;
             }
-
+            // 時間の判定
             switch (LevelData.levelDataList[number].LocationTime)
             {
                 case LocationTime.enMorning:
                 case LocationTime.enTwilight:
                 case LocationTime.enEvening:
-
+                    // 全ての時間に対応しているなら処理を飛ばす
                     if (EnemyData.enemyDataList[dataNumber].PopTime == LocationTime.enAllTime)
                     {
                         break;
@@ -128,13 +114,11 @@ public class QuestStatusSystem : MonoBehaviour
                     {
                         continue;
                     }
-
                     break;
             }
-
-            // データを追加する
+            // 当てはまっているならデータを追加する
             var enemyData = new EnemyData();
-            enemyData.EnemyNumber = EnemyData.enemyDataList[dataNumber].EnemyNumber;
+            enemyData.ID = EnemyData.enemyDataList[dataNumber].ID;
             LevelData.levelDataList[number].enemyDataList.Add(enemyData);
         }
     }
@@ -145,19 +129,14 @@ public class QuestStatusSystem : MonoBehaviour
     /// <param name="number">クエストの番号</param>
     public void DisplaySetSValue(int number)
     {
-        m_selectQuestNumber = number;
-
+        m_gameManager.LevelNumber = number;
         QuestStartButton.GetComponent<Button>().interactable = true;
         DestroyEnemySprites();
-
         Data_QuestName.SetActive(true);
         Data_QuestDetail.SetActive(true);
-
         // 値を更新
-        Data_QuestName.GetComponent<TextMeshProUGUI>().text =
-            $"「{LevelData.levelDataList[number].LevelName}」";
-        Data_QuestDetail.GetComponent<TextMeshProUGUI>().text =
-            LevelData.levelDataList[number].LevelDetail;
+        Data_QuestName.GetComponent<TextMeshProUGUI>().text = $"「{LevelData.levelDataList[number].LevelName}」";
+        Data_QuestDetail.GetComponent<TextMeshProUGUI>().text = LevelData.levelDataList[number].LevelDetail;
 
         SetEnemySprites(number);
     }
@@ -169,7 +148,6 @@ public class QuestStatusSystem : MonoBehaviour
     private void SetEnemySprites(int number)
     {
         int InstantiateSum = 0; // オブジェクトの生成数
-
         for (int enemyNumber = 0; enemyNumber < LevelData.levelDataList[number].enemyDataList.Count; enemyNumber++)
         {
             for (int dataNumber = 0; dataNumber < EnemyData.enemyDataList.Count; dataNumber++)
@@ -179,16 +157,13 @@ public class QuestStatusSystem : MonoBehaviour
                     // 生成数が最大数を超えているなら終了する
                     break;
                 }
-
                 // エネミーの画像を生成
-                if (LevelData.levelDataList[number].enemyDataList[enemyNumber].EnemyNumber != EnemyData.enemyDataList[dataNumber].EnemyNumber)
+                if (LevelData.levelDataList[number].enemyDataList[enemyNumber].ID != EnemyData.enemyDataList[dataNumber].ID)
                 {
                     // 番号が異なるなら次のループに移行する
                     continue;
                 }
-
-                int instrantiateNumber = LevelData.levelDataList[number].enemyDataList[enemyNumber].EnemyNumber;
-
+                var instrantiateNumber = LevelData.levelDataList[number].enemyDataList[enemyNumber].ID;
                 var enemyObject = Instantiate(EnemyImage);
                 enemyObject.transform.SetParent(EnemyContent.transform);
                 enemyObject.GetComponent<Image>().sprite = EnemyData.enemyDataList[instrantiateNumber].EnemySprite;
@@ -196,14 +171,12 @@ public class QuestStatusSystem : MonoBehaviour
                 enemyObject.transform.localScale = Vector3.one;
                 enemyObject.transform.localPosition = Vector3.zero;
 
-                if (m_saveDataManager.SaveData.saveData.EnemyRegisters[enemyNumber] != true)
+                if (m_gameManager.SaveData.SaveData.saveData.EnemyRegisters[enemyNumber] != true)
                 {
                     // 発見していないならカラーを変更する
                     enemyObject.GetComponent<Image>().color = Color.black;
                 }
-
                 InstantiateSum++;
-
                 break;
             }
         }

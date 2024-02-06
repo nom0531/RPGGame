@@ -70,11 +70,13 @@ public class BattleSystem : MonoBehaviour
     public bool OneMore
     {
         get => m_isOnemore;
+        set => m_isOnemore = value;
     }
 
     public bool Hit
     {
         get => m_isHit;
+        set => m_isHit = value;
     }
 
     /// <summary>

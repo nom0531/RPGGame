@@ -123,8 +123,8 @@ public class EnemyDataEditor : EditorWindow
         EditorGUILayout.BeginVertical(GUI.skin.box);
         {
             // Šî‘bî•ñ‚ğ•\¦
-            m_enemyDataBase.enemyDataList[m_selectNumber].EnemyNumber = m_selectNumber;
-            GUILayout.Label($"ID:{m_enemyDataBase.enemyDataList[m_selectNumber].EnemyNumber}   Name:{m_nameList[m_selectNumber]}");
+            m_enemyDataBase.enemyDataList[m_selectNumber].ID = m_selectNumber;
+            GUILayout.Label($"ID:{m_enemyDataBase.enemyDataList[m_selectNumber].ID}   Name:{m_nameList[m_selectNumber]}");
 
             // ‹ó”’
             EditorGUILayout.Space();

@@ -27,6 +27,7 @@ public class EnemyMove : MonoBehaviour
     private const int HPMIN_VALUE = 0;              // HPの最小値
     private const float WAIT_TIME = 2.0f;           // 死亡判定時の待機時間
 
+    private Animator m_animator;
     private List<PlayerMove> m_playerMoveList;
     private SaveDataManager m_saveDataManager;
     private BattleSystem m_battleSystem;
@@ -147,6 +148,7 @@ public class EnemyMove : MonoBehaviour
         m_abnormalCalculation = gameObject.GetComponent<StateAbnormalCalculation>();
         m_buffCalculation = gameObject.GetComponent<BuffCalculation>();
         m_drawCommandText = gameObject.GetComponent<DrawCommandText>();
+        m_animator = gameObject.GetComponent<Animator>();
         SetStatus();
         SetSkills();
         SetMoves();
@@ -161,8 +163,14 @@ public class EnemyMove : MonoBehaviour
     private void FixedUpdate()
     {
         RotationSprite();
-        ActorHPState = SetHPStatus();
-
+        if (m_battleManager.GameState != GameState.enPlay)
+        {
+            return;
+        }
+        if (m_battleManager.PauseFlag == true)
+        {
+            return;
+        }
         for (int i = 0; i < (int)BuffStatus.enNum; i++)
         {
             if (m_buffCalculation.GetEffectEndFlag((BuffStatus)i) == false)
@@ -196,7 +204,7 @@ public class EnemyMove : MonoBehaviour
             for (int dataNumber = 0; dataNumber < SkillData.skillDataList.Count; dataNumber++)
             {
                 // 識別番号が同じならデータを初期化する
-                if (EnemyData.enemyDataList[m_myNumber].skillDataList[skillNumber].SkillNumber != SkillData.skillDataList[dataNumber].SkillNumber)
+                if (EnemyData.enemyDataList[m_myNumber].skillDataList[skillNumber].ID != SkillData.skillDataList[dataNumber].ID)
                 {
                     continue;
                 }
@@ -206,10 +214,13 @@ public class EnemyMove : MonoBehaviour
                 EnemyData.enemyDataList[m_myNumber].skillDataList[skillNumber].SkillElement = SkillData.skillDataList[dataNumber].SkillElement;
                 EnemyData.enemyDataList[m_myNumber].skillDataList[skillNumber].EnhancementPoint = SkillData.skillDataList[dataNumber].EnhancementPoint;
                 EnemyData.enemyDataList[m_myNumber].skillDataList[skillNumber].SkillNecessary = SkillData.skillDataList[dataNumber].SkillNecessary;
+                EnemyData.enemyDataList[m_myNumber].skillDataList[skillNumber].SkillEffect = SkillData.skillDataList[dataNumber].SkillEffect;
+                EnemyData.enemyDataList[m_myNumber].skillDataList[skillNumber].EffectScale = SkillData.skillDataList[dataNumber].EffectScale;
                 EnemyData.enemyDataList[m_myNumber].skillDataList[skillNumber].Type = SkillData.skillDataList[dataNumber].Type;
                 EnemyData.enemyDataList[m_myNumber].skillDataList[skillNumber].BuffType = SkillData.skillDataList[dataNumber].BuffType;
                 EnemyData.enemyDataList[m_myNumber].skillDataList[skillNumber].SkillType = SkillData.skillDataList[dataNumber].SkillType;
                 EnemyData.enemyDataList[m_myNumber].skillDataList[skillNumber].EffectRange = SkillData.skillDataList[dataNumber].EffectRange;
+                EnemyData.enemyDataList[m_myNumber].skillDataList[skillNumber].TargetState = SkillData.skillDataList[dataNumber].TargetState;
             }
         }
     }
@@ -224,11 +235,11 @@ public class EnemyMove : MonoBehaviour
             for (int dataNumber = 0; dataNumber < EnemyMoveData.enemyMoveDataList.Count; dataNumber++)
             {
                 // 識別番号が同じならデータを初期化する
-                if (EnemyData.enemyDataList[m_myNumber].enemyMoveList[moveNumber].MoveNumber != EnemyMoveData.enemyMoveDataList[dataNumber].MoveNumber)
+                if (EnemyData.enemyDataList[m_myNumber].enemyMoveList[moveNumber].ID != EnemyMoveData.enemyMoveDataList[dataNumber].ID)
                 {
                     continue;
                 }
-                EnemyData.enemyDataList[m_myNumber].enemyMoveList[moveNumber].MoveNumber = EnemyMoveData.enemyMoveDataList[dataNumber].MoveNumber;
+                EnemyData.enemyDataList[m_myNumber].enemyMoveList[moveNumber].ID = EnemyMoveData.enemyMoveDataList[dataNumber].ID;
                 EnemyData.enemyDataList[m_myNumber].enemyMoveList[moveNumber].MoveName = EnemyMoveData.enemyMoveDataList[dataNumber].MoveName;
                 EnemyData.enemyDataList[m_myNumber].enemyMoveList[moveNumber].ActorHPState = EnemyMoveData.enemyMoveDataList[dataNumber].ActorHPState;
                 EnemyData.enemyDataList[m_myNumber].enemyMoveList[moveNumber].ActorAbnormalState = EnemyMoveData.enemyMoveDataList[dataNumber].ActorAbnormalState;
@@ -248,7 +259,6 @@ public class EnemyMove : MonoBehaviour
             // 防御力を元に戻す
             m_enemyBattleStatus.DEF -= m_defencePower;
         }
-
         NextActionType = ActionType.enNull;
         m_isActionEnd = false;
     }
@@ -268,10 +278,10 @@ public class EnemyMove : MonoBehaviour
         // 混乱状態なら
         if (ConfusionFlag == true)
         {
-            DecrementHP(BasicValue);
+            m_battleManager.DamageEnemy(targetNumber, BasicValue);
             return;
         }
-        m_battleManager.EnemyAction_DamagePlayer(targetNumber,BasicValue);
+        m_battleManager.DamagePlayer(targetNumber,BasicValue);
     }
 
     /// <summary>
@@ -300,7 +310,7 @@ public class EnemyMove : MonoBehaviour
         }
         AddingEffectCalculation(targetNumber, skillNumber);
         // ダメージを設定する
-        m_battleManager.PlayerAction_DamageEnemy(targetNumber, BasicValue);
+        m_battleManager.DamagePlayer(targetNumber, BasicValue);
     }
 
     /// <summary>
@@ -332,7 +342,7 @@ public class EnemyMove : MonoBehaviour
     /// <param name="attackedDEF">防御側の防御力</param>
     /// <param name="attackedSPD">防御側の素早さ</param>
     /// <param name="isBuff">trueならバフ。falseならデバフ</param>
-    public void EnemyAction_Buff(int skillNumber, int attackedATK, int attackedDEF, int attackedSPD, bool isBuff)
+    public int EnemyAction_Buff(int skillNumber, int attackedATK, int attackedDEF, int attackedSPD)
     {
         // パラメータを参照
         var param = 0;
@@ -353,13 +363,7 @@ public class EnemyMove : MonoBehaviour
             param,
             EnemyData.enemyDataList[m_myNumber].skillDataList[skillNumber].POW
             );
-        // 値を設定する
-        SetBuffStatus(
-            EnemyData.enemyDataList[m_myNumber].skillDataList[skillNumber].BuffType,
-            value,
-            skillNumber,
-            isBuff
-            );
+        return value;
     }
 
     /// <summary>
@@ -374,15 +378,6 @@ public class EnemyMove : MonoBehaviour
             attackedHP,
             EnemyData.enemyDataList[m_myNumber].skillDataList[skillNumber].POW
             );
-
-        // 効果範囲が全体のとき
-        if (EnemyData.enemyDataList[m_myNumber].skillDataList[skillNumber].EffectRange == EffectRange.enAll)
-        {
-            m_battleManager.EnemyAction_AllRecover(BasicValue);
-            return;
-        }
-        // HPを回復させる
-        RecoverHP(BasicValue);
     }
     
     /// <summary>
@@ -393,32 +388,30 @@ public class EnemyMove : MonoBehaviour
     /// <returns></returns>
     public int EnemyAction_HPResurrection(int skillNumber, int targetNumber)
     {
-        var targetNumber2 = targetNumber;
         // 選択したのが復活ではない場合、そのまま番号を返す
         if (EnemyData.enemyDataList[m_myNumber].skillDataList[skillNumber].SkillType != SkillType.enResurrection)
         {
-            return targetNumber2;
+            return targetNumber;
         }
         // オブジェクトを取得する
         var gameObject = SelectTargetDieEnemy();
         // オブジェクトが存在しないなら何もしない
         if (gameObject == null)
         {
-            return targetNumber2;
+            return targetNumber;
         }
 
         // リストに追加
-        targetNumber2 = m_battleManager.EnemyListAdd(this);
+        var newTargetNumber = m_battleManager.EnemyListAdd(this);
         // オブジェクトの設定を変更する
         gameObject.SetActive(true);
         gameObject.tag = "Enemy";
-        return targetNumber2;
+        return newTargetNumber;
     }
 
     /// <summary>
     /// 防御処理
     /// </summary>
-    /// <param name="myNumber">自身の番号</param>
     public void EnemyAction_Guard()
     {
         m_defencePower = m_battleSystem.Guard(m_enemyBattleStatus.DEF);
@@ -431,13 +424,26 @@ public class EnemyMove : MonoBehaviour
     public void EnemyAction_Escape()
     {
         // 逃走が成功したかどうか取得する
-        var isEscape = m_battleSystem.Escape(EnemyData.enemyDataList[m_myNumber].LUCK);
-        if (isEscape == false)
+        if (m_battleSystem.Escape(EnemyData.enemyDataList[m_myNumber].LUCK) == false)
         {
             return;
         }
-        // 成功したらリストから自身を削除
-        m_battleManager.EnemyListRemove(m_myNumber);
+        var sprite = gameObject.GetComponent<SpriteRenderer>();
+        var alpha = DownTransparency(0.05f);
+        sprite.color = new Color(1.0f, 1.0f, 1.0f, alpha);  // 透明度を下げる
+        m_animator.SetTrigger("Escape");                    // アニメーションを再生
+        m_battleManager.EnemyListRemove(m_myNumber);        // 成功したらリストから自身を削除
+    }
+
+    /// <summary>
+    /// 透明度を下げる処理
+    /// </summary>
+    /// <param name="value">下げるスピード</param>
+    /// <returns>透明度</returns>
+    private float DownTransparency(float value)
+    {
+        var alpha = 1.0f;
+        return alpha -= value * Time.deltaTime;
     }
 
     /// <summary>
@@ -469,6 +475,7 @@ public class EnemyMove : MonoBehaviour
             // 死亡した
             m_enemyBattleStatus.HP = HPMIN_VALUE;
         }
+        m_animator.SetTrigger("Damage");            // アニメーションを再生
         ActorHPState = SetHPStatus();
     }
 
@@ -479,13 +486,13 @@ public class EnemyMove : MonoBehaviour
     /// <param name="statusFloatingValue">変更する値</param>
     /// <param name="skillNumber">スキルの番号</param>
     /// <param name="isBuff">trueならバフ。falseならデバフ</param>
-    private void SetBuffStatus(BuffType buffType, int statusFloatingValue, int skillNumber, bool isBuff)
+    public void SetBuffStatus(BuffType buffType, int statusFloatingValue, int skillNumber, bool isBuff)
     {
         var effectTime = 1;
         // スキルの番号が指定されているなら
         if (skillNumber >= 0)
         {
-            effectTime = EnemyData.enemyDataList[m_myNumber].skillDataList[skillNumber].StateAbnormalData.EffectTime;
+            effectTime = SkillData.skillDataList[skillNumber].StateAbnormalData.EffectTime;
         }
 
         switch (buffType)
@@ -568,8 +575,7 @@ public class EnemyMove : MonoBehaviour
     public int SelectTargetEnemy(int maxNumber)
     {
         // 0～エネミーの最大数で乱数を生成
-        int rand = m_battleSystem.GetRandomValue(0, maxNumber, false);
-        return rand;
+        return m_battleSystem.GetRandomValue(0, maxNumber, false);
     }
 
     /// <summary>
@@ -702,8 +708,7 @@ public class EnemyMove : MonoBehaviour
     public int SelectSkill()
     {
         // 0～データが持つスキルの最大数までで乱数を生成する
-        int skillNumber = m_battleSystem.GetRandomValue(0, EnemyData.enemyDataList[m_myNumber].skillDataList.Count, false);
-        return skillNumber;
+        return m_battleSystem.GetRandomValue(0, EnemyData.enemyDataList[m_myNumber].skillDataList.Count, false);
     }
 
     /// <summary>
@@ -742,15 +747,13 @@ public class EnemyMove : MonoBehaviour
     {
         if (EnemyStatus.HP <= HPMIN_VALUE)
         {
-            Die();
+            Die();  // 死亡処理
             return ActorHPState.enDie;
         }
-
         if (EnemyStatus.HP <= EnemyData.enemyDataList[m_myNumber].HP / 4)
         {
             return ActorHPState.enFewHP;
         }
-
         return ActorHPState.enMaxHP;
     }
 
@@ -760,9 +763,8 @@ public class EnemyMove : MonoBehaviour
     async private void Die()
     {
         // 演出が終了したなら以下の処理を実行する
-        await UniTask.WaitUntil(() => m_stagingManager.StangingState == StangingState.enStangingEnd);
+        await UniTask.WaitUntil(() => m_stagingManager.StangingState == StagingState.enStangingEnd);
         await UniTask.Delay(TimeSpan.FromSeconds(WAIT_TIME));
-        gameObject.SetActive(false);   // 自身を非表示にする
         tag = "DieEnemy";              // タグを変更する
     }
 }

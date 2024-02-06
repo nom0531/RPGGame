@@ -33,8 +33,6 @@ public class PictureBookSystem : MonoBehaviour
     [SerializeField, Tooltip("図鑑番号")]
     private GameObject Data_EnemyNumber;
     [SerializeField,Header("参照オブジェクト")]
-    private GameObject Element_Text;
-    [SerializeField]
     private GameObject RegistrationRateText;
 
     private SaveDataManager m_saveDataManager;      // セーブデータ
@@ -50,9 +48,7 @@ public class PictureBookSystem : MonoBehaviour
         // 値を表示する
         Data_Name.SetActive(true);
         Data_Detail.SetActive(true);
-        Data_Name.SetActive(true);
         Data_Sprite.SetActive(true);
-        Element_Text.SetActive(true);
 
         // 値を更新する
         Data_Name.GetComponent<TextMeshProUGUI>().text = EnemyData.enemyDataList[number].EnemyName;
@@ -72,9 +68,6 @@ public class PictureBookSystem : MonoBehaviour
     void Start()
     {
         // 値を非表示にする
-        Data_Name.SetActive(false);
-        Data_Detail.SetActive(false);
-        Element_Text.SetActive(false);
         Data_Sprite.SetActive(false);
 
         m_saveDataManager = GameManager.Instance.SaveData;
@@ -129,16 +122,16 @@ public class PictureBookSystem : MonoBehaviour
     /// <returns>登録率</returns>
     private void RegistrationRate()
     {
-        float rate = 0.0f;
+        var rate = 0.0f;
         // エネミーの総数とエレメントの総数
-        int allValue = EnemyData.enemyDataList.Count + (EnemyData.enemyDataList.Count * (int)ElementType.enNum);
+        var allValue = EnemyData.enemyDataList.Count + (EnemyData.enemyDataList.Count * (int)ElementType.enNum);
         // 現在発見しているエネミーの数とエレメントの数
-        int Value = m_enemyCount + m_elementCount;
+        var Value = m_enemyCount + m_elementCount;
 
         rate = (float)Value / (float)allValue;
         rate *= 100;
 
-        string text = $"{rate.ToString("F1")}%";
+        var text = $"{rate.ToString("F1")}%";
 
         RegistrationRateText.GetComponent<TextMeshProUGUI>().text = text;
     }

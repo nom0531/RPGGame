@@ -122,8 +122,8 @@ public class StateAbnormalDataEditor : EditorWindow
         EditorGUILayout.BeginVertical(GUI.skin.box);
         {
             // Šî‘bî•ñ‚ğ•\¦
-            m_stateAbnormalDataBase.stateAbnormalList[m_selectNumber].StateNumber = m_selectNumber;
-            GUILayout.Label($"ID:{m_stateAbnormalDataBase.stateAbnormalList[m_selectNumber].StateNumber}   Name:{m_nameList[m_selectNumber]}");
+            m_stateAbnormalDataBase.stateAbnormalList[m_selectNumber].ID = m_selectNumber;
+            GUILayout.Label($"ID:{m_stateAbnormalDataBase.stateAbnormalList[m_selectNumber].ID}   Name:{m_nameList[m_selectNumber]}");
 
             // ‹ó”’
             EditorGUILayout.Space();

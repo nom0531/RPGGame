@@ -103,13 +103,14 @@ public class BattleButton : MonoBehaviour
     /// </summary>
     public void SKillButtonDown()
     {
+        SetInteractable(false);
+
         // スキルを選択していないときはボタンを押せないようにする
         if (m_playerSkill.SelectSkillNumber < 0)
         {
             OKButton.GetComponent<Button>().interactable = false;
         }
 
-        SetInteractable(false);
         SkillWindow.SetActive(true);
         SkillStatus.SetActive(true);
 
