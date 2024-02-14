@@ -23,7 +23,7 @@ public class DrawDamage : MonoBehaviour
             this.gameObject,    // 破壊するオブジェクト
             m_deleteTime        // オブジェクトを破壊するまでの時間
             );
-        m_nowText = this.gameObject.GetComponent<Text>();
+        m_nowText = GetComponent<Text>();
     }
 
     // Update is called once per frame

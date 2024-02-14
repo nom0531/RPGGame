@@ -120,7 +120,9 @@ public class BuffCalculation : MonoBehaviour
             }
 
             Decrement((BuffStatus)i);
+#if UNITY_EDITOR
             Debug.Log("c‚èŒø‰ÊŠÔ" + m_buffEffectTime[i]);
+#endif
         }
     }
 
@@ -142,7 +144,7 @@ public class BuffCalculation : MonoBehaviour
         if (m_buffEffectTime[(int)buffStatus] <= 0)
         {
             SetEffectEndFlag(buffStatus, true);
-            gameObject.GetComponent<DrawCommandText>().ReSetStatusText();
+            GetComponent<DrawCommandText>().ReSetStatusText();
         }
     }
 
@@ -160,7 +162,9 @@ public class BuffCalculation : MonoBehaviour
         {
             SetEffectTime(buffStatus, effectTime);  // Œø‰ÊŠÔ‚ğ’Ç‰Á
 
+#if UNITY_EDITOR
             Debug.Log("Œø‰ÊŠÔ‚ª" + effectTime + "L‚Ñ‚½");
+#endif
             return originalValue;
         }
         // ’l‚ğİ’è‚·‚é
@@ -168,7 +172,9 @@ public class BuffCalculation : MonoBehaviour
         SetBuffFlag(buffStatus, true);
         SetEffectTime(buffStatus, effectTime);
 
+#if UNITY_EDITOR
         Debug.Log(buffStatus + "‚ªã¸");
+#endif
         return originalValue + statusFloatingValue;
     }
 
@@ -185,7 +191,9 @@ public class BuffCalculation : MonoBehaviour
         if (m_buffFlag[(int)buffStatus] == true)
         {
             SetEffectTime(buffStatus, effectTime);   // Œø‰ÊŠÔ‚ğ’Ç‰Á
+#if UNITY_EDITOR
             Debug.Log("Œø‰ÊŠÔ‚ª" + effectTime + "L‚Ñ‚½");
+#endif
 
             return originalValue;
         }
@@ -194,7 +202,9 @@ public class BuffCalculation : MonoBehaviour
         SetBuffFlag(buffStatus, true);
         SetEffectTime(buffStatus, effectTime);
 
+#if UNITY_EDITOR
         Debug.Log(buffStatus + "‚ªŒ¸­");
+#endif
         return originalValue - statusFloatingValue;
     }
 

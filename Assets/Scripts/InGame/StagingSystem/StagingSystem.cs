@@ -8,8 +8,6 @@ using TMPro;
 
 public class StagingSystem : MonoBehaviour
 {
-    [SerializeField, Header("参照データ")]
-    private SkillDataBase SkillData;
     [SerializeField, Header("参照オブジェクト")]
     private GameObject CommandImage;
     [SerializeField]
@@ -25,15 +23,17 @@ public class StagingSystem : MonoBehaviour
 
     private DrawDamageText m_drawDamageText;                    // ダメージ量
     private CinemachineTargetGroup m_cinemachineTargetGroup;    // ターゲットグループ
+    private SkillDataBase m_skillData;
     private bool m_isPlayEffect = false;                        // trueなら再生中。falseなら再生していない
     private const float TARGET_WEIGHT = 1.0f;
     private const float TARGET_RADIUS = 1.0f;
     private const float EFFECT_SCALE = 20.0f;                  // エフェクトのスケール
     private const int VCAM_PRIORITY = 50;                       // カメラの優先度
 
-    public bool PlayEffectFlag
+    public SkillDataBase SkillDataBase
     {
-        get => m_isPlayEffect;
+        get => m_skillData;
+        set => m_skillData = value;
     }
 
     private void Awake()
@@ -109,7 +109,7 @@ public class StagingSystem : MonoBehaviour
                 break;
             case ActionType.enSkillAttack:
                 CommandImage.gameObject.SetActive(true);
-                CommandImage.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"{SkillData.skillDataList[skillNumber].SkillName}";
+                CommandImage.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"{m_skillData.skillDataList[skillNumber].SkillName}";
                 break;
             case ActionType.enGuard:
                 CommandImage.gameObject.SetActive(true);
@@ -149,8 +149,8 @@ public class StagingSystem : MonoBehaviour
         // スキルでの攻撃なら、データから参照する
         if (actionType == ActionType.enSkillAttack)
         {
-            effect = SkillData.skillDataList[skillNumber].SkillEffect;
-            scale = SkillData.skillDataList[skillNumber].EffectScale;
+            effect = m_skillData.skillDataList[skillNumber].SkillEffect;
+            scale = m_skillData.skillDataList[skillNumber].EffectScale;
         }
         // 生成エフェクトがNullでない場合
         if(effect != null)

@@ -259,7 +259,6 @@ public class PlayerEnhancementSystem : MonoBehaviour
     private void GetElement(GameObject gameObjct, int number,int playerNumber)
     {
         var element = PlayerData.playerDataList[playerNumber].skillDataList[number].SkillElement;
-
         switch (element)
         {
             case ElementType.enFire:
@@ -351,21 +350,15 @@ public class PlayerEnhancementSystem : MonoBehaviour
     /// <param name="playerNumber">プレイヤーの番号</param>
     private void InstantiateStatusIcon(int playerNumber)
     {
+        var number = 0; // 強化データのID
         for (int statusNumber = 0; statusNumber < PlayerData.playerDataList[playerNumber].enhancementDataList.Count; statusNumber++)
         {
-            for (int dataNumber = 0; dataNumber < EnhancementData.enhancementDataList.Count; dataNumber++)
-            {
-                // 識別番号が同じならデータを初期化する
-                if (PlayerData.playerDataList[playerNumber].enhancementDataList[statusNumber].ID == EnhancementData.enhancementDataList[dataNumber].ID)
-                {
-                    PlayerData.playerDataList[playerNumber].enhancementDataList[statusNumber].EnhancementName = EnhancementData.enhancementDataList[dataNumber].EnhancementName;
-                    PlayerData.playerDataList[playerNumber].enhancementDataList[statusNumber].EnhancementSprite = EnhancementData.enhancementDataList[dataNumber].EnhancementSprite;
-                    PlayerData.playerDataList[playerNumber].enhancementDataList[statusNumber].EnhancementStatus = EnhancementData.enhancementDataList[dataNumber].EnhancementStatus;
-                    PlayerData.playerDataList[playerNumber].enhancementDataList[statusNumber].EnhancementPoint = EnhancementData.enhancementDataList[dataNumber].EnhancementPoint;
-                    PlayerData.playerDataList[playerNumber].enhancementDataList[statusNumber].AddValue = EnhancementData.enhancementDataList[dataNumber].AddValue;
-                    break;
-                }
-            }
+            PlayerData.playerDataList[playerNumber].enhancementDataList[statusNumber].ID = number;
+            PlayerData.playerDataList[playerNumber].enhancementDataList[statusNumber].EnhancementName = EnhancementData.enhancementDataList[number].EnhancementName;
+            PlayerData.playerDataList[playerNumber].enhancementDataList[statusNumber].EnhancementSprite = EnhancementData.enhancementDataList[number].EnhancementSprite;
+            PlayerData.playerDataList[playerNumber].enhancementDataList[statusNumber].EnhancementStatus = EnhancementData.enhancementDataList[number].EnhancementStatus;
+            PlayerData.playerDataList[playerNumber].enhancementDataList[statusNumber].EnhancementPoint = EnhancementData.enhancementDataList[number].EnhancementPoint;
+            PlayerData.playerDataList[playerNumber].enhancementDataList[statusNumber].AddValue = EnhancementData.enhancementDataList[number].AddValue;
             // ボタンを生成
             var button = Instantiate(IconButton);
             button.transform.SetParent(Content.transform);
@@ -382,6 +375,7 @@ public class PlayerEnhancementSystem : MonoBehaviour
                 this
                 );
             button.SetActive(true);
+            number++;
         }
     }
 

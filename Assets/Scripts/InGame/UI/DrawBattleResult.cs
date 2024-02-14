@@ -11,8 +11,18 @@ public class DrawBattleResult : MonoBehaviour
     [SerializeField,]
     private GameObject ResultText;
 
+    private GetEP m_getEP;  // älìæEPÇÃãLò^
+    private int m_EP;       // EP
+
+    public int EP
+    {
+        get => m_EP;
+        set => m_EP = value;
+    }
+
     private void Start()
     {
+        m_getEP = GetComponent<GetEP>();
         Canvas.SetActive(false);
     }
 
@@ -22,6 +32,7 @@ public class DrawBattleResult : MonoBehaviour
     public void GameClearStaging()
     {
         Canvas.SetActive(true);
+        DrawEP();
         ResultText.GetComponent<TextMeshProUGUI>().text = "WIN!";
     }
 
@@ -31,6 +42,16 @@ public class DrawBattleResult : MonoBehaviour
     public void GameOverStaging()
     {
         Canvas.SetActive(true);
+        DrawEP();
         ResultText.GetComponent<TextMeshProUGUI>().text = "LOSEÅc";
+    }
+
+    /// <summary>
+    /// älìæEPÇÃï\é¶
+    /// </summary>
+    private void DrawEP()
+    {
+        m_getEP.SaveDropEP(EP);
+        m_getEP.DrawText();
     }
 }

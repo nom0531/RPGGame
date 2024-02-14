@@ -24,14 +24,14 @@ MonoBehaviour:
     SPD: 50
     LUCK: 0
     skillDataList:
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
+    - SkillName: "\u30A6\u30A3\u30F3\u30C91"
       ID: 6
       SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
       SkillType: 0
-      SkillEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
+      SkillEffect: {fileID: 6823302871133167919, guid: 3138a83bedbd6ad4481ba0b061da2eb6,
         type: 3}
       EffectScale: 15
-      SkillElement: 0
+      SkillElement: 2
       StateAbnormalData:
         StateName: 
         ID: 0
@@ -45,16 +45,16 @@ MonoBehaviour:
       EffectRange: 0
       TargetState: 0
       BuffType: 3
-      EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
+      EnhancementPoint: 10
+      SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u98A8\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u30A6\u30A3\u30F3\u30C9\uFF12"
       ID: 7
       SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
       SkillType: 0
-      SkillEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
+      SkillEffect: {fileID: 6823302871133167919, guid: 3138a83bedbd6ad4481ba0b061da2eb6,
         type: 3}
       EffectScale: 15
-      SkillElement: 0
+      SkillElement: 2
       StateAbnormalData:
         StateName: 
         ID: 0
@@ -62,22 +62,22 @@ MonoBehaviour:
         POW: 0
         EffectTime: 0
         ActorAbnormalState: 0
-      POW: 20
-      SkillNecessary: 5
+      POW: 40
+      SkillNecessary: 10
       Type: 0
       EffectRange: 0
       TargetState: 0
       BuffType: 3
-      EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
+      EnhancementPoint: 20
+      SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u98A8\u5C5E\u6027\u3067\u4E2D\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u30A6\u30A3\u30F3\u30C93"
       ID: 8
       SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
       SkillType: 0
-      SkillEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
+      SkillEffect: {fileID: 6823302871133167919, guid: 3138a83bedbd6ad4481ba0b061da2eb6,
         type: 3}
       EffectScale: 15
-      SkillElement: 0
+      SkillElement: 2
       StateAbnormalData:
         StateName: 
         ID: 0
@@ -85,22 +85,22 @@ MonoBehaviour:
         POW: 0
         EffectTime: 0
         ActorAbnormalState: 0
-      POW: 20
-      SkillNecessary: 5
+      POW: 80
+      SkillNecessary: 15
       Type: 0
       EffectRange: 0
       TargetState: 0
       BuffType: 3
-      EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
+      EnhancementPoint: 30
+      SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u98A8\u5C5E\u6027\u3067\u5927\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u30C0\u30FC\u30AF1"
       ID: 15
-      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
       SkillType: 0
-      SkillEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
+      SkillEffect: {fileID: 4535006216103734310, guid: 98c4704d0fd7211449bcf5c451095a60,
         type: 3}
       EffectScale: 15
-      SkillElement: 0
+      SkillElement: 5
       StateAbnormalData:
         StateName: 
         ID: 0
@@ -114,16 +114,16 @@ MonoBehaviour:
       EffectRange: 0
       TargetState: 0
       BuffType: 3
-      EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
+      EnhancementPoint: 10
+      SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u95C7\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u30C0\u30FC\u30AF2"
       ID: 16
-      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
       SkillType: 0
-      SkillEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
+      SkillEffect: {fileID: 4535006216103734310, guid: 98c4704d0fd7211449bcf5c451095a60,
         type: 3}
       EffectScale: 15
-      SkillElement: 0
+      SkillElement: 5
       StateAbnormalData:
         StateName: 
         ID: 0
@@ -131,22 +131,22 @@ MonoBehaviour:
         POW: 0
         EffectTime: 0
         ActorAbnormalState: 0
-      POW: 20
-      SkillNecessary: 5
+      POW: 40
+      SkillNecessary: 10
       Type: 0
       EffectRange: 0
       TargetState: 0
       BuffType: 3
-      EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
+      EnhancementPoint: 20
+      SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u95C7\u5C5E\u6027\u3067\u4E2D\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u30C0\u30FC\u30AF3"
       ID: 17
-      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
       SkillType: 0
-      SkillEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
+      SkillEffect: {fileID: 4535006216103734310, guid: 98c4704d0fd7211449bcf5c451095a60,
         type: 3}
       EffectScale: 15
-      SkillElement: 0
+      SkillElement: 5
       StateAbnormalData:
         StateName: 
         ID: 0
@@ -154,22 +154,22 @@ MonoBehaviour:
         POW: 0
         EffectTime: 0
         ActorAbnormalState: 0
-      POW: 20
-      SkillNecessary: 5
+      POW: 80
+      SkillNecessary: 15
       Type: 0
       EffectRange: 0
       TargetState: 0
       BuffType: 3
-      EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
+      EnhancementPoint: 30
+      SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u95C7\u5C5E\u6027\u3067\u5927\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u7121\u5C5E\u60271"
       ID: 18
-      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillSprite: {fileID: 21300000, guid: cda20cb1f6f217f479c94cab09290d8f, type: 3}
       SkillType: 0
-      SkillEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
+      SkillEffect: {fileID: 8443315704496310910, guid: 6ef35fa36e3a65043b2d800600204bdd,
         type: 3}
-      EffectScale: 15
-      SkillElement: 0
+      EffectScale: 30
+      SkillElement: 6
       StateAbnormalData:
         StateName: 
         ID: 0
@@ -183,16 +183,16 @@ MonoBehaviour:
       EffectRange: 0
       TargetState: 0
       BuffType: 3
-      EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
+      EnhancementPoint: 25
+      SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u5C5E\u6027\u7121\u8996\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u5358\u4F53\u653B\u64831"
       ID: 21
-      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
       SkillType: 0
-      SkillEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
+      SkillEffect: {fileID: 2060900179291159282, guid: ca6705a3f9070d14d819d179493bcfa0,
         type: 3}
       EffectScale: 15
-      SkillElement: 0
+      SkillElement: 7
       StateAbnormalData:
         StateName: 
         ID: 0
@@ -202,20 +202,20 @@ MonoBehaviour:
         ActorAbnormalState: 0
       POW: 20
       SkillNecessary: 5
-      Type: 0
+      Type: 1
       EffectRange: 0
       TargetState: 0
       BuffType: 3
-      EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
+      EnhancementPoint: 10
+      SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u5358\u4F53\u653B\u64832"
       ID: 22
-      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
       SkillType: 0
-      SkillEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
+      SkillEffect: {fileID: 2060900179291159282, guid: ca6705a3f9070d14d819d179493bcfa0,
         type: 3}
       EffectScale: 15
-      SkillElement: 0
+      SkillElement: 7
       StateAbnormalData:
         StateName: 
         ID: 0
@@ -223,22 +223,22 @@ MonoBehaviour:
         POW: 0
         EffectTime: 0
         ActorAbnormalState: 0
-      POW: 20
-      SkillNecessary: 5
-      Type: 0
+      POW: 40
+      SkillNecessary: 10
+      Type: 1
       EffectRange: 0
       TargetState: 0
       BuffType: 3
-      EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
+      EnhancementPoint: 20
+      SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u4E2D\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u5358\u4F53\u653B\u64833"
       ID: 23
-      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
       SkillType: 0
-      SkillEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
+      SkillEffect: {fileID: 2060900179291159282, guid: ca6705a3f9070d14d819d179493bcfa0,
         type: 3}
       EffectScale: 15
-      SkillElement: 0
+      SkillElement: 7
       StateAbnormalData:
         StateName: 
         ID: 0
@@ -246,22 +246,22 @@ MonoBehaviour:
         POW: 0
         EffectTime: 0
         ActorAbnormalState: 0
-      POW: 20
-      SkillNecessary: 5
-      Type: 0
+      POW: 80
+      SkillNecessary: 15
+      Type: 1
       EffectRange: 0
       TargetState: 0
       BuffType: 3
-      EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
+      EnhancementPoint: 30
+      SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u5927\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u5168\u4F53\u653B\u64831"
       ID: 24
-      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
       SkillType: 0
-      SkillEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
+      SkillEffect: {fileID: 1171201465392465800, guid: 4aa9f30a28a77224ba84b2a2c334c71b,
         type: 3}
       EffectScale: 15
-      SkillElement: 0
+      SkillElement: 7
       StateAbnormalData:
         StateName: 
         ID: 0
@@ -269,22 +269,22 @@ MonoBehaviour:
         POW: 0
         EffectTime: 0
         ActorAbnormalState: 0
-      POW: 20
-      SkillNecessary: 5
-      Type: 0
-      EffectRange: 0
-      TargetState: 0
+      POW: 25
+      SkillNecessary: 8
+      Type: 1
+      EffectRange: 1
+      TargetState: 1
       BuffType: 3
-      EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
+      EnhancementPoint: 15
+      SkillDetail: " \u6575\u5168\u4F53\u306B\u5BFE\u3057\u3066\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u5168\u4F53\u653B\u64832"
       ID: 25
-      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
       SkillType: 0
-      SkillEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
+      SkillEffect: {fileID: 1171201465392465800, guid: 4aa9f30a28a77224ba84b2a2c334c71b,
         type: 3}
       EffectScale: 15
-      SkillElement: 0
+      SkillElement: 7
       StateAbnormalData:
         StateName: 
         ID: 0
@@ -292,22 +292,22 @@ MonoBehaviour:
         POW: 0
         EffectTime: 0
         ActorAbnormalState: 0
-      POW: 20
-      SkillNecessary: 5
-      Type: 0
-      EffectRange: 0
-      TargetState: 0
+      POW: 45
+      SkillNecessary: 13
+      Type: 1
+      EffectRange: 1
+      TargetState: 1
       BuffType: 3
-      EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
+      EnhancementPoint: 30
+      SkillDetail: " \u6575\u5168\u4F53\u306B\u5BFE\u3057\u3066\u4E2D\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u5168\u4F53\u653B\u64833"
       ID: 26
-      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
       SkillType: 0
-      SkillEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
+      SkillEffect: {fileID: 1171201465392465800, guid: 4aa9f30a28a77224ba84b2a2c334c71b,
         type: 3}
       EffectScale: 15
-      SkillElement: 0
+      SkillElement: 7
       StateAbnormalData:
         StateName: 
         ID: 0
@@ -315,27 +315,225 @@ MonoBehaviour:
         POW: 0
         EffectTime: 0
         ActorAbnormalState: 0
-      POW: 20
-      SkillNecessary: 5
-      Type: 0
-      EffectRange: 0
-      TargetState: 0
+      POW: 85
+      SkillNecessary: 18
+      Type: 1
+      EffectRange: 1
+      TargetState: 1
       BuffType: 3
-      EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+      EnhancementPoint: 45
+      SkillDetail: " \u6575\u5168\u4F53\u306B\u5BFE\u3057\u3066\u5927\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
     enhancementDataList:
-    - EnhancementName: 
+    - EnhancementName: "HP\u5F37\u53161"
       ID: 0
-      EnhancementSprite: {fileID: 0}
+      EnhancementSprite: {fileID: 21300000, guid: da8cf6e308ed0ae4c934ca248674daf3,
+        type: 3}
       EnhancementStatus: 0
-      AddValue: 0
-      EnhancementPoint: 0
-    - EnhancementName: 
-      ID: 0
-      EnhancementSprite: {fileID: 0}
+      AddValue: 20
+      EnhancementPoint: 10
+    - EnhancementName: "HP\u5F37\u53162"
+      ID: 1
+      EnhancementSprite: {fileID: 21300000, guid: da8cf6e308ed0ae4c934ca248674daf3,
+        type: 3}
       EnhancementStatus: 0
-      AddValue: 0
-      EnhancementPoint: 0
+      AddValue: 40
+      EnhancementPoint: 15
+    - EnhancementName: "HP\u5F37\u53163"
+      ID: 2
+      EnhancementSprite: {fileID: 21300000, guid: da8cf6e308ed0ae4c934ca248674daf3,
+        type: 3}
+      EnhancementStatus: 0
+      AddValue: 60
+      EnhancementPoint: 20
+    - EnhancementName: "HP\u5F37\u53164"
+      ID: 3
+      EnhancementSprite: {fileID: 21300000, guid: da8cf6e308ed0ae4c934ca248674daf3,
+        type: 3}
+      EnhancementStatus: 0
+      AddValue: 80
+      EnhancementPoint: 25
+    - EnhancementName: "HP\u5F37\u53165"
+      ID: 4
+      EnhancementSprite: {fileID: 21300000, guid: da8cf6e308ed0ae4c934ca248674daf3,
+        type: 3}
+      EnhancementStatus: 0
+      AddValue: 100
+      EnhancementPoint: 30
+    - EnhancementName: "SP\u5F37\u53161"
+      ID: 5
+      EnhancementSprite: {fileID: 21300000, guid: 0cb1588fd4589fe479981c28519f38e5,
+        type: 3}
+      EnhancementStatus: 1
+      AddValue: 20
+      EnhancementPoint: 10
+    - EnhancementName: "SP\u5F37\u53162"
+      ID: 6
+      EnhancementSprite: {fileID: 21300000, guid: 0cb1588fd4589fe479981c28519f38e5,
+        type: 3}
+      EnhancementStatus: 1
+      AddValue: 40
+      EnhancementPoint: 15
+    - EnhancementName: "SP\u5F37\u53163"
+      ID: 7
+      EnhancementSprite: {fileID: 21300000, guid: 0cb1588fd4589fe479981c28519f38e5,
+        type: 3}
+      EnhancementStatus: 1
+      AddValue: 60
+      EnhancementPoint: 20
+    - EnhancementName: "SP\u5F37\u53164"
+      ID: 8
+      EnhancementSprite: {fileID: 21300000, guid: 0cb1588fd4589fe479981c28519f38e5,
+        type: 3}
+      EnhancementStatus: 1
+      AddValue: 80
+      EnhancementPoint: 25
+    - EnhancementName: "SP\u5F37\u53165"
+      ID: 9
+      EnhancementSprite: {fileID: 21300000, guid: 0cb1588fd4589fe479981c28519f38e5,
+        type: 3}
+      EnhancementStatus: 1
+      AddValue: 100
+      EnhancementPoint: 30
+    - EnhancementName: "ATK\u5F37\u53161"
+      ID: 10
+      EnhancementSprite: {fileID: 21300000, guid: 2ef57e45714e4114ba7c7dfe3faa811f,
+        type: 3}
+      EnhancementStatus: 2
+      AddValue: 20
+      EnhancementPoint: 10
+    - EnhancementName: "ATK\u5F37\u53162"
+      ID: 11
+      EnhancementSprite: {fileID: 21300000, guid: 2ef57e45714e4114ba7c7dfe3faa811f,
+        type: 3}
+      EnhancementStatus: 2
+      AddValue: 40
+      EnhancementPoint: 15
+    - EnhancementName: "ATK\u5F37\u53162"
+      ID: 12
+      EnhancementSprite: {fileID: 21300000, guid: 2ef57e45714e4114ba7c7dfe3faa811f,
+        type: 3}
+      EnhancementStatus: 2
+      AddValue: 60
+      EnhancementPoint: 20
+    - EnhancementName: "ATK\u5F37\u53164"
+      ID: 13
+      EnhancementSprite: {fileID: 21300000, guid: 2ef57e45714e4114ba7c7dfe3faa811f,
+        type: 3}
+      EnhancementStatus: 2
+      AddValue: 80
+      EnhancementPoint: 25
+    - EnhancementName: "ATK\u5F37\u53165"
+      ID: 14
+      EnhancementSprite: {fileID: 21300000, guid: 2ef57e45714e4114ba7c7dfe3faa811f,
+        type: 3}
+      EnhancementStatus: 2
+      AddValue: 100
+      EnhancementPoint: 30
+    - EnhancementName: "DEF\u5F37\u53161"
+      ID: 15
+      EnhancementSprite: {fileID: 21300000, guid: a432e449921f41d4a8e9cff3307eec3a,
+        type: 3}
+      EnhancementStatus: 3
+      AddValue: 20
+      EnhancementPoint: 10
+    - EnhancementName: "DEF\u5F37\u53162"
+      ID: 16
+      EnhancementSprite: {fileID: 21300000, guid: a432e449921f41d4a8e9cff3307eec3a,
+        type: 3}
+      EnhancementStatus: 3
+      AddValue: 40
+      EnhancementPoint: 15
+    - EnhancementName: "DEF\u5F37\u53163"
+      ID: 17
+      EnhancementSprite: {fileID: 21300000, guid: a432e449921f41d4a8e9cff3307eec3a,
+        type: 3}
+      EnhancementStatus: 3
+      AddValue: 60
+      EnhancementPoint: 20
+    - EnhancementName: "DEF\u5F37\u53164"
+      ID: 18
+      EnhancementSprite: {fileID: 21300000, guid: a432e449921f41d4a8e9cff3307eec3a,
+        type: 3}
+      EnhancementStatus: 3
+      AddValue: 80
+      EnhancementPoint: 25
+    - EnhancementName: "DEF\u5F37\u53165"
+      ID: 19
+      EnhancementSprite: {fileID: 21300000, guid: a432e449921f41d4a8e9cff3307eec3a,
+        type: 3}
+      EnhancementStatus: 3
+      AddValue: 100
+      EnhancementPoint: 30
+    - EnhancementName: "SPD\u5F37\u53161"
+      ID: 20
+      EnhancementSprite: {fileID: 21300000, guid: b299ed6f4c174f842aa6da501d6b3a1a,
+        type: 3}
+      EnhancementStatus: 4
+      AddValue: 20
+      EnhancementPoint: 10
+    - EnhancementName: "SPD\u5F37\u53162"
+      ID: 21
+      EnhancementSprite: {fileID: 21300000, guid: b299ed6f4c174f842aa6da501d6b3a1a,
+        type: 3}
+      EnhancementStatus: 4
+      AddValue: 40
+      EnhancementPoint: 15
+    - EnhancementName: "SPD\u5F37\u53163"
+      ID: 22
+      EnhancementSprite: {fileID: 21300000, guid: b299ed6f4c174f842aa6da501d6b3a1a,
+        type: 3}
+      EnhancementStatus: 4
+      AddValue: 60
+      EnhancementPoint: 20
+    - EnhancementName: "SPD\u5F37\u53164"
+      ID: 23
+      EnhancementSprite: {fileID: 21300000, guid: b299ed6f4c174f842aa6da501d6b3a1a,
+        type: 3}
+      EnhancementStatus: 4
+      AddValue: 80
+      EnhancementPoint: 25
+    - EnhancementName: "SPD\u5F37\u53165"
+      ID: 24
+      EnhancementSprite: {fileID: 21300000, guid: b299ed6f4c174f842aa6da501d6b3a1a,
+        type: 3}
+      EnhancementStatus: 4
+      AddValue: 100
+      EnhancementPoint: 30
+    - EnhancementName: "LUCK\u5F37\u53161"
+      ID: 25
+      EnhancementSprite: {fileID: 21300000, guid: 1830e489cb8b0e1418ec5e6eed8e70af,
+        type: 3}
+      EnhancementStatus: 5
+      AddValue: 20
+      EnhancementPoint: 10
+    - EnhancementName: "LUCK\u5F37\u53162"
+      ID: 26
+      EnhancementSprite: {fileID: 21300000, guid: 1830e489cb8b0e1418ec5e6eed8e70af,
+        type: 3}
+      EnhancementStatus: 5
+      AddValue: 40
+      EnhancementPoint: 15
+    - EnhancementName: "LUCK\u5F37\u53163"
+      ID: 27
+      EnhancementSprite: {fileID: 21300000, guid: 1830e489cb8b0e1418ec5e6eed8e70af,
+        type: 3}
+      EnhancementStatus: 5
+      AddValue: 60
+      EnhancementPoint: 20
+    - EnhancementName: "LUCK\u5F37\u53164"
+      ID: 28
+      EnhancementSprite: {fileID: 21300000, guid: 1830e489cb8b0e1418ec5e6eed8e70af,
+        type: 3}
+      EnhancementStatus: 5
+      AddValue: 80
+      EnhancementPoint: 25
+    - EnhancementName: "LUCK\u5F37\u53165"
+      ID: 29
+      EnhancementSprite: {fileID: 21300000, guid: 1830e489cb8b0e1418ec5e6eed8e70af,
+        type: 3}
+      EnhancementStatus: 5
+      AddValue: 100
+      EnhancementPoint: 30
   - PlayerName: "\u30D0\u30C3\u30D5\u30A1\u30FC"
     PlayerSprite: {fileID: 21300000, guid: bb1adb733fdedfe40936e272ce6aed89, type: 3}
     PlayerRoll: 1
@@ -351,7 +549,7 @@ MonoBehaviour:
       ID: 0
       SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
       SkillType: 0
-      SkillEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
+      SkillEffect: {fileID: 358637981425055526, guid: 8eb503696b886e04faff8fc0f480d473,
         type: 3}
       EffectScale: 15
       SkillElement: 0
@@ -368,13 +566,13 @@ MonoBehaviour:
       EffectRange: 0
       TargetState: 0
       BuffType: 3
-      EnhancementPoint: 0
+      EnhancementPoint: 10
       SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
+    - SkillName: "\u30D5\u30A1\u30A4\u30A22"
       ID: 1
       SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
       SkillType: 0
-      SkillEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
+      SkillEffect: {fileID: 358637981425055526, guid: 8eb503696b886e04faff8fc0f480d473,
         type: 3}
       EffectScale: 15
       SkillElement: 0
@@ -385,19 +583,19 @@ MonoBehaviour:
         POW: 0
         EffectTime: 0
         ActorAbnormalState: 0
-      POW: 20
-      SkillNecessary: 5
+      POW: 40
+      SkillNecessary: 10
       Type: 0
       EffectRange: 0
       TargetState: 0
       BuffType: 3
-      EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
+      EnhancementPoint: 20
+      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u4E2D\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u30D5\u30A1\u30A4\u30A23"
       ID: 2
       SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
       SkillType: 0
-      SkillEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
+      SkillEffect: {fileID: 358637981425055526, guid: 8eb503696b886e04faff8fc0f480d473,
         type: 3}
       EffectScale: 15
       SkillElement: 0
@@ -408,22 +606,22 @@ MonoBehaviour:
         POW: 0
         EffectTime: 0
         ActorAbnormalState: 0
-      POW: 20
-      SkillNecessary: 5
+      POW: 80
+      SkillNecessary: 15
       Type: 0
       EffectRange: 0
       TargetState: 0
       BuffType: 3
-      EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
+      EnhancementPoint: 30
+      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5927\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u30B5\u30F3\u30C0\u30FC1"
       ID: 9
       SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
       SkillType: 0
-      SkillEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
+      SkillEffect: {fileID: 2965222256817593503, guid: a164e676dbbd6e54587237e619372c98,
         type: 3}
       EffectScale: 15
-      SkillElement: 0
+      SkillElement: 3
       StateAbnormalData:
         StateName: 
         ID: 0
@@ -437,16 +635,16 @@ MonoBehaviour:
       EffectRange: 0
       TargetState: 0
       BuffType: 3
-      EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
+      EnhancementPoint: 10
+      SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u96F7\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u30B5\u30F3\u30C0\u30FC2"
       ID: 10
       SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
       SkillType: 0
-      SkillEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
+      SkillEffect: {fileID: 2965222256817593503, guid: a164e676dbbd6e54587237e619372c98,
         type: 3}
       EffectScale: 15
-      SkillElement: 0
+      SkillElement: 3
       StateAbnormalData:
         StateName: 
         ID: 0
@@ -454,22 +652,22 @@ MonoBehaviour:
         POW: 0
         EffectTime: 0
         ActorAbnormalState: 0
-      POW: 20
-      SkillNecessary: 5
+      POW: 40
+      SkillNecessary: 10
       Type: 0
       EffectRange: 0
       TargetState: 0
       BuffType: 3
-      EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
+      EnhancementPoint: 20
+      SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u96F7\u5C5E\u6027\u3067\u4E2D\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u30B5\u30F3\u30C0\u30FC3"
       ID: 11
       SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
       SkillType: 0
-      SkillEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
+      SkillEffect: {fileID: 2965222256817593503, guid: a164e676dbbd6e54587237e619372c98,
         type: 3}
       EffectScale: 15
-      SkillElement: 0
+      SkillElement: 3
       StateAbnormalData:
         StateName: 
         ID: 0
@@ -477,22 +675,22 @@ MonoBehaviour:
         POW: 0
         EffectTime: 0
         ActorAbnormalState: 0
-      POW: 20
-      SkillNecessary: 5
+      POW: 80
+      SkillNecessary: 15
       Type: 0
       EffectRange: 0
       TargetState: 0
       BuffType: 3
-      EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
+      EnhancementPoint: 30
+      SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u96F7\u5C5E\u6027\u3067\u5927\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u30D0\u30D51"
       ID: 27
-      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
-      SkillType: 0
-      SkillEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
+      SkillSprite: {fileID: 21300000, guid: 89f84138f141f6443b97f28ba360be3c, type: 3}
+      SkillType: 1
+      SkillEffect: {fileID: 7155335147208632822, guid: 97c43495f80a3244fad1301dfafbe252,
         type: 3}
       EffectScale: 15
-      SkillElement: 0
+      SkillElement: 7
       StateAbnormalData:
         StateName: 
         ID: 0
@@ -500,22 +698,22 @@ MonoBehaviour:
         POW: 0
         EffectTime: 0
         ActorAbnormalState: 0
-      POW: 20
-      SkillNecessary: 5
+      POW: 50
+      SkillNecessary: 3
       Type: 0
       EffectRange: 0
       TargetState: 0
-      BuffType: 3
-      EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
+      BuffType: 0
+      EnhancementPoint: 10
+      SkillDetail: "\u5473\u65B91\u4F53\u306E\u653B\u6483\u529B\u3092\u4E0A\u6607\u3055\u305B\u308B\u3002"
+    - SkillName: "\u30D0\u30D52"
       ID: 28
-      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
-      SkillType: 0
-      SkillEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
+      SkillSprite: {fileID: 21300000, guid: 89f84138f141f6443b97f28ba360be3c, type: 3}
+      SkillType: 1
+      SkillEffect: {fileID: 7155335147208632822, guid: 97c43495f80a3244fad1301dfafbe252,
         type: 3}
       EffectScale: 15
-      SkillElement: 0
+      SkillElement: 7
       StateAbnormalData:
         StateName: 
         ID: 0
@@ -523,22 +721,22 @@ MonoBehaviour:
         POW: 0
         EffectTime: 0
         ActorAbnormalState: 0
-      POW: 20
-      SkillNecessary: 5
+      POW: 50
+      SkillNecessary: 3
       Type: 0
       EffectRange: 0
       TargetState: 0
-      BuffType: 3
-      EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
+      BuffType: 1
+      EnhancementPoint: 20
+      SkillDetail: "\u5473\u65B91\u4F53\u306E\u9632\u5FA1\u529B\u3092\u4E0A\u6607\u3055\u305B\u308B\u3002"
+    - SkillName: "\u30D0\u30D53"
       ID: 29
-      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
-      SkillType: 0
-      SkillEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
+      SkillSprite: {fileID: 21300000, guid: 89f84138f141f6443b97f28ba360be3c, type: 3}
+      SkillType: 1
+      SkillEffect: {fileID: 7155335147208632822, guid: 97c43495f80a3244fad1301dfafbe252,
         type: 3}
       EffectScale: 15
-      SkillElement: 0
+      SkillElement: 7
       StateAbnormalData:
         StateName: 
         ID: 0
@@ -546,22 +744,22 @@ MonoBehaviour:
         POW: 0
         EffectTime: 0
         ActorAbnormalState: 0
-      POW: 20
-      SkillNecessary: 5
+      POW: 50
+      SkillNecessary: 3
       Type: 0
       EffectRange: 0
       TargetState: 0
-      BuffType: 3
-      EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
+      BuffType: 2
+      EnhancementPoint: 30
+      SkillDetail: "\u5473\u65B91\u4F53\u306E\u7D20\u65E9\u3055\u3092\u4E0A\u6607\u3055\u305B\u308B\u3002"
+    - SkillName: "\u30C7\u30D0\u30D51"
       ID: 30
-      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
-      SkillType: 0
-      SkillEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
+      SkillSprite: {fileID: 21300000, guid: da3ecfb2dff2cd6408ca3502c2ee71ea, type: 3}
+      SkillType: 2
+      SkillEffect: {fileID: 6126188424833946103, guid: a58aa9a78f2b45b45bb0f3e2e1e3ad3c,
         type: 3}
       EffectScale: 15
-      SkillElement: 0
+      SkillElement: 7
       StateAbnormalData:
         StateName: 
         ID: 0
@@ -569,22 +767,22 @@ MonoBehaviour:
         POW: 0
         EffectTime: 0
         ActorAbnormalState: 0
-      POW: 20
-      SkillNecessary: 5
+      POW: 50
+      SkillNecessary: 3
       Type: 0
       EffectRange: 0
       TargetState: 0
-      BuffType: 3
-      EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
+      BuffType: 0
+      EnhancementPoint: 10
+      SkillDetail: "\u65751\u4F53\u306E\u653B\u6483\u529B\u3092\u6E1B\u5C11\u3055\u305B\u308B\u3002"
+    - SkillName: "\u30C7\u30D0\u30D52"
       ID: 31
-      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
-      SkillType: 0
-      SkillEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
+      SkillSprite: {fileID: 21300000, guid: da3ecfb2dff2cd6408ca3502c2ee71ea, type: 3}
+      SkillType: 2
+      SkillEffect: {fileID: 6126188424833946103, guid: a58aa9a78f2b45b45bb0f3e2e1e3ad3c,
         type: 3}
       EffectScale: 15
-      SkillElement: 0
+      SkillElement: 7
       StateAbnormalData:
         StateName: 
         ID: 0
@@ -592,22 +790,22 @@ MonoBehaviour:
         POW: 0
         EffectTime: 0
         ActorAbnormalState: 0
-      POW: 20
-      SkillNecessary: 5
+      POW: 50
+      SkillNecessary: 3
       Type: 0
       EffectRange: 0
       TargetState: 0
-      BuffType: 3
-      EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
+      BuffType: 1
+      EnhancementPoint: 20
+      SkillDetail: "\u65751\u4F53\u306E\u9632\u5FA1\u529B\u3092\u6E1B\u5C11\u3055\u305B\u308B\u3002"
+    - SkillName: "\u30C7\u30D0\u30D53"
       ID: 32
-      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
-      SkillType: 0
-      SkillEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
+      SkillSprite: {fileID: 21300000, guid: da3ecfb2dff2cd6408ca3502c2ee71ea, type: 3}
+      SkillType: 2
+      SkillEffect: {fileID: 6126188424833946103, guid: a58aa9a78f2b45b45bb0f3e2e1e3ad3c,
         type: 3}
       EffectScale: 15
-      SkillElement: 0
+      SkillElement: 7
       StateAbnormalData:
         StateName: 
         ID: 0
@@ -615,15 +813,225 @@ MonoBehaviour:
         POW: 0
         EffectTime: 0
         ActorAbnormalState: 0
-      POW: 20
-      SkillNecessary: 5
+      POW: 50
+      SkillNecessary: 3
       Type: 0
       EffectRange: 0
       TargetState: 0
-      BuffType: 3
-      EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    enhancementDataList: []
+      BuffType: 2
+      EnhancementPoint: 30
+      SkillDetail: "\u65751\u4F53\u306E\u7D20\u65E9\u3055\u3092\u6E1B\u5C11\u3055\u305B\u308B\u3002"
+    enhancementDataList:
+    - EnhancementName: "HP\u5F37\u53161"
+      ID: 0
+      EnhancementSprite: {fileID: 21300000, guid: da8cf6e308ed0ae4c934ca248674daf3,
+        type: 3}
+      EnhancementStatus: 0
+      AddValue: 20
+      EnhancementPoint: 10
+    - EnhancementName: "HP\u5F37\u53162"
+      ID: 1
+      EnhancementSprite: {fileID: 21300000, guid: da8cf6e308ed0ae4c934ca248674daf3,
+        type: 3}
+      EnhancementStatus: 0
+      AddValue: 40
+      EnhancementPoint: 15
+    - EnhancementName: "HP\u5F37\u53163"
+      ID: 2
+      EnhancementSprite: {fileID: 21300000, guid: da8cf6e308ed0ae4c934ca248674daf3,
+        type: 3}
+      EnhancementStatus: 0
+      AddValue: 60
+      EnhancementPoint: 20
+    - EnhancementName: "HP\u5F37\u53164"
+      ID: 3
+      EnhancementSprite: {fileID: 21300000, guid: da8cf6e308ed0ae4c934ca248674daf3,
+        type: 3}
+      EnhancementStatus: 0
+      AddValue: 80
+      EnhancementPoint: 25
+    - EnhancementName: "HP\u5F37\u53165"
+      ID: 4
+      EnhancementSprite: {fileID: 21300000, guid: da8cf6e308ed0ae4c934ca248674daf3,
+        type: 3}
+      EnhancementStatus: 0
+      AddValue: 100
+      EnhancementPoint: 30
+    - EnhancementName: "SP\u5F37\u53161"
+      ID: 5
+      EnhancementSprite: {fileID: 21300000, guid: 0cb1588fd4589fe479981c28519f38e5,
+        type: 3}
+      EnhancementStatus: 1
+      AddValue: 20
+      EnhancementPoint: 10
+    - EnhancementName: "SP\u5F37\u53162"
+      ID: 6
+      EnhancementSprite: {fileID: 21300000, guid: 0cb1588fd4589fe479981c28519f38e5,
+        type: 3}
+      EnhancementStatus: 1
+      AddValue: 40
+      EnhancementPoint: 15
+    - EnhancementName: "SP\u5F37\u53163"
+      ID: 7
+      EnhancementSprite: {fileID: 21300000, guid: 0cb1588fd4589fe479981c28519f38e5,
+        type: 3}
+      EnhancementStatus: 1
+      AddValue: 60
+      EnhancementPoint: 20
+    - EnhancementName: "SP\u5F37\u53164"
+      ID: 8
+      EnhancementSprite: {fileID: 21300000, guid: 0cb1588fd4589fe479981c28519f38e5,
+        type: 3}
+      EnhancementStatus: 1
+      AddValue: 80
+      EnhancementPoint: 25
+    - EnhancementName: "SP\u5F37\u53165"
+      ID: 9
+      EnhancementSprite: {fileID: 21300000, guid: 0cb1588fd4589fe479981c28519f38e5,
+        type: 3}
+      EnhancementStatus: 1
+      AddValue: 100
+      EnhancementPoint: 30
+    - EnhancementName: "ATK\u5F37\u53161"
+      ID: 10
+      EnhancementSprite: {fileID: 21300000, guid: 2ef57e45714e4114ba7c7dfe3faa811f,
+        type: 3}
+      EnhancementStatus: 2
+      AddValue: 20
+      EnhancementPoint: 10
+    - EnhancementName: "ATK\u5F37\u53162"
+      ID: 11
+      EnhancementSprite: {fileID: 21300000, guid: 2ef57e45714e4114ba7c7dfe3faa811f,
+        type: 3}
+      EnhancementStatus: 2
+      AddValue: 40
+      EnhancementPoint: 15
+    - EnhancementName: "ATK\u5F37\u53162"
+      ID: 12
+      EnhancementSprite: {fileID: 21300000, guid: 2ef57e45714e4114ba7c7dfe3faa811f,
+        type: 3}
+      EnhancementStatus: 2
+      AddValue: 60
+      EnhancementPoint: 20
+    - EnhancementName: "ATK\u5F37\u53164"
+      ID: 13
+      EnhancementSprite: {fileID: 21300000, guid: 2ef57e45714e4114ba7c7dfe3faa811f,
+        type: 3}
+      EnhancementStatus: 2
+      AddValue: 80
+      EnhancementPoint: 25
+    - EnhancementName: "ATK\u5F37\u53165"
+      ID: 14
+      EnhancementSprite: {fileID: 21300000, guid: 2ef57e45714e4114ba7c7dfe3faa811f,
+        type: 3}
+      EnhancementStatus: 2
+      AddValue: 100
+      EnhancementPoint: 30
+    - EnhancementName: "DEF\u5F37\u53161"
+      ID: 15
+      EnhancementSprite: {fileID: 21300000, guid: a432e449921f41d4a8e9cff3307eec3a,
+        type: 3}
+      EnhancementStatus: 3
+      AddValue: 20
+      EnhancementPoint: 10
+    - EnhancementName: "DEF\u5F37\u53162"
+      ID: 16
+      EnhancementSprite: {fileID: 21300000, guid: a432e449921f41d4a8e9cff3307eec3a,
+        type: 3}
+      EnhancementStatus: 3
+      AddValue: 40
+      EnhancementPoint: 15
+    - EnhancementName: "DEF\u5F37\u53163"
+      ID: 17
+      EnhancementSprite: {fileID: 21300000, guid: a432e449921f41d4a8e9cff3307eec3a,
+        type: 3}
+      EnhancementStatus: 3
+      AddValue: 60
+      EnhancementPoint: 20
+    - EnhancementName: "DEF\u5F37\u53164"
+      ID: 18
+      EnhancementSprite: {fileID: 21300000, guid: a432e449921f41d4a8e9cff3307eec3a,
+        type: 3}
+      EnhancementStatus: 3
+      AddValue: 80
+      EnhancementPoint: 25
+    - EnhancementName: "DEF\u5F37\u53165"
+      ID: 19
+      EnhancementSprite: {fileID: 21300000, guid: a432e449921f41d4a8e9cff3307eec3a,
+        type: 3}
+      EnhancementStatus: 3
+      AddValue: 100
+      EnhancementPoint: 30
+    - EnhancementName: "SPD\u5F37\u53161"
+      ID: 20
+      EnhancementSprite: {fileID: 21300000, guid: b299ed6f4c174f842aa6da501d6b3a1a,
+        type: 3}
+      EnhancementStatus: 4
+      AddValue: 20
+      EnhancementPoint: 10
+    - EnhancementName: "SPD\u5F37\u53162"
+      ID: 21
+      EnhancementSprite: {fileID: 21300000, guid: b299ed6f4c174f842aa6da501d6b3a1a,
+        type: 3}
+      EnhancementStatus: 4
+      AddValue: 40
+      EnhancementPoint: 15
+    - EnhancementName: "SPD\u5F37\u53163"
+      ID: 22
+      EnhancementSprite: {fileID: 21300000, guid: b299ed6f4c174f842aa6da501d6b3a1a,
+        type: 3}
+      EnhancementStatus: 4
+      AddValue: 60
+      EnhancementPoint: 20
+    - EnhancementName: "SPD\u5F37\u53164"
+      ID: 23
+      EnhancementSprite: {fileID: 21300000, guid: b299ed6f4c174f842aa6da501d6b3a1a,
+        type: 3}
+      EnhancementStatus: 4
+      AddValue: 80
+      EnhancementPoint: 25
+    - EnhancementName: "SPD\u5F37\u53165"
+      ID: 24
+      EnhancementSprite: {fileID: 21300000, guid: b299ed6f4c174f842aa6da501d6b3a1a,
+        type: 3}
+      EnhancementStatus: 4
+      AddValue: 100
+      EnhancementPoint: 30
+    - EnhancementName: "LUCK\u5F37\u53161"
+      ID: 25
+      EnhancementSprite: {fileID: 21300000, guid: 1830e489cb8b0e1418ec5e6eed8e70af,
+        type: 3}
+      EnhancementStatus: 5
+      AddValue: 20
+      EnhancementPoint: 10
+    - EnhancementName: "LUCK\u5F37\u53162"
+      ID: 26
+      EnhancementSprite: {fileID: 21300000, guid: 1830e489cb8b0e1418ec5e6eed8e70af,
+        type: 3}
+      EnhancementStatus: 5
+      AddValue: 40
+      EnhancementPoint: 15
+    - EnhancementName: "LUCK\u5F37\u53163"
+      ID: 27
+      EnhancementSprite: {fileID: 21300000, guid: 1830e489cb8b0e1418ec5e6eed8e70af,
+        type: 3}
+      EnhancementStatus: 5
+      AddValue: 60
+      EnhancementPoint: 20
+    - EnhancementName: "LUCK\u5F37\u53164"
+      ID: 28
+      EnhancementSprite: {fileID: 21300000, guid: 1830e489cb8b0e1418ec5e6eed8e70af,
+        type: 3}
+      EnhancementStatus: 5
+      AddValue: 80
+      EnhancementPoint: 25
+    - EnhancementName: "LUCK\u5F37\u53165"
+      ID: 29
+      EnhancementSprite: {fileID: 21300000, guid: 1830e489cb8b0e1418ec5e6eed8e70af,
+        type: 3}
+      EnhancementStatus: 5
+      AddValue: 100
+      EnhancementPoint: 30
   - PlayerName: "\u30D2\u30FC\u30E9\u30FC"
     PlayerSprite: {fileID: 21300000, guid: 3660ec54bc34cdb47b84af818993fd15, type: 3}
     PlayerRoll: 2
@@ -635,14 +1043,14 @@ MonoBehaviour:
     SPD: 45
     LUCK: 0
     skillDataList:
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
+    - SkillName: "\u30A2\u30A4\u30B91"
       ID: 3
       SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
       SkillType: 0
-      SkillEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
+      SkillEffect: {fileID: 4924508274929071776, guid: 0edef91621bb6b34384ccc9dbb98729c,
         type: 3}
       EffectScale: 15
-      SkillElement: 0
+      SkillElement: 1
       StateAbnormalData:
         StateName: 
         ID: 0
@@ -650,22 +1058,22 @@ MonoBehaviour:
         POW: 0
         EffectTime: 0
         ActorAbnormalState: 0
-      POW: 20
+      POW: 10
       SkillNecessary: 5
       Type: 0
       EffectRange: 0
       TargetState: 0
       BuffType: 3
-      EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
+      EnhancementPoint: 10
+      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u6C37\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u30A2\u30A4\u30B92"
       ID: 4
       SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
       SkillType: 0
-      SkillEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
+      SkillEffect: {fileID: 4924508274929071776, guid: 0edef91621bb6b34384ccc9dbb98729c,
         type: 3}
       EffectScale: 15
-      SkillElement: 0
+      SkillElement: 1
       StateAbnormalData:
         StateName: 
         ID: 0
@@ -673,22 +1081,22 @@ MonoBehaviour:
         POW: 0
         EffectTime: 0
         ActorAbnormalState: 0
-      POW: 20
-      SkillNecessary: 5
+      POW: 40
+      SkillNecessary: 10
       Type: 0
       EffectRange: 0
       TargetState: 0
       BuffType: 3
-      EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
+      EnhancementPoint: 20
+      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u6C37\u5C5E\u6027\u3067\u4E2D\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u30A2\u30A4\u30B93"
       ID: 5
       SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
       SkillType: 0
-      SkillEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
+      SkillEffect: {fileID: 4924508274929071776, guid: 0edef91621bb6b34384ccc9dbb98729c,
         type: 3}
       EffectScale: 15
-      SkillElement: 0
+      SkillElement: 1
       StateAbnormalData:
         StateName: 
         ID: 0
@@ -696,22 +1104,22 @@ MonoBehaviour:
         POW: 0
         EffectTime: 0
         ActorAbnormalState: 0
-      POW: 20
-      SkillNecessary: 5
+      POW: 80
+      SkillNecessary: 15
       Type: 0
       EffectRange: 0
       TargetState: 0
       BuffType: 3
-      EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
+      EnhancementPoint: 30
+      SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u6C37\u5C5E\u6027\u3067\u5927\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u30B7\u30E3\u30A4\u30F31"
       ID: 12
-      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
       SkillType: 0
-      SkillEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
+      SkillEffect: {fileID: 2944396702758532163, guid: e190bf97c041e58448af6b043116cba0,
         type: 3}
       EffectScale: 15
-      SkillElement: 0
+      SkillElement: 4
       StateAbnormalData:
         StateName: 
         ID: 0
@@ -725,16 +1133,16 @@ MonoBehaviour:
       EffectRange: 0
       TargetState: 0
       BuffType: 3
-      EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
+      EnhancementPoint: 10
+      SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u5149\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u30B7\u30E3\u30A4\u30F32"
       ID: 13
-      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
       SkillType: 0
-      SkillEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
+      SkillEffect: {fileID: 2944396702758532163, guid: e190bf97c041e58448af6b043116cba0,
         type: 3}
       EffectScale: 15
-      SkillElement: 0
+      SkillElement: 4
       StateAbnormalData:
         StateName: 
         ID: 0
@@ -742,22 +1150,22 @@ MonoBehaviour:
         POW: 0
         EffectTime: 0
         ActorAbnormalState: 0
-      POW: 20
-      SkillNecessary: 5
+      POW: 40
+      SkillNecessary: 10
       Type: 0
       EffectRange: 0
       TargetState: 0
       BuffType: 3
-      EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
+      EnhancementPoint: 20
+      SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u5149\u5C5E\u6027\u3067\u4E2D\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u30B7\u30E3\u30A4\u30F33"
       ID: 14
-      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
       SkillType: 0
-      SkillEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
+      SkillEffect: {fileID: 2944396702758532163, guid: e190bf97c041e58448af6b043116cba0,
         type: 3}
       EffectScale: 15
-      SkillElement: 0
+      SkillElement: 4
       StateAbnormalData:
         StateName: 
         ID: 0
@@ -765,22 +1173,22 @@ MonoBehaviour:
         POW: 0
         EffectTime: 0
         ActorAbnormalState: 0
-      POW: 20
-      SkillNecessary: 5
+      POW: 80
+      SkillNecessary: 15
       Type: 0
       EffectRange: 0
       TargetState: 0
       BuffType: 3
-      EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
+      EnhancementPoint: 30
+      SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u5149\u5C5E\u6027\u3067\u5927\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
+    - SkillName: "\u30D2\u30FC\u30EB1"
       ID: 33
-      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
-      SkillType: 0
-      SkillEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
+      SkillSprite: {fileID: 21300000, guid: 797588158c4fd6943aa087189d0bf32a, type: 3}
+      SkillType: 3
+      SkillEffect: {fileID: 9017484664307500583, guid: 1245b8d2997d5b34fb1637be70a7eb05,
         type: 3}
       EffectScale: 15
-      SkillElement: 0
+      SkillElement: 7
       StateAbnormalData:
         StateName: 
         ID: 0
@@ -788,22 +1196,22 @@ MonoBehaviour:
         POW: 0
         EffectTime: 0
         ActorAbnormalState: 0
-      POW: 20
+      POW: 25
       SkillNecessary: 5
       Type: 0
       EffectRange: 0
       TargetState: 0
       BuffType: 3
-      EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
+      EnhancementPoint: 10
+      SkillDetail: "\u5473\u65B91\u4F53\u306E\u4F53\u529B\u3092\u5C0F\u56DE\u5FA9\u3059\u308B\u3002"
+    - SkillName: "\u30D2\u30FC\u30EB2"
       ID: 34
-      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
-      SkillType: 0
-      SkillEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
+      SkillSprite: {fileID: 21300000, guid: 797588158c4fd6943aa087189d0bf32a, type: 3}
+      SkillType: 3
+      SkillEffect: {fileID: 9017484664307500583, guid: 1245b8d2997d5b34fb1637be70a7eb05,
         type: 3}
       EffectScale: 15
-      SkillElement: 0
+      SkillElement: 7
       StateAbnormalData:
         StateName: 
         ID: 0
@@ -811,22 +1219,22 @@ MonoBehaviour:
         POW: 0
         EffectTime: 0
         ActorAbnormalState: 0
-      POW: 20
-      SkillNecessary: 5
+      POW: 50
+      SkillNecessary: 10
       Type: 0
       EffectRange: 0
       TargetState: 0
       BuffType: 3
-      EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
+      EnhancementPoint: 20
+      SkillDetail: "\u5473\u65B91\u4F53\u306E\u4F53\u529B\u3092\u4E2D\u56DE\u5FA9\u3059\u308B\u3002"
+    - SkillName: "\u30D2\u30FC\u30EB3"
       ID: 35
-      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
-      SkillType: 0
-      SkillEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
+      SkillSprite: {fileID: 21300000, guid: 797588158c4fd6943aa087189d0bf32a, type: 3}
+      SkillType: 3
+      SkillEffect: {fileID: 9017484664307500583, guid: 1245b8d2997d5b34fb1637be70a7eb05,
         type: 3}
       EffectScale: 15
-      SkillElement: 0
+      SkillElement: 7
       StateAbnormalData:
         StateName: 
         ID: 0
@@ -834,22 +1242,22 @@ MonoBehaviour:
         POW: 0
         EffectTime: 0
         ActorAbnormalState: 0
-      POW: 20
-      SkillNecessary: 5
+      POW: 100
+      SkillNecessary: 15
       Type: 0
       EffectRange: 0
       TargetState: 0
       BuffType: 3
-      EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
+      EnhancementPoint: 30
+      SkillDetail: "\u5473\u65B91\u4F53\u306E\u4F53\u529B\u3092\u5168\u56DE\u5FA9\u3059\u308B\u3002"
+    - SkillName: "\u30D2\u30FC\u30EA\u30F3\u30B01"
       ID: 36
-      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
-      SkillType: 0
-      SkillEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
+      SkillSprite: {fileID: 21300000, guid: 797588158c4fd6943aa087189d0bf32a, type: 3}
+      SkillType: 3
+      SkillEffect: {fileID: 9017484664307500583, guid: 1245b8d2997d5b34fb1637be70a7eb05,
         type: 3}
       EffectScale: 15
-      SkillElement: 0
+      SkillElement: 7
       StateAbnormalData:
         StateName: 
         ID: 0
@@ -857,22 +1265,22 @@ MonoBehaviour:
         POW: 0
         EffectTime: 0
         ActorAbnormalState: 0
-      POW: 20
-      SkillNecessary: 5
+      POW: 25
+      SkillNecessary: 8
       Type: 0
       EffectRange: 0
       TargetState: 0
       BuffType: 3
-      EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
+      EnhancementPoint: 10
+      SkillDetail: "\u5473\u65B91\u4F53\u306E\u4F53\u529B\u3092\u5C0F\u56DE\u5FA9\u3057\u3066\u5FA9\u6D3B\u3055\u305B\u308B\u3002"
+    - SkillName: "\u30D2\u30FC\u30EA\u30F3\u30B02"
       ID: 37
-      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
-      SkillType: 0
-      SkillEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
+      SkillSprite: {fileID: 21300000, guid: 797588158c4fd6943aa087189d0bf32a, type: 3}
+      SkillType: 3
+      SkillEffect: {fileID: 9017484664307500583, guid: 1245b8d2997d5b34fb1637be70a7eb05,
         type: 3}
       EffectScale: 15
-      SkillElement: 0
+      SkillElement: 7
       StateAbnormalData:
         StateName: 
         ID: 0
@@ -880,22 +1288,22 @@ MonoBehaviour:
         POW: 0
         EffectTime: 0
         ActorAbnormalState: 0
-      POW: 20
-      SkillNecessary: 5
+      POW: 50
+      SkillNecessary: 13
       Type: 0
       EffectRange: 0
       TargetState: 0
       BuffType: 3
-      EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
+      EnhancementPoint: 20
+      SkillDetail: "\u5473\u65B91\u4F53\u306E\u4F53\u529B\u3092\u4E2D\u56DE\u5FA9\u3057\u3066\u5FA9\u6D3B\u3055\u305B\u308B\u3002"
+    - SkillName: "\u30D2\u30FC\u30EA\u30F3\u30B03"
       ID: 38
-      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
-      SkillType: 0
-      SkillEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
+      SkillSprite: {fileID: 21300000, guid: 797588158c4fd6943aa087189d0bf32a, type: 3}
+      SkillType: 3
+      SkillEffect: {fileID: 9017484664307500583, guid: 1245b8d2997d5b34fb1637be70a7eb05,
         type: 3}
       EffectScale: 15
-      SkillElement: 0
+      SkillElement: 7
       StateAbnormalData:
         StateName: 
         ID: 0
@@ -903,22 +1311,22 @@ MonoBehaviour:
         POW: 0
         EffectTime: 0
         ActorAbnormalState: 0
-      POW: 20
-      SkillNecessary: 5
+      POW: 100
+      SkillNecessary: 18
       Type: 0
       EffectRange: 0
       TargetState: 0
       BuffType: 3
-      EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
+      EnhancementPoint: 30
+      SkillDetail: "\u5473\u65B91\u4F53\u306E\u4F53\u529B\u3092\u5168\u56DE\u5FA9\u3057\u3066\u5FA9\u6D3B\u3055\u305B\u308B\u3002"
+    - SkillName: "\u30AD\u30E5\u30A2"
       ID: 39
-      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
-      SkillType: 0
-      SkillEffect: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7,
+      SkillSprite: {fileID: 21300000, guid: d513bb5cc5ec66141bda98e3d0bf51a7, type: 3}
+      SkillType: 3
+      SkillEffect: {fileID: 9017484664307500583, guid: 1245b8d2997d5b34fb1637be70a7eb05,
         type: 3}
       EffectScale: 15
-      SkillElement: 0
+      SkillElement: 7
       StateAbnormalData:
         StateName: 
         ID: 0
@@ -926,12 +1334,222 @@ MonoBehaviour:
         POW: 0
         EffectTime: 0
         ActorAbnormalState: 0
-      POW: 20
-      SkillNecessary: 5
+      POW: 100
+      SkillNecessary: 3
       Type: 0
       EffectRange: 0
       TargetState: 0
       BuffType: 3
-      EnhancementPoint: 0
-      SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
-    enhancementDataList: []
+      EnhancementPoint: 10
+      SkillDetail: "\u5473\u65B91\u4F53\u306E\u72B6\u614B\u7570\u5E38\u3092\u56DE\u5FA9\u3055\u305B\u308B\u3002"
+    enhancementDataList:
+    - EnhancementName: "HP\u5F37\u53161"
+      ID: 0
+      EnhancementSprite: {fileID: 21300000, guid: da8cf6e308ed0ae4c934ca248674daf3,
+        type: 3}
+      EnhancementStatus: 0
+      AddValue: 20
+      EnhancementPoint: 10
+    - EnhancementName: "HP\u5F37\u53162"
+      ID: 1
+      EnhancementSprite: {fileID: 21300000, guid: da8cf6e308ed0ae4c934ca248674daf3,
+        type: 3}
+      EnhancementStatus: 0
+      AddValue: 40
+      EnhancementPoint: 15
+    - EnhancementName: "HP\u5F37\u53163"
+      ID: 2
+      EnhancementSprite: {fileID: 21300000, guid: da8cf6e308ed0ae4c934ca248674daf3,
+        type: 3}
+      EnhancementStatus: 0
+      AddValue: 60
+      EnhancementPoint: 20
+    - EnhancementName: "HP\u5F37\u53164"
+      ID: 3
+      EnhancementSprite: {fileID: 21300000, guid: da8cf6e308ed0ae4c934ca248674daf3,
+        type: 3}
+      EnhancementStatus: 0
+      AddValue: 80
+      EnhancementPoint: 25
+    - EnhancementName: "HP\u5F37\u53165"
+      ID: 4
+      EnhancementSprite: {fileID: 21300000, guid: da8cf6e308ed0ae4c934ca248674daf3,
+        type: 3}
+      EnhancementStatus: 0
+      AddValue: 100
+      EnhancementPoint: 30
+    - EnhancementName: "SP\u5F37\u53161"
+      ID: 5
+      EnhancementSprite: {fileID: 21300000, guid: 0cb1588fd4589fe479981c28519f38e5,
+        type: 3}
+      EnhancementStatus: 1
+      AddValue: 20
+      EnhancementPoint: 10
+    - EnhancementName: "SP\u5F37\u53162"
+      ID: 6
+      EnhancementSprite: {fileID: 21300000, guid: 0cb1588fd4589fe479981c28519f38e5,
+        type: 3}
+      EnhancementStatus: 1
+      AddValue: 40
+      EnhancementPoint: 15
+    - EnhancementName: "SP\u5F37\u53163"
+      ID: 7
+      EnhancementSprite: {fileID: 21300000, guid: 0cb1588fd4589fe479981c28519f38e5,
+        type: 3}
+      EnhancementStatus: 1
+      AddValue: 60
+      EnhancementPoint: 20
+    - EnhancementName: "SP\u5F37\u53164"
+      ID: 8
+      EnhancementSprite: {fileID: 21300000, guid: 0cb1588fd4589fe479981c28519f38e5,
+        type: 3}
+      EnhancementStatus: 1
+      AddValue: 80
+      EnhancementPoint: 25
+    - EnhancementName: "SP\u5F37\u53165"
+      ID: 9
+      EnhancementSprite: {fileID: 21300000, guid: 0cb1588fd4589fe479981c28519f38e5,
+        type: 3}
+      EnhancementStatus: 1
+      AddValue: 100
+      EnhancementPoint: 30
+    - EnhancementName: "ATK\u5F37\u53161"
+      ID: 10
+      EnhancementSprite: {fileID: 21300000, guid: 2ef57e45714e4114ba7c7dfe3faa811f,
+        type: 3}
+      EnhancementStatus: 2
+      AddValue: 20
+      EnhancementPoint: 10
+    - EnhancementName: "ATK\u5F37\u53162"
+      ID: 11
+      EnhancementSprite: {fileID: 21300000, guid: 2ef57e45714e4114ba7c7dfe3faa811f,
+        type: 3}
+      EnhancementStatus: 2
+      AddValue: 40
+      EnhancementPoint: 15
+    - EnhancementName: "ATK\u5F37\u53162"
+      ID: 12
+      EnhancementSprite: {fileID: 21300000, guid: 2ef57e45714e4114ba7c7dfe3faa811f,
+        type: 3}
+      EnhancementStatus: 2
+      AddValue: 60
+      EnhancementPoint: 20
+    - EnhancementName: "ATK\u5F37\u53164"
+      ID: 13
+      EnhancementSprite: {fileID: 21300000, guid: 2ef57e45714e4114ba7c7dfe3faa811f,
+        type: 3}
+      EnhancementStatus: 2
+      AddValue: 80
+      EnhancementPoint: 25
+    - EnhancementName: "ATK\u5F37\u53165"
+      ID: 14
+      EnhancementSprite: {fileID: 21300000, guid: 2ef57e45714e4114ba7c7dfe3faa811f,
+        type: 3}
+      EnhancementStatus: 2
+      AddValue: 100
+      EnhancementPoint: 30
+    - EnhancementName: "DEF\u5F37\u53161"
+      ID: 15
+      EnhancementSprite: {fileID: 21300000, guid: a432e449921f41d4a8e9cff3307eec3a,
+        type: 3}
+      EnhancementStatus: 3
+      AddValue: 20
+      EnhancementPoint: 10
+    - EnhancementName: "DEF\u5F37\u53162"
+      ID: 16
+      EnhancementSprite: {fileID: 21300000, guid: a432e449921f41d4a8e9cff3307eec3a,
+        type: 3}
+      EnhancementStatus: 3
+      AddValue: 40
+      EnhancementPoint: 15
+    - EnhancementName: "DEF\u5F37\u53163"
+      ID: 17
+      EnhancementSprite: {fileID: 21300000, guid: a432e449921f41d4a8e9cff3307eec3a,
+        type: 3}
+      EnhancementStatus: 3
+      AddValue: 60
+      EnhancementPoint: 20
+    - EnhancementName: "DEF\u5F37\u53164"
+      ID: 18
+      EnhancementSprite: {fileID: 21300000, guid: a432e449921f41d4a8e9cff3307eec3a,
+        type: 3}
+      EnhancementStatus: 3
+      AddValue: 80
+      EnhancementPoint: 25
+    - EnhancementName: "DEF\u5F37\u53165"
+      ID: 19
+      EnhancementSprite: {fileID: 21300000, guid: a432e449921f41d4a8e9cff3307eec3a,
+        type: 3}
+      EnhancementStatus: 3
+      AddValue: 100
+      EnhancementPoint: 30
+    - EnhancementName: "SPD\u5F37\u53161"
+      ID: 20
+      EnhancementSprite: {fileID: 21300000, guid: b299ed6f4c174f842aa6da501d6b3a1a,
+        type: 3}
+      EnhancementStatus: 4
+      AddValue: 20
+      EnhancementPoint: 10
+    - EnhancementName: "SPD\u5F37\u53162"
+      ID: 21
+      EnhancementSprite: {fileID: 21300000, guid: b299ed6f4c174f842aa6da501d6b3a1a,
+        type: 3}
+      EnhancementStatus: 4
+      AddValue: 40
+      EnhancementPoint: 15
+    - EnhancementName: "SPD\u5F37\u53163"
+      ID: 22
+      EnhancementSprite: {fileID: 21300000, guid: b299ed6f4c174f842aa6da501d6b3a1a,
+        type: 3}
+      EnhancementStatus: 4
+      AddValue: 60
+      EnhancementPoint: 20
+    - EnhancementName: "SPD\u5F37\u53164"
+      ID: 23
+      EnhancementSprite: {fileID: 21300000, guid: b299ed6f4c174f842aa6da501d6b3a1a,
+        type: 3}
+      EnhancementStatus: 4
+      AddValue: 80
+      EnhancementPoint: 25
+    - EnhancementName: "SPD\u5F37\u53165"
+      ID: 24
+      EnhancementSprite: {fileID: 21300000, guid: b299ed6f4c174f842aa6da501d6b3a1a,
+        type: 3}
+      EnhancementStatus: 4
+      AddValue: 100
+      EnhancementPoint: 30
+    - EnhancementName: "LUCK\u5F37\u53161"
+      ID: 25
+      EnhancementSprite: {fileID: 21300000, guid: 1830e489cb8b0e1418ec5e6eed8e70af,
+        type: 3}
+      EnhancementStatus: 5
+      AddValue: 20
+      EnhancementPoint: 10
+    - EnhancementName: "LUCK\u5F37\u53162"
+      ID: 26
+      EnhancementSprite: {fileID: 21300000, guid: 1830e489cb8b0e1418ec5e6eed8e70af,
+        type: 3}
+      EnhancementStatus: 5
+      AddValue: 40
+      EnhancementPoint: 15
+    - EnhancementName: "LUCK\u5F37\u53163"
+      ID: 27
+      EnhancementSprite: {fileID: 21300000, guid: 1830e489cb8b0e1418ec5e6eed8e70af,
+        type: 3}
+      EnhancementStatus: 5
+      AddValue: 60
+      EnhancementPoint: 20
+    - EnhancementName: "LUCK\u5F37\u53164"
+      ID: 28
+      EnhancementSprite: {fileID: 21300000, guid: 1830e489cb8b0e1418ec5e6eed8e70af,
+        type: 3}
+      EnhancementStatus: 5
+      AddValue: 80
+      EnhancementPoint: 25
+    - EnhancementName: "LUCK\u5F37\u53165"
+      ID: 29
+      EnhancementSprite: {fileID: 21300000, guid: 1830e489cb8b0e1418ec5e6eed8e70af,
+        type: 3}
+      EnhancementStatus: 5
+      AddValue: 100
+      EnhancementPoint: 30

@@ -40,7 +40,7 @@ public class PlayerSkillButton : MonoBehaviour
     /// <summary>
     /// ƒ{ƒ^ƒ“‚ğ‰Ÿ‚³‚ê‚½‚Ìˆ—
     /// </summary>
-    private void ButtonDown()
+    public void ButtonDown()
     {
         // Ú×‚ğ•\¦‚·‚é
         m_playerSkill.DisplaySetPlayerSkill(m_skillNumber);

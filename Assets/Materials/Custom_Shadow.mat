@@ -31,11 +31,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _CenterPositionX: 0.595
-    - _CenterPositionY: 0.583
+    - _CenterPositionX: 0.669
+    - _CenterPositionY: 0.673
     - _Frequency: 60
     - _MainTexScale: 20
-    - _MultiplyStrength: 0.905
+    - _MultiplyStrength: 1
     - _ScrollShiftX: 0.25
     - _ScrollShiftY: 0.25
     - _ScrollSpeedX: 0.25
@@ -45,7 +45,8 @@ Material:
     - _Size: 5
     - _UseDrawCircle: 1
     - _UseUVScroll: 0
-    - _Width: -0.02
+    - _Width: 0.068
     m_Colors:
+    - _ShadowBorderColor: {r: 0.7075472, g: 0.5298617, b: 0.3230687, a: 1}
     - _ShadowColor: {r: 1, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []

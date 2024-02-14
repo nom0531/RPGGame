@@ -38,20 +38,17 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     new private void Awake()
     {
+        // ©g‚ÍƒV[ƒ“‚ğŒ×‚¢‚Å‚àíœ‚³‚ê‚È‚¢‚æ‚¤‚É‚·‚é
+        DontDestroyOnLoad(gameObject);
+
         if (m_saveDataManager == null)
         {
             Instantiate(SaveDataObject);
             // ‘¶İ‚µ‚Ä‚¢‚È‚¢‚È‚ç’T‚·
             m_saveDataManager = FindObjectOfType<SaveDataManager>();
         }
-        else
-        {
-            return;
-        }
 
-        DontDestroyOnLoad(gameObject);
-
-        Application.targetFrameRate = 60;
+        //Application.targetFrameRate = 60;
         Physics.autoSimulation = false;
     }
 }

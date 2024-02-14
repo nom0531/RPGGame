@@ -15,7 +15,7 @@ public class SaveDataManager : MonoBehaviour
     private SaveData GameSaveData;
 
     private const bool BOOL = true;
-    private const int DEFAULT_EP_POINT = 500;
+    private const int DEFAULT_EP_POINT = 1500;
 
     private string m_filePath;  // 書き込み先のファイルパス
 
@@ -26,9 +26,6 @@ public class SaveDataManager : MonoBehaviour
 
     private void Awake()
     {
-        // 自身はシーンを跨いでも削除されないようにする
-        DontDestroyOnLoad(gameObject);
-
         // セーブデータを読み込む
         m_filePath = $"{Application.persistentDataPath}/.savedata.json";
         var isLoad = Load();

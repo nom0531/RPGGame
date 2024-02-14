@@ -113,10 +113,10 @@ public class PlayerMove : MonoBehaviour
         m_battleManager = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<BattleManager>();
         m_battleSystem = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<BattleSystem>();
         m_stagingManager = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<StagingManager>();
-        m_abnormalCalculation = gameObject.GetComponent<StateAbnormalCalculation>();
-        m_buffCalculation = gameObject.GetComponent<BuffCalculation>();
-        m_drawCommandText = gameObject.GetComponent<DrawCommandText>();
-        m_animator = gameObject.GetComponent<Animator>();
+        m_abnormalCalculation = GetComponent<StateAbnormalCalculation>();
+        m_buffCalculation = GetComponent<BuffCalculation>();
+        m_drawCommandText = GetComponent<DrawCommandText>();
+        m_animator = GetComponent<Animator>();
         SetStatus();
     }
     private void Start()
@@ -459,7 +459,9 @@ public class PlayerMove : MonoBehaviour
     /// <param name="skillNumber">ÉXÉLÉãÇÃî‘çÜ</param>
     public void ActionEnd(ActionType actionType, int skillNumber)
     {
+#if UNITY_EDITOR
         m_drawCommandText.SetCommandText(actionType, PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].ID);
+#endif
         ActionEndFlag = true;
     }
 
@@ -541,20 +543,26 @@ public class PlayerMove : MonoBehaviour
         switch (ActorAbnormalState)
         {
             case ActorAbnormalState.enPoison:
+#if UNITY_EDITOR
                 Debug.Log($"{PlayerData.playerDataList[m_myNumber].PlayerName}ÇÕì≈ÇóÅÇ—ÇƒÇ¢ÇÈ");
+#endif
                 PoisonDamage = m_abnormalCalculation.Poison(PlayerStatus.HP);
                 break;
             case ActorAbnormalState.enParalysis:
                 if (m_abnormalCalculation.Paralysis() == true)
                 {
+#if UNITY_EDITOR
                     Debug.Log($"{PlayerData.playerDataList[m_myNumber].PlayerName}ÇÕñÉ·ÉÇµÇƒÇ¢ÇÈ");
+#endif
                     NextActionType = ActionType.enNull;
                 }
                 break;
             case ActorAbnormalState.enConfusion:
                 if (m_abnormalCalculation.Confusion() == true)
                 {
+#if UNITY_EDITOR
                     Debug.Log($"{PlayerData.playerDataList[m_myNumber].PlayerName}ÇÕç¨óêÇµÇƒÇ¢ÇÈ");
+#endif
                     NextActionType = ActionType.enAttack;
                     ConfusionFlag = true;
                 }

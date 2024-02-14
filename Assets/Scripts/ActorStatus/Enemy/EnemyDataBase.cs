@@ -3,6 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
+/// エネミーのサイズ
+/// </summary>
+public enum EnemySize
+{
+    enExtraSmal,
+    enSmall,
+    enMedium,
+    enLarge
+}
+
+/// <summary>
 /// エネミーの構造体
 /// </summary>
 [System.Serializable]
@@ -12,6 +23,7 @@ public class EnemyData
     public string EnemyName;                                        // 名前(8文字まで)
     public int ID;                                                  // 自身の番号
     public Sprite EnemySprite;                                      // 画像
+    public EnemySize EnemySize;                                     // エネミーのサイズ
     public LocationType PopLocation;                                // スポーンする環境
     public LocationTime PopTime;                                    // スポーンする時間
     public int EnhancementPoint;                                    // ドロップする強化ポイント

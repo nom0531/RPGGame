@@ -40,6 +40,8 @@ public class BattleManager : MonoBehaviour
     [SerializeField]
     private EnemyDataBase EnemyData;
     [SerializeField]
+    private SkillDataBase SkillData;
+    [SerializeField]
     private LevelDataBase LevelData;
     [SerializeField, Header("参照オブジェクト")]
     private GameObject PauseCanvas;
@@ -77,6 +79,22 @@ public class BattleManager : MonoBehaviour
     private int m_enemyNumber = 0;                              // エネミーの番号
     private bool m_isPause = false;                             // ポーズ画面かどうか
     private bool m_isPushDown = false;                          // ボタンが押されたかどうか
+    private bool m_isStagingStart = false;                      // 演出が開始したかどうか。falseなら開始していない
+
+    public PlayerDataBase PlayerDataBase
+    {
+        get => PlayerData;
+    }
+
+    public EnemyDataBase EnemyDataBase
+    {
+        get => EnemyData;
+    }
+
+    public SkillDataBase SkillDataBase
+    {
+        get => SkillData;
+    }
 
     public bool PauseFlag
     {
@@ -84,9 +102,20 @@ public class BattleManager : MonoBehaviour
         set => m_isPushDown = value;
     }
 
+    public bool StagingStartFlag
+    {
+        get => m_isStagingStart;
+        set => m_isStagingStart = value;
+    }
+
     public int OperatingPlayerNumber
     {
         get => (int)m_operatingPlayer;
+    }
+
+    public int TurnSum
+    {
+        get => m_turnSum;
     }
 
     public List<PlayerMove> PlayerMoveList
@@ -97,11 +126,6 @@ public class BattleManager : MonoBehaviour
     public List<EnemyMove> EnemyMoveList
     {
         get => m_enemyMoveList;
-    }
-
-    public int TurnSum
-    {
-        get => m_turnSum;
     }
 
     public TurnStatus TurnStatus
@@ -116,11 +140,11 @@ public class BattleManager : MonoBehaviour
 
     private void Awake()
     {
-        m_battleSystem = gameObject.GetComponent<BattleSystem>();
-        m_lockOnSystem = gameObject.GetComponent<LockOnSystem>();
-        m_drawStatusValue = gameObject.GetComponent<DrawStatusValue>();
-        m_drawBattleResult = gameObject.GetComponent<DrawBattleResult>();
-        m_stagingManager = gameObject.GetComponent<StagingManager>();
+        m_battleSystem = GetComponent<BattleSystem>();
+        m_lockOnSystem = GetComponent<LockOnSystem>();
+        m_drawStatusValue = GetComponent<DrawStatusValue>();
+        m_drawBattleResult = GetComponent<DrawBattleResult>();
+        m_stagingManager = GetComponent<StagingManager>();
 
         var SPD = int.MinValue;
         for(int i = 0; i < (int)OperatingPlayer.enNum; i++)
@@ -195,25 +219,28 @@ public class BattleManager : MonoBehaviour
             m_isPause = !m_isPause;     // フラグを反転させる
             m_isPushDown = false;       // フラグを戻す
         }
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             m_playerMoveList[0].DecrementHP(999);
             m_playerMoveList[1].DecrementHP(999);
             m_playerMoveList[2].DecrementHP(999);
         }
+#endif
     }
 
     private void FixedUpdate()
     {
+#if UNITY_EDITOR
         Debug.Log($"現在のターン数：{m_turnSum}ターン目");
-        IsGameClear();
-        IsGameOver();
-
+#endif
         // ゲームが終了しているなら、これより以下の処理は実行されない
         if (m_gameState != GameState.enPlay)
         {
             return;
         }
+        IsGameClear();
+        IsGameOver();
         // ポーズしているなら実行しない
         if (PauseFlag == true)
         {
@@ -233,6 +260,9 @@ public class BattleManager : MonoBehaviour
                     case OperatingPlayer.enAttacker:
                     case OperatingPlayer.enBuffer:
                     case OperatingPlayer.enHealer:
+#if UNITY_EDITOR
+                        Debug.Log(PlayerData.playerDataList[(int)m_operatingPlayer].PlayerName + "のターン");
+#endif
                         PlayerAction((int)m_operatingPlayer);
 
                         // 再度行動可能なら
@@ -248,8 +278,11 @@ public class BattleManager : MonoBehaviour
                 break;
             // エネミーのターン
             case TurnStatus.enEnemy:
-                for(int enemyNumber = m_enemyNumber; enemyNumber < m_enemyMoveList.Count; enemyNumber++)
+                for (int enemyNumber = m_enemyNumber; enemyNumber < m_enemyMoveList.Count; enemyNumber++)
                 {
+#if UNITY_EDITOR
+                    Debug.Log(EnemyData.enemyDataList[m_enemyMoveList[enemyNumber].MyNumber].EnemyName + "のターン");
+#endif
                     // 死亡している際は実行しない
                     if (m_enemyMoveList[enemyNumber].ActorHPState == ActorHPState.enDie)
                     {
@@ -318,6 +351,7 @@ public class BattleManager : MonoBehaviour
     /// </summary>
     private void IsGameClear()
     {
+        var sumEP = 0;  // 獲得EPの総量
         for(int i = 0; i < m_enemyMoveList.Count; i++)
         {
             // 相手が1体でも生存しているならゲームクリアではない
@@ -325,7 +359,10 @@ public class BattleManager : MonoBehaviour
             {
                 return;
             }
+            // 生存していないならEPを加算
+            sumEP += EnemyData.enemyDataList[m_enemyMoveList[i].MyNumber].EnhancementPoint;
         }
+        m_drawBattleResult.EP = sumEP;
         m_gameState = GameState.enBattleWin;
     }
 
@@ -373,7 +410,6 @@ public class BattleManager : MonoBehaviour
     /// <param name="myNumber">自身の番号</param>
     async private void PlayerAction(int myNumber)
     {
-        Debug.Log(PlayerData.playerDataList[(int)m_operatingPlayer].PlayerName + "のターン");
         // 演出が開始されたなら実行しない
         if (m_stagingManager.StangingState == StagingState.enStangingStart)
         {
@@ -386,28 +422,25 @@ public class BattleManager : MonoBehaviour
             return;
         }
 
-        for (int i = 0; i < BattleButton.Length; i++)
+        // もしいずれかのボタンが押されたら以下の処理を実行する
+        if (BattleButton[0].ButtonDown == true || BattleButton[1].ButtonDown == true || BattleButton[2].ButtonDown == true)
         {
-            // もしいずれかのボタンが押されたら以下の処理を実行する
-            if (BattleButton[i].ButtonDown == true)
-            {
-                var skillNumber = m_playerMoveList[myNumber].SelectSkillNumber;
-                var targetNumber = 0;
+            var skillNumber = m_playerMoveList[myNumber].SelectSkillNumber;
+            var targetNumber = 0;
 
-                // ガード以外のコマンド  かつ　単体攻撃なら
-                if (PlayerData.playerDataList[myNumber].skillDataList[skillNumber].EffectRange != EffectRange.enAll
-                    && m_playerMoveList[myNumber].NextActionType != ActionType.enGuard)
-                {
-                    m_lockOnSystem.SetTargetState(PlayerData.playerDataList[myNumber].skillDataList[skillNumber].ID,
-                        m_playerMoveList[myNumber].NextActionType);
-                    // 攻撃対象が選択されたら以下の処理を実行する
-                    await UniTask.WaitUntil(() => m_lockOnSystem.ButtonDown == true);
-                    // 対象を再設定する
-                    skillNumber = m_playerMoveList[myNumber].SelectSkillNumber;
-                    targetNumber = m_lockOnSystem.TargetNumber;
-                }
-                PlayerAction_Move(myNumber, skillNumber, targetNumber);
+            // ガード以外のコマンド  かつ　単体攻撃なら
+            if (PlayerData.playerDataList[myNumber].skillDataList[skillNumber].EffectRange != EffectRange.enAll
+                && m_playerMoveList[myNumber].NextActionType != ActionType.enGuard)
+            {
+                m_lockOnSystem.SetTargetState(PlayerData.playerDataList[myNumber].skillDataList[skillNumber].ID,
+                    m_playerMoveList[myNumber].NextActionType);
+                // 攻撃対象が選択されたら以下の処理を実行する
+                await UniTask.WaitUntil(() => m_lockOnSystem.ButtonDown == true);
+                // 対象を再設定する
+                skillNumber = m_playerMoveList[myNumber].SelectSkillNumber;
+                targetNumber = m_lockOnSystem.TargetNumber;
             }
+            PlayerAction_Move(myNumber, skillNumber, targetNumber);
         }
     }
 
@@ -457,7 +490,6 @@ public class BattleManager : MonoBehaviour
                 {
                     targetNumber = m_battleSystem.GetRandomValue(0, m_playerMoveList.Count);
                     DEF = m_playerMoveList[targetNumber].PlayerStatus.DEF;
-                    Debug.Log($"{PlayerData.playerDataList[targetNumber].PlayerName}に攻撃");
                 }
                 m_playerMoveList[myNumber].PlayerAction_Attack(targetNumber, DEF);
                 break;
@@ -653,7 +685,6 @@ public class BattleManager : MonoBehaviour
         {
             m_turnStatus = TurnStatus.enEnemy;
         }
-
         return operatingPlayer;
     }
 
@@ -694,8 +725,6 @@ public class BattleManager : MonoBehaviour
     /// <param name="myNumber">自身の番号</param>
     private void EnemyAction(int myNumber)
     {
-        Debug.Log(EnemyData.enemyDataList[m_enemyMoveList[myNumber].MyNumber].EnemyName + "のターン");
-
         // 演出が開始されたなら実行しない
         if (m_stagingManager.StangingState == StagingState.enStangingStart)
         {
@@ -774,7 +803,7 @@ public class BattleManager : MonoBehaviour
                         }
                         m_enemyMoveList[myNumber].EnemyAction_SkillAttack(
                             skillNumber,                                                                    // スキルの番号
-                            targetNumber,                                                           // ターゲットの番号
+                            targetNumber,                                                                   // ターゲットの番号
                             m_playerMoveList[targetNumber].PlayerStatus.DEF,                                // 防御力
                             m_playerMoveList[targetNumber].MyNumber                                         // プレイヤーの番号
                             );

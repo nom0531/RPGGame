@@ -142,6 +142,13 @@ public class EnemyDataEditor : EditorWindow
                     "画像",
                     m_enemyDataBase.enemyDataList[m_selectNumber].EnemySprite,
                     typeof(Sprite), true) as Sprite;
+            // サイズ
+            m_enemyDataBase.enemyDataList[m_selectNumber].EnemySize =
+                (EnemySize)EditorGUILayout.Popup(
+                    "サイズ",
+                    (int)m_enemyDataBase.enemyDataList[m_selectNumber].EnemySize,
+                    new string[] { "極小", "小", "中", "大" }
+                    );
             // 出現設定
             m_enemyDataBase.enemyDataList[m_selectNumber].PopLocation =
                 (LocationType)EditorGUILayout.Popup(
@@ -155,6 +162,12 @@ public class EnemyDataEditor : EditorWindow
                     (int)m_enemyDataBase.enemyDataList[m_selectNumber].PopTime,
                     new string[] { "朝", "日没前", "夜", "--" }
                     );
+            // EP
+            m_enemyDataBase.enemyDataList[m_selectNumber].EnhancementPoint =
+               EditorGUILayout.IntField(
+                   "ドロップするEP",
+                   m_enemyDataBase.enemyDataList[m_selectNumber].EnhancementPoint
+                   );
 
             EditorGUILayout.Space();
             DrawElement();
@@ -229,14 +242,6 @@ public class EnemyDataEditor : EditorWindow
         {
             EditorGUILayout.HelpBox("警告：属性の種類が定義より多く設定されています！", MessageType.Warning);
         }
-    }
-
-    /// <summary>
-    /// 行動処理
-    /// </summary>
-    private void DrawMove()
-    {
-
     }
 
     /// <summary>

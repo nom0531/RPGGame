@@ -69,7 +69,6 @@ public class PictureBookSystem : MonoBehaviour
     {
         // 値を非表示にする
         Data_Sprite.SetActive(false);
-
         m_saveDataManager = GameManager.Instance.SaveData;
 
         for (int i = 0; i < EnemyData.enemyDataList.Count; i++)
@@ -91,18 +90,15 @@ public class PictureBookSystem : MonoBehaviour
             {
                 // 見つけているならカウント
                 m_enemyCount++;
-
                 for(int elementNumber = 0; elementNumber < (int)ElementType.enNum; elementNumber++)
                 {
                     if(m_saveDataManager.SaveData.saveData.ElementRegisters[i].Elements[elementNumber] != true)
                     {
                         break;
                     }
-
                     m_elementCount++;
                 }
             }
-
             // オブジェクトを生成する
             var enemyButton = button.GetComponent<EnemyButton>();
             enemyButton.SetPictureBook(
@@ -127,12 +123,11 @@ public class PictureBookSystem : MonoBehaviour
         var allValue = EnemyData.enemyDataList.Count + (EnemyData.enemyDataList.Count * (int)ElementType.enNum);
         // 現在発見しているエネミーの数とエレメントの数
         var Value = m_enemyCount + m_elementCount;
-
+        // 割合を計算
         rate = (float)Value / (float)allValue;
         rate *= 100;
-
         var text = $"{rate.ToString("F1")}%";
-
+        // 値を代入
         RegistrationRateText.GetComponent<TextMeshProUGUI>().text = text;
     }
 

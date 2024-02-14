@@ -22,11 +22,11 @@ MonoBehaviour:
     EffectScale: 15
     SkillElement: 0
     StateAbnormalData:
-      StateName: "\u6DF7\u4E71"
+      StateName: "\u306A\u3057"
       ID: 0
-      StateImage: {fileID: 21300000, guid: 2ab72dfc7caf3d34d9afae960a639a46, type: 3}
-      POW: 70
-      EffectTime: 3
+      StateImage: {fileID: 0}
+      POW: 0
+      EffectTime: 0
       ActorAbnormalState: 0
     POW: 20
     SkillNecessary: 5
@@ -34,7 +34,7 @@ MonoBehaviour:
     EffectRange: 0
     TargetState: 0
     BuffType: 3
-    EnhancementPoint: 0
+    EnhancementPoint: 10
     SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
   - SkillName: "\u30D5\u30A1\u30A4\u30A22"
     ID: 1
@@ -45,11 +45,11 @@ MonoBehaviour:
     EffectScale: 15
     SkillElement: 0
     StateAbnormalData:
-      StateName: "\u6DF7\u4E71"
+      StateName: "\u306A\u3057"
       ID: 0
-      StateImage: {fileID: 21300000, guid: 2ab72dfc7caf3d34d9afae960a639a46, type: 3}
-      POW: 70
-      EffectTime: 3
+      StateImage: {fileID: 0}
+      POW: 0
+      EffectTime: 0
       ActorAbnormalState: 0
     POW: 40
     SkillNecessary: 10
@@ -57,7 +57,7 @@ MonoBehaviour:
     EffectRange: 0
     TargetState: 0
     BuffType: 3
-    EnhancementPoint: 0
+    EnhancementPoint: 20
     SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u4E2D\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
   - SkillName: "\u30D5\u30A1\u30A4\u30A23"
     ID: 2
@@ -68,11 +68,11 @@ MonoBehaviour:
     EffectScale: 15
     SkillElement: 0
     StateAbnormalData:
-      StateName: "\u6DF7\u4E71"
+      StateName: "\u306A\u3057"
       ID: 0
-      StateImage: {fileID: 21300000, guid: 2ab72dfc7caf3d34d9afae960a639a46, type: 3}
-      POW: 70
-      EffectTime: 3
+      StateImage: {fileID: 0}
+      POW: 0
+      EffectTime: 0
       ActorAbnormalState: 0
     POW: 80
     SkillNecessary: 15
@@ -80,7 +80,7 @@ MonoBehaviour:
     EffectRange: 0
     TargetState: 0
     BuffType: 3
-    EnhancementPoint: 0
+    EnhancementPoint: 30
     SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u708E\u5C5E\u6027\u3067\u5927\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
   - SkillName: "\u30A2\u30A4\u30B91"
     ID: 3
@@ -103,7 +103,7 @@ MonoBehaviour:
     EffectRange: 0
     TargetState: 0
     BuffType: 3
-    EnhancementPoint: 0
+    EnhancementPoint: 10
     SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u6C37\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
   - SkillName: "\u30A2\u30A4\u30B92"
     ID: 4
@@ -126,7 +126,7 @@ MonoBehaviour:
     EffectRange: 0
     TargetState: 0
     BuffType: 3
-    EnhancementPoint: 0
+    EnhancementPoint: 20
     SkillDetail: "\u65751\u4F53\u306B\u5BFE\u3057\u3066\u6C37\u5C5E\u6027\u3067\u4E2D\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
   - SkillName: "\u30A2\u30A4\u30B93"
     ID: 5
@@ -149,7 +149,7 @@ MonoBehaviour:
     EffectRange: 0
     TargetState: 0
     BuffType: 3
-    EnhancementPoint: 0
+    EnhancementPoint: 30
     SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u6C37\u5C5E\u6027\u3067\u5927\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
   - SkillName: "\u30A6\u30A3\u30F3\u30C91"
     ID: 6
@@ -172,7 +172,7 @@ MonoBehaviour:
     EffectRange: 0
     TargetState: 0
     BuffType: 3
-    EnhancementPoint: 0
+    EnhancementPoint: 10
     SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u98A8\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
   - SkillName: "\u30A6\u30A3\u30F3\u30C9\uFF12"
     ID: 7
@@ -195,7 +195,7 @@ MonoBehaviour:
     EffectRange: 0
     TargetState: 0
     BuffType: 3
-    EnhancementPoint: 0
+    EnhancementPoint: 20
     SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u98A8\u5C5E\u6027\u3067\u4E2D\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
   - SkillName: "\u30A6\u30A3\u30F3\u30C93"
     ID: 8
@@ -218,7 +218,7 @@ MonoBehaviour:
     EffectRange: 0
     TargetState: 0
     BuffType: 3
-    EnhancementPoint: 0
+    EnhancementPoint: 30
     SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u98A8\u5C5E\u6027\u3067\u5927\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
   - SkillName: "\u30B5\u30F3\u30C0\u30FC1"
     ID: 9
@@ -241,7 +241,7 @@ MonoBehaviour:
     EffectRange: 0
     TargetState: 0
     BuffType: 3
-    EnhancementPoint: 0
+    EnhancementPoint: 10
     SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u96F7\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
   - SkillName: "\u30B5\u30F3\u30C0\u30FC2"
     ID: 10
@@ -264,7 +264,7 @@ MonoBehaviour:
     EffectRange: 0
     TargetState: 0
     BuffType: 3
-    EnhancementPoint: 0
+    EnhancementPoint: 20
     SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u96F7\u5C5E\u6027\u3067\u4E2D\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
   - SkillName: "\u30B5\u30F3\u30C0\u30FC3"
     ID: 11
@@ -287,7 +287,7 @@ MonoBehaviour:
     EffectRange: 0
     TargetState: 0
     BuffType: 3
-    EnhancementPoint: 0
+    EnhancementPoint: 30
     SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u96F7\u5C5E\u6027\u3067\u5927\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
   - SkillName: "\u30B7\u30E3\u30A4\u30F31"
     ID: 12
@@ -310,7 +310,7 @@ MonoBehaviour:
     EffectRange: 0
     TargetState: 0
     BuffType: 3
-    EnhancementPoint: 0
+    EnhancementPoint: 10
     SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u5149\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
   - SkillName: "\u30B7\u30E3\u30A4\u30F32"
     ID: 13
@@ -333,7 +333,7 @@ MonoBehaviour:
     EffectRange: 0
     TargetState: 0
     BuffType: 3
-    EnhancementPoint: 0
+    EnhancementPoint: 20
     SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u5149\u5C5E\u6027\u3067\u4E2D\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
   - SkillName: "\u30B7\u30E3\u30A4\u30F33"
     ID: 14
@@ -356,7 +356,7 @@ MonoBehaviour:
     EffectRange: 0
     TargetState: 0
     BuffType: 3
-    EnhancementPoint: 0
+    EnhancementPoint: 30
     SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u5149\u5C5E\u6027\u3067\u5927\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
   - SkillName: "\u30C0\u30FC\u30AF1"
     ID: 15
@@ -379,7 +379,7 @@ MonoBehaviour:
     EffectRange: 0
     TargetState: 0
     BuffType: 3
-    EnhancementPoint: 0
+    EnhancementPoint: 10
     SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u95C7\u5C5E\u6027\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
   - SkillName: "\u30C0\u30FC\u30AF2"
     ID: 16
@@ -402,7 +402,7 @@ MonoBehaviour:
     EffectRange: 0
     TargetState: 0
     BuffType: 3
-    EnhancementPoint: 0
+    EnhancementPoint: 20
     SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u95C7\u5C5E\u6027\u3067\u4E2D\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
   - SkillName: "\u30C0\u30FC\u30AF3"
     ID: 17
@@ -425,7 +425,7 @@ MonoBehaviour:
     EffectRange: 0
     TargetState: 0
     BuffType: 3
-    EnhancementPoint: 0
+    EnhancementPoint: 30
     SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u95C7\u5C5E\u6027\u3067\u5927\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
   - SkillName: "\u7121\u5C5E\u60271"
     ID: 18
@@ -448,7 +448,7 @@ MonoBehaviour:
     EffectRange: 0
     TargetState: 0
     BuffType: 3
-    EnhancementPoint: 0
+    EnhancementPoint: 25
     SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u5C5E\u6027\u7121\u8996\u3067\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
   - SkillName: "\u7121\u5C5E\u60272"
     ID: 19
@@ -471,7 +471,7 @@ MonoBehaviour:
     EffectRange: 0
     TargetState: 0
     BuffType: 3
-    EnhancementPoint: 0
+    EnhancementPoint: 50
     SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u5C5E\u6027\u7121\u8996\u3067\u4E2D\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
   - SkillName: "\u7121\u5C5E\u60273"
     ID: 20
@@ -494,7 +494,7 @@ MonoBehaviour:
     EffectRange: 0
     TargetState: 0
     BuffType: 3
-    EnhancementPoint: 0
+    EnhancementPoint: 100
     SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u5C5E\u6027\u7121\u8996\u3067\u5927\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
   - SkillName: "\u5358\u4F53\u653B\u64831"
     ID: 21
@@ -517,7 +517,7 @@ MonoBehaviour:
     EffectRange: 0
     TargetState: 0
     BuffType: 3
-    EnhancementPoint: 0
+    EnhancementPoint: 10
     SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
   - SkillName: "\u5358\u4F53\u653B\u64832"
     ID: 22
@@ -540,7 +540,7 @@ MonoBehaviour:
     EffectRange: 0
     TargetState: 0
     BuffType: 3
-    EnhancementPoint: 0
+    EnhancementPoint: 20
     SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u4E2D\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
   - SkillName: "\u5358\u4F53\u653B\u64833"
     ID: 23
@@ -563,7 +563,7 @@ MonoBehaviour:
     EffectRange: 0
     TargetState: 0
     BuffType: 3
-    EnhancementPoint: 0
+    EnhancementPoint: 30
     SkillDetail: " \u65751\u4F53\u306B\u5BFE\u3057\u3066\u5927\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
   - SkillName: "\u5168\u4F53\u653B\u64831"
     ID: 24
@@ -586,7 +586,7 @@ MonoBehaviour:
     EffectRange: 1
     TargetState: 1
     BuffType: 3
-    EnhancementPoint: 0
+    EnhancementPoint: 15
     SkillDetail: " \u6575\u5168\u4F53\u306B\u5BFE\u3057\u3066\u5C0F\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
   - SkillName: "\u5168\u4F53\u653B\u64832"
     ID: 25
@@ -609,7 +609,7 @@ MonoBehaviour:
     EffectRange: 1
     TargetState: 1
     BuffType: 3
-    EnhancementPoint: 0
+    EnhancementPoint: 30
     SkillDetail: " \u6575\u5168\u4F53\u306B\u5BFE\u3057\u3066\u4E2D\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
   - SkillName: "\u5168\u4F53\u653B\u64833"
     ID: 26
@@ -632,7 +632,7 @@ MonoBehaviour:
     EffectRange: 1
     TargetState: 1
     BuffType: 3
-    EnhancementPoint: 0
+    EnhancementPoint: 45
     SkillDetail: " \u6575\u5168\u4F53\u306B\u5BFE\u3057\u3066\u5927\u30C0\u30E1\u30FC\u30B8\u3092\u4E0E\u3048\u308B\u3002"
   - SkillName: "\u30D0\u30D51"
     ID: 27
@@ -655,7 +655,7 @@ MonoBehaviour:
     EffectRange: 0
     TargetState: 0
     BuffType: 0
-    EnhancementPoint: 0
+    EnhancementPoint: 10
     SkillDetail: "\u5473\u65B91\u4F53\u306E\u653B\u6483\u529B\u3092\u4E0A\u6607\u3055\u305B\u308B\u3002"
   - SkillName: "\u30D0\u30D52"
     ID: 28
@@ -678,7 +678,7 @@ MonoBehaviour:
     EffectRange: 0
     TargetState: 0
     BuffType: 1
-    EnhancementPoint: 0
+    EnhancementPoint: 20
     SkillDetail: "\u5473\u65B91\u4F53\u306E\u9632\u5FA1\u529B\u3092\u4E0A\u6607\u3055\u305B\u308B\u3002"
   - SkillName: "\u30D0\u30D53"
     ID: 29
@@ -701,7 +701,7 @@ MonoBehaviour:
     EffectRange: 0
     TargetState: 0
     BuffType: 2
-    EnhancementPoint: 0
+    EnhancementPoint: 30
     SkillDetail: "\u5473\u65B91\u4F53\u306E\u7D20\u65E9\u3055\u3092\u4E0A\u6607\u3055\u305B\u308B\u3002"
   - SkillName: "\u30C7\u30D0\u30D51"
     ID: 30
@@ -724,7 +724,7 @@ MonoBehaviour:
     EffectRange: 0
     TargetState: 0
     BuffType: 0
-    EnhancementPoint: 0
+    EnhancementPoint: 10
     SkillDetail: "\u65751\u4F53\u306E\u653B\u6483\u529B\u3092\u6E1B\u5C11\u3055\u305B\u308B\u3002"
   - SkillName: "\u30C7\u30D0\u30D52"
     ID: 31
@@ -747,7 +747,7 @@ MonoBehaviour:
     EffectRange: 0
     TargetState: 0
     BuffType: 1
-    EnhancementPoint: 0
+    EnhancementPoint: 20
     SkillDetail: "\u65751\u4F53\u306E\u9632\u5FA1\u529B\u3092\u6E1B\u5C11\u3055\u305B\u308B\u3002"
   - SkillName: "\u30C7\u30D0\u30D53"
     ID: 32
@@ -770,7 +770,7 @@ MonoBehaviour:
     EffectRange: 0
     TargetState: 0
     BuffType: 2
-    EnhancementPoint: 0
+    EnhancementPoint: 30
     SkillDetail: "\u65751\u4F53\u306E\u7D20\u65E9\u3055\u3092\u6E1B\u5C11\u3055\u305B\u308B\u3002"
   - SkillName: "\u30D2\u30FC\u30EB1"
     ID: 33
@@ -793,7 +793,7 @@ MonoBehaviour:
     EffectRange: 0
     TargetState: 0
     BuffType: 3
-    EnhancementPoint: 0
+    EnhancementPoint: 10
     SkillDetail: "\u5473\u65B91\u4F53\u306E\u4F53\u529B\u3092\u5C0F\u56DE\u5FA9\u3059\u308B\u3002"
   - SkillName: "\u30D2\u30FC\u30EB2"
     ID: 34
@@ -816,7 +816,7 @@ MonoBehaviour:
     EffectRange: 0
     TargetState: 0
     BuffType: 3
-    EnhancementPoint: 0
+    EnhancementPoint: 20
     SkillDetail: "\u5473\u65B91\u4F53\u306E\u4F53\u529B\u3092\u4E2D\u56DE\u5FA9\u3059\u308B\u3002"
   - SkillName: "\u30D2\u30FC\u30EB3"
     ID: 35
@@ -839,7 +839,7 @@ MonoBehaviour:
     EffectRange: 0
     TargetState: 0
     BuffType: 3
-    EnhancementPoint: 0
+    EnhancementPoint: 30
     SkillDetail: "\u5473\u65B91\u4F53\u306E\u4F53\u529B\u3092\u5168\u56DE\u5FA9\u3059\u308B\u3002"
   - SkillName: "\u30D2\u30FC\u30EA\u30F3\u30B01"
     ID: 36
@@ -862,7 +862,7 @@ MonoBehaviour:
     EffectRange: 0
     TargetState: 0
     BuffType: 3
-    EnhancementPoint: 0
+    EnhancementPoint: 10
     SkillDetail: "\u5473\u65B91\u4F53\u306E\u4F53\u529B\u3092\u5C0F\u56DE\u5FA9\u3057\u3066\u5FA9\u6D3B\u3055\u305B\u308B\u3002"
   - SkillName: "\u30D2\u30FC\u30EA\u30F3\u30B02"
     ID: 37
@@ -885,7 +885,7 @@ MonoBehaviour:
     EffectRange: 0
     TargetState: 0
     BuffType: 3
-    EnhancementPoint: 0
+    EnhancementPoint: 20
     SkillDetail: "\u5473\u65B91\u4F53\u306E\u4F53\u529B\u3092\u4E2D\u56DE\u5FA9\u3057\u3066\u5FA9\u6D3B\u3055\u305B\u308B\u3002"
   - SkillName: "\u30D2\u30FC\u30EA\u30F3\u30B03"
     ID: 38
@@ -908,9 +908,9 @@ MonoBehaviour:
     EffectRange: 0
     TargetState: 0
     BuffType: 3
-    EnhancementPoint: 0
+    EnhancementPoint: 30
     SkillDetail: "\u5473\u65B91\u4F53\u306E\u4F53\u529B\u3092\u5168\u56DE\u5FA9\u3057\u3066\u5FA9\u6D3B\u3055\u305B\u308B\u3002"
-  - SkillName: "\u30AD\u30E5\u30A21"
+  - SkillName: "\u30AD\u30E5\u30A2"
     ID: 39
     SkillSprite: {fileID: 21300000, guid: d513bb5cc5ec66141bda98e3d0bf51a7, type: 3}
     SkillType: 3
@@ -931,5 +931,5 @@ MonoBehaviour:
     EffectRange: 0
     TargetState: 0
     BuffType: 3
-    EnhancementPoint: 0
+    EnhancementPoint: 10
     SkillDetail: "\u5473\u65B91\u4F53\u306E\u72B6\u614B\u7570\u5E38\u3092\u56DE\u5FA9\u3055\u305B\u308B\u3002"

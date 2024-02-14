@@ -53,7 +53,7 @@ public class SkillButton : MonoBehaviour
     /// </summary>
     public void ButtonDown()
     {
-        if(m_playerEnhancement.ReferrenceSkillFlag == true)
+        if (m_playerEnhancement.ReferrenceSkillFlag == true)
         {
             m_playerEnhancement.DisplaySetSkill(m_skillNumber);
         }
@@ -77,7 +77,7 @@ public class SkillButton : MonoBehaviour
         // ボタンのテキストを変更する
         GetComponent<Button>().interactable = false;
         transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "解放済み";
-
+        // セーブ
         gameManager.SaveData.Save();
     }
 
@@ -91,14 +91,13 @@ public class SkillButton : MonoBehaviour
             return;
         }
         // 値を設定する
-        gameManager.SaveData.SaveData.saveData.SkillRegisters[gameManager.PlayerNumber].PlayerSkills[m_selectNumber] = true;
-        gameManager.SaveData.SaveData.saveData.EnhancementPoint -= SkillData.skillDataList[m_selectNumber].EnhancementPoint;
+        gameManager.SaveData.SaveData.saveData.SkillRegisters[gameManager.PlayerNumber].PlayerSkills[SelectNumber] = true;
+        gameManager.SaveData.SaveData.saveData.EnhancementPoint -= SkillData.skillDataList[SelectNumber].EnhancementPoint;
     }
 
     /// <summary>
     /// 解放したステータスのデータをセーブする
     /// </summary>
-    /// <param name="saveDataManager"></param>
     private void SaveReleaseStatusData(GameManager gameManager)
     {
         if (m_playerEnhancement.ReferrenceSkillFlag == true)
@@ -106,9 +105,9 @@ public class SkillButton : MonoBehaviour
             return;
         }
         // 値を設定する
-        gameManager.SaveData.SaveData.saveData.EnhancementRegisters[gameManager.PlayerNumber].PlayerEnhancements[m_selectNumber] = true;
-        gameManager.SaveData.SaveData.saveData.EnhancementPoint -= EnhancementData.enhancementDataList[m_selectNumber].EnhancementPoint;
-        SavePlayerStatus(gameManager, EnhancementData.enhancementDataList[gameManager.PlayerNumber].AddValue);
+        SavePlayerStatus(gameManager, EnhancementData.enhancementDataList[SelectNumber].AddValue);
+        gameManager.SaveData.SaveData.saveData.EnhancementRegisters[gameManager.PlayerNumber].PlayerEnhancements[SelectNumber] = true;
+        gameManager.SaveData.SaveData.saveData.EnhancementPoint -= EnhancementData.enhancementDataList[SelectNumber].EnhancementPoint;
     }
 
     /// <summary>
@@ -116,7 +115,7 @@ public class SkillButton : MonoBehaviour
     /// </summary>
     private void SavePlayerStatus(GameManager gameManager, int addValue)
     {
-        switch (EnhancementData.enhancementDataList[gameManager.PlayerNumber].EnhancementStatus)
+        switch (EnhancementData.enhancementDataList[SelectNumber].EnhancementStatus)
         {
             case EnhancementStatus.enHP:
                 gameManager.SaveData.SaveData.saveData.PlayerList[gameManager.PlayerNumber].HP += addValue;

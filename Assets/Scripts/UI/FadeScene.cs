@@ -34,7 +34,6 @@ public class FadeScene : MonoBehaviour
             // 遷移先のシーン名を保存
             m_sceneName = sceneName;
         }
-
         // 自身の子オブジェクトのImageを保存
         m_image = transform.GetChild(0).GetComponent<Image>();
     }
@@ -52,7 +51,6 @@ public class FadeScene : MonoBehaviour
             {
                 // シーンをロードして、明るくする
                 SceneManager.LoadScene(m_sceneName);
-
                 m_fadeMode = true;
                 // 自身はシーンを跨いでも削除されないようにする
                 DontDestroyOnLoad(gameObject);
@@ -62,7 +60,6 @@ public class FadeScene : MonoBehaviour
         {
             // 画面を明るくする
             m_alpha -= FadeSpeed * Time.deltaTime;
-
             // 完全に明るくなったので自身を削除する
             if (m_alpha <= 0.0f)
             {

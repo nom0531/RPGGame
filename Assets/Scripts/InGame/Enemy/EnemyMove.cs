@@ -40,6 +40,7 @@ public class EnemyMove : MonoBehaviour
     private ActorHPState m_actorHPState = ActorHPState.enMaxHP;                         // HPの状態
     private ActorAbnormalState m_actorAbnormalState = ActorAbnormalState.enNormal;      // 状態異常
     private ActionType m_actionType = ActionType.enNull;                                // 次の行動
+    private float m_Yup = 0.0f;                                                         // 加算座標
     private int m_myNumber = 0;                                                         // 自身の番号
     private int m_basicValue = 0;                                                       // ダメージ量・回復量
     private int m_defencePower = 0;                                                     // 防御力
@@ -145,13 +146,14 @@ public class EnemyMove : MonoBehaviour
         m_stagingManager = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<StagingManager>();
         m_battleSystem = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<BattleSystem>();
         m_battleManager = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<BattleManager>();
-        m_abnormalCalculation = gameObject.GetComponent<StateAbnormalCalculation>();
-        m_buffCalculation = gameObject.GetComponent<BuffCalculation>();
-        m_drawCommandText = gameObject.GetComponent<DrawCommandText>();
-        m_animator = gameObject.GetComponent<Animator>();
+        m_abnormalCalculation = GetComponent<StateAbnormalCalculation>();
+        m_buffCalculation = GetComponent<BuffCalculation>();
+        m_drawCommandText = GetComponent<DrawCommandText>();
+        m_animator = GetComponent<Animator>();
         SetStatus();
         SetSkills();
         SetMoves();
+        SetLookAtPosition();
     }
 
     private void Start()
@@ -246,6 +248,40 @@ public class EnemyMove : MonoBehaviour
                 EnemyData.enemyDataList[m_myNumber].enemyMoveList[moveNumber].ActionType = EnemyMoveData.enemyMoveDataList[dataNumber].ActionType;
             }
         }
+    }
+
+    /// <summary>
+    /// 自身の子オブジェクトの座標を設定する
+    /// </summary>
+    private void SetLookAtPosition()
+    {
+        var lookAt = transform.GetChild(0).gameObject;
+        lookAt.transform.position = new Vector3(transform.position.x, transform.position.y + SetPositionY(), transform.position.z);
+    }
+
+    /// <summary>
+    /// Y座標を設定する
+    /// </summary>
+    /// <returns>加算するY座標</returns>
+    private float SetPositionY()
+    {
+        var y = 0.0f;
+        switch (EnemyData.enemyDataList[MyNumber].EnemySize)
+        {
+            case EnemySize.enExtraSmal:
+                y =  0.5f;
+                break;
+            case EnemySize.enSmall:
+                y =  1.5f;
+                break;
+            case EnemySize.enMedium:
+                y =  3.0f;
+                break;
+            case EnemySize.enLarge:
+                y =  5.0f;
+                break;
+        }
+        return y;
     }
 
     /// <summary>
@@ -620,7 +656,9 @@ public class EnemyMove : MonoBehaviour
     /// <param name="skillNumber">スキルの番号</param>
     public void ActionEnd(ActionType actionType, int skillNumber)
     {
+#if UNITY_EDITOR
         m_drawCommandText.SetCommandText(actionType, 0);
+#endif
         ActionEndFlag = true;
     }
 
@@ -680,20 +718,26 @@ public class EnemyMove : MonoBehaviour
         switch (ActorAbnormalState)
         {
             case ActorAbnormalState.enPoison:
+#if UNITY_EDITOR
                 Debug.Log($"{EnemyData.enemyDataList[m_myNumber].EnemyName}は毒を浴びている");
+#endif
                 PoisonDamage = m_abnormalCalculation.Poison(EnemyStatus.HP);
                 break;
             case ActorAbnormalState.enParalysis:
                 if (m_abnormalCalculation.Paralysis() == true)
                 {
+#if UNITY_EDITOR
                     Debug.Log($"{EnemyData.enemyDataList[m_myNumber].EnemyName}は麻痺している");
+#endif
                     NextActionType = ActionType.enNull;
                 }
                 break;
             case ActorAbnormalState.enConfusion:
                 if (m_abnormalCalculation.Confusion() == true)
                 {
+#if UNITY_EDITOR
                     Debug.Log($"{EnemyData.enemyDataList[m_myNumber].EnemyName}は混乱している");
+#endif
                     NextActionType = ActionType.enAttack;
                     ConfusionFlag = true;
                 }

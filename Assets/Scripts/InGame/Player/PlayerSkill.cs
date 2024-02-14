@@ -5,8 +5,6 @@ using TMPro;
 
 public class PlayerSkill : MonoBehaviour
 {
-    [SerializeField, Header("参照データ"), Tooltip("プレイヤーのデータ")]
-    private PlayerDataBase PlayerData;
     [SerializeField, Tooltip("生成するボタン")]
     private GameObject Button;
     [SerializeField, Tooltip("ボタンを追加するオブジェクト")]
@@ -27,6 +25,7 @@ public class PlayerSkill : MonoBehaviour
     private GameObject Skill_NecessaryText;
 
     private BattleManager m_battleManager;
+    private PlayerDataBase m_playerData;
     private bool m_canUseSkill = true;          // スキルが使えるかどうか
     private int m_playerNumber = 0;             // プレイヤーの番号
     private int m_selectSkillNumber = -1;       // 現在選択しているスキルの番号
@@ -45,7 +44,7 @@ public class PlayerSkill : MonoBehaviour
     private void Start()
     {
         m_battleManager = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<BattleManager>();
-
+        m_playerData = m_battleManager.PlayerDataBase;
         // スキルデータ
         Data_Element.SetActive(false);
         Data_SkillNecessary.SetActive(false);
@@ -77,7 +76,7 @@ public class PlayerSkill : MonoBehaviour
         var saveDataManager = GameManager.Instance.SaveData;
         m_playerNumber = m_battleManager.OperatingPlayerNumber;
 
-        for (int i = 0; i < PlayerData.playerDataList[m_playerNumber].skillDataList.Count; i++)
+        for (int i = 0; i < m_playerData.playerDataList[m_playerNumber].skillDataList.Count; i++)
         {
             // 既にスキルが解放されているなら
             if (saveDataManager.SaveData.saveData.SkillRegisters[m_playerNumber].PlayerSkills[i] == false)
@@ -96,7 +95,7 @@ public class PlayerSkill : MonoBehaviour
             var skillButton = gameObject.GetComponent<PlayerSkillButton>();
             skillButton.SetPlayerSkill(
                 i,                                                                          // 番号
-                PlayerData.playerDataList[m_playerNumber].skillDataList[i].SkillName,       // 名前
+                m_playerData.playerDataList[m_playerNumber].skillDataList[i].SkillName,     // 名前
                 Color.black,
                 this
                 );
@@ -121,9 +120,9 @@ public class PlayerSkill : MonoBehaviour
 
         // 値を更新する
         Data_SkilDetail.GetComponent<TextMeshProUGUI>().text =
-            PlayerData.playerDataList[m_playerNumber].skillDataList[number].SkillDetail;
+            m_playerData.playerDataList[m_playerNumber].skillDataList[number].SkillDetail;
         Data_SkillNecessary.GetComponent<TextMeshProUGUI>().text =
-            PlayerData.playerDataList[m_playerNumber].skillDataList[number].SkillNecessary.ToString();
+            m_playerData.playerDataList[m_playerNumber].skillDataList[number].SkillNecessary.ToString();
         GetElement(Data_Element, number, m_playerNumber);
         GetNecessaryText(Data_SkillNecessaryText, number, m_playerNumber);
         // 値をセットする
@@ -131,7 +130,7 @@ public class PlayerSkill : MonoBehaviour
         m_canUseSkill = true;
         // SPが足りていないならボタンは押せない
         if (m_battleManager.PlayerMoveList[m_playerNumber].PlayerStatus.SP <
-            PlayerData.playerDataList[m_playerNumber].skillDataList[number].SkillNecessary)
+            m_playerData.playerDataList[m_playerNumber].skillDataList[number].SkillNecessary)
         {
             m_canUseSkill = false;
         }
@@ -145,7 +144,7 @@ public class PlayerSkill : MonoBehaviour
     /// <param name="playerNumber">プレイヤーの番号</param>
     private void GetNecessaryText(GameObject gameObject,int skillNumber,int playerNumber)
     {
-        NecessaryType necessary = PlayerData.playerDataList[playerNumber].skillDataList[skillNumber].Type;
+        NecessaryType necessary = m_playerData.playerDataList[playerNumber].skillDataList[skillNumber].Type;
 
         switch(necessary)
         {
@@ -166,7 +165,7 @@ public class PlayerSkill : MonoBehaviour
     /// <param name="playerNumber">プレイヤーの番号</param>
     private void GetElement(GameObject gameObjct, int skillNumber, int playerNumber)
     {
-        ElementType element = PlayerData.playerDataList[playerNumber].skillDataList[skillNumber].SkillElement;
+        ElementType element = m_playerData.playerDataList[playerNumber].skillDataList[skillNumber].SkillElement;
 
         switch (element)
         {

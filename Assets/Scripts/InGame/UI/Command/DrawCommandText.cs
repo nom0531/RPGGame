@@ -13,7 +13,7 @@ public class DrawCommandText : MonoBehaviour
     private void Start()
     {
         m_stagingSystem = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<StagingSystem>();
-        m_buffCalculation = gameObject.GetComponent<BuffCalculation>();
+        m_buffCalculation = GetComponent<BuffCalculation>();
     }
 
     /// <summary>
@@ -91,6 +91,9 @@ public class DrawCommandText : MonoBehaviour
     public void ReSetStatusText()
     {
         string actionText = "å¯â éûä‘Ç™èIóπÇµÇΩ";
+        m_stagingSystem.SetAddInfoCommandText(actionText);
+#if UNITY_EDITOR
         Debug.Log(actionText);
+#endif
     }
 }

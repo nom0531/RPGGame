@@ -26,8 +26,6 @@ public struct TextData
 
 public class StagingManager : MonoBehaviour
 {
-    [SerializeField, Header("参照データ")]
-    private SkillDataBase SkillData;
     [SerializeField, Header("参照オブジェクト")]
     private GameObject CommandWindow;
     [SerializeField, Header("演出終了時に待機する時間(秒)")]
@@ -39,6 +37,7 @@ public class StagingManager : MonoBehaviour
     private List<EnemyMove> m_enemyMoveList;
     private List<PlayerMove> m_playerMoveList;
     private List<TextData> m_testDataList;
+    private SkillDataBase m_skillData;
     private StagingState m_stangingState = StagingState.enStangingWaiting;
     private ActionType m_actionType = ActionType.enNull;
 
@@ -72,9 +71,11 @@ public class StagingManager : MonoBehaviour
 
     private void Awake()
     {
-        m_lockOnSystem = gameObject.GetComponent<LockOnSystem>();
-        m_stangingSystem = gameObject.GetComponent<StagingSystem>();
-        m_battleManager = gameObject.GetComponent<BattleManager>();
+        m_lockOnSystem = GetComponent<LockOnSystem>();
+        m_stangingSystem = GetComponent<StagingSystem>();
+        m_battleManager = GetComponent<BattleManager>();
+        m_skillData = m_battleManager.SkillDataBase;
+        m_stangingSystem.SkillDataBase = m_skillData;
     }
 
     private void Start()
@@ -153,47 +154,48 @@ public class StagingManager : MonoBehaviour
             case EffectRange.enOne:
                 if (m_lockOnSystem.TargetState == TargetState.enPlayer)
                 {
-                    m_stangingSystem.SetCameraTarget(m_playerMoveList[number].gameObject);
+                    m_stangingSystem.SetCameraTarget(m_playerMoveList[number].transform.GetChild(0).gameObject);
                     break;
                 }
-                m_stangingSystem.SetCameraTarget(m_enemyMoveList[number].gameObject);
+                m_stangingSystem.SetCameraTarget(m_enemyMoveList[number].transform.GetChild(0).gameObject);
                 break;
             // 全体攻撃
             case EffectRange.enAll:
-                if (SkillData.skillDataList[skillNumber].TargetState == TargetState.enPlayer)
+                if (m_skillData.skillDataList[skillNumber].TargetState == TargetState.enPlayer)
                 {
-                    m_stangingSystem.SetCameraTarget(m_playerMoveList[0].gameObject);   // 再度ターゲットを設定する
+                    // ターゲットを設定して追加する
+                    m_stangingSystem.SetCameraTarget(m_playerMoveList[0].transform.GetChild(0).gameObject);
                     for (int i = 1; i < m_playerMoveList.Count; i++)
                     {
-                        m_stangingSystem.AddTarget(m_playerMoveList[i].gameObject);
+                        m_stangingSystem.AddTarget(m_playerMoveList[i].transform.GetChild(0).gameObject);
                     }
                     break;
                 }
-                m_stangingSystem.SetCameraTarget(m_enemyMoveList[0].gameObject);        // 再度ターゲットを設定する
+                m_stangingSystem.SetCameraTarget(m_enemyMoveList[0].transform.GetChild(0).gameObject);
                 for (int i = 1; i < m_enemyMoveList.Count; i++)
                 {
-                    m_stangingSystem.AddTarget(m_enemyMoveList[i].gameObject);
+                    m_stangingSystem.AddTarget(m_enemyMoveList[i].transform.GetChild(0).gameObject);
                 }
                 break;
         }
-        // 演出を開始
         StangingStart(skillNumber, effectRange, number);
     }
 
     /// <summary>s
-    /// 演出を開始する
+    /// 演出を開始
     /// </summary>
     /// <param name="skillNumber">スキルの番号</param>
     /// <param name="effectRange">スキルの効果範囲</param>
     /// <param name="number">ターゲットの番号</param>
     private void StangingStart(int skillNumber, EffectRange effectRange, int number)
     {
+        m_battleManager.StagingStartFlag = true;
         m_stangingState = StagingState.enStangingStart;
+        // 演出を開始する
         CommandWindow.SetActive(false);
         DrawPlayers();
         m_stangingSystem.ChangeVcam((int)effectRange);
         m_stangingSystem.PlayEffect(ActionType, skillNumber);
-        //m_stangingSystem.DrawValue(m_testDataList);
         StangingEnd(number);
     }
 
@@ -209,7 +211,7 @@ public class StagingManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 演出を終了する
+    /// 演出を終了
     /// </summary>
     /// <param name="number">ターゲットの番号</param>
     async private void StangingEnd(int number)
@@ -224,5 +226,6 @@ public class StagingManager : MonoBehaviour
         m_stangingSystem.ResetPriority();
         m_stangingState = StagingState.enStangingEnd;
         CommandWindow.SetActive(true);
+        m_battleManager.StagingStartFlag = false;
     }
 }

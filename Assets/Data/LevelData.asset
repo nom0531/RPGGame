@@ -19,37 +19,7 @@ MonoBehaviour:
     LevelDetail: "\u8A73\u7D30\u8A2D\u5B9A"
     enemyDataList:
     - EnemyName: 
-      EnemyNumber: 0
-      EnemySprite: {fileID: 21300000, guid: ea6ce5eafcd65b24cba24d4307a7c820, type: 3}
-      PopLocation: 0
-      PopTime: 0
-      EnhancementPoint: 0
-      EnemyElement: 00000000000000000000000000000000000000000000000000000000
-      HP: 0
-      ATK: 0
-      DEF: 0
-      SPD: 0
-      LUCK: 0
-      EnemyDetail: 
-      skillDataList: []
-      enemyMoveList: []
-    - EnemyName: 
-      EnemyNumber: 1
-      EnemySprite: {fileID: 21300000, guid: 0dea51efe6bba9848b674bab76289c68, type: 3}
-      PopLocation: 0
-      PopTime: 0
-      EnhancementPoint: 0
-      EnemyElement: 00000000000000000000000000000000000000000000000000000000
-      HP: 0
-      ATK: 0
-      DEF: 0
-      SPD: 0
-      LUCK: 0
-      EnemyDetail: 
-      skillDataList: []
-      enemyMoveList: []
-    - EnemyName: 
-      EnemyNumber: 2
+      ID: 0
       EnemySprite: {fileID: 0}
       PopLocation: 0
       PopTime: 0
@@ -64,7 +34,7 @@ MonoBehaviour:
       skillDataList: []
       enemyMoveList: []
     - EnemyName: 
-      EnemyNumber: 3
+      ID: 1
       EnemySprite: {fileID: 0}
       PopLocation: 0
       PopTime: 0
@@ -79,7 +49,7 @@ MonoBehaviour:
       skillDataList: []
       enemyMoveList: []
     - EnemyName: 
-      EnemyNumber: 4
+      ID: 2
       EnemySprite: {fileID: 0}
       PopLocation: 0
       PopTime: 0
@@ -94,7 +64,7 @@ MonoBehaviour:
       skillDataList: []
       enemyMoveList: []
     - EnemyName: 
-      EnemyNumber: 5
+      ID: 3
       EnemySprite: {fileID: 0}
       PopLocation: 0
       PopTime: 0
@@ -109,7 +79,7 @@ MonoBehaviour:
       skillDataList: []
       enemyMoveList: []
     - EnemyName: 
-      EnemyNumber: 6
+      ID: 4
       EnemySprite: {fileID: 0}
       PopLocation: 0
       PopTime: 0
@@ -124,7 +94,7 @@ MonoBehaviour:
       skillDataList: []
       enemyMoveList: []
     - EnemyName: 
-      EnemyNumber: 7
+      ID: 5
       EnemySprite: {fileID: 0}
       PopLocation: 0
       PopTime: 0
@@ -139,7 +109,7 @@ MonoBehaviour:
       skillDataList: []
       enemyMoveList: []
     - EnemyName: 
-      EnemyNumber: 8
+      ID: 6
       EnemySprite: {fileID: 0}
       PopLocation: 0
       PopTime: 0
@@ -154,7 +124,7 @@ MonoBehaviour:
       skillDataList: []
       enemyMoveList: []
     - EnemyName: 
-      EnemyNumber: 9
+      ID: 7
       EnemySprite: {fileID: 0}
       PopLocation: 0
       PopTime: 0
@@ -169,7 +139,7 @@ MonoBehaviour:
       skillDataList: []
       enemyMoveList: []
     - EnemyName: 
-      EnemyNumber: 10
+      ID: 8
       EnemySprite: {fileID: 0}
       PopLocation: 0
       PopTime: 0
@@ -184,7 +154,7 @@ MonoBehaviour:
       skillDataList: []
       enemyMoveList: []
     - EnemyName: 
-      EnemyNumber: 11
+      ID: 9
       EnemySprite: {fileID: 0}
       PopLocation: 0
       PopTime: 0
@@ -199,7 +169,7 @@ MonoBehaviour:
       skillDataList: []
       enemyMoveList: []
     - EnemyName: 
-      EnemyNumber: 12
+      ID: 10
       EnemySprite: {fileID: 0}
       PopLocation: 0
       PopTime: 0
@@ -214,7 +184,7 @@ MonoBehaviour:
       skillDataList: []
       enemyMoveList: []
     - EnemyName: 
-      EnemyNumber: 13
+      ID: 11
       EnemySprite: {fileID: 0}
       PopLocation: 0
       PopTime: 0
@@ -229,7 +199,7 @@ MonoBehaviour:
       skillDataList: []
       enemyMoveList: []
     - EnemyName: 
-      EnemyNumber: 14
+      ID: 12
       EnemySprite: {fileID: 0}
       PopLocation: 0
       PopTime: 0
@@ -244,7 +214,7 @@ MonoBehaviour:
       skillDataList: []
       enemyMoveList: []
     - EnemyName: 
-      EnemyNumber: 14
+      ID: 13
       EnemySprite: {fileID: 0}
       PopLocation: 0
       PopTime: 0
@@ -259,7 +229,7 @@ MonoBehaviour:
       skillDataList: []
       enemyMoveList: []
     - EnemyName: 
-      EnemyNumber: 16
+      ID: 14
       EnemySprite: {fileID: 0}
       PopLocation: 0
       PopTime: 0
@@ -274,7 +244,7 @@ MonoBehaviour:
       skillDataList: []
       enemyMoveList: []
     - EnemyName: 
-      EnemyNumber: 17
+      ID: 15
       EnemySprite: {fileID: 0}
       PopLocation: 0
       PopTime: 0
@@ -289,7 +259,7 @@ MonoBehaviour:
       skillDataList: []
       enemyMoveList: []
     - EnemyName: 
-      EnemyNumber: 18
+      ID: 16
       EnemySprite: {fileID: 0}
       PopLocation: 0
       PopTime: 0
@@ -304,7 +274,7 @@ MonoBehaviour:
       skillDataList: []
       enemyMoveList: []
     - EnemyName: 
-      EnemyNumber: 19
+      ID: 17
       EnemySprite: {fileID: 0}
       PopLocation: 0
       PopTime: 0
@@ -319,7 +289,7 @@ MonoBehaviour:
       skillDataList: []
       enemyMoveList: []
     - EnemyName: 
-      EnemyNumber: 20
+      ID: 18
       EnemySprite: {fileID: 0}
       PopLocation: 0
       PopTime: 0
@@ -334,7 +304,7 @@ MonoBehaviour:
       skillDataList: []
       enemyMoveList: []
     - EnemyName: 
-      EnemyNumber: 21
+      ID: 19
       EnemySprite: {fileID: 0}
       PopLocation: 0
       PopTime: 0
@@ -349,7 +319,7 @@ MonoBehaviour:
       skillDataList: []
       enemyMoveList: []
     - EnemyName: 
-      EnemyNumber: 22
+      ID: 20
       EnemySprite: {fileID: 0}
       PopLocation: 0
       PopTime: 0
@@ -364,7 +334,7 @@ MonoBehaviour:
       skillDataList: []
       enemyMoveList: []
     - EnemyName: 
-      EnemyNumber: 23
+      ID: 21
       EnemySprite: {fileID: 0}
       PopLocation: 0
       PopTime: 0
@@ -379,7 +349,7 @@ MonoBehaviour:
       skillDataList: []
       enemyMoveList: []
     - EnemyName: 
-      EnemyNumber: 24
+      ID: 22
       EnemySprite: {fileID: 0}
       PopLocation: 0
       PopTime: 0
@@ -394,7 +364,7 @@ MonoBehaviour:
       skillDataList: []
       enemyMoveList: []
     - EnemyName: 
-      EnemyNumber: 24
+      ID: 23
       EnemySprite: {fileID: 0}
       PopLocation: 0
       PopTime: 0
@@ -409,7 +379,7 @@ MonoBehaviour:
       skillDataList: []
       enemyMoveList: []
     - EnemyName: 
-      EnemyNumber: 26
+      ID: 24
       EnemySprite: {fileID: 0}
       PopLocation: 0
       PopTime: 0
@@ -424,7 +394,7 @@ MonoBehaviour:
       skillDataList: []
       enemyMoveList: []
     - EnemyName: 
-      EnemyNumber: 27
+      ID: 25
       EnemySprite: {fileID: 0}
       PopLocation: 0
       PopTime: 0
@@ -439,7 +409,7 @@ MonoBehaviour:
       skillDataList: []
       enemyMoveList: []
     - EnemyName: 
-      EnemyNumber: 28
+      ID: 26
       EnemySprite: {fileID: 0}
       PopLocation: 0
       PopTime: 0
@@ -454,7 +424,7 @@ MonoBehaviour:
       skillDataList: []
       enemyMoveList: []
     - EnemyName: 
-      EnemyNumber: 29
+      ID: 27
       EnemySprite: {fileID: 0}
       PopLocation: 0
       PopTime: 0
@@ -469,7 +439,7 @@ MonoBehaviour:
       skillDataList: []
       enemyMoveList: []
     - EnemyName: 
-      EnemyNumber: 30
+      ID: 28
       EnemySprite: {fileID: 0}
       PopLocation: 0
       PopTime: 0
@@ -484,7 +454,7 @@ MonoBehaviour:
       skillDataList: []
       enemyMoveList: []
     - EnemyName: 
-      EnemyNumber: 31
+      ID: 29
       EnemySprite: {fileID: 0}
       PopLocation: 0
       PopTime: 0
@@ -499,7 +469,7 @@ MonoBehaviour:
       skillDataList: []
       enemyMoveList: []
     - EnemyName: 
-      EnemyNumber: 32
+      ID: 30
       EnemySprite: {fileID: 0}
       PopLocation: 0
       PopTime: 0
@@ -514,7 +484,7 @@ MonoBehaviour:
       skillDataList: []
       enemyMoveList: []
     - EnemyName: 
-      EnemyNumber: 33
+      ID: 31
       EnemySprite: {fileID: 0}
       PopLocation: 0
       PopTime: 0
@@ -529,7 +499,7 @@ MonoBehaviour:
       skillDataList: []
       enemyMoveList: []
     - EnemyName: 
-      EnemyNumber: 34
+      ID: 32
       EnemySprite: {fileID: 0}
       PopLocation: 0
       PopTime: 0
@@ -544,7 +514,7 @@ MonoBehaviour:
       skillDataList: []
       enemyMoveList: []
     - EnemyName: 
-      EnemyNumber: 35
+      ID: 33
       EnemySprite: {fileID: 0}
       PopLocation: 0
       PopTime: 0
@@ -559,7 +529,7 @@ MonoBehaviour:
       skillDataList: []
       enemyMoveList: []
     - EnemyName: 
-      EnemyNumber: 36
+      ID: 34
       EnemySprite: {fileID: 0}
       PopLocation: 0
       PopTime: 0
@@ -574,7 +544,7 @@ MonoBehaviour:
       skillDataList: []
       enemyMoveList: []
     - EnemyName: 
-      EnemyNumber: 37
+      ID: 35
       EnemySprite: {fileID: 0}
       PopLocation: 0
       PopTime: 0
@@ -589,7 +559,7 @@ MonoBehaviour:
       skillDataList: []
       enemyMoveList: []
     - EnemyName: 
-      EnemyNumber: 38
+      ID: 36
       EnemySprite: {fileID: 0}
       PopLocation: 0
       PopTime: 0
@@ -604,7 +574,7 @@ MonoBehaviour:
       skillDataList: []
       enemyMoveList: []
     - EnemyName: 
-      EnemyNumber: 39
+      ID: 37
       EnemySprite: {fileID: 0}
       PopLocation: 0
       PopTime: 0
@@ -619,7 +589,7 @@ MonoBehaviour:
       skillDataList: []
       enemyMoveList: []
     - EnemyName: 
-      EnemyNumber: 40
+      ID: 38
       EnemySprite: {fileID: 0}
       PopLocation: 0
       PopTime: 0
@@ -634,7 +604,37 @@ MonoBehaviour:
       skillDataList: []
       enemyMoveList: []
     - EnemyName: 
-      EnemyNumber: 41
+      ID: 39
+      EnemySprite: {fileID: 0}
+      PopLocation: 0
+      PopTime: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 40
+      EnemySprite: {fileID: 0}
+      PopLocation: 0
+      PopTime: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 41
       EnemySprite: {fileID: 0}
       PopLocation: 0
       PopTime: 0
