@@ -1,4 +1,5 @@
 using TMPro;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -46,14 +47,21 @@ public class PlayerStatusSystem : MonoBehaviour
     private GameObject SkillDetail, EnhancementPoint, SkillElement;
     [SerializeField, Header("OKボタン")]
     private GameObject OKButton;
+    [SerializeField, Header("情報変更ボタン")]
+    private GameObject[] ChangeButton;
 
     private GameManager m_gameManager;      // ゲームマネージャー
+    private List<PlayerButton> m_playerButtonList;
 
     // Start is called before the first frame update
     private void Start()
     {
+        // データを取得
         m_gameManager = GameManager.Instance;
         HaveEP.GetComponent<TextMeshProUGUI>().text = m_gameManager.SaveData.SaveData.saveData.EnhancementPoint.ToString();
+        var playerButtonList = FindObjectsOfType<PlayerButton>();
+        m_playerButtonList = new List<PlayerButton>(playerButtonList);
+        // データを表示
         DisplaySetValue(m_gameManager.PlayerNumber);
     }
 
@@ -69,9 +77,6 @@ public class PlayerStatusSystem : MonoBehaviour
         Data_Name.SetActive(true);
         Element_Text.SetActive(true);
         Status_Text.SetActive(true);
-        // 値を更新する
-        Data_Sprite.GetComponent<Image>().sprite = PlayerData.playerDataList[number].PlayerSprite;
-        Data_Name.GetComponent<TextMeshProUGUI>().text = PlayerData.playerDataList[number].PlayerName;
         SetData(number);
         InstantiateSkillDataButton();
     }
@@ -82,6 +87,9 @@ public class PlayerStatusSystem : MonoBehaviour
     /// <param name="number">プレイヤーの番号</param>
     private void SetData(int number)
     {
+        // 値を更新する
+        SpriteAnimation(number);
+        Data_Name.GetComponent<TextMeshProUGUI>().text = PlayerData.playerDataList[number].PlayerName;
         // 属性耐性
         GetResistance(Data_Fire, number, (int)ElementType.enFire);
         GetResistance(Data_Ice, number, (int)ElementType.enIce);
@@ -96,6 +104,26 @@ public class PlayerStatusSystem : MonoBehaviour
         Data_DEF.GetComponent<TextMeshProUGUI>().text = $"{m_gameManager.SaveData.SaveData.saveData.PlayerList[number].DEF.ToString("000")}";
         Data_SPD.GetComponent<TextMeshProUGUI>().text = $"{m_gameManager.SaveData.SaveData.saveData.PlayerList[number].SPD.ToString("000")}";
         Data_LUCK.GetComponent<TextMeshProUGUI>().text = $"{m_gameManager.SaveData.SaveData.saveData.PlayerList[number].LUCK.ToString("000")}";
+    }
+
+    /// <summary>
+    /// 画像のアニメーション
+    /// </summary>
+    private void SpriteAnimation(int number)
+    {
+        var spriteAnimation = Data_Sprite.GetComponent<StatusAnimation>();
+
+        if (m_playerButtonList[0].ButtonDownFlag == true)
+        {
+            Data_Sprite.GetComponent<Image>().sprite = PlayerData.playerDataList[number].PlayerSprite;
+            ResetButton();
+        }
+        if (m_playerButtonList[1].ButtonDownFlag == true)
+        {
+            Data_Sprite.GetComponent<Image>().sprite = PlayerData.playerDataList[number].PlayerSprite;
+            ResetButton();
+            return;
+        }
     }
 
     /// <summary>
@@ -252,6 +280,17 @@ public class PlayerStatusSystem : MonoBehaviour
         foreach (var button in skillIcons)
         {
             Destroy(button);
+        }
+    }
+
+    /// <summary>
+    /// リセットする
+    /// </summary>
+    private void ResetButton()
+    {
+        for(int i= 0; i < ChangeButton.Length; i++)
+        {
+            m_playerButtonList[i].ResetButtonDownFlag();
         }
     }
 }

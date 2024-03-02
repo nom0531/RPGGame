@@ -14,6 +14,7 @@ TagManager:
   - SceneManager
   - PopEnemy
   - EnhancementIcon
+  - SkillNameIcon
   layers:
   - Default
   - TransparentFX
