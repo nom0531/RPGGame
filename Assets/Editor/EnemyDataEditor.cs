@@ -8,6 +8,8 @@ public class EnemyDataEditor : EditorWindow
 {
     // 対象のデータベース
     private static EnemyDataBase m_enemyDataBase;
+    private static SkillDataBase m_skillDataBase;
+    private static EnemyMoveDataBase m_enemyMoveDataBase;
     // 名前一覧
     private static List<string> m_nameList = new List<string>();
     // スクロール位置
@@ -24,6 +26,8 @@ public class EnemyDataEditor : EditorWindow
     {
         // 読み込み
         m_enemyDataBase = AssetDatabase.LoadAssetAtPath<EnemyDataBase>("Assets/Data/EnemyData.asset");
+        m_skillDataBase = AssetDatabase.LoadAssetAtPath<SkillDataBase>("Assets/Data/SkillData.asset");
+        m_enemyMoveDataBase = AssetDatabase.LoadAssetAtPath<EnemyMoveDataBase>("Assets/Data/EnemyMoveData.asset");
         // 名前を変更
         GetWindow<EnemyDataEditor>("エネミーデータベース");
         // 変更を通知
@@ -104,7 +108,7 @@ public class EnemyDataEditor : EditorWindow
             EditorGUILayout.EndHorizontal();
 
             // 項目数
-            GUILayout.Label("項目数:" + m_nameList.Count);
+            GUILayout.Label($"項目数: {m_nameList.Count}");
         }
         EditorGUILayout.EndVertical();
     }
@@ -156,12 +160,6 @@ public class EnemyDataEditor : EditorWindow
                     (int)m_enemyDataBase.enemyDataList[m_selectNumber].PopLocation,
                     new string[] { "平原", "森", "海", "火山", "--" }
                     );
-            m_enemyDataBase.enemyDataList[m_selectNumber].PopTime =
-                (LocationTime)EditorGUILayout.Popup(
-                    "出現する時間",
-                    (int)m_enemyDataBase.enemyDataList[m_selectNumber].PopTime,
-                    new string[] { "朝", "日没前", "夜", "--" }
-                    );
             // EP
             m_enemyDataBase.enemyDataList[m_selectNumber].EnhancementPoint =
                EditorGUILayout.IntField(
@@ -200,7 +198,14 @@ public class EnemyDataEditor : EditorWindow
                     m_enemyDataBase.enemyDataList[m_selectNumber].LUCK
                     );
 
+            m_enemyDataBase.enemyDataList[m_selectNumber].HP = 50;
+            m_enemyDataBase.enemyDataList[m_selectNumber].DEF = 5;
+            m_enemyDataBase.enemyDataList[m_selectNumber].ATK = 10;
+
             EditorGUILayout.Space();
+
+            DrawSkill();
+            DrawMove();
 
             // 図鑑説明
             GUILayout.Label("図鑑説明");
@@ -241,6 +246,59 @@ public class EnemyDataEditor : EditorWindow
         if (m_enemyDataBase.enemyDataList[m_selectNumber].EnemyElement.Length > (int)ElementType.enNum)
         {
             EditorGUILayout.HelpBox("警告：属性の種類が定義より多く設定されています！", MessageType.Warning);
+        }
+    }
+
+    /// <summary>
+    /// 使用可能スキル
+    /// </summary>
+    private void DrawSkill()
+    {
+        for (int skillNumber = 0; skillNumber < m_enemyDataBase.enemyDataList[m_selectNumber].skillDataList.Count; skillNumber++)
+        {
+            for (int dataNumber = 0; dataNumber < m_skillDataBase.skillDataList.Count; dataNumber++)
+            {
+                // 識別番号が同じならデータを初期化する
+                if (m_enemyDataBase.enemyDataList[m_selectNumber].skillDataList[skillNumber].ID != m_skillDataBase.skillDataList[dataNumber].ID)
+                {
+                    continue;
+                }
+                m_enemyDataBase.enemyDataList[m_selectNumber].skillDataList[skillNumber].SkillName = m_skillDataBase.skillDataList[dataNumber].SkillName;
+                m_enemyDataBase.enemyDataList[m_selectNumber].skillDataList[skillNumber].SkillSprite = m_skillDataBase.skillDataList[dataNumber].SkillSprite;
+                m_enemyDataBase.enemyDataList[m_selectNumber].skillDataList[skillNumber].POW = m_skillDataBase.skillDataList[dataNumber].POW;
+                m_enemyDataBase.enemyDataList[m_selectNumber].skillDataList[skillNumber].SkillElement = m_skillDataBase.skillDataList[dataNumber].SkillElement;
+                m_enemyDataBase.enemyDataList[m_selectNumber].skillDataList[skillNumber].EnhancementPoint = m_skillDataBase.skillDataList[dataNumber].EnhancementPoint;
+                m_enemyDataBase.enemyDataList[m_selectNumber].skillDataList[skillNumber].SkillNecessary = m_skillDataBase.skillDataList[dataNumber].SkillNecessary;
+                m_enemyDataBase.enemyDataList[m_selectNumber].skillDataList[skillNumber].SkillEffect = m_skillDataBase.skillDataList[dataNumber].SkillEffect;
+                m_enemyDataBase.enemyDataList[m_selectNumber].skillDataList[skillNumber].EffectScale = m_skillDataBase.skillDataList[dataNumber].EffectScale;
+                m_enemyDataBase.enemyDataList[m_selectNumber].skillDataList[skillNumber].Type = m_skillDataBase.skillDataList[dataNumber].Type;
+                m_enemyDataBase.enemyDataList[m_selectNumber].skillDataList[skillNumber].BuffType = m_skillDataBase.skillDataList[dataNumber].BuffType;
+                m_enemyDataBase.enemyDataList[m_selectNumber].skillDataList[skillNumber].SkillType = m_skillDataBase.skillDataList[dataNumber].SkillType;
+                m_enemyDataBase.enemyDataList[m_selectNumber].skillDataList[skillNumber].EffectRange = m_skillDataBase.skillDataList[dataNumber].EffectRange;
+                m_enemyDataBase.enemyDataList[m_selectNumber].skillDataList[skillNumber].TargetState = m_skillDataBase.skillDataList[dataNumber].TargetState;
+            }
+        }
+    }
+
+    /// <summary>
+    /// 行動パターン
+    /// </summary>
+    private void DrawMove()
+    {
+        for (int moveNumber = 0; moveNumber < m_enemyDataBase.enemyDataList[m_selectNumber].enemyMoveList.Count; moveNumber++)
+        {
+            for (int dataNumber = 0; dataNumber < m_enemyMoveDataBase.enemyMoveDataList.Count; dataNumber++)
+            {
+                // 識別番号が同じならデータを初期化する
+                if (m_enemyDataBase.enemyDataList[m_selectNumber].enemyMoveList[moveNumber].ID != m_enemyMoveDataBase.enemyMoveDataList[dataNumber].ID)
+                {
+                    continue;
+                }
+                m_enemyDataBase.enemyDataList[m_selectNumber].enemyMoveList[moveNumber].MoveName = m_enemyMoveDataBase.enemyMoveDataList[dataNumber].MoveName;
+                m_enemyDataBase.enemyDataList[m_selectNumber].enemyMoveList[moveNumber].ActorHPState = m_enemyMoveDataBase.enemyMoveDataList[dataNumber].ActorHPState;
+                m_enemyDataBase.enemyDataList[m_selectNumber].enemyMoveList[moveNumber].ActorAbnormalState = m_enemyMoveDataBase.enemyMoveDataList[dataNumber].ActorAbnormalState;
+                m_enemyDataBase.enemyDataList[m_selectNumber].enemyMoveList[moveNumber].ActionType = m_enemyMoveDataBase.enemyMoveDataList[dataNumber].ActionType;
+            }
         }
     }
 

@@ -128,11 +128,35 @@ public class PlayerSkill : MonoBehaviour
         // 値をセットする
         m_selectSkillNumber = number;
         m_canUseSkill = true;
-        // SPが足りていないならボタンは押せない
-        if (m_battleManager.PlayerMoveList[m_playerNumber].PlayerStatus.SP <
-            m_playerData.playerDataList[m_playerNumber].skillDataList[number].SkillNecessary)
+        SetUseFlag(number, m_playerData.playerDataList[m_playerNumber].skillDataList[number].SkillNecessary,
+            m_playerData.playerDataList[m_playerNumber].skillDataList[number].Type);
+    }
+
+    /// <summary>
+    /// スキルが使用できるかどうかの判定を行う
+    /// </summary>
+    /// <param name="number">プレイヤーの番号</param>
+    /// <param name="nesessaryPoint">必要ポイント</param>
+    /// <param name="necessaryType">消費するポイントの種類</param>
+    private void SetUseFlag(int number,int nesessaryPoint, NecessaryType necessaryType)
+    {
+        switch (necessaryType)
         {
-            m_canUseSkill = false;
+            case NecessaryType.enSP:
+                // SPが足りていないならボタンは押せない
+                if (m_battleManager.PlayerMoveList[m_playerNumber].PlayerStatus.SP < nesessaryPoint)
+                {
+                    m_canUseSkill = false;
+                }
+                return;
+            case NecessaryType.enHP:
+                var hp = m_battleManager.PlayerMoveList[m_playerNumber].PlayerStatus.HP;
+                // HPが足りていない、消費した際にHPが0になるならボタンは押せない
+                if (hp < nesessaryPoint || hp - nesessaryPoint <= 0)
+                {
+                    m_canUseSkill = false;
+                }
+                return;
         }
     }
 

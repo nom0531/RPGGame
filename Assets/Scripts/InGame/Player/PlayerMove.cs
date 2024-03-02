@@ -31,7 +31,7 @@ public class PlayerMove : MonoBehaviour
     private const int HPMIN_VALUE = 0;              // HPの最小値
     private const int SPMIN_VALUE = 0;              // SPの最小値
 
-    private Animator m_animator;
+    private PlayerAnimation m_playerAnimation;
     private BattleManager m_battleManager;
     private BattleSystem m_battleSystem;
     private StagingManager m_stagingManager;
@@ -90,6 +90,11 @@ public class PlayerMove : MonoBehaviour
         set => m_actorAbnormalState = value;
     }
 
+    public PlayerAnimation PlayerAnimation
+    {
+        get => m_playerAnimation;
+    }
+
     public bool ConfusionFlag
     {
         get => m_isConfusion;
@@ -110,18 +115,15 @@ public class PlayerMove : MonoBehaviour
 
     private void Awake()
     {
+        m_saveDataManager = GameManager.Instance.SaveData;
         m_battleManager = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<BattleManager>();
         m_battleSystem = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<BattleSystem>();
         m_stagingManager = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<StagingManager>();
         m_abnormalCalculation = GetComponent<StateAbnormalCalculation>();
         m_buffCalculation = GetComponent<BuffCalculation>();
         m_drawCommandText = GetComponent<DrawCommandText>();
-        m_animator = GetComponent<Animator>();
+        m_playerAnimation = GetComponent<PlayerAnimation>();
         SetStatus();
-    }
-    private void Start()
-    {
-        SetSkills();
     }
 
     /// <summary>
@@ -129,46 +131,14 @@ public class PlayerMove : MonoBehaviour
     /// </summary>
     private void SetStatus()
     {
-        m_saveDataManager = GameManager.Instance.SaveData;
+        //SetData();
 
-        m_playerBattleStatus.HP = m_saveDataManager.SaveData.saveData.PlayerList[m_myNumber].HP;
-        m_playerBattleStatus.SP = m_saveDataManager.SaveData.saveData.PlayerList[m_myNumber].SP;
-        m_playerBattleStatus.ATK = m_saveDataManager.SaveData.saveData.PlayerList[m_myNumber].ATK;
-        m_playerBattleStatus.DEF = m_saveDataManager.SaveData.saveData.PlayerList[m_myNumber].DEF;
-        m_playerBattleStatus.SPD = m_saveDataManager.SaveData.saveData.PlayerList[m_myNumber].SPD;
-        m_playerBattleStatus.LUCK = m_saveDataManager.SaveData.saveData.PlayerList[m_myNumber].LUCK;
-    }
-
-    /// <summary>
-    /// スキルデータを初期化する
-    /// </summary>
-    private void SetSkills()
-    {
-        for (int skillNumber = 0; skillNumber < PlayerData.playerDataList[m_myNumber].skillDataList.Count; skillNumber++)
-        {
-            for (int dataNumber = 0; dataNumber < SkillData.skillDataList.Count; dataNumber++)
-            {
-                // 識別番号が同じならデータを初期化する
-                if (PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].ID != SkillData.skillDataList[dataNumber].ID)
-                {
-                    continue;
-                }
-                PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].SkillName = SkillData.skillDataList[dataNumber].SkillName;
-                PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].SkillSprite = SkillData.skillDataList[dataNumber].SkillSprite;
-                PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].POW = SkillData.skillDataList[dataNumber].POW;
-                PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].SkillElement = SkillData.skillDataList[dataNumber].SkillElement;
-                PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].SkillNecessary = SkillData.skillDataList[dataNumber].SkillNecessary;
-                PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].SkillDetail = SkillData.skillDataList[dataNumber].SkillDetail;
-                PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].EnhancementPoint = SkillData.skillDataList[dataNumber].EnhancementPoint;
-                PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].SkillEffect = SkillData.skillDataList[dataNumber].SkillEffect;
-                PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].EffectScale = SkillData.skillDataList[dataNumber].EffectScale;
-                PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].Type = SkillData.skillDataList[dataNumber].Type;
-                PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].SkillType = SkillData.skillDataList[dataNumber].SkillType;
-                PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].BuffType = SkillData.skillDataList[dataNumber].BuffType;
-                PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].EffectRange = SkillData.skillDataList[dataNumber].EffectRange;
-                PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].TargetState = SkillData.skillDataList[dataNumber].TargetState;
-            }
-        }
+        m_playerBattleStatus.HP = m_saveDataManager.SaveData.saveData.PlayerList[MyNumber].HP;
+        m_playerBattleStatus.SP = m_saveDataManager.SaveData.saveData.PlayerList[MyNumber].SP;
+        m_playerBattleStatus.ATK = m_saveDataManager.SaveData.saveData.PlayerList[MyNumber].ATK;
+        m_playerBattleStatus.DEF = m_saveDataManager.SaveData.saveData.PlayerList[MyNumber].DEF;
+        m_playerBattleStatus.SPD = m_saveDataManager.SaveData.saveData.PlayerList[MyNumber].SPD;
+        m_playerBattleStatus.LUCK = m_saveDataManager.SaveData.saveData.PlayerList[MyNumber].LUCK;
     }
 
     private void FixedUpdate()
@@ -213,6 +183,7 @@ public class PlayerMove : MonoBehaviour
             return;
         }
         m_battleManager.DamageEnemy(targetNumber, BasicValue);
+        m_playerAnimation.PlayAnimation(AnimationState.enAttack);            // アニメーションを再生
     }
 
     /// <summary>
@@ -245,6 +216,7 @@ public class PlayerMove : MonoBehaviour
         // ダメージを設定する
         m_battleManager.DamageEnemy(targetNumber, BasicValue);
         PlayerAction_Decrement(skillNumber);
+        m_playerAnimation.PlayAnimation(AnimationState.enSkillAttack);            // アニメーションを再生
     }
 
     /// <summary>
@@ -373,7 +345,7 @@ public class PlayerMove : MonoBehaviour
         {
             m_playerBattleStatus.HP = HPMIN_VALUE;
         }
-        m_animator.SetTrigger("Damage");            // アニメーションを再生
+        m_playerAnimation.PlayAnimation(AnimationState.enDamage);            // アニメーションを再生
         ActorHPState = SetHPStatus();
     }
 

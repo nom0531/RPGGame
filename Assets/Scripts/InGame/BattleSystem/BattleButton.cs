@@ -6,11 +6,9 @@ using UnityEngine.UI;
 public class BattleButton : MonoBehaviour
 {
     [SerializeField, Header("参照オブジェクト")]
-    private GameObject SkillWindow;
-    [SerializeField]
-    private GameObject SkillStatus;
-    [SerializeField]
     private GameObject CommandWindow;
+    [SerializeField]
+    private GameObject SkillWindow, SkillStatus;
     [SerializeField, Header("ボタン")]
     private GameObject AttackButton;
     [SerializeField]
@@ -92,10 +90,9 @@ public class BattleButton : MonoBehaviour
     /// </summary>
     public void AttackButtonDown()
     {
+        SetInteractable(false);
         ButtonDown = true;
         m_playerMoveList[m_currentTurnPlayerNumber].NextActionType = ActionType.enAttack;
-        SetInteractable(false);
-        CommandWindow.SetActive(false);
     }
 
     /// <summary>
@@ -104,16 +101,13 @@ public class BattleButton : MonoBehaviour
     public void SKillButtonDown()
     {
         SetInteractable(false);
-
         // スキルを選択していないときはボタンを押せないようにする
         if (m_playerSkill.SelectSkillNumber < 0)
         {
             OKButton.GetComponent<Button>().interactable = false;
         }
-
         SkillWindow.SetActive(true);
         SkillStatus.SetActive(true);
-
         m_playerSkill.DestroySkillButton();
         m_playerSkill.InstantiateSkillButton();
     }
@@ -123,10 +117,9 @@ public class BattleButton : MonoBehaviour
     /// </summary>
     public void GurdButtonDown()
     {
+        SetInteractable(false);
         ButtonDown = true;
         m_playerMoveList[m_currentTurnPlayerNumber].NextActionType = ActionType.enGuard;
-        CommandWindow.SetActive(false);
-        SetInteractable(false);
     }
 
     /// <summary>
@@ -137,9 +130,6 @@ public class BattleButton : MonoBehaviour
         ButtonDown = true;
         m_playerMoveList[m_currentTurnPlayerNumber].SelectSkillNumber = m_playerSkill.SelectSkillNumber;
         m_playerMoveList[m_currentTurnPlayerNumber].NextActionType = ActionType.enSkillAttack;
-        SkillWindow.SetActive(false);
-        SkillStatus.SetActive(false);
-        CommandWindow.SetActive(false);
     }
 
     /// <summary>
@@ -148,9 +138,6 @@ public class BattleButton : MonoBehaviour
     public void CancelSkillAttack()
     {
         m_playerSkill.ResetSelectSkillNumber();
-
-        SkillWindow.SetActive(false);
-        SkillStatus.SetActive(false);
         SetInteractable(true);
     }
 

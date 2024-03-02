@@ -8,6 +8,26 @@ using System;
 
 public class DrawStatusValue : MonoBehaviour
 {
+    /// <summary>
+    /// HP・SPバーの減少処理
+    /// </summary>
+    private enum DecreaseProcess
+    {
+        enStart,    // 開始
+        enEnd,      // 終了
+    }
+
+    /// <summary>
+    /// 減少処理が終了したアクタ
+    /// </summary>
+    private enum DecreaseState
+    {
+        enNone,
+        enAttcker,
+        enBuffer,
+        enHealer,
+    }
+
     [SerializeField, Header("参照データ")]
     private PlayerDataBase PlayerData;
     [SerializeField]
@@ -26,8 +46,8 @@ public class DrawStatusValue : MonoBehaviour
     private GameObject[] Data_SPBarYellow;
     [SerializeField]
     private GameObject[] Data_SPBarRed;
-    [SerializeField, Header("赤ゲージが減る処理を行う待機時間(秒)")]
-    private float WaitTime = 1.0f;
+    [SerializeField, Header("減少処理"),Tooltip("減少速度")]
+    private float DecreaseSpped = 1.0f;
     [SerializeField, Header("バフ")]
     private GameObject[] Content;
     [SerializeField, Header("状態異常")]
@@ -36,6 +56,8 @@ public class DrawStatusValue : MonoBehaviour
     private GameObject Data_Name;
 
     private List<PlayerMove> m_playerMove;
+    private DecreaseProcess m_decreaseProcess = DecreaseProcess.enEnd;    // バーの減少処理のステート
+    private DecreaseState m_decreaseState = DecreaseState.enNone;         // 減少処理が何人終了したか
 
     public int EnemyName
     {
@@ -59,6 +81,16 @@ public class DrawStatusValue : MonoBehaviour
         PlayerMove[] playerMove = FindObjectsOfType<PlayerMove>();
         m_playerMove = new List<PlayerMove>(playerMove);
         m_playerMove.Sort((a, b) => a.MyNumber.CompareTo(b.MyNumber));    // 番号順にソート
+    }
+
+    private void Update()
+    {
+        // 開始しないならスキップ
+        if(m_decreaseProcess == DecreaseProcess.enEnd)
+        {
+            return;
+        }
+        Decrease();
     }
 
     /// <summary>
@@ -97,8 +129,7 @@ public class DrawStatusValue : MonoBehaviour
         CalculateRate(m_playerMove[number].PlayerStatus.HP, PlayerData.playerDataList[number].HP);
         Data_SPBarYellow[number].GetComponent<Image>().fillAmount =
         CalculateRate(m_playerMove[number].PlayerStatus.SP, PlayerData.playerDataList[number].SP);
-
-        await UniTask.Delay(TimeSpan.FromSeconds(WaitTime));    // 一定秒待機する
+        m_decreaseProcess = DecreaseProcess.enStart;
     }
 
     /// <summary>
@@ -110,6 +141,55 @@ public class DrawStatusValue : MonoBehaviour
     {
         var rate = 0.0f;
         return rate = (float)nowValue / (float)maxValue;
+    }
+
+    /// <summary>
+    /// HP・SPの減少処理
+    /// </summary>
+    private void Decrease()
+    {
+        // 減少処理を開始しないなら実行しない
+        if(m_decreaseProcess == DecreaseProcess.enEnd)
+        {
+            return;
+        }
+        // 計算
+        for (int i = 0; i < PlayerData.playerDataList.Count; i++)
+        {
+            Data_HPBarRed[i].GetComponent<Image>().fillAmount = 
+                SetRate(Data_HPBarRed[i].GetComponent<Image>().fillAmount,
+                Data_HPBarGreen[i].GetComponent<Image>().fillAmount);
+            Data_SPBarRed[i].GetComponent<Image>().fillAmount = 
+                SetRate(Data_SPBarRed[i].GetComponent<Image>().fillAmount,
+                Data_SPBarYellow[i].GetComponent<Image>().fillAmount);
+            m_decreaseState = (DecreaseState)i+1;
+            if (m_decreaseState == DecreaseState.enHealer)
+            {
+                m_decreaseProcess = DecreaseProcess.enEnd;  // 処理を終了
+            }
+        }
+    }
+
+    /// <summary>
+    /// 値を設定
+    /// </summary>
+    /// <param name="rate">自身の割合</param>
+    /// <param name="nowRate">現在の割合</param>
+    /// <returns>計算後の自身の割合</returns>
+    private float SetRate(float rate, float nowRate)
+    {
+        // 既に割合が同じかそれ以下なら実行しない
+        if (rate <= nowRate)
+        {
+            return rate;
+        }
+        // 値を減らす
+        rate -= Time.deltaTime * DecreaseSpped;
+        if (rate <= nowRate)
+        {
+            rate = nowRate;                             // 補正
+        }
+        return rate;
     }
 
     /// <summary>
@@ -257,9 +337,9 @@ public class DrawStatusValue : MonoBehaviour
     /// <summary>
     /// 画像を設定する
     /// </summary>
-    /// <param name="contentNumber"></param>
-    /// <param name="childNumber"></param>
-    /// <param name="listNumber"></param>
+    /// <param name="contentNumber">コンテンツの番号</param>
+    /// <param name="childNumber">子オブジェクトの番号</param>
+    /// <param name="listNumber">リストの番号</param>
     /// <param name="flag">trueなら描画する。falseなら描画しない</param>
     private void SetImage(int contentNumber, int childNumber, int listNumber, bool flag)
     {

@@ -99,23 +99,6 @@ public class QuestStatusSystem : MonoBehaviour
                     }
                     break;
             }
-            // 時間の判定
-            switch (LevelData.levelDataList[number].LocationTime)
-            {
-                case LocationTime.enMorning:
-                case LocationTime.enTwilight:
-                case LocationTime.enEvening:
-                    // 全ての時間に対応しているなら処理を飛ばす
-                    if (EnemyData.enemyDataList[dataNumber].PopTime == LocationTime.enAllTime)
-                    {
-                        break;
-                    }
-                    else if (LevelData.levelDataList[number].LocationTime != EnemyData.enemyDataList[dataNumber].PopTime)
-                    {
-                        continue;
-                    }
-                    break;
-            }
             // 当てはまっているならデータを追加する
             var enemyData = new EnemyData();
             enemyData.ID = EnemyData.enemyDataList[dataNumber].ID;

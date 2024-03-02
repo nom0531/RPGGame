@@ -18,15 +18,392 @@ MonoBehaviour:
     EnemySprite: {fileID: 21300000, guid: 4012f0a1df858b0459b5ad7e5ad26d67, type: 3}
     EnemySize: 0
     PopLocation: 4
-    PopTime: 3
     EnhancementPoint: 10
     EnemyElement: 02000000010000000200000002000000020000000200000002000000
-    HP: 10
-    ATK: 20
+    HP: 100
+    ATK: 5
     DEF: 0
     SPD: 0
-    LUCK: 0
+    LUCK: 5
     EnemyDetail: "\u3069\u3053\u306B\u3067\u3082\u3044\u308B\u3002\n\u3077\u308B\u3077\u308B\u3057\u3066\u3044\u308B\u3002"
+    skillDataList: []
+    enemyMoveList:
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
+  - EnemyName: "\u30D4\u30AF\u30B7\u30FC"
+    ID: 1
+    EnemySprite: {fileID: 21300000, guid: ef931405f927a5047b897703d0a5ea37, type: 3}
+    EnemySize: 1
+    PopLocation: 0
+    EnhancementPoint: 10
+    EnemyElement: 01000000020000000000000001000000020000000200000002000000
+    HP: 250
+    ATK: 10
+    DEF: 10
+    SPD: 10
+    LUCK: 10
+    EnemyDetail: 
+    skillDataList:
+    - SkillName: "\u30A6\u30A3\u30F3\u30C91"
+      ID: 6
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 6823302871133167919, guid: 3138a83bedbd6ad4481ba0b061da2eb6,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 2
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 20
+      SkillNecessary: 5
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 10
+      SkillDetail: 
+    - SkillName: "\u30A6\u30A3\u30F3\u30C9\uFF12"
+      ID: 7
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 6823302871133167919, guid: 3138a83bedbd6ad4481ba0b061da2eb6,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 2
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 40
+      SkillNecessary: 10
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 20
+      SkillDetail: 
+    enemyMoveList:
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
+      ID: 1
+      ActorHPState: 1
+      ActorAbnormalState: 5
+      ActionType: 1
+  - EnemyName: "\u30CF\u30A4\u30D4\u30AF\u30B7\u30FC"
+    ID: 2
+    EnemySprite: {fileID: 21300000, guid: a61f81185021dbf418a791a28f3b8913, type: 3}
+    EnemySize: 1
+    PopLocation: 0
+    EnhancementPoint: 35
+    EnemyElement: 01000000020000000000000002000000020000000200000002000000
+    HP: 50
+    ATK: 10
+    DEF: 5
+    SPD: 5
+    LUCK: 20
+    EnemyDetail: 
+    skillDataList:
+    - SkillName: "\u30A6\u30A3\u30F3\u30C91"
+      ID: 6
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 6823302871133167919, guid: 3138a83bedbd6ad4481ba0b061da2eb6,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 2
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 20
+      SkillNecessary: 5
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 10
+      SkillDetail: 
+    - SkillName: "\u30A6\u30A3\u30F3\u30C9\uFF12"
+      ID: 7
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 6823302871133167919, guid: 3138a83bedbd6ad4481ba0b061da2eb6,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 2
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 40
+      SkillNecessary: 10
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 20
+      SkillDetail: 
+    - SkillName: "\u30A6\u30A3\u30F3\u30C93"
+      ID: 8
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 6823302871133167919, guid: 3138a83bedbd6ad4481ba0b061da2eb6,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 2
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 80
+      SkillNecessary: 15
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 30
+      SkillDetail: 
+    enemyMoveList:
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
+      ID: 1
+      ActorHPState: 1
+      ActorAbnormalState: 5
+      ActionType: 1
+  - EnemyName: "\u30AA\u30A6\u30B5\u30DE\u30DA\u30F3\u30AE\u30F3"
+    ID: 3
+    EnemySprite: {fileID: 21300000, guid: e5b92bffd61cc384db109a9854291657, type: 3}
+    EnemySize: 1
+    PopLocation: 1
+    EnhancementPoint: 50
+    EnemyElement: 01000000000000000200000002000000020000000200000002000000
+    HP: 450
+    ATK: 10
+    DEF: 10
+    SPD: 10
+    LUCK: 10
+    EnemyDetail: 
+    skillDataList:
+    - SkillName: "\u30A2\u30A4\u30B92"
+      ID: 4
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 4924508274929071776, guid: 0edef91621bb6b34384ccc9dbb98729c,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 1
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 40
+      SkillNecessary: 10
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 20
+      SkillDetail: 
+    - SkillName: "\u30A2\u30A4\u30B93"
+      ID: 5
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 4924508274929071776, guid: 0edef91621bb6b34384ccc9dbb98729c,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 1
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 80
+      SkillNecessary: 15
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 30
+      SkillDetail: 
+    - SkillName: "\u5358\u4F53\u653B\u64831"
+      ID: 21
+      SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 2060900179291159282, guid: ca6705a3f9070d14d819d179493bcfa0,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 20
+      SkillNecessary: 5
+      Type: 1
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 10
+      SkillDetail: 
+    - SkillName: "\u5358\u4F53\u653B\u64832"
+      ID: 22
+      SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 2060900179291159282, guid: ca6705a3f9070d14d819d179493bcfa0,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 40
+      SkillNecessary: 10
+      Type: 1
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 20
+      SkillDetail: 
+    enemyMoveList:
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
+      ID: 1
+      ActorHPState: 1
+      ActorAbnormalState: 5
+      ActionType: 1
+  - EnemyName: "\u30E2\u30F3\u30B9\u30BF\u30FC\u30A8\u30C3\u30B0"
+    ID: 4
+    EnemySprite: {fileID: 21300000, guid: 2fff957969dcc1348ab076917b98ed15, type: 3}
+    EnemySize: 0
+    PopLocation: 4
+    EnhancementPoint: 1000
+    EnemyElement: 00000000000000000000000000000000000000000000000002000000
+    HP: 50
+    ATK: 10
+    DEF: 5
+    SPD: 70
+    LUCK: 85
+    EnemyDetail: "\u30E2\u30F3\u30B9\u30BF\u30FC\u306E\u305F\u307E\u3054\u3002"
+    skillDataList:
+    - SkillName: "\u7121\u5C5E\u60271"
+      ID: 18
+      SkillSprite: {fileID: 21300000, guid: cda20cb1f6f217f479c94cab09290d8f, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 8443315704496310910, guid: 6ef35fa36e3a65043b2d800600204bdd,
+        type: 3}
+      EffectScale: 30
+      SkillElement: 6
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 20
+      SkillNecessary: 5
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 25
+      SkillDetail: 
+    - SkillName: "\u7121\u5C5E\u60272"
+      ID: 19
+      SkillSprite: {fileID: 21300000, guid: cda20cb1f6f217f479c94cab09290d8f, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 8443315704496310910, guid: 6ef35fa36e3a65043b2d800600204bdd,
+        type: 3}
+      EffectScale: 30
+      SkillElement: 6
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 40
+      SkillNecessary: 10
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 50
+      SkillDetail: 
+    enemyMoveList:
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
+      ID: 1
+      ActorHPState: 1
+      ActorAbnormalState: 5
+      ActionType: 1
+    - MoveName: "\u9003\u8D70"
+      ID: 6
+      ActorHPState: 1
+      ActorAbnormalState: 0
+      ActionType: 3
+  - EnemyName: "\u30D5\u30A1\u30A4\u30A2"
+    ID: 5
+    EnemySprite: {fileID: 21300000, guid: 3ceb7d5591c23c144b48f4e6cfc10bda, type: 3}
+    EnemySize: 1
+    PopLocation: 3
+    EnhancementPoint: 50
+    EnemyElement: 00000000010000000200000001000000020000000200000002000000
+    HP: 120
+    ATK: 10
+    DEF: 5
+    SPD: 10
+    LUCK: 10
+    EnemyDetail: 
     skillDataList:
     - SkillName: "\u30D5\u30A1\u30A4\u30A21"
       ID: 0
@@ -36,6 +413,768 @@ MonoBehaviour:
         type: 3}
       EffectScale: 15
       SkillElement: 0
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 20
+      SkillNecessary: 5
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 10
+      SkillDetail: 
+    enemyMoveList:
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
+      ID: 1
+      ActorHPState: 1
+      ActorAbnormalState: 5
+      ActionType: 1
+  - EnemyName: "\u30B5\u30E9\u30DE\u30F3\u30C0\u30FC"
+    ID: 6
+    EnemySprite: {fileID: 21300000, guid: 5f87fc4462df0ef439c52aa911f7249e, type: 3}
+    EnemySize: 2
+    PopLocation: 3
+    EnhancementPoint: 100
+    EnemyElement: 00000000010000000100000002000000020000000200000002000000
+    HP: 50
+    ATK: 10
+    DEF: 5
+    SPD: 25
+    LUCK: 20
+    EnemyDetail: 
+    skillDataList:
+    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
+      ID: 0
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 358637981425055526, guid: 8eb503696b886e04faff8fc0f480d473,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 0
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 20
+      SkillNecessary: 5
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 10
+      SkillDetail: 
+    - SkillName: "\u30D5\u30A1\u30A4\u30A22"
+      ID: 1
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 358637981425055526, guid: 8eb503696b886e04faff8fc0f480d473,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 0
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 40
+      SkillNecessary: 10
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 20
+      SkillDetail: 
+    - SkillName: "\u30D5\u30A1\u30A4\u30A23"
+      ID: 2
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 358637981425055526, guid: 8eb503696b886e04faff8fc0f480d473,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 0
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 80
+      SkillNecessary: 15
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 30
+      SkillDetail: 
+    - SkillName: "\u5358\u4F53\u653B\u64831"
+      ID: 21
+      SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 2060900179291159282, guid: ca6705a3f9070d14d819d179493bcfa0,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 20
+      SkillNecessary: 5
+      Type: 1
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 10
+      SkillDetail: 
+    enemyMoveList:
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
+      ID: 1
+      ActorHPState: 1
+      ActorAbnormalState: 5
+      ActionType: 1
+  - EnemyName: "\u30D5\u30A7\u30CB\u30C3\u30AF\u30B9"
+    ID: 7
+    EnemySprite: {fileID: 21300000, guid: 289c3d60eaaa37a40ba46d52cbb6a9a7, type: 3}
+    EnemySize: 3
+    PopLocation: 3
+    EnhancementPoint: 150
+    EnemyElement: 00000000010000000000000002000000020000000200000002000000
+    HP: 500
+    ATK: 30
+    DEF: 25
+    SPD: 35
+    LUCK: 20
+    EnemyDetail: 
+    skillDataList:
+    - SkillName: "\u30D5\u30A1\u30A4\u30A22"
+      ID: 1
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 358637981425055526, guid: 8eb503696b886e04faff8fc0f480d473,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 0
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 40
+      SkillNecessary: 10
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 20
+      SkillDetail: 
+    - SkillName: "\u30D5\u30A1\u30A4\u30A23"
+      ID: 2
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 358637981425055526, guid: 8eb503696b886e04faff8fc0f480d473,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 0
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 80
+      SkillNecessary: 15
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 30
+      SkillDetail: 
+    - SkillName: "\u5358\u4F53\u653B\u64833"
+      ID: 23
+      SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 2060900179291159282, guid: ca6705a3f9070d14d819d179493bcfa0,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 80
+      SkillNecessary: 15
+      Type: 1
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 30
+      SkillDetail: 
+    enemyMoveList:
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
+      ID: 1
+      ActorHPState: 1
+      ActorAbnormalState: 5
+      ActionType: 1
+  - EnemyName: "\u30C9\u30EC\u30A4\u30AF"
+    ID: 8
+    EnemySprite: {fileID: 21300000, guid: eee3366cf6c04cc4dad60fc660a118d1, type: 3}
+    EnemySize: 3
+    PopLocation: 3
+    EnhancementPoint: 250
+    EnemyElement: 00000000010000000200000002000000020000000200000002000000
+    HP: 50
+    ATK: 10
+    DEF: 5
+    SPD: 10
+    LUCK: 25
+    EnemyDetail: 
+    skillDataList: []
+    enemyMoveList: []
+  - EnemyName: "\u30A2\u30A4\u30B9"
+    ID: 9
+    EnemySprite: {fileID: 21300000, guid: 9f6f185796fc2f041a658ddc607ab83c, type: 3}
+    EnemySize: 1
+    PopLocation: 2
+    EnhancementPoint: 20
+    EnemyElement: 01000000000000000200000001000000020000000200000002000000
+    HP: 120
+    ATK: 25
+    DEF: 10
+    SPD: 15
+    LUCK: 20
+    EnemyDetail: 
+    skillDataList:
+    - SkillName: "\u30A2\u30A4\u30B91"
+      ID: 3
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 4924508274929071776, guid: 0edef91621bb6b34384ccc9dbb98729c,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 1
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 10
+      SkillNecessary: 5
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 10
+      SkillDetail: 
+    enemyMoveList:
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
+      ID: 1
+      ActorHPState: 1
+      ActorAbnormalState: 5
+      ActionType: 1
+  - EnemyName: "\u30A6\u30F3\u30C7\u30A3\u30FC\u30CD"
+    ID: 10
+    EnemySprite: {fileID: 21300000, guid: 445c947fc72689e46846cc0bd6a18655, type: 3}
+    EnemySize: 2
+    PopLocation: 0
+    EnhancementPoint: 50
+    EnemyElement: 01000000000000000100000002000000020000000200000002000000
+    HP: 450
+    ATK: 25
+    DEF: 20
+    SPD: 15
+    LUCK: 20
+    EnemyDetail: 
+    skillDataList:
+    - SkillName: "\u30A2\u30A4\u30B91"
+      ID: 3
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 4924508274929071776, guid: 0edef91621bb6b34384ccc9dbb98729c,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 1
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 10
+      SkillNecessary: 5
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 10
+      SkillDetail: 
+    - SkillName: "\u30A2\u30A4\u30B92"
+      ID: 4
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 4924508274929071776, guid: 0edef91621bb6b34384ccc9dbb98729c,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 1
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 40
+      SkillNecessary: 10
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 20
+      SkillDetail: 
+    enemyMoveList:
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
+      ID: 1
+      ActorHPState: 1
+      ActorAbnormalState: 5
+      ActionType: 1
+  - EnemyName: "\u30D6\u30EA\u30B6\u30FC\u30C9"
+    ID: 11
+    EnemySprite: {fileID: 21300000, guid: 1d1f93bb1cb82d44eaf0586ec2c2b8fe, type: 3}
+    EnemySize: 2
+    PopLocation: 1
+    EnhancementPoint: 10
+    EnemyElement: 01000000000000000000000002000000020000000100000002000000
+    HP: 50
+    ATK: 10
+    DEF: 5
+    SPD: 10
+    LUCK: 25
+    EnemyDetail: 
+    skillDataList:
+    - SkillName: "\u30A2\u30A4\u30B91"
+      ID: 3
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 4924508274929071776, guid: 0edef91621bb6b34384ccc9dbb98729c,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 1
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 10
+      SkillNecessary: 5
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 10
+      SkillDetail: 
+    - SkillName: "\u30A2\u30A4\u30B92"
+      ID: 4
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 4924508274929071776, guid: 0edef91621bb6b34384ccc9dbb98729c,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 1
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 40
+      SkillNecessary: 10
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 20
+      SkillDetail: 
+    - SkillName: "\u30A6\u30A3\u30F3\u30C91"
+      ID: 6
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 6823302871133167919, guid: 3138a83bedbd6ad4481ba0b061da2eb6,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 2
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 20
+      SkillNecessary: 5
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 10
+      SkillDetail: 
+    - SkillName: "\u30A6\u30A3\u30F3\u30C9\uFF12"
+      ID: 7
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 6823302871133167919, guid: 3138a83bedbd6ad4481ba0b061da2eb6,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 2
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 40
+      SkillNecessary: 10
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 20
+      SkillDetail: 
+    enemyMoveList:
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
+      ID: 1
+      ActorHPState: 1
+      ActorAbnormalState: 5
+      ActionType: 1
+  - EnemyName: "\u30BB\u30A4\u30EC\u30FC\u30F3"
+    ID: 12
+    EnemySprite: {fileID: 21300000, guid: ae4975d7451794446b5a732cb2960e6d, type: 3}
+    EnemySize: 2
+    PopLocation: 2
+    EnhancementPoint: 50
+    EnemyElement: 02000000010000000200000001000000000000000200000002000000
+    HP: 730
+    ATK: 30
+    DEF: 15
+    SPD: 20
+    LUCK: 20
+    EnemyDetail: 
+    skillDataList:
+    - SkillName: "\u30D2\u30FC\u30EB1"
+      ID: 33
+      SkillSprite: {fileID: 21300000, guid: 797588158c4fd6943aa087189d0bf32a, type: 3}
+      SkillType: 3
+      SkillEffect: {fileID: 9017484664307500583, guid: 1245b8d2997d5b34fb1637be70a7eb05,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 25
+      SkillNecessary: 5
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 10
+      SkillDetail: 
+    - SkillName: "\u30B7\u30E3\u30A4\u30F31"
+      ID: 12
+      SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 2944396702758532163, guid: e190bf97c041e58448af6b043116cba0,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 4
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 20
+      SkillNecessary: 5
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 10
+      SkillDetail: 
+    - SkillName: "\u30B7\u30E3\u30A4\u30F32"
+      ID: 13
+      SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 2944396702758532163, guid: e190bf97c041e58448af6b043116cba0,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 4
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 40
+      SkillNecessary: 10
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 20
+      SkillDetail: 
+    enemyMoveList:
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
+      ID: 1
+      ActorHPState: 1
+      ActorAbnormalState: 5
+      ActionType: 1
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u56DE\u5FA9"
+      ID: 2
+      ActorHPState: 1
+      ActorAbnormalState: 5
+      ActionType: 1
+  - EnemyName: "\u30AF\u30E9\u30FC\u30B1\u30F3"
+    ID: 13
+    EnemySprite: {fileID: 21300000, guid: edebba5ae674a284db60c51bcb3c2c72, type: 3}
+    EnemySize: 2
+    PopLocation: 2
+    EnhancementPoint: 70
+    EnemyElement: 01000000020000000200000002000000010000000000000002000000
+    HP: 50
+    ATK: 10
+    DEF: 5
+    SPD: 25
+    LUCK: 20
+    EnemyDetail: 
+    skillDataList:
+    - SkillName: "\u30C0\u30FC\u30AF1"
+      ID: 15
+      SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 4535006216103734310, guid: 98c4704d0fd7211449bcf5c451095a60,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 5
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 20
+      SkillNecessary: 5
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 10
+      SkillDetail: 
+    - SkillName: "\u30C0\u30FC\u30AF2"
+      ID: 16
+      SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 4535006216103734310, guid: 98c4704d0fd7211449bcf5c451095a60,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 5
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 40
+      SkillNecessary: 10
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 20
+      SkillDetail: 
+    - SkillName: "\u5168\u4F53\u653B\u64831"
+      ID: 24
+      SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 1171201465392465800, guid: 4aa9f30a28a77224ba84b2a2c334c71b,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 25
+      SkillNecessary: 8
+      Type: 1
+      EffectRange: 1
+      TargetState: 1
+      BuffType: 3
+      EnhancementPoint: 15
+      SkillDetail: 
+    enemyMoveList:
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
+      ID: 1
+      ActorHPState: 1
+      ActorAbnormalState: 5
+      ActionType: 1
+  - EnemyName: "\u30EA\u30F4\u30A1\u30A4\u30A2\u30B5\u30F3"
+    ID: 14
+    EnemySprite: {fileID: 21300000, guid: 9c787676ed86d9c4d9ec2d0b6a4a495b, type: 3}
+    EnemySize: 3
+    PopLocation: 2
+    EnhancementPoint: 100
+    EnemyElement: 01000000000000000200000000000000020000000000000002000000
+    HP: 1200
+    ATK: 35
+    DEF: 30
+    SPD: 13
+    LUCK: 25
+    EnemyDetail: 
+    skillDataList:
+    - SkillName: "\u30A2\u30A4\u30B92"
+      ID: 4
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 4924508274929071776, guid: 0edef91621bb6b34384ccc9dbb98729c,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 1
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 40
+      SkillNecessary: 10
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 20
+      SkillDetail: 
+    - SkillName: "\u30A2\u30A4\u30B93"
+      ID: 5
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 4924508274929071776, guid: 0edef91621bb6b34384ccc9dbb98729c,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 1
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 80
+      SkillNecessary: 15
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 30
+      SkillDetail: 
+    - SkillName: "\u30B5\u30F3\u30C0\u30FC1"
+      ID: 9
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 2965222256817593503, guid: a164e676dbbd6e54587237e619372c98,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 3
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 20
+      SkillNecessary: 5
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 10
+      SkillDetail: 
+    - SkillName: "\u30C0\u30FC\u30AF1"
+      ID: 15
+      SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 4535006216103734310, guid: 98c4704d0fd7211449bcf5c451095a60,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 5
       StateAbnormalData:
         StateName: 
         ID: 0
@@ -62,674 +1201,2357 @@ MonoBehaviour:
       ActorHPState: 1
       ActorAbnormalState: 5
       ActionType: 1
+  - EnemyName: "\u30D7\u30E9\u30F3\u30C8"
+    ID: 15
+    EnemySprite: {fileID: 21300000, guid: 3b2cf15e96c15aa4bb11edbf31aa374c, type: 3}
+    EnemySize: 1
+    PopLocation: 1
+    EnhancementPoint: 20
+    EnemyElement: 01000000020000000000000001000000020000000200000002000000
+    HP: 120
+    ATK: 15
+    DEF: 10
+    SPD: 20
+    LUCK: 20
+    EnemyDetail: 
+    skillDataList:
+    - SkillName: "\u30A6\u30A3\u30F3\u30C91"
+      ID: 6
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 6823302871133167919, guid: 3138a83bedbd6ad4481ba0b061da2eb6,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 2
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 20
+      SkillNecessary: 5
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 10
+      SkillDetail: 
+    enemyMoveList:
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
+      ID: 1
+      ActorHPState: 1
+      ActorAbnormalState: 5
+      ActionType: 1
+  - EnemyName: "\u30A2\u30EB\u30E9\u30A6\u30CD"
+    ID: 16
+    EnemySprite: {fileID: 21300000, guid: 9a679125c8b944347ad8737684bfd3b3, type: 3}
+    EnemySize: 2
+    PopLocation: 1
+    EnhancementPoint: 50
+    EnemyElement: 02000000020000000000000001000000020000000200000002000000
+    HP: 350
+    ATK: 25
+    DEF: 20
+    SPD: 15
+    LUCK: 20
+    EnemyDetail: 
+    skillDataList:
+    - SkillName: "\u30A6\u30A3\u30F3\u30C91"
+      ID: 6
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 6823302871133167919, guid: 3138a83bedbd6ad4481ba0b061da2eb6,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 2
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 20
+      SkillNecessary: 5
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 10
+      SkillDetail: 
+    - SkillName: "\u30A6\u30A3\u30F3\u30C9\uFF12"
+      ID: 7
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 6823302871133167919, guid: 3138a83bedbd6ad4481ba0b061da2eb6,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 2
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 40
+      SkillNecessary: 10
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 20
+      SkillDetail: 
+    enemyMoveList:
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
+      ID: 1
+      ActorHPState: 1
+      ActorAbnormalState: 5
+      ActionType: 1
+  - EnemyName: "\u30C6\u30F3\u30B0"
+    ID: 17
+    EnemySprite: {fileID: 21300000, guid: 0dea51efe6bba9848b674bab76289c68, type: 3}
+    EnemySize: 2
+    PopLocation: 1
+    EnhancementPoint: 60
+    EnemyElement: 00000000020000000000000001000000020000000200000002000000
+    HP: 500
+    ATK: 20
+    DEF: 15
+    SPD: 20
+    LUCK: 20
+    EnemyDetail: 
+    skillDataList:
+    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
+      ID: 0
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 358637981425055526, guid: 8eb503696b886e04faff8fc0f480d473,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 0
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 20
+      SkillNecessary: 5
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 10
+      SkillDetail: 
+    - SkillName: "\u30D5\u30A1\u30A4\u30A22"
+      ID: 1
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 358637981425055526, guid: 8eb503696b886e04faff8fc0f480d473,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 0
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 40
+      SkillNecessary: 10
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 20
+      SkillDetail: 
+    - SkillName: "\u30A6\u30A3\u30F3\u30C91"
+      ID: 6
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 6823302871133167919, guid: 3138a83bedbd6ad4481ba0b061da2eb6,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 2
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 20
+      SkillNecessary: 5
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 10
+      SkillDetail: 
+    - SkillName: "\u30A6\u30A3\u30F3\u30C9\uFF12"
+      ID: 7
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 6823302871133167919, guid: 3138a83bedbd6ad4481ba0b061da2eb6,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 2
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 40
+      SkillNecessary: 10
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 20
+      SkillDetail: 
+    enemyMoveList:
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
+      ID: 1
+      ActorHPState: 1
+      ActorAbnormalState: 5
+      ActionType: 1
+  - EnemyName: "\u30E4\u30DE\u30BF\u30CE\u30AA\u30ED\u30C1"
+    ID: 18
+    EnemySprite: {fileID: 21300000, guid: b791dc35b95d7904da2f171bad801f8f, type: 3}
+    EnemySize: 3
+    PopLocation: 1
+    EnhancementPoint: 100
+    EnemyElement: 02000000020000000000000001000000020000000000000002000000
+    HP: 1200
+    ATK: 35
+    DEF: 20
+    SPD: 10
+    LUCK: 20
+    EnemyDetail: 
+    skillDataList:
+    - SkillName: "\u30A6\u30A3\u30F3\u30C9\uFF12"
+      ID: 7
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 6823302871133167919, guid: 3138a83bedbd6ad4481ba0b061da2eb6,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 2
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 40
+      SkillNecessary: 10
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 20
+      SkillDetail: 
+    - SkillName: "\u7121\u5C5E\u60271"
+      ID: 18
+      SkillSprite: {fileID: 21300000, guid: cda20cb1f6f217f479c94cab09290d8f, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 8443315704496310910, guid: 6ef35fa36e3a65043b2d800600204bdd,
+        type: 3}
+      EffectScale: 30
+      SkillElement: 6
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 20
+      SkillNecessary: 5
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 25
+      SkillDetail: 
+    - SkillName: "\u5168\u4F53\u653B\u64831"
+      ID: 24
+      SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 1171201465392465800, guid: 4aa9f30a28a77224ba84b2a2c334c71b,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 25
+      SkillNecessary: 8
+      Type: 1
+      EffectRange: 1
+      TargetState: 1
+      BuffType: 3
+      EnhancementPoint: 15
+      SkillDetail: 
+    enemyMoveList:
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
+      ID: 1
+      ActorHPState: 1
+      ActorAbnormalState: 5
+      ActionType: 1
+  - EnemyName: "\u30B4\u30FC\u30EC\u30E0"
+    ID: 19
+    EnemySprite: {fileID: 21300000, guid: a35bc79f0eb8d2b4bb9cfa700cae3097, type: 3}
+    EnemySize: 3
+    PopLocation: 3
+    EnhancementPoint: 100
+    EnemyElement: 02000000010000000000000000000000020000000200000002000000
+    HP: 1500
+    ATK: 20
+    DEF: 35
+    SPD: 5
+    LUCK: 20
+    EnemyDetail: 
+    skillDataList:
+    - SkillName: "\u30A6\u30A3\u30F3\u30C93"
+      ID: 8
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 6823302871133167919, guid: 3138a83bedbd6ad4481ba0b061da2eb6,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 2
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 80
+      SkillNecessary: 15
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 30
+      SkillDetail: 
+    - SkillName: "\u30B5\u30F3\u30C0\u30FC1"
+      ID: 9
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 2965222256817593503, guid: a164e676dbbd6e54587237e619372c98,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 3
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 20
+      SkillNecessary: 5
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 10
+      SkillDetail: 
+    - SkillName: "\u30B5\u30F3\u30C0\u30FC2"
+      ID: 10
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 2965222256817593503, guid: a164e676dbbd6e54587237e619372c98,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 3
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 40
+      SkillNecessary: 10
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 20
+      SkillDetail: 
+    enemyMoveList:
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
+      ID: 1
+      ActorHPState: 1
+      ActorAbnormalState: 5
+      ActionType: 1
+  - EnemyName: "\u30DC\u30EB\u30C8"
+    ID: 20
+    EnemySprite: {fileID: 21300000, guid: a5b1188744bf61e41a9d9e14f3ddab72, type: 3}
+    EnemySize: 1
+    PopLocation: 3
+    EnhancementPoint: 20
+    EnemyElement: 02000000020000000100000000000000020000000200000002000000
+    HP: 120
+    ATK: 10
+    DEF: 15
+    SPD: 10
+    LUCK: 20
+    EnemyDetail: 
+    skillDataList:
+    - SkillName: "\u30B5\u30F3\u30C0\u30FC1"
+      ID: 9
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 2965222256817593503, guid: a164e676dbbd6e54587237e619372c98,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 3
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 20
+      SkillNecessary: 5
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 10
+      SkillDetail: 
+    enemyMoveList:
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
+      ID: 1
+      ActorHPState: 1
+      ActorAbnormalState: 5
+      ActionType: 1
+  - EnemyName: "\u30D5\u30EB\u30B4\u30E9"
+    ID: 21
+    EnemySprite: {fileID: 21300000, guid: ea6ce5eafcd65b24cba24d4307a7c820, type: 3}
+    EnemySize: 2
+    PopLocation: 3
+    EnhancementPoint: 50
+    EnemyElement: 02000000020000000100000000000000020000000200000002000000
+    HP: 145
+    ATK: 20
+    DEF: 15
+    SPD: 20
+    LUCK: 20
+    EnemyDetail: 
+    skillDataList:
+    - SkillName: "\u30B5\u30F3\u30C0\u30FC1"
+      ID: 9
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 2965222256817593503, guid: a164e676dbbd6e54587237e619372c98,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 3
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 20
+      SkillNecessary: 5
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 10
+      SkillDetail: 
+    - SkillName: "\u30B5\u30F3\u30C0\u30FC2"
+      ID: 10
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 2965222256817593503, guid: a164e676dbbd6e54587237e619372c98,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 3
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 40
+      SkillNecessary: 10
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 20
+      SkillDetail: 
+    enemyMoveList:
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
+      ID: 1
+      ActorHPState: 1
+      ActorAbnormalState: 5
+      ActionType: 1
+  - EnemyName: "\u30DF\u30A4\u30E9"
+    ID: 22
+    EnemySprite: {fileID: 21300000, guid: 236ecdfcd25369546a5862967c319611, type: 3}
+    EnemySize: 2
+    PopLocation: 1
+    EnhancementPoint: 50
+    EnemyElement: 02000000020000000100000000000000010000000200000002000000
+    HP: 160
+    ATK: 25
+    DEF: 20
+    SPD: 20
+    LUCK: 20
+    EnemyDetail: 
+    skillDataList:
+    - SkillName: "\u30B5\u30F3\u30C0\u30FC1"
+      ID: 9
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 2965222256817593503, guid: a164e676dbbd6e54587237e619372c98,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 3
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 20
+      SkillNecessary: 5
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 10
+      SkillDetail: 
+    - SkillName: "\u5358\u4F53\u653B\u64831"
+      ID: 21
+      SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 2060900179291159282, guid: ca6705a3f9070d14d819d179493bcfa0,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 20
+      SkillNecessary: 5
+      Type: 1
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 10
+      SkillDetail: 
+    - SkillName: "\u5358\u4F53\u653B\u64832"
+      ID: 22
+      SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 2060900179291159282, guid: ca6705a3f9070d14d819d179493bcfa0,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 40
+      SkillNecessary: 10
+      Type: 1
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 20
+      SkillDetail: 
+    enemyMoveList:
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
+      ID: 1
+      ActorHPState: 1
+      ActorAbnormalState: 5
+      ActionType: 1
+  - EnemyName: "\u30EA\u30F3\u30C9\u30A6\u30EB\u30E0"
+    ID: 23
+    EnemySprite: {fileID: 21300000, guid: 0630f0872649d1c4fadbcd2941fd9489, type: 3}
+    EnemySize: 3
+    PopLocation: 1
+    EnhancementPoint: 100
+    EnemyElement: 02000000010000000100000000000000000000000200000002000000
+    HP: 1200
+    ATK: 30
+    DEF: 25
+    SPD: 15
+    LUCK: 20
+    EnemyDetail: 
+    skillDataList:
+    - SkillName: "\u30B5\u30F3\u30C0\u30FC3"
+      ID: 11
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 2965222256817593503, guid: a164e676dbbd6e54587237e619372c98,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 3
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 80
+      SkillNecessary: 15
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 30
+      SkillDetail: 
+    - SkillName: "\u30B7\u30E3\u30A4\u30F31"
+      ID: 12
+      SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 2944396702758532163, guid: e190bf97c041e58448af6b043116cba0,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 4
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 20
+      SkillNecessary: 5
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 10
+      SkillDetail: 
+    - SkillName: "\u30B7\u30E3\u30A4\u30F32"
+      ID: 13
+      SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 2944396702758532163, guid: e190bf97c041e58448af6b043116cba0,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 4
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 40
+      SkillNecessary: 10
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 20
+      SkillDetail: 
+    - SkillName: "\u5358\u4F53\u653B\u64831"
+      ID: 21
+      SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 2060900179291159282, guid: ca6705a3f9070d14d819d179493bcfa0,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 20
+      SkillNecessary: 5
+      Type: 1
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 10
+      SkillDetail: 
+    - SkillName: "\u5358\u4F53\u653B\u64832"
+      ID: 22
+      SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 2060900179291159282, guid: ca6705a3f9070d14d819d179493bcfa0,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 40
+      SkillNecessary: 10
+      Type: 1
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 20
+      SkillDetail: 
+    enemyMoveList:
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
+      ID: 1
+      ActorHPState: 1
+      ActorAbnormalState: 5
+      ActionType: 1
+  - EnemyName: "\u30A8\u30F3\u30B8\u30A7\u30EB"
+    ID: 24
+    EnemySprite: {fileID: 21300000, guid: df55bd4fe31709d4e95a06fb8e553e8e, type: 3}
+    EnemySize: 2
+    PopLocation: 4
+    EnhancementPoint: 20
+    EnemyElement: 02000000020000000100000002000000000000000100000002000000
+    HP: 135
+    ATK: 20
+    DEF: 25
+    SPD: 20
+    LUCK: 20
+    EnemyDetail: 
+    skillDataList:
+    - SkillName: "\u30B7\u30E3\u30A4\u30F31"
+      ID: 12
+      SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 2944396702758532163, guid: e190bf97c041e58448af6b043116cba0,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 4
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 20
+      SkillNecessary: 5
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 10
+      SkillDetail: 
+    enemyMoveList:
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
+      ID: 1
+      ActorHPState: 1
+      ActorAbnormalState: 5
+      ActionType: 1
+  - EnemyName: "\u30A2\u30FC\u30AF\u30A8\u30F3\u30B8\u30A7\u30EB"
+    ID: 25
+    EnemySprite: {fileID: 21300000, guid: 09717e550c5f5254f876899376b3910d, type: 3}
+    EnemySize: 2
+    PopLocation: 3
+    EnhancementPoint: 50
+    EnemyElement: 02000000020000000200000002000000000000000100000002000000
+    HP: 250
+    ATK: 15
+    DEF: 20
+    SPD: 10
+    LUCK: 45
+    EnemyDetail: 
+    skillDataList:
+    - SkillName: "\u30B7\u30E3\u30A4\u30F31"
+      ID: 12
+      SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 2944396702758532163, guid: e190bf97c041e58448af6b043116cba0,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 4
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 20
+      SkillNecessary: 5
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 10
+      SkillDetail: 
+    - SkillName: "\u30B7\u30E3\u30A4\u30F32"
+      ID: 13
+      SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 2944396702758532163, guid: e190bf97c041e58448af6b043116cba0,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 4
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 40
+      SkillNecessary: 10
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 20
+      SkillDetail: 
+    enemyMoveList:
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
+      ID: 1
+      ActorHPState: 1
+      ActorAbnormalState: 5
+      ActionType: 1
+  - EnemyName: "\u30CF\u30FC\u30D4\u30FC"
+    ID: 26
+    EnemySprite: {fileID: 21300000, guid: 2f8cf9e2d83636e458e5eb41842bc6e1, type: 3}
+    EnemySize: 2
+    PopLocation: 1
+    EnhancementPoint: 60
+    EnemyElement: 02000000020000000200000001000000000000000100000002000000
+    HP: 180
+    ATK: 15
+    DEF: 20
+    SPD: 20
+    LUCK: 20
+    EnemyDetail: 
+    skillDataList:
+    - SkillName: "\u30B7\u30E3\u30A4\u30F32"
+      ID: 13
+      SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 2944396702758532163, guid: e190bf97c041e58448af6b043116cba0,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 4
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 40
+      SkillNecessary: 10
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 20
+      SkillDetail: 
+    - SkillName: "\u30D2\u30FC\u30EB1"
+      ID: 33
+      SkillSprite: {fileID: 21300000, guid: 797588158c4fd6943aa087189d0bf32a, type: 3}
+      SkillType: 3
+      SkillEffect: {fileID: 9017484664307500583, guid: 1245b8d2997d5b34fb1637be70a7eb05,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 25
+      SkillNecessary: 5
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 10
+      SkillDetail: 
+    - SkillName: "\u30D2\u30FC\u30EB2"
+      ID: 34
+      SkillSprite: {fileID: 21300000, guid: 797588158c4fd6943aa087189d0bf32a, type: 3}
+      SkillType: 3
+      SkillEffect: {fileID: 9017484664307500583, guid: 1245b8d2997d5b34fb1637be70a7eb05,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 50
+      SkillNecessary: 10
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 20
+      SkillDetail: 
+    enemyMoveList:
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
+      ID: 1
+      ActorHPState: 1
+      ActorAbnormalState: 5
+      ActionType: 1
     - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u56DE\u5FA9"
       ID: 2
       ActorHPState: 1
       ActorAbnormalState: 5
       ActionType: 1
-  - EnemyName: "\u30D4\u30AF\u30B7\u30FC"
-    ID: 1
-    EnemySprite: {fileID: 21300000, guid: ef931405f927a5047b897703d0a5ea37, type: 3}
-    EnemySize: 1
-    PopLocation: 0
-    PopTime: 3
-    EnhancementPoint: 10
-    EnemyElement: 01000000020000000000000001000000020000000200000002000000
-    HP: 10
-    ATK: 0
-    DEF: 0
-    SPD: 0
-    LUCK: 0
-    EnemyDetail: 
-    skillDataList: []
-    enemyMoveList: []
-  - EnemyName: "\u30CF\u30A4\u30D4\u30AF\u30B7\u30FC"
-    ID: 2
-    EnemySprite: {fileID: 21300000, guid: a61f81185021dbf418a791a28f3b8913, type: 3}
-    EnemySize: 1
-    PopLocation: 0
-    PopTime: 1
-    EnhancementPoint: 20
-    EnemyElement: 01000000020000000000000002000000020000000200000002000000
-    HP: 10
-    ATK: 0
-    DEF: 0
-    SPD: 0
-    LUCK: 0
-    EnemyDetail: 
-    skillDataList: []
-    enemyMoveList: []
-  - EnemyName: "\u30AA\u30A6\u30B5\u30DE\u30DA\u30F3\u30AE\u30F3"
-    ID: 3
-    EnemySprite: {fileID: 21300000, guid: e5b92bffd61cc384db109a9854291657, type: 3}
-    EnemySize: 1
-    PopLocation: 1
-    PopTime: 0
-    EnhancementPoint: 20
-    EnemyElement: 01000000000000000200000002000000020000000200000002000000
-    HP: 10
-    ATK: 0
-    DEF: 0
-    SPD: 0
-    LUCK: 0
-    EnemyDetail: 
-    skillDataList: []
-    enemyMoveList: []
-  - EnemyName: "\u30E2\u30F3\u30B9\u30BF\u30FC\u30A8\u30C3\u30B0"
-    ID: 4
-    EnemySprite: {fileID: 21300000, guid: 2fff957969dcc1348ab076917b98ed15, type: 3}
-    EnemySize: 0
-    PopLocation: 4
-    PopTime: 3
-    EnhancementPoint: 1000
-    EnemyElement: 00000000000000000000000000000000000000000000000002000000
-    HP: 10
-    ATK: 10
-    DEF: 20
-    SPD: 50
-    LUCK: 85
-    EnemyDetail: "\u30E2\u30F3\u30B9\u30BF\u30FC\u306E\u305F\u307E\u3054\u3002"
-    skillDataList: []
-    enemyMoveList:
-    - MoveName: 
-      ID: 0
-      ActorHPState: 0
-      ActorAbnormalState: 0
-      ActionType: 0
-    - MoveName: 
-      ID: 6
-      ActorHPState: 0
-      ActorAbnormalState: 0
-      ActionType: 0
-  - EnemyName: "\u30D5\u30A1\u30A4\u30A2"
-    ID: 5
-    EnemySprite: {fileID: 21300000, guid: 3ceb7d5591c23c144b48f4e6cfc10bda, type: 3}
-    EnemySize: 1
-    PopLocation: 0
-    PopTime: 0
-    EnhancementPoint: 20
-    EnemyElement: 00000000010000000200000001000000020000000200000002000000
-    HP: 10
-    ATK: 0
-    DEF: 0
-    SPD: 0
-    LUCK: 0
-    EnemyDetail: 
-    skillDataList: []
-    enemyMoveList: []
-  - EnemyName: "\u30B5\u30E9\u30DE\u30F3\u30C0\u30FC"
-    ID: 6
-    EnemySprite: {fileID: 21300000, guid: 5f87fc4462df0ef439c52aa911f7249e, type: 3}
-    EnemySize: 2
-    PopLocation: 0
-    PopTime: 0
-    EnhancementPoint: 60
-    EnemyElement: 00000000010000000100000002000000020000000200000002000000
-    HP: 10
-    ATK: 0
-    DEF: 0
-    SPD: 0
-    LUCK: 0
-    EnemyDetail: 
-    skillDataList: []
-    enemyMoveList: []
-  - EnemyName: "\u30D5\u30A7\u30CB\u30C3\u30AF\u30B9"
-    ID: 7
-    EnemySprite: {fileID: 21300000, guid: 289c3d60eaaa37a40ba46d52cbb6a9a7, type: 3}
-    EnemySize: 3
-    PopLocation: 0
-    PopTime: 0
-    EnhancementPoint: 70
-    EnemyElement: 00000000010000000000000002000000020000000200000002000000
-    HP: 10
-    ATK: 0
-    DEF: 0
-    SPD: 0
-    LUCK: 0
-    EnemyDetail: 
-    skillDataList: []
-    enemyMoveList: []
-  - EnemyName: "\u30C9\u30EC\u30A4\u30AF"
-    ID: 8
-    EnemySprite: {fileID: 21300000, guid: eee3366cf6c04cc4dad60fc660a118d1, type: 3}
-    EnemySize: 3
-    PopLocation: 0
-    PopTime: 0
-    EnhancementPoint: 100
-    EnemyElement: 00000000010000000200000002000000020000000200000002000000
-    HP: 10
-    ATK: 0
-    DEF: 0
-    SPD: 0
-    LUCK: 0
-    EnemyDetail: 
-    skillDataList: []
-    enemyMoveList: []
-  - EnemyName: "\u30A2\u30A4\u30B9"
-    ID: 9
-    EnemySprite: {fileID: 21300000, guid: 9f6f185796fc2f041a658ddc607ab83c, type: 3}
-    EnemySize: 1
-    PopLocation: 0
-    PopTime: 0
-    EnhancementPoint: 20
-    EnemyElement: 01000000000000000200000001000000020000000200000002000000
-    HP: 10
-    ATK: 0
-    DEF: 0
-    SPD: 0
-    LUCK: 0
-    EnemyDetail: 
-    skillDataList: []
-    enemyMoveList: []
-  - EnemyName: "\u30A6\u30F3\u30C7\u30A3\u30FC\u30CD"
-    ID: 10
-    EnemySprite: {fileID: 21300000, guid: 445c947fc72689e46846cc0bd6a18655, type: 3}
-    EnemySize: 2
-    PopLocation: 0
-    PopTime: 0
-    EnhancementPoint: 50
-    EnemyElement: 01000000000000000100000002000000020000000200000002000000
-    HP: 10
-    ATK: 0
-    DEF: 0
-    SPD: 0
-    LUCK: 0
-    EnemyDetail: 
-    skillDataList: []
-    enemyMoveList: []
-  - EnemyName: "\u30D6\u30EA\u30B6\u30FC\u30C9"
-    ID: 11
-    EnemySprite: {fileID: 21300000, guid: 1d1f93bb1cb82d44eaf0586ec2c2b8fe, type: 3}
-    EnemySize: 2
-    PopLocation: 0
-    PopTime: 0
-    EnhancementPoint: 10
-    EnemyElement: 01000000000000000200000002000000020000000100000002000000
-    HP: 10
-    ATK: 0
-    DEF: 0
-    SPD: 0
-    LUCK: 0
-    EnemyDetail: 
-    skillDataList: []
-    enemyMoveList: []
-  - EnemyName: "\u30BB\u30A4\u30EC\u30FC\u30F3"
-    ID: 12
-    EnemySprite: {fileID: 21300000, guid: ae4975d7451794446b5a732cb2960e6d, type: 3}
-    EnemySize: 2
-    PopLocation: 0
-    PopTime: 0
-    EnhancementPoint: 50
-    EnemyElement: 02000000010000000200000001000000020000000200000002000000
-    HP: 10
-    ATK: 0
-    DEF: 0
-    SPD: 0
-    LUCK: 0
-    EnemyDetail: 
-    skillDataList: []
-    enemyMoveList: []
-  - EnemyName: "\u30AF\u30E9\u30FC\u30B1\u30F3"
-    ID: 13
-    EnemySprite: {fileID: 21300000, guid: edebba5ae674a284db60c51bcb3c2c72, type: 3}
-    EnemySize: 2
-    PopLocation: 0
-    PopTime: 0
-    EnhancementPoint: 70
-    EnemyElement: 01000000020000000200000002000000010000000000000002000000
-    HP: 10
-    ATK: 0
-    DEF: 0
-    SPD: 0
-    LUCK: 0
-    EnemyDetail: 
-    skillDataList: []
-    enemyMoveList: []
-  - EnemyName: "\u30EA\u30F4\u30A1\u30A4\u30A2\u30B5\u30F3"
-    ID: 14
-    EnemySprite: {fileID: 21300000, guid: 9c787676ed86d9c4d9ec2d0b6a4a495b, type: 3}
-    EnemySize: 3
-    PopLocation: 0
-    PopTime: 0
-    EnhancementPoint: 100
-    EnemyElement: 01000000000000000200000000000000020000000000000002000000
-    HP: 10
-    ATK: 0
-    DEF: 0
-    SPD: 0
-    LUCK: 0
-    EnemyDetail: 
-    skillDataList: []
-    enemyMoveList: []
-  - EnemyName: "\u30D7\u30E9\u30F3\u30C8"
-    ID: 15
-    EnemySprite: {fileID: 21300000, guid: 3b2cf15e96c15aa4bb11edbf31aa374c, type: 3}
-    EnemySize: 1
-    PopLocation: 0
-    PopTime: 0
-    EnhancementPoint: 20
-    EnemyElement: 01000000020000000000000001000000020000000200000002000000
-    HP: 10
-    ATK: 0
-    DEF: 0
-    SPD: 0
-    LUCK: 0
-    EnemyDetail: 
-    skillDataList: []
-    enemyMoveList: []
-  - EnemyName: "\u30A2\u30EB\u30E9\u30A6\u30CD"
-    ID: 16
-    EnemySprite: {fileID: 21300000, guid: 9a679125c8b944347ad8737684bfd3b3, type: 3}
-    EnemySize: 2
-    PopLocation: 0
-    PopTime: 0
-    EnhancementPoint: 50
-    EnemyElement: 02000000020000000000000001000000020000000200000002000000
-    HP: 10
-    ATK: 0
-    DEF: 0
-    SPD: 0
-    LUCK: 0
-    EnemyDetail: 
-    skillDataList: []
-    enemyMoveList: []
-  - EnemyName: "\u30C6\u30F3\u30B0"
-    ID: 17
-    EnemySprite: {fileID: 21300000, guid: 0dea51efe6bba9848b674bab76289c68, type: 3}
-    EnemySize: 2
-    PopLocation: 0
-    PopTime: 0
-    EnhancementPoint: 60
-    EnemyElement: 00000000020000000000000001000000020000000200000002000000
-    HP: 10
-    ATK: 0
-    DEF: 0
-    SPD: 0
-    LUCK: 0
-    EnemyDetail: 
-    skillDataList: []
-    enemyMoveList: []
-  - EnemyName: "\u30E4\u30DE\u30BF\u30CE\u30AA\u30ED\u30C1"
-    ID: 18
-    EnemySprite: {fileID: 21300000, guid: b791dc35b95d7904da2f171bad801f8f, type: 3}
-    EnemySize: 3
-    PopLocation: 0
-    PopTime: 0
-    EnhancementPoint: 100
-    EnemyElement: 02000000020000000000000001000000020000000000000002000000
-    HP: 10
-    ATK: 0
-    DEF: 0
-    SPD: 0
-    LUCK: 0
-    EnemyDetail: 
-    skillDataList: []
-    enemyMoveList: []
-  - EnemyName: "\u30B4\u30FC\u30EC\u30E0"
-    ID: 19
-    EnemySprite: {fileID: 21300000, guid: a35bc79f0eb8d2b4bb9cfa700cae3097, type: 3}
-    EnemySize: 3
-    PopLocation: 0
-    PopTime: 0
-    EnhancementPoint: 100
-    EnemyElement: 02000000010000000000000000000000020000000200000002000000
-    HP: 10
-    ATK: 0
-    DEF: 0
-    SPD: 0
-    LUCK: 0
-    EnemyDetail: 
-    skillDataList: []
-    enemyMoveList: []
-  - EnemyName: "\u30DC\u30EB\u30C8"
-    ID: 20
-    EnemySprite: {fileID: 21300000, guid: a5b1188744bf61e41a9d9e14f3ddab72, type: 3}
-    EnemySize: 1
-    PopLocation: 0
-    PopTime: 0
-    EnhancementPoint: 20
-    EnemyElement: 02000000020000000100000000000000020000000200000002000000
-    HP: 10
-    ATK: 0
-    DEF: 0
-    SPD: 0
-    LUCK: 0
-    EnemyDetail: 
-    skillDataList: []
-    enemyMoveList: []
-  - EnemyName: "\u30D5\u30EB\u30B4\u30E9"
-    ID: 21
-    EnemySprite: {fileID: 21300000, guid: ea6ce5eafcd65b24cba24d4307a7c820, type: 3}
-    EnemySize: 2
-    PopLocation: 0
-    PopTime: 0
-    EnhancementPoint: 50
-    EnemyElement: 02000000020000000100000000000000020000000200000002000000
-    HP: 10
-    ATK: 0
-    DEF: 0
-    SPD: 0
-    LUCK: 0
-    EnemyDetail: 
-    skillDataList: []
-    enemyMoveList: []
-  - EnemyName: "\u30DF\u30A4\u30E9"
-    ID: 22
-    EnemySprite: {fileID: 21300000, guid: 236ecdfcd25369546a5862967c319611, type: 3}
-    EnemySize: 2
-    PopLocation: 0
-    PopTime: 0
-    EnhancementPoint: 50
-    EnemyElement: 02000000020000000100000000000000010000000200000002000000
-    HP: 10
-    ATK: 0
-    DEF: 0
-    SPD: 0
-    LUCK: 0
-    EnemyDetail: 
-    skillDataList: []
-    enemyMoveList: []
-  - EnemyName: "\u30EA\u30F3\u30C9\u30A6\u30EB\u30E0"
-    ID: 23
-    EnemySprite: {fileID: 21300000, guid: 0630f0872649d1c4fadbcd2941fd9489, type: 3}
-    EnemySize: 3
-    PopLocation: 0
-    PopTime: 0
-    EnhancementPoint: 100
-    EnemyElement: 02000000010000000100000000000000000000000200000002000000
-    HP: 10
-    ATK: 0
-    DEF: 0
-    SPD: 0
-    LUCK: 0
-    EnemyDetail: 
-    skillDataList: []
-    enemyMoveList: []
-  - EnemyName: "\u30A8\u30F3\u30B8\u30A7\u30EB"
-    ID: 24
-    EnemySprite: {fileID: 21300000, guid: df55bd4fe31709d4e95a06fb8e553e8e, type: 3}
-    EnemySize: 2
-    PopLocation: 0
-    PopTime: 0
-    EnhancementPoint: 20
-    EnemyElement: 02000000020000000100000002000000000000000100000002000000
-    HP: 10
-    ATK: 0
-    DEF: 0
-    SPD: 0
-    LUCK: 0
-    EnemyDetail: 
-    skillDataList: []
-    enemyMoveList: []
-  - EnemyName: "\u30A2\u30FC\u30AF\u30A8\u30F3\u30B8\u30A7\u30EB"
-    ID: 25
-    EnemySprite: {fileID: 21300000, guid: 09717e550c5f5254f876899376b3910d, type: 3}
-    EnemySize: 2
-    PopLocation: 0
-    PopTime: 0
-    EnhancementPoint: 50
-    EnemyElement: 02000000020000000200000002000000000000000100000002000000
-    HP: 10
-    ATK: 0
-    DEF: 0
-    SPD: 0
-    LUCK: 0
-    EnemyDetail: 
-    skillDataList: []
-    enemyMoveList: []
-  - EnemyName: "\u30CF\u30FC\u30D4\u30FC"
-    ID: 26
-    EnemySprite: {fileID: 21300000, guid: 2f8cf9e2d83636e458e5eb41842bc6e1, type: 3}
-    EnemySize: 2
-    PopLocation: 0
-    PopTime: 0
-    EnhancementPoint: 60
-    EnemyElement: 02000000020000000200000001000000000000000100000002000000
-    HP: 10
-    ATK: 0
-    DEF: 0
-    SPD: 0
-    LUCK: 0
-    EnemyDetail: 
-    skillDataList: []
-    enemyMoveList: []
   - EnemyName: "\u30EC\u30A4\u30B9"
     ID: 27
     EnemySprite: {fileID: 21300000, guid: e1ab14b6ee39452419d76534ad1d8b82, type: 3}
     EnemySize: 2
     PopLocation: 0
-    PopTime: 0
     EnhancementPoint: 80
     EnemyElement: 02000000020000000200000002000000000000000000000002000000
-    HP: 10
-    ATK: 0
-    DEF: 0
-    SPD: 0
-    LUCK: 0
+    HP: 300
+    ATK: 25
+    DEF: 20
+    SPD: 20
+    LUCK: 15
     EnemyDetail: 
-    skillDataList: []
-    enemyMoveList: []
+    skillDataList:
+    - SkillName: "\u7121\u5C5E\u60271"
+      ID: 18
+      SkillSprite: {fileID: 21300000, guid: cda20cb1f6f217f479c94cab09290d8f, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 8443315704496310910, guid: 6ef35fa36e3a65043b2d800600204bdd,
+        type: 3}
+      EffectScale: 30
+      SkillElement: 6
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 20
+      SkillNecessary: 5
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 25
+      SkillDetail: 
+    - SkillName: "\u7121\u5C5E\u60272"
+      ID: 19
+      SkillSprite: {fileID: 21300000, guid: cda20cb1f6f217f479c94cab09290d8f, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 8443315704496310910, guid: 6ef35fa36e3a65043b2d800600204bdd,
+        type: 3}
+      EffectScale: 30
+      SkillElement: 6
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 40
+      SkillNecessary: 10
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 50
+      SkillDetail: 
+    - SkillName: "\u30D0\u30D51"
+      ID: 27
+      SkillSprite: {fileID: 21300000, guid: 89f84138f141f6443b97f28ba360be3c, type: 3}
+      SkillType: 1
+      SkillEffect: {fileID: 7155335147208632822, guid: 97c43495f80a3244fad1301dfafbe252,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 50
+      SkillNecessary: 3
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 0
+      EnhancementPoint: 10
+      SkillDetail: 
+    enemyMoveList:
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
+      ID: 1
+      ActorHPState: 1
+      ActorAbnormalState: 5
+      ActionType: 1
   - EnemyName: "\u30D0\u30B9\u30C6\u30C8"
     ID: 28
     EnemySprite: {fileID: 21300000, guid: d283f155c6bf0f74f8b6012ae1b8367c, type: 3}
     EnemySize: 1
-    PopLocation: 0
-    PopTime: 0
+    PopLocation: 1
     EnhancementPoint: 60
     EnemyElement: 02000000010000000200000002000000020000000100000002000000
-    HP: 10
-    ATK: 0
-    DEF: 0
-    SPD: 0
-    LUCK: 0
+    HP: 250
+    ATK: 20
+    DEF: 15
+    SPD: 35
+    LUCK: 20
     EnemyDetail: 
-    skillDataList: []
-    enemyMoveList: []
+    skillDataList:
+    - SkillName: "\u30D5\u30A1\u30A4\u30A21"
+      ID: 0
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 358637981425055526, guid: 8eb503696b886e04faff8fc0f480d473,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 0
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 20
+      SkillNecessary: 5
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 10
+      SkillDetail: 
+    - SkillName: "\u30D5\u30A1\u30A4\u30A22"
+      ID: 1
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 358637981425055526, guid: 8eb503696b886e04faff8fc0f480d473,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 0
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 40
+      SkillNecessary: 10
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 20
+      SkillDetail: 
+    - SkillName: "\u30B7\u30E3\u30A4\u30F31"
+      ID: 12
+      SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 2944396702758532163, guid: e190bf97c041e58448af6b043116cba0,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 4
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 20
+      SkillNecessary: 5
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 10
+      SkillDetail: 
+    enemyMoveList:
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
+      ID: 1
+      ActorHPState: 1
+      ActorAbnormalState: 5
+      ActionType: 1
   - EnemyName: "\u30B8\u30F3"
     ID: 29
     EnemySprite: {fileID: 21300000, guid: e33c74f756baec3429c5e896117660e3, type: 3}
     EnemySize: 2
-    PopLocation: 0
-    PopTime: 0
+    PopLocation: 4
     EnhancementPoint: 50
     EnemyElement: 02000000020000000100000002000000020000000100000002000000
-    HP: 10
-    ATK: 0
-    DEF: 0
-    SPD: 0
-    LUCK: 0
+    HP: 350
+    ATK: 20
+    DEF: 10
+    SPD: 35
+    LUCK: 20
     EnemyDetail: 
-    skillDataList: []
-    enemyMoveList: []
+    skillDataList:
+    - SkillName: "\u30A6\u30A3\u30F3\u30C9\uFF12"
+      ID: 7
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 6823302871133167919, guid: 3138a83bedbd6ad4481ba0b061da2eb6,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 2
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 40
+      SkillNecessary: 10
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 20
+      SkillDetail: 
+    - SkillName: "\u30A6\u30A3\u30F3\u30C93"
+      ID: 8
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 6823302871133167919, guid: 3138a83bedbd6ad4481ba0b061da2eb6,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 2
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 80
+      SkillNecessary: 15
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 30
+      SkillDetail: 
+    - SkillName: "\u5358\u4F53\u653B\u64832"
+      ID: 22
+      SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 2060900179291159282, guid: ca6705a3f9070d14d819d179493bcfa0,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 40
+      SkillNecessary: 10
+      Type: 1
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 20
+      SkillDetail: 
+    - SkillName: "\u5358\u4F53\u653B\u64833"
+      ID: 23
+      SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 2060900179291159282, guid: ca6705a3f9070d14d819d179493bcfa0,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 80
+      SkillNecessary: 15
+      Type: 1
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 30
+      SkillDetail: 
+    - SkillName: "\u30D0\u30D52"
+      ID: 28
+      SkillSprite: {fileID: 21300000, guid: 89f84138f141f6443b97f28ba360be3c, type: 3}
+      SkillType: 1
+      SkillEffect: {fileID: 7155335147208632822, guid: 97c43495f80a3244fad1301dfafbe252,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 50
+      SkillNecessary: 3
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 1
+      EnhancementPoint: 20
+      SkillDetail: 
+    enemyMoveList:
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
+      ID: 1
+      ActorHPState: 1
+      ActorAbnormalState: 5
+      ActionType: 1
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u30D0\u30D5"
+      ID: 3
+      ActorHPState: 0
+      ActorAbnormalState: 0
+      ActionType: 1
   - EnemyName: "\u30EF\u30FC\u30E0"
     ID: 30
     EnemySprite: {fileID: 21300000, guid: 380e65d5356de1b45be85dbb73aa572a, type: 3}
     EnemySize: 3
     PopLocation: 0
-    PopTime: 0
     EnhancementPoint: 100
     EnemyElement: 02000000020000000000000002000000020000000100000002000000
-    HP: 10
-    ATK: 0
-    DEF: 0
-    SPD: 0
-    LUCK: 0
+    HP: 1200
+    ATK: 10
+    DEF: 10
+    SPD: 10
+    LUCK: 10
     EnemyDetail: 
-    skillDataList: []
-    enemyMoveList: []
+    skillDataList:
+    - SkillName: "\u30B7\u30E3\u30A4\u30F33"
+      ID: 14
+      SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 2944396702758532163, guid: e190bf97c041e58448af6b043116cba0,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 4
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 80
+      SkillNecessary: 15
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 30
+      SkillDetail: 
+    - SkillName: "\u5358\u4F53\u653B\u64832"
+      ID: 22
+      SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 2060900179291159282, guid: ca6705a3f9070d14d819d179493bcfa0,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 40
+      SkillNecessary: 10
+      Type: 1
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 20
+      SkillDetail: 
+    - SkillName: "\u5168\u4F53\u653B\u64831"
+      ID: 24
+      SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 1171201465392465800, guid: 4aa9f30a28a77224ba84b2a2c334c71b,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 25
+      SkillNecessary: 8
+      Type: 1
+      EffectRange: 1
+      TargetState: 1
+      BuffType: 3
+      EnhancementPoint: 15
+      SkillDetail: 
+    enemyMoveList:
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
+      ID: 1
+      ActorHPState: 1
+      ActorAbnormalState: 5
+      ActionType: 1
   - EnemyName: "\u30B4\u30FC\u30B9\u30C8"
     ID: 31
     EnemySprite: {fileID: 21300000, guid: b5798825df5731342b914fe03419d681, type: 3}
     EnemySize: 1
-    PopLocation: 0
-    PopTime: 0
+    PopLocation: 1
     EnhancementPoint: 20
     EnemyElement: 00000000020000000200000002000000010000000000000002000000
     HP: 10
-    ATK: 0
-    DEF: 0
-    SPD: 0
-    LUCK: 0
+    ATK: 10
+    DEF: 10
+    SPD: 10
+    LUCK: 10
     EnemyDetail: 
-    skillDataList: []
-    enemyMoveList: []
+    skillDataList:
+    - SkillName: "\u30C0\u30FC\u30AF1"
+      ID: 15
+      SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 4535006216103734310, guid: 98c4704d0fd7211449bcf5c451095a60,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 5
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 20
+      SkillNecessary: 5
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 10
+      SkillDetail: 
+    enemyMoveList:
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
+      ID: 1
+      ActorHPState: 1
+      ActorAbnormalState: 5
+      ActionType: 1
   - EnemyName: "\u30A2\u30F3\u30C0\u30FC\u30C6\u30A4\u30AB\u30FC"
     ID: 32
     EnemySprite: {fileID: 21300000, guid: 9a533111dc49ee14b8e7d8dc5735b381, type: 3}
     EnemySize: 2
     PopLocation: 0
-    PopTime: 0
     EnhancementPoint: 50
     EnemyElement: 02000000000000000100000002000000010000000000000002000000
-    HP: 10
-    ATK: 0
-    DEF: 0
-    SPD: 0
-    LUCK: 0
+    HP: 85
+    ATK: 10
+    DEF: 10
+    SPD: 10
+    LUCK: 10
     EnemyDetail: 
-    skillDataList: []
-    enemyMoveList: []
+    skillDataList:
+    - SkillName: "\u30C0\u30FC\u30AF1"
+      ID: 15
+      SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 4535006216103734310, guid: 98c4704d0fd7211449bcf5c451095a60,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 5
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 20
+      SkillNecessary: 5
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 10
+      SkillDetail: 
+    - SkillName: "\u5358\u4F53\u653B\u64831"
+      ID: 21
+      SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 2060900179291159282, guid: ca6705a3f9070d14d819d179493bcfa0,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 20
+      SkillNecessary: 5
+      Type: 1
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 10
+      SkillDetail: 
+    - SkillName: "\u5358\u4F53\u653B\u64832"
+      ID: 22
+      SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 2060900179291159282, guid: ca6705a3f9070d14d819d179493bcfa0,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 40
+      SkillNecessary: 10
+      Type: 1
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 20
+      SkillDetail: 
+    enemyMoveList:
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
+      ID: 1
+      ActorHPState: 1
+      ActorAbnormalState: 5
+      ActionType: 1
   - EnemyName: "\u30A2\u30CC\u30D3\u30B9"
     ID: 33
     EnemySprite: {fileID: 21300000, guid: e1f984b89085ab94693e17b6056efe53, type: 3}
     EnemySize: 2
-    PopLocation: 0
-    PopTime: 0
+    PopLocation: 2
     EnhancementPoint: 70
     EnemyElement: 02000000000000000200000002000000000000000100000002000000
-    HP: 10
+    HP: 45
     ATK: 0
     DEF: 0
     SPD: 0
     LUCK: 0
     EnemyDetail: 
-    skillDataList: []
-    enemyMoveList: []
+    skillDataList:
+    - SkillName: "\u30C0\u30FC\u30AF1"
+      ID: 15
+      SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 4535006216103734310, guid: 98c4704d0fd7211449bcf5c451095a60,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 5
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 20
+      SkillNecessary: 5
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 10
+      SkillDetail: 
+    - SkillName: "\u30C0\u30FC\u30AF2"
+      ID: 16
+      SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 4535006216103734310, guid: 98c4704d0fd7211449bcf5c451095a60,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 5
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 40
+      SkillNecessary: 10
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 20
+      SkillDetail: 
+    - SkillName: "\u30A2\u30A4\u30B91"
+      ID: 3
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 4924508274929071776, guid: 0edef91621bb6b34384ccc9dbb98729c,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 1
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 10
+      SkillNecessary: 5
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 10
+      SkillDetail: 
+    enemyMoveList:
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
+      ID: 1
+      ActorHPState: 1
+      ActorAbnormalState: 5
+      ActionType: 1
   - EnemyName: "\u30C7\u30B9"
     ID: 34
     EnemySprite: {fileID: 21300000, guid: 6f3aad4ba33bbdc4f80bb42acb77c5b8, type: 3}
     EnemySize: 2
-    PopLocation: 0
-    PopTime: 0
+    PopLocation: 4
     EnhancementPoint: 20
     EnemyElement: 02000000020000000200000002000000010000000000000002000000
-    HP: 10
+    HP: 20
     ATK: 0
     DEF: 0
     SPD: 0
     LUCK: 0
     EnemyDetail: 
-    skillDataList: []
-    enemyMoveList: []
+    skillDataList:
+    - SkillName: "\u30C0\u30FC\u30AF1"
+      ID: 15
+      SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 4535006216103734310, guid: 98c4704d0fd7211449bcf5c451095a60,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 5
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 20
+      SkillNecessary: 5
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 10
+      SkillDetail: 
+    - SkillName: "\u30C0\u30FC\u30AF2"
+      ID: 16
+      SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 4535006216103734310, guid: 98c4704d0fd7211449bcf5c451095a60,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 5
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 40
+      SkillNecessary: 10
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 20
+      SkillDetail: 
+    enemyMoveList:
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
+      ID: 1
+      ActorHPState: 1
+      ActorAbnormalState: 5
+      ActionType: 1
   - EnemyName: "\u30EF\u30A4\u30D0\u30FC\u30F3"
     ID: 35
     EnemySprite: {fileID: 21300000, guid: bb2daef099f9b914dbedf80b60e69b7e, type: 3}
     EnemySize: 3
-    PopLocation: 0
-    PopTime: 0
+    PopLocation: 3
     EnhancementPoint: 100
     EnemyElement: 01000000020000000200000002000000010000000000000002000000
-    HP: 10
+    HP: 120
     ATK: 0
     DEF: 0
     SPD: 0
     LUCK: 0
     EnemyDetail: 
-    skillDataList: []
-    enemyMoveList: []
+    skillDataList:
+    - SkillName: "\u30C0\u30FC\u30AF1"
+      ID: 15
+      SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 4535006216103734310, guid: 98c4704d0fd7211449bcf5c451095a60,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 5
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 20
+      SkillNecessary: 5
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 10
+      SkillDetail: 
+    - SkillName: "\u5358\u4F53\u653B\u64832"
+      ID: 22
+      SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 2060900179291159282, guid: ca6705a3f9070d14d819d179493bcfa0,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 40
+      SkillNecessary: 10
+      Type: 1
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 20
+      SkillDetail: 
+    - SkillName: "\u5358\u4F53\u653B\u64833"
+      ID: 23
+      SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 2060900179291159282, guid: ca6705a3f9070d14d819d179493bcfa0,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 80
+      SkillNecessary: 15
+      Type: 1
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 30
+      SkillDetail: 
+    enemyMoveList:
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
+      ID: 1
+      ActorHPState: 1
+      ActorAbnormalState: 5
+      ActionType: 1
   - EnemyName: "\u30BD\u30A6\u30EB\u30A4\u30FC\u30BF\u30FC"
     ID: 36
     EnemySprite: {fileID: 21300000, guid: 5fa42b21ca94d0341af23f4d2f75fcb7, type: 3}
     EnemySize: 2
-    PopLocation: 0
-    PopTime: 0
+    PopLocation: 1
     EnhancementPoint: 50
     EnemyElement: 02000000010000000200000002000000010000000000000002000000
-    HP: 10
+    HP: 45
     ATK: 0
     DEF: 0
     SPD: 0
     LUCK: 0
     EnemyDetail: 
-    skillDataList: []
-    enemyMoveList: []
+    skillDataList:
+    - SkillName: "\u30C0\u30FC\u30AF2"
+      ID: 16
+      SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 4535006216103734310, guid: 98c4704d0fd7211449bcf5c451095a60,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 5
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 40
+      SkillNecessary: 10
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 20
+      SkillDetail: 
+    - SkillName: "\u30C0\u30FC\u30AF3"
+      ID: 17
+      SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 4535006216103734310, guid: 98c4704d0fd7211449bcf5c451095a60,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 5
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 80
+      SkillNecessary: 15
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 30
+      SkillDetail: 
+    - SkillName: "\u7121\u5C5E\u60271"
+      ID: 18
+      SkillSprite: {fileID: 21300000, guid: cda20cb1f6f217f479c94cab09290d8f, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 8443315704496310910, guid: 6ef35fa36e3a65043b2d800600204bdd,
+        type: 3}
+      EffectScale: 30
+      SkillElement: 6
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 20
+      SkillNecessary: 5
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 25
+      SkillDetail: 
+    enemyMoveList:
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
+      ID: 1
+      ActorHPState: 1
+      ActorAbnormalState: 5
+      ActionType: 1
   - EnemyName: "\u30EA\u30EA\u30B9"
     ID: 37
     EnemySprite: {fileID: 21300000, guid: 7826d038be3cd20478aced750fb211b1, type: 3}
     EnemySize: 2
-    PopLocation: 0
-    PopTime: 0
+    PopLocation: 4
     EnhancementPoint: 60
     EnemyElement: 02000000020000000200000002000000010000000200000002000000
-    HP: 10
+    HP: 50
     ATK: 0
     DEF: 0
     SPD: 0
     LUCK: 0
     EnemyDetail: 
-    skillDataList: []
-    enemyMoveList: []
+    skillDataList:
+    - SkillName: "\u30C7\u30D0\u30D51"
+      ID: 30
+      SkillSprite: {fileID: 21300000, guid: da3ecfb2dff2cd6408ca3502c2ee71ea, type: 3}
+      SkillType: 2
+      SkillEffect: {fileID: 6126188424833946103, guid: a58aa9a78f2b45b45bb0f3e2e1e3ad3c,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 50
+      SkillNecessary: 3
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 0
+      EnhancementPoint: 10
+      SkillDetail: 
+    - SkillName: "\u30C7\u30D0\u30D52"
+      ID: 31
+      SkillSprite: {fileID: 21300000, guid: da3ecfb2dff2cd6408ca3502c2ee71ea, type: 3}
+      SkillType: 2
+      SkillEffect: {fileID: 6126188424833946103, guid: a58aa9a78f2b45b45bb0f3e2e1e3ad3c,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 50
+      SkillNecessary: 3
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 1
+      EnhancementPoint: 20
+      SkillDetail: 
+    - SkillName: "\u30C7\u30D0\u30D53"
+      ID: 32
+      SkillSprite: {fileID: 21300000, guid: da3ecfb2dff2cd6408ca3502c2ee71ea, type: 3}
+      SkillType: 2
+      SkillEffect: {fileID: 6126188424833946103, guid: a58aa9a78f2b45b45bb0f3e2e1e3ad3c,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 50
+      SkillNecessary: 3
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 2
+      EnhancementPoint: 30
+      SkillDetail: 
+    enemyMoveList:
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u30C7\u30D0\u30D5"
+      ID: 4
+      ActorHPState: 1
+      ActorAbnormalState: 0
+      ActionType: 1
   - EnemyName: "\u30F4\u30A1\u30F3\u30D1\u30A4\u30A2"
     ID: 38
     EnemySprite: {fileID: 21300000, guid: afa114ab39484b4499ea52dfb6564d1d, type: 3}
     EnemySize: 2
-    PopLocation: 0
-    PopTime: 0
+    PopLocation: 1
     EnhancementPoint: 80
     EnemyElement: 01000000000000000200000002000000020000000000000002000000
-    HP: 10
+    HP: 70
     ATK: 0
     DEF: 0
     SPD: 0
     LUCK: 0
     EnemyDetail: 
-    skillDataList: []
-    enemyMoveList: []
+    skillDataList:
+    - SkillName: "\u30A2\u30A4\u30B91"
+      ID: 3
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 4924508274929071776, guid: 0edef91621bb6b34384ccc9dbb98729c,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 1
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 10
+      SkillNecessary: 5
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 10
+      SkillDetail: 
+    - SkillName: "\u30A2\u30A4\u30B92"
+      ID: 4
+      SkillSprite: {fileID: 21300000, guid: c35b0b7b930d64c4797cb82e10579971, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 4924508274929071776, guid: 0edef91621bb6b34384ccc9dbb98729c,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 1
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 40
+      SkillNecessary: 10
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 20
+      SkillDetail: 
+    - SkillName: "\u30C0\u30FC\u30AF2"
+      ID: 16
+      SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 4535006216103734310, guid: 98c4704d0fd7211449bcf5c451095a60,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 5
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 40
+      SkillNecessary: 10
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 20
+      SkillDetail: 
+    enemyMoveList:
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
+      ID: 1
+      ActorHPState: 1
+      ActorAbnormalState: 5
+      ActionType: 1
   - EnemyName: "\u30AC\u30FC\u30B4\u30A4\u30EB"
     ID: 39
     EnemySprite: {fileID: 21300000, guid: 67359830c08b8534fafa4b58cf216f1d, type: 3}
     EnemySize: 2
-    PopLocation: 0
-    PopTime: 0
+    PopLocation: 4
     EnhancementPoint: 50
     EnemyElement: 02000000010000000200000002000000020000000200000002000000
-    HP: 10
+    HP: 50
     ATK: 0
     DEF: 0
     SPD: 0
     LUCK: 0
     EnemyDetail: 
     skillDataList: []
-    enemyMoveList: []
+    enemyMoveList:
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
   - EnemyName: "\u30C7\u30FC\u30E2\u30F3"
     ID: 40
     EnemySprite: {fileID: 21300000, guid: 5ffaf08ef47fe7c4fa693da37486e145, type: 3}
     EnemySize: 2
-    PopLocation: 0
-    PopTime: 0
+    PopLocation: 3
     EnhancementPoint: 60
     EnemyElement: 00000000020000000200000000000000010000000000000002000000
-    HP: 10
+    HP: 100
     ATK: 0
     DEF: 0
     SPD: 0
     LUCK: 0
     EnemyDetail: 
-    skillDataList: []
-    enemyMoveList: []
+    skillDataList:
+    - SkillName: "\u30C0\u30FC\u30AF1"
+      ID: 15
+      SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 4535006216103734310, guid: 98c4704d0fd7211449bcf5c451095a60,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 5
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 20
+      SkillNecessary: 5
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 10
+      SkillDetail: 
+    - SkillName: "\u30C0\u30FC\u30AF2"
+      ID: 16
+      SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 4535006216103734310, guid: 98c4704d0fd7211449bcf5c451095a60,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 5
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 40
+      SkillNecessary: 10
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 20
+      SkillDetail: 
+    - SkillName: "\u30C0\u30FC\u30AF3"
+      ID: 17
+      SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 4535006216103734310, guid: 98c4704d0fd7211449bcf5c451095a60,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 5
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 80
+      SkillNecessary: 15
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 30
+      SkillDetail: 
+    - SkillName: "\u5358\u4F53\u653B\u64832"
+      ID: 22
+      SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 2060900179291159282, guid: ca6705a3f9070d14d819d179493bcfa0,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 40
+      SkillNecessary: 10
+      Type: 1
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 20
+      SkillDetail: 
+    - SkillName: "\u5358\u4F53\u653B\u64833"
+      ID: 23
+      SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 2060900179291159282, guid: ca6705a3f9070d14d819d179493bcfa0,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 7
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 80
+      SkillNecessary: 15
+      Type: 1
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 30
+      SkillDetail: 
+    enemyMoveList:
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
+      ID: 1
+      ActorHPState: 1
+      ActorAbnormalState: 5
+      ActionType: 1
   - EnemyName: "\u30DF\u30DF\u30C3\u30AF"
     ID: 41
     EnemySprite: {fileID: 21300000, guid: 0346e51b50d24d64eb7c4b29df6df659, type: 3}
     EnemySize: 2
-    PopLocation: 0
-    PopTime: 0
+    PopLocation: 4
     EnhancementPoint: 80
     EnemyElement: 02000000020000000200000002000000020000000000000002000000
-    HP: 10
+    HP: 60
     ATK: 0
     DEF: 0
     SPD: 0
     LUCK: 0
     EnemyDetail: 
-    skillDataList: []
-    enemyMoveList: []
+    skillDataList:
+    - SkillName: "\u30C0\u30FC\u30AF2"
+      ID: 16
+      SkillSprite: {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 4535006216103734310, guid: 98c4704d0fd7211449bcf5c451095a60,
+        type: 3}
+      EffectScale: 15
+      SkillElement: 5
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 40
+      SkillNecessary: 10
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 20
+      SkillDetail: 
+    - SkillName: "\u7121\u5C5E\u60271"
+      ID: 18
+      SkillSprite: {fileID: 21300000, guid: cda20cb1f6f217f479c94cab09290d8f, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 8443315704496310910, guid: 6ef35fa36e3a65043b2d800600204bdd,
+        type: 3}
+      EffectScale: 30
+      SkillElement: 6
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 20
+      SkillNecessary: 5
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 25
+      SkillDetail: 
+    - SkillName: "\u7121\u5C5E\u60272"
+      ID: 19
+      SkillSprite: {fileID: 21300000, guid: cda20cb1f6f217f479c94cab09290d8f, type: 3}
+      SkillType: 0
+      SkillEffect: {fileID: 8443315704496310910, guid: 6ef35fa36e3a65043b2d800600204bdd,
+        type: 3}
+      EffectScale: 30
+      SkillElement: 6
+      StateAbnormalData:
+        StateName: 
+        ID: 0
+        StateImage: {fileID: 0}
+        POW: 0
+        EffectTime: 0
+        ActorAbnormalState: 0
+      POW: 40
+      SkillNecessary: 10
+      Type: 0
+      EffectRange: 0
+      TargetState: 0
+      BuffType: 3
+      EnhancementPoint: 50
+      SkillDetail: 
+    enemyMoveList:
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0

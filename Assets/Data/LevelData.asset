@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: LevelData
   m_EditorClassIdentifier: 
   levelDataList:
-  - LevelName: "\u30C6\u30B9\u30C8"
+  - LevelName: "\u4E181"
+    LocationTexture: {fileID: 2800000, guid: 7bd486cf36b61954d9012c6704ab80a4, type: 3}
     LocationType: 0
-    LocationTime: 0
     LevelDetail: "\u8A73\u7D30\u8A2D\u5B9A"
     enemyDataList:
     - EnemyName: 
       ID: 0
       EnemySprite: {fileID: 0}
+      EnemySize: 0
       PopLocation: 0
-      PopTime: 0
       EnhancementPoint: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
@@ -36,8 +36,8 @@ MonoBehaviour:
     - EnemyName: 
       ID: 1
       EnemySprite: {fileID: 0}
+      EnemySize: 0
       PopLocation: 0
-      PopTime: 0
       EnhancementPoint: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
@@ -51,23 +51,8 @@ MonoBehaviour:
     - EnemyName: 
       ID: 2
       EnemySprite: {fileID: 0}
+      EnemySize: 0
       PopLocation: 0
-      PopTime: 0
-      EnhancementPoint: 0
-      EnemyElement: 00000000000000000000000000000000000000000000000000000000
-      HP: 0
-      ATK: 0
-      DEF: 0
-      SPD: 0
-      LUCK: 0
-      EnemyDetail: 
-      skillDataList: []
-      enemyMoveList: []
-    - EnemyName: 
-      ID: 3
-      EnemySprite: {fileID: 0}
-      PopLocation: 0
-      PopTime: 0
       EnhancementPoint: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
@@ -81,83 +66,8 @@ MonoBehaviour:
     - EnemyName: 
       ID: 4
       EnemySprite: {fileID: 0}
+      EnemySize: 0
       PopLocation: 0
-      PopTime: 0
-      EnhancementPoint: 0
-      EnemyElement: 00000000000000000000000000000000000000000000000000000000
-      HP: 0
-      ATK: 0
-      DEF: 0
-      SPD: 0
-      LUCK: 0
-      EnemyDetail: 
-      skillDataList: []
-      enemyMoveList: []
-    - EnemyName: 
-      ID: 5
-      EnemySprite: {fileID: 0}
-      PopLocation: 0
-      PopTime: 0
-      EnhancementPoint: 0
-      EnemyElement: 00000000000000000000000000000000000000000000000000000000
-      HP: 0
-      ATK: 0
-      DEF: 0
-      SPD: 0
-      LUCK: 0
-      EnemyDetail: 
-      skillDataList: []
-      enemyMoveList: []
-    - EnemyName: 
-      ID: 6
-      EnemySprite: {fileID: 0}
-      PopLocation: 0
-      PopTime: 0
-      EnhancementPoint: 0
-      EnemyElement: 00000000000000000000000000000000000000000000000000000000
-      HP: 0
-      ATK: 0
-      DEF: 0
-      SPD: 0
-      LUCK: 0
-      EnemyDetail: 
-      skillDataList: []
-      enemyMoveList: []
-    - EnemyName: 
-      ID: 7
-      EnemySprite: {fileID: 0}
-      PopLocation: 0
-      PopTime: 0
-      EnhancementPoint: 0
-      EnemyElement: 00000000000000000000000000000000000000000000000000000000
-      HP: 0
-      ATK: 0
-      DEF: 0
-      SPD: 0
-      LUCK: 0
-      EnemyDetail: 
-      skillDataList: []
-      enemyMoveList: []
-    - EnemyName: 
-      ID: 8
-      EnemySprite: {fileID: 0}
-      PopLocation: 0
-      PopTime: 0
-      EnhancementPoint: 0
-      EnemyElement: 00000000000000000000000000000000000000000000000000000000
-      HP: 0
-      ATK: 0
-      DEF: 0
-      SPD: 0
-      LUCK: 0
-      EnemyDetail: 
-      skillDataList: []
-      enemyMoveList: []
-    - EnemyName: 
-      ID: 9
-      EnemySprite: {fileID: 0}
-      PopLocation: 0
-      PopTime: 0
       EnhancementPoint: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
@@ -171,203 +81,8 @@ MonoBehaviour:
     - EnemyName: 
       ID: 10
       EnemySprite: {fileID: 0}
+      EnemySize: 0
       PopLocation: 0
-      PopTime: 0
-      EnhancementPoint: 0
-      EnemyElement: 00000000000000000000000000000000000000000000000000000000
-      HP: 0
-      ATK: 0
-      DEF: 0
-      SPD: 0
-      LUCK: 0
-      EnemyDetail: 
-      skillDataList: []
-      enemyMoveList: []
-    - EnemyName: 
-      ID: 11
-      EnemySprite: {fileID: 0}
-      PopLocation: 0
-      PopTime: 0
-      EnhancementPoint: 0
-      EnemyElement: 00000000000000000000000000000000000000000000000000000000
-      HP: 0
-      ATK: 0
-      DEF: 0
-      SPD: 0
-      LUCK: 0
-      EnemyDetail: 
-      skillDataList: []
-      enemyMoveList: []
-    - EnemyName: 
-      ID: 12
-      EnemySprite: {fileID: 0}
-      PopLocation: 0
-      PopTime: 0
-      EnhancementPoint: 0
-      EnemyElement: 00000000000000000000000000000000000000000000000000000000
-      HP: 0
-      ATK: 0
-      DEF: 0
-      SPD: 0
-      LUCK: 0
-      EnemyDetail: 
-      skillDataList: []
-      enemyMoveList: []
-    - EnemyName: 
-      ID: 13
-      EnemySprite: {fileID: 0}
-      PopLocation: 0
-      PopTime: 0
-      EnhancementPoint: 0
-      EnemyElement: 00000000000000000000000000000000000000000000000000000000
-      HP: 0
-      ATK: 0
-      DEF: 0
-      SPD: 0
-      LUCK: 0
-      EnemyDetail: 
-      skillDataList: []
-      enemyMoveList: []
-    - EnemyName: 
-      ID: 14
-      EnemySprite: {fileID: 0}
-      PopLocation: 0
-      PopTime: 0
-      EnhancementPoint: 0
-      EnemyElement: 00000000000000000000000000000000000000000000000000000000
-      HP: 0
-      ATK: 0
-      DEF: 0
-      SPD: 0
-      LUCK: 0
-      EnemyDetail: 
-      skillDataList: []
-      enemyMoveList: []
-    - EnemyName: 
-      ID: 15
-      EnemySprite: {fileID: 0}
-      PopLocation: 0
-      PopTime: 0
-      EnhancementPoint: 0
-      EnemyElement: 00000000000000000000000000000000000000000000000000000000
-      HP: 0
-      ATK: 0
-      DEF: 0
-      SPD: 0
-      LUCK: 0
-      EnemyDetail: 
-      skillDataList: []
-      enemyMoveList: []
-    - EnemyName: 
-      ID: 16
-      EnemySprite: {fileID: 0}
-      PopLocation: 0
-      PopTime: 0
-      EnhancementPoint: 0
-      EnemyElement: 00000000000000000000000000000000000000000000000000000000
-      HP: 0
-      ATK: 0
-      DEF: 0
-      SPD: 0
-      LUCK: 0
-      EnemyDetail: 
-      skillDataList: []
-      enemyMoveList: []
-    - EnemyName: 
-      ID: 17
-      EnemySprite: {fileID: 0}
-      PopLocation: 0
-      PopTime: 0
-      EnhancementPoint: 0
-      EnemyElement: 00000000000000000000000000000000000000000000000000000000
-      HP: 0
-      ATK: 0
-      DEF: 0
-      SPD: 0
-      LUCK: 0
-      EnemyDetail: 
-      skillDataList: []
-      enemyMoveList: []
-    - EnemyName: 
-      ID: 18
-      EnemySprite: {fileID: 0}
-      PopLocation: 0
-      PopTime: 0
-      EnhancementPoint: 0
-      EnemyElement: 00000000000000000000000000000000000000000000000000000000
-      HP: 0
-      ATK: 0
-      DEF: 0
-      SPD: 0
-      LUCK: 0
-      EnemyDetail: 
-      skillDataList: []
-      enemyMoveList: []
-    - EnemyName: 
-      ID: 19
-      EnemySprite: {fileID: 0}
-      PopLocation: 0
-      PopTime: 0
-      EnhancementPoint: 0
-      EnemyElement: 00000000000000000000000000000000000000000000000000000000
-      HP: 0
-      ATK: 0
-      DEF: 0
-      SPD: 0
-      LUCK: 0
-      EnemyDetail: 
-      skillDataList: []
-      enemyMoveList: []
-    - EnemyName: 
-      ID: 20
-      EnemySprite: {fileID: 0}
-      PopLocation: 0
-      PopTime: 0
-      EnhancementPoint: 0
-      EnemyElement: 00000000000000000000000000000000000000000000000000000000
-      HP: 0
-      ATK: 0
-      DEF: 0
-      SPD: 0
-      LUCK: 0
-      EnemyDetail: 
-      skillDataList: []
-      enemyMoveList: []
-    - EnemyName: 
-      ID: 21
-      EnemySprite: {fileID: 0}
-      PopLocation: 0
-      PopTime: 0
-      EnhancementPoint: 0
-      EnemyElement: 00000000000000000000000000000000000000000000000000000000
-      HP: 0
-      ATK: 0
-      DEF: 0
-      SPD: 0
-      LUCK: 0
-      EnemyDetail: 
-      skillDataList: []
-      enemyMoveList: []
-    - EnemyName: 
-      ID: 22
-      EnemySprite: {fileID: 0}
-      PopLocation: 0
-      PopTime: 0
-      EnhancementPoint: 0
-      EnemyElement: 00000000000000000000000000000000000000000000000000000000
-      HP: 0
-      ATK: 0
-      DEF: 0
-      SPD: 0
-      LUCK: 0
-      EnemyDetail: 
-      skillDataList: []
-      enemyMoveList: []
-    - EnemyName: 
-      ID: 23
-      EnemySprite: {fileID: 0}
-      PopLocation: 0
-      PopTime: 0
       EnhancementPoint: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
@@ -381,38 +96,8 @@ MonoBehaviour:
     - EnemyName: 
       ID: 24
       EnemySprite: {fileID: 0}
+      EnemySize: 0
       PopLocation: 0
-      PopTime: 0
-      EnhancementPoint: 0
-      EnemyElement: 00000000000000000000000000000000000000000000000000000000
-      HP: 0
-      ATK: 0
-      DEF: 0
-      SPD: 0
-      LUCK: 0
-      EnemyDetail: 
-      skillDataList: []
-      enemyMoveList: []
-    - EnemyName: 
-      ID: 25
-      EnemySprite: {fileID: 0}
-      PopLocation: 0
-      PopTime: 0
-      EnhancementPoint: 0
-      EnemyElement: 00000000000000000000000000000000000000000000000000000000
-      HP: 0
-      ATK: 0
-      DEF: 0
-      SPD: 0
-      LUCK: 0
-      EnemyDetail: 
-      skillDataList: []
-      enemyMoveList: []
-    - EnemyName: 
-      ID: 26
-      EnemySprite: {fileID: 0}
-      PopLocation: 0
-      PopTime: 0
       EnhancementPoint: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
@@ -426,23 +111,8 @@ MonoBehaviour:
     - EnemyName: 
       ID: 27
       EnemySprite: {fileID: 0}
+      EnemySize: 0
       PopLocation: 0
-      PopTime: 0
-      EnhancementPoint: 0
-      EnemyElement: 00000000000000000000000000000000000000000000000000000000
-      HP: 0
-      ATK: 0
-      DEF: 0
-      SPD: 0
-      LUCK: 0
-      EnemyDetail: 
-      skillDataList: []
-      enemyMoveList: []
-    - EnemyName: 
-      ID: 28
-      EnemySprite: {fileID: 0}
-      PopLocation: 0
-      PopTime: 0
       EnhancementPoint: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
@@ -456,8 +126,8 @@ MonoBehaviour:
     - EnemyName: 
       ID: 29
       EnemySprite: {fileID: 0}
+      EnemySize: 0
       PopLocation: 0
-      PopTime: 0
       EnhancementPoint: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
@@ -471,23 +141,8 @@ MonoBehaviour:
     - EnemyName: 
       ID: 30
       EnemySprite: {fileID: 0}
+      EnemySize: 0
       PopLocation: 0
-      PopTime: 0
-      EnhancementPoint: 0
-      EnemyElement: 00000000000000000000000000000000000000000000000000000000
-      HP: 0
-      ATK: 0
-      DEF: 0
-      SPD: 0
-      LUCK: 0
-      EnemyDetail: 
-      skillDataList: []
-      enemyMoveList: []
-    - EnemyName: 
-      ID: 31
-      EnemySprite: {fileID: 0}
-      PopLocation: 0
-      PopTime: 0
       EnhancementPoint: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
@@ -501,23 +156,8 @@ MonoBehaviour:
     - EnemyName: 
       ID: 32
       EnemySprite: {fileID: 0}
+      EnemySize: 0
       PopLocation: 0
-      PopTime: 0
-      EnhancementPoint: 0
-      EnemyElement: 00000000000000000000000000000000000000000000000000000000
-      HP: 0
-      ATK: 0
-      DEF: 0
-      SPD: 0
-      LUCK: 0
-      EnemyDetail: 
-      skillDataList: []
-      enemyMoveList: []
-    - EnemyName: 
-      ID: 33
-      EnemySprite: {fileID: 0}
-      PopLocation: 0
-      PopTime: 0
       EnhancementPoint: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
@@ -531,38 +171,8 @@ MonoBehaviour:
     - EnemyName: 
       ID: 34
       EnemySprite: {fileID: 0}
+      EnemySize: 0
       PopLocation: 0
-      PopTime: 0
-      EnhancementPoint: 0
-      EnemyElement: 00000000000000000000000000000000000000000000000000000000
-      HP: 0
-      ATK: 0
-      DEF: 0
-      SPD: 0
-      LUCK: 0
-      EnemyDetail: 
-      skillDataList: []
-      enemyMoveList: []
-    - EnemyName: 
-      ID: 35
-      EnemySprite: {fileID: 0}
-      PopLocation: 0
-      PopTime: 0
-      EnhancementPoint: 0
-      EnemyElement: 00000000000000000000000000000000000000000000000000000000
-      HP: 0
-      ATK: 0
-      DEF: 0
-      SPD: 0
-      LUCK: 0
-      EnemyDetail: 
-      skillDataList: []
-      enemyMoveList: []
-    - EnemyName: 
-      ID: 36
-      EnemySprite: {fileID: 0}
-      PopLocation: 0
-      PopTime: 0
       EnhancementPoint: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
@@ -576,23 +186,8 @@ MonoBehaviour:
     - EnemyName: 
       ID: 37
       EnemySprite: {fileID: 0}
+      EnemySize: 0
       PopLocation: 0
-      PopTime: 0
-      EnhancementPoint: 0
-      EnemyElement: 00000000000000000000000000000000000000000000000000000000
-      HP: 0
-      ATK: 0
-      DEF: 0
-      SPD: 0
-      LUCK: 0
-      EnemyDetail: 
-      skillDataList: []
-      enemyMoveList: []
-    - EnemyName: 
-      ID: 38
-      EnemySprite: {fileID: 0}
-      PopLocation: 0
-      PopTime: 0
       EnhancementPoint: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
@@ -606,23 +201,8 @@ MonoBehaviour:
     - EnemyName: 
       ID: 39
       EnemySprite: {fileID: 0}
+      EnemySize: 0
       PopLocation: 0
-      PopTime: 0
-      EnhancementPoint: 0
-      EnemyElement: 00000000000000000000000000000000000000000000000000000000
-      HP: 0
-      ATK: 0
-      DEF: 0
-      SPD: 0
-      LUCK: 0
-      EnemyDetail: 
-      skillDataList: []
-      enemyMoveList: []
-    - EnemyName: 
-      ID: 40
-      EnemySprite: {fileID: 0}
-      PopLocation: 0
-      PopTime: 0
       EnhancementPoint: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
@@ -636,8 +216,8 @@ MonoBehaviour:
     - EnemyName: 
       ID: 41
       EnemySprite: {fileID: 0}
+      EnemySize: 0
       PopLocation: 0
-      PopTime: 0
       EnhancementPoint: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
@@ -648,23 +228,798 @@ MonoBehaviour:
       EnemyDetail: 
       skillDataList: []
       enemyMoveList: []
-  - LevelName: "\u30C6\u30B9\u30C8"
+  - LevelName: "\u68EE1"
+    LocationTexture: {fileID: 2800000, guid: 2d46fcecf861db146a6a331115071f0e, type: 3}
     LocationType: 1
-    LocationTime: 2
-    LevelDetail: 
-    enemyDataList: []
-  - LevelName: "\u30C6\u30B9\u30C8"
-    LocationType: 3
-    LocationTime: 3
-    LevelDetail: 
-    enemyDataList: []
-  - LevelName: "\u30C6\u30B9\u30C8"
-    LocationType: 1
-    LocationTime: 3
-    LevelDetail: 
-    enemyDataList: []
-  - LevelName: "\u30C6\u30B9\u30C8"
+    LevelDetail: "\u8A73\u7D30\u8A2D\u5B9A"
+    enemyDataList:
+    - EnemyName: 
+      ID: 0
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 3
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 4
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 11
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 15
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 16
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 17
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 18
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 22
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 23
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 24
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 26
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 28
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 29
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 31
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 34
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 36
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 37
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 38
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 39
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 41
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+  - LevelName: "\u6D771"
+    LocationTexture: {fileID: 2800000, guid: 85ed2b41abc7c82499e10ac4feaa0590, type: 3}
     LocationType: 2
-    LocationTime: 2
     LevelDetail: 
-    enemyDataList: []
+    enemyDataList:
+    - EnemyName: 
+      ID: 0
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 4
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 9
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 12
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 13
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 14
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 24
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 29
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 33
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 34
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 37
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 39
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 41
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+  - LevelName: "\u706B\u5C711"
+    LocationTexture: {fileID: 2800000, guid: 9de32f657d23953449e678af4ca10dfc, type: 3}
+    LocationType: 3
+    LevelDetail: 
+    enemyDataList:
+    - EnemyName: 
+      ID: 0
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 4
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 5
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 6
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 7
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 8
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 19
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 20
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 21
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 24
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 25
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 29
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 34
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 35
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 37
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 39
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 40
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []
+    - EnemyName: 
+      ID: 41
+      EnemySprite: {fileID: 0}
+      EnemySize: 0
+      PopLocation: 0
+      EnhancementPoint: 0
+      EnemyElement: 00000000000000000000000000000000000000000000000000000000
+      HP: 0
+      ATK: 0
+      DEF: 0
+      SPD: 0
+      LUCK: 0
+      EnemyDetail: 
+      skillDataList: []
+      enemyMoveList: []

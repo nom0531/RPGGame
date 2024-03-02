@@ -1,51 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 
 public class SkillButton : MonoBehaviour
 {
-    [SerializeField, Header("参照データ")]
-    private SkillDataBase SkillData;
-    [SerializeField]
-    private EnhancementDataBase EnhancementData;
-    [SerializeField]
-    private PlayerDataBase PlayerData;
-    [SerializeField, Header("表示用データ"),Tooltip("所持EP")]
-    private GameObject Data_HaveEP;
+    private PlayerStatusSystem m_playerStatusSystem;
+    private int m_myNumber = -1;        // 自身の番号
+    private bool m_isGetData = false;   // データを獲得する
 
-    private PlayerEnhancementSystem m_playerEnhancement;
-    private int m_skillNumber = -1;     // 番号
-    private int m_selectNumber = 0;     // 現在選択している番号
-
-    public int SelectNumber
+    public int MyNumber
     {
-        get => m_selectNumber;
-        set => m_selectNumber = value;
+        set => m_myNumber = value;
+        get => m_myNumber;
     }
 
-    /// <summary>
-    /// 初期化用の関数。スキルを登録する
-    /// </summary>
-    /// <param name="number">スキルの番号</param>
-    /// <param name="skillImage">スキルの画像</param>
-    public void SetPlayerEnhancement(int number, Sprite skillImage,bool interactable, PlayerEnhancementSystem playerEnhancement)
+    private void Start()
     {
-        // それぞれの値を登録する
-        m_skillNumber = number;
-        GetComponent<Image>().sprite = skillImage;
-        GetComponent<Button>().interactable = interactable;
-        // 図鑑システムを登録する
-        m_playerEnhancement = playerEnhancement;
+        m_playerStatusSystem = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<PlayerStatusSystem>();
     }
 
-    /// <summary>
-    /// 初期化用の関数。PlayerEnhancementだけを教える
-    /// </summary>
-    public void SetPlayerEnhancement(PlayerEnhancementSystem playerEnhancement)
+    private void FixedUpdate()
     {
-        m_playerEnhancement = playerEnhancement;
+        if(m_isGetData == false)
+        {
+            return;
+        }
+        m_playerStatusSystem.GetData(MyNumber);
+        m_isGetData = false;
     }
 
     /// <summary>
@@ -53,88 +34,25 @@ public class SkillButton : MonoBehaviour
     /// </summary>
     public void ButtonDown()
     {
-        if (m_playerEnhancement.ReferrenceSkillFlag == true)
-        {
-            m_playerEnhancement.DisplaySetSkill(m_skillNumber);
-        }
-        else
-        {
-            m_playerEnhancement.DisplaySetStatus(m_skillNumber);
-        }
+        m_isGetData = true;
+        m_playerStatusSystem.SetActive(true);
+        m_playerStatusSystem.DrawData(MyNumber);
     }
 
     /// <summary>
-    /// ボタンが押された時の処理
+    /// 1つ前の画面に戻る
     /// </summary>
-    public void IsUseButtonDown()
+    public void ChancelButtonDown()
     {
-        var gameManager = GameManager.Instance;
-        SaveReleaseSkillData(gameManager);
-        SaveReleaseStatusData(gameManager);
-        // 変更後のテキストを表示
-        Data_HaveEP.GetComponent<TextMeshProUGUI>().text =
-        gameManager.SaveData.SaveData.saveData.EnhancementPoint.ToString();
-        // ボタンのテキストを変更する
-        GetComponent<Button>().interactable = false;
-        transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "解放済み";
-        // セーブ
-        gameManager.SaveData.Save();
+        m_playerStatusSystem.SetActive(false);
     }
 
     /// <summary>
-    /// 解放したスキルデータをセーブする
+    /// スキルを開放する
     /// </summary>
-    private void SaveReleaseSkillData(GameManager gameManager)
+    public void OKButtonDown()
     {
-        if (m_playerEnhancement.ReferrenceSkillFlag == false)
-        {
-            return;
-        }
-        // 値を設定する
-        gameManager.SaveData.SaveData.saveData.SkillRegisters[gameManager.PlayerNumber].PlayerSkills[SelectNumber] = true;
-        gameManager.SaveData.SaveData.saveData.EnhancementPoint -= SkillData.skillDataList[SelectNumber].EnhancementPoint;
-    }
-
-    /// <summary>
-    /// 解放したステータスのデータをセーブする
-    /// </summary>
-    private void SaveReleaseStatusData(GameManager gameManager)
-    {
-        if (m_playerEnhancement.ReferrenceSkillFlag == true)
-        {
-            return;
-        }
-        // 値を設定する
-        SavePlayerStatus(gameManager, EnhancementData.enhancementDataList[SelectNumber].AddValue);
-        gameManager.SaveData.SaveData.saveData.EnhancementRegisters[gameManager.PlayerNumber].PlayerEnhancements[SelectNumber] = true;
-        gameManager.SaveData.SaveData.saveData.EnhancementPoint -= EnhancementData.enhancementDataList[SelectNumber].EnhancementPoint;
-    }
-
-    /// <summary>
-    /// ステータスをセーブする
-    /// </summary>
-    private void SavePlayerStatus(GameManager gameManager, int addValue)
-    {
-        switch (EnhancementData.enhancementDataList[SelectNumber].EnhancementStatus)
-        {
-            case EnhancementStatus.enHP:
-                gameManager.SaveData.SaveData.saveData.PlayerList[gameManager.PlayerNumber].HP += addValue;
-                break;
-            case EnhancementStatus.enSP:
-                gameManager.SaveData.SaveData.saveData.PlayerList[gameManager.PlayerNumber].SP += addValue;
-                break;
-            case EnhancementStatus.enATK:
-                gameManager.SaveData.SaveData.saveData.PlayerList[gameManager.PlayerNumber].ATK += addValue;
-                break;
-            case EnhancementStatus.enDEF:
-                gameManager.SaveData.SaveData.saveData.PlayerList[gameManager.PlayerNumber].DEF += addValue;
-                break;
-            case EnhancementStatus.enSPD:
-                gameManager.SaveData.SaveData.saveData.PlayerList[gameManager.PlayerNumber].SPD += addValue;
-                break;
-            case EnhancementStatus.enLUCK:
-                gameManager.SaveData.SaveData.saveData.PlayerList[gameManager.PlayerNumber].LUCK += addValue;
-                break;
-        }
+        m_isGetData = true;
+        m_playerStatusSystem.SaveReleaseSkillData(MyNumber);
     }
 }

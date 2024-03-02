@@ -151,15 +151,13 @@ public class EnemyMove : MonoBehaviour
         m_drawCommandText = GetComponent<DrawCommandText>();
         m_animator = GetComponent<Animator>();
         SetStatus();
-        SetSkills();
-        SetMoves();
-        SetLookAtPosition();
     }
 
     private void Start()
     {
         // プレイヤーのリストを参照
         m_playerMoveList = m_battleManager.PlayerMoveList;
+        SetLookAtPosition();
     }
 
     private void FixedUpdate()
@@ -194,60 +192,6 @@ public class EnemyMove : MonoBehaviour
         m_enemyBattleStatus.ATK = EnemyData.enemyDataList[m_myNumber].ATK;
         m_enemyBattleStatus.DEF = EnemyData.enemyDataList[m_myNumber].DEF;
         m_enemyBattleStatus.SPD = EnemyData.enemyDataList[m_myNumber].SPD;
-    }
-
-    /// <summary>
-    /// スキルデータの初期化
-    /// </summary>
-    private void SetSkills()
-    {
-        for (int skillNumber = 0; skillNumber < EnemyData.enemyDataList[m_myNumber].skillDataList.Count; skillNumber++)
-        {
-            for (int dataNumber = 0; dataNumber < SkillData.skillDataList.Count; dataNumber++)
-            {
-                // 識別番号が同じならデータを初期化する
-                if (EnemyData.enemyDataList[m_myNumber].skillDataList[skillNumber].ID != SkillData.skillDataList[dataNumber].ID)
-                {
-                    continue;
-                }
-                EnemyData.enemyDataList[m_myNumber].skillDataList[skillNumber].SkillName = SkillData.skillDataList[dataNumber].SkillName;
-                EnemyData.enemyDataList[m_myNumber].skillDataList[skillNumber].SkillSprite = SkillData.skillDataList[dataNumber].SkillSprite;
-                EnemyData.enemyDataList[m_myNumber].skillDataList[skillNumber].POW = SkillData.skillDataList[dataNumber].POW;
-                EnemyData.enemyDataList[m_myNumber].skillDataList[skillNumber].SkillElement = SkillData.skillDataList[dataNumber].SkillElement;
-                EnemyData.enemyDataList[m_myNumber].skillDataList[skillNumber].EnhancementPoint = SkillData.skillDataList[dataNumber].EnhancementPoint;
-                EnemyData.enemyDataList[m_myNumber].skillDataList[skillNumber].SkillNecessary = SkillData.skillDataList[dataNumber].SkillNecessary;
-                EnemyData.enemyDataList[m_myNumber].skillDataList[skillNumber].SkillEffect = SkillData.skillDataList[dataNumber].SkillEffect;
-                EnemyData.enemyDataList[m_myNumber].skillDataList[skillNumber].EffectScale = SkillData.skillDataList[dataNumber].EffectScale;
-                EnemyData.enemyDataList[m_myNumber].skillDataList[skillNumber].Type = SkillData.skillDataList[dataNumber].Type;
-                EnemyData.enemyDataList[m_myNumber].skillDataList[skillNumber].BuffType = SkillData.skillDataList[dataNumber].BuffType;
-                EnemyData.enemyDataList[m_myNumber].skillDataList[skillNumber].SkillType = SkillData.skillDataList[dataNumber].SkillType;
-                EnemyData.enemyDataList[m_myNumber].skillDataList[skillNumber].EffectRange = SkillData.skillDataList[dataNumber].EffectRange;
-                EnemyData.enemyDataList[m_myNumber].skillDataList[skillNumber].TargetState = SkillData.skillDataList[dataNumber].TargetState;
-            }
-        }
-    }
-
-    /// <summary>
-    /// 行動パターンの初期化
-    /// </summary>
-    private void SetMoves()
-    {
-        for (int moveNumber = 0; moveNumber < EnemyData.enemyDataList[m_myNumber].enemyMoveList.Count; moveNumber++)
-        {
-            for (int dataNumber = 0; dataNumber < EnemyMoveData.enemyMoveDataList.Count; dataNumber++)
-            {
-                // 識別番号が同じならデータを初期化する
-                if (EnemyData.enemyDataList[m_myNumber].enemyMoveList[moveNumber].ID != EnemyMoveData.enemyMoveDataList[dataNumber].ID)
-                {
-                    continue;
-                }
-                EnemyData.enemyDataList[m_myNumber].enemyMoveList[moveNumber].ID = EnemyMoveData.enemyMoveDataList[dataNumber].ID;
-                EnemyData.enemyDataList[m_myNumber].enemyMoveList[moveNumber].MoveName = EnemyMoveData.enemyMoveDataList[dataNumber].MoveName;
-                EnemyData.enemyDataList[m_myNumber].enemyMoveList[moveNumber].ActorHPState = EnemyMoveData.enemyMoveDataList[dataNumber].ActorHPState;
-                EnemyData.enemyDataList[m_myNumber].enemyMoveList[moveNumber].ActorAbnormalState = EnemyMoveData.enemyMoveDataList[dataNumber].ActorAbnormalState;
-                EnemyData.enemyDataList[m_myNumber].enemyMoveList[moveNumber].ActionType = EnemyMoveData.enemyMoveDataList[dataNumber].ActionType;
-            }
-        }
     }
 
     /// <summary>

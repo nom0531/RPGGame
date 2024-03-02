@@ -1,89 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerButton : MonoBehaviour
 {
-    // プレイヤーの番号
-    private int m_playerNumber = -1;
-    // 図鑑システム
+    private const int MAX_NUM = 3;  // プレイヤーの最大値
+
     private PlayerStatusSystem m_playerStatus;
-    private PlayerEnhancementSystem m_playerEnhancement;
+    private int m_playerNumber = -1;
 
-    /// <summary>
-    /// 初期化用の関数。プレイヤーを登録する
-    /// </summary>
-    /// <param name="number">プレイヤーの番号</param>
-    /// <param name="playerImage">プレイヤーの画像</param>
-    public void SetPlayerStatus(int number, Sprite playerImage, PlayerStatusSystem playerStatus)
+    private void Start()
     {
-        // それぞれの値を登録する
-        m_playerNumber = number;
-        GetComponent<Image>().sprite = playerImage;
-        // 図鑑システムを登録する
-        m_playerStatus = playerStatus;
+        m_playerStatus = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<PlayerStatusSystem>();
+        m_playerNumber = GameManager.Instance.PlayerNumber;
     }
 
     /// <summary>
-    /// 初期化用の関数。プレイヤーを登録する
+    /// 左ボタンが押された時の処理
     /// </summary>
-    /// <param name="number">プレイヤーの番号</param>
-    /// <param name="playerImage">プレイヤーの画像</param>
-    public void SetPlayerEnhancement(int number, Sprite playerImage, PlayerEnhancementSystem playerEnhancement)
+    public void ButtonDownLeft()
     {
-        // それぞれの値を登録する
-        m_playerNumber = number;
-        GetComponent<Image>().sprite = playerImage;
-        // 図鑑システムを登録する
-        m_playerEnhancement = playerEnhancement;
-    }
-
-    /// <summary>
-    /// 初期化用の関数。PlayerEnhancemntだけを教える
-    /// </summary>
-    public void SetPlayerEnhancement(PlayerEnhancementSystem playerEnhancement)
-    {
-        m_playerEnhancement = playerEnhancement;
-    }
-
-    /// <summary>
-    /// ボタンが押された時の処理
-    /// </summary>
-    public void PlayerStatusButtonDown()
-    {
+        m_playerNumber--;
+        if(m_playerNumber <= 0)
+        {
+            m_playerNumber = MAX_NUM - 1;   // 補正
+        }
         m_playerStatus.DisplaySetValue(m_playerNumber);
     }
 
     /// <summary>
-    /// ボタンが押された時の処理
+    /// 右ボタンが押された時の処理
     /// </summary>
-    public void PlayerEnhancementButtoonDown()
+    public void ButtonDownRight()
     {
-        if(m_playerEnhancement.ReferrenceSkillFlag == true)
+        m_playerNumber++;
+        if (m_playerNumber >= MAX_NUM)
         {
-            m_playerEnhancement.DisplaySetSkillData(m_playerNumber);
-            return;
+            m_playerNumber = 0;   // 補正
         }
-        else
-        {
-            m_playerEnhancement.DisplaySetStatusData(m_playerNumber);
-        }
-    }
-
-    /// <summary>
-    /// スキルデータの表示
-    /// </summary>
-    public void PlayerEnhancement_SkillButtonDown()
-    {
-        m_playerEnhancement.DisplaySetSkillData(GameManager.Instance.PlayerNumber);
-    }
-
-    /// <summary>
-    /// ステータス強化の表示
-    /// </summary>
-    public void PlayerEnhancement_StatusButtonDown()
-    {
-        m_playerEnhancement.DisplaySetStatusData(GameManager.Instance.PlayerNumber);
+        m_playerStatus.DisplaySetValue(m_playerNumber);
     }
 }

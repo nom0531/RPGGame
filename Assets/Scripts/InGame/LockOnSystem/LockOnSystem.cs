@@ -22,11 +22,7 @@ public class LockOnSystem : MonoBehaviour
     [SerializeField]
     private LockOnButton RightButton, LeftButton, OKButton, CancelButton;
     [SerializeField]
-    private GameObject LockOnButtons;
-    [SerializeField]
-    private GameObject TargetNameWindow;
-    [SerializeField]
-    private GameObject SkillWindow;
+    private GameObject LockOnCanvas;
 
     private const int VCAM_PRIORITY = 10;           // カメラ使用時の優先度
     private const int NUM_MIN = 0;                  // 最小番号
@@ -83,7 +79,7 @@ public class LockOnSystem : MonoBehaviour
 
     private void Start()
     {
-        TargetNameWindow.SetActive(false);
+        LockOnCanvas.SetActive(false);
         // エネミーのリスト
         m_enemyMoveList = m_battleManager.EnemyMoveList;
         m_drawStatusValue.EnemyName = m_enemyMoveList[m_selectTargetNumber].MyNumber;
@@ -153,9 +149,7 @@ public class LockOnSystem : MonoBehaviour
         // 番号を補正
         m_selectTargetNumber = 0;
         // オブジェクトの表示、非表示を切り替える
-        SkillWindow.SetActive(false);
-        LockOnButtons.SetActive(true);
-        TargetNameWindow.SetActive(true);
+        LockOnCanvas.SetActive(true);
         m_playerMoveList[m_operatingPlayer].gameObject.SetActive(true);
         // ボタンが押せるかどうか設定する
         SetInteractable(true);
@@ -171,9 +165,6 @@ public class LockOnSystem : MonoBehaviour
     {
         // カメラを元に戻す
         SetCinemachineVirtualCameraPriority(m_operatingPlayer, false, null);
-        // オブジェクトの表示、非表示を切り替える
-        LockOnButtons.SetActive(false);
-        TargetNameWindow.SetActive(false);
         // フラグをリセット
         SetInteractable(false);
         LockOn = false;

@@ -63,6 +63,7 @@ public class SkillData
     public int POW;                                                 // 攻撃、回復の基礎値
     public int SkillNecessary;                                      // 必要SP/HP量
     public NecessaryType Type;                                      // 消費SP/HP
+    [SerializeField, Header("スキル詳細")]
     public EffectRange EffectRange;                                 // スキルの効果範囲
     public TargetState TargetState;                                 // スキルの対象
     public BuffType BuffType;                                       // バフのタイプ

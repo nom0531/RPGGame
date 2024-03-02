@@ -18,30 +18,21 @@ public class Title : MonoBehaviour
     private GameObject FadeCanvas;
     [SerializeField, Tooltip("遷移先のシーン名")]
     private string SceneName;
-    [SerializeField, Header("テキストの明滅"), Tooltip("明滅させるテキスト")]
-    private GameObject Text;
-    [SerializeField, Tooltip("明滅させる速度")]
-    private float Speed = 1.0f;
+    [SerializeField, Tooltip("アニメーションするテキスト")]
+    private GameObject AnimationText;
 
     private PlayableDirector playableDirector;  // タイムラインの制御
-
-    // テキストデータ
-    private TextMeshProUGUI m_text;
-    private Color m_color = Color.black;        // カラー 
-    private float m_alpha = 1.0f;               // 透明度
-    private FadeMode m_fadeMode = FadeMode.enWhite;
+    private Animator m_animator;                // アニメーター
 
     private void Start()
     {
         playableDirector = Camera.main.GetComponent<PlayableDirector>();
-        m_text = Text.GetComponent<TextMeshProUGUI>();          // テキストメッシュを取得
-        m_color = m_text.color;
+        m_animator = AnimationText.GetComponent<Animator>();
     }
 
     // Update is called once per frame
     private void Update()
     {
-        TextBlink();
         SceneChange();
     }
 
@@ -54,6 +45,7 @@ public class Title : MonoBehaviour
         {
             return;
         }
+        PlayAnimation();
         var sceneName = SceneName;
         if (SceneName == "")
         {
@@ -68,33 +60,10 @@ public class Title : MonoBehaviour
     }
 
     /// <summary>
-    /// テキストを明滅させる
+    /// アニメーションを再生する
     /// </summary>
-    private void TextBlink()
+    private void PlayAnimation()
     {
-        // フェード処理
-        if (m_fadeMode == FadeMode.enBlack)
-        {
-            // 画面を暗くする
-            m_alpha += Speed * Time.deltaTime;
-
-            // 完全に暗くなったのでシーンを変更
-            if (m_alpha >= 1.0f)
-            {
-                m_fadeMode = FadeMode.enWhite;
-            }
-        }
-        else
-        {
-            // 画面を明るくする
-            m_alpha -= Speed * Time.deltaTime;
-            // 完全に明るくなったので自身を削除する
-            if (m_alpha <= 0.0f)
-            {
-                m_fadeMode = FadeMode.enBlack;
-            }
-        }
-        // 不透明度を設定する
-        m_text.color = new Vector4(m_color.r, m_color.g, m_color.b, m_alpha);
+        m_animator.SetTrigger("ClickTitle");
     }
 }

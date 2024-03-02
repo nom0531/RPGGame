@@ -104,7 +104,7 @@ public class EnhancementDataEditor : EditorWindow
             EditorGUILayout.EndHorizontal();
 
             // €–Ú”
-            GUILayout.Label("€–Ú”:" + m_nameList.Count);
+            GUILayout.Label($"€–Ú”: {m_nameList.Count}");
         }
         EditorGUILayout.EndVertical();
     }

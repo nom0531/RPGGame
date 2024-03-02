@@ -78,7 +78,7 @@ public class LevelDataEditor : EditorWindow
                     }
 
                     // ボタンが押された時の処理
-                    if (GUILayout.Button(i + ":" + m_nameList[i]))
+                    if (GUILayout.Button($"{i} : {m_nameList[i]}"));
                     {
                         // 対象変更
                         m_selectNumber = i;
@@ -106,7 +106,7 @@ public class LevelDataEditor : EditorWindow
             EditorGUILayout.EndHorizontal();
 
             // 項目数
-            GUILayout.Label("項目数:" + m_nameList.Count);
+            GUILayout.Label($"項目数: { m_nameList.Count}");
         }
         EditorGUILayout.EndVertical();
     }
@@ -144,15 +144,14 @@ public class LevelDataEditor : EditorWindow
                     (int)m_levelDataBase.levelDataList[m_selectNumber].LocationType,
                     new string[] { "平原", "森", "海", "火山", "--" }
                     );
-            m_levelDataBase.levelDataList[m_selectNumber].LocationTime =
-                (LocationTime)EditorGUILayout.Popup(
-                    "レベルの時間",
-                    (int)m_levelDataBase.levelDataList[m_selectNumber].LocationTime,
-                    new string[] { "朝", "日没前", "夜", "--" }
-                    );
+            // 画像
+            m_levelDataBase.levelDataList[m_selectNumber].LocationTexture = 
+                EditorGUILayout.ObjectField(
+                    "地面",
+                    m_levelDataBase.levelDataList[m_selectNumber].LocationTexture,
+                    typeof(Texture), true) as Texture;
 
             EditorGUILayout.Space();
-
             // 説明
             GUILayout.Label("説明");
             m_levelDataBase.levelDataList[m_selectNumber].LevelDetail =
@@ -170,7 +169,6 @@ public class LevelDataEditor : EditorWindow
             }
         }
         EditorGUILayout.EndVertical();
-
         // 保存
         Undo.RegisterCompleteObjectUndo(m_levelDataBase, "LevelDataBase");
     }
@@ -181,7 +179,6 @@ public class LevelDataEditor : EditorWindow
     private static void ResetNameList()
     {
         m_nameList.Clear();
-
         // 名前を入力する
         foreach (var level in m_levelDataBase.levelDataList)
         {
@@ -224,7 +221,6 @@ public class LevelDataEditor : EditorWindow
     private void AddData()
     {
         var newLevelData = new LevelData();
-
         // 追加
         m_levelDataBase.levelDataList.Add(newLevelData);
     }
@@ -238,7 +234,6 @@ public class LevelDataEditor : EditorWindow
         {
             return;
         }
-
         // 選択位置のデータを削除
         m_levelDataBase.levelDataList.Remove(m_levelDataBase.levelDataList[m_selectNumber]);
         // 調整

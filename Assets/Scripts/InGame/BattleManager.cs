@@ -222,9 +222,8 @@ public class BattleManager : MonoBehaviour
 #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            m_playerMoveList[0].DecrementHP(999);
-            m_playerMoveList[1].DecrementHP(999);
-            m_playerMoveList[2].DecrementHP(999);
+            m_playerMoveList[0].DecrementHP(10);
+            m_playerMoveList[1].DecrementSP(10);
         }
 #endif
     }
@@ -364,6 +363,11 @@ public class BattleManager : MonoBehaviour
         }
         m_drawBattleResult.EP = sumEP;
         m_gameState = GameState.enBattleWin;
+        // アニメーションを再生
+        for(int i = 0; i < m_playerMoveList.Count; i++)
+        {
+            m_playerMoveList[i].PlayerAnimation.PlayAnimation(AnimationState.enWin);
+        }
     }
 
     /// <summary>
@@ -380,6 +384,11 @@ public class BattleManager : MonoBehaviour
             }
         }
         m_gameState = GameState.enBattleLose;
+        // アニメーションを再生
+        for (int i = 0; i < m_playerMoveList.Count; i++)
+        {
+            m_playerMoveList[i].PlayerAnimation.PlayAnimation(AnimationState.enLose);
+        }
     }
     
     /// <summary>

@@ -25,7 +25,6 @@ public class EnemyData
     public Sprite EnemySprite;                                      // 画像
     public EnemySize EnemySize;                                     // エネミーのサイズ
     public LocationType PopLocation;                                // スポーンする環境
-    public LocationTime PopTime;                                    // スポーンする時間
     public int EnhancementPoint;                                    // ドロップする強化ポイント
     [SerializeField,Header("属性耐性")]
     public ElementResistance[] EnemyElement 

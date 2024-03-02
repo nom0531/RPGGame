@@ -137,11 +137,11 @@ MonoBehaviour:
     EffectScale: 15
     SkillElement: 1
     StateAbnormalData:
-      StateName: "\u6DF7\u4E71"
+      StateName: "\u306A\u3057"
       ID: 0
-      StateImage: {fileID: 21300000, guid: 2ab72dfc7caf3d34d9afae960a639a46, type: 3}
-      POW: 70
-      EffectTime: 3
+      StateImage: {fileID: 0}
+      POW: 0
+      EffectTime: 0
       ActorAbnormalState: 5
     POW: 80
     SkillNecessary: 15
@@ -160,11 +160,11 @@ MonoBehaviour:
     EffectScale: 15
     SkillElement: 2
     StateAbnormalData:
-      StateName: "\u6DF7\u4E71"
+      StateName: "\u306A\u3057"
       ID: 0
-      StateImage: {fileID: 21300000, guid: 2ab72dfc7caf3d34d9afae960a639a46, type: 3}
-      POW: 70
-      EffectTime: 3
+      StateImage: {fileID: 0}
+      POW: 0
+      EffectTime: 0
       ActorAbnormalState: 5
     POW: 20
     SkillNecessary: 5
@@ -344,11 +344,11 @@ MonoBehaviour:
     EffectScale: 15
     SkillElement: 4
     StateAbnormalData:
-      StateName: "\u6DF7\u4E71"
+      StateName: "\u306A\u3057"
       ID: 0
-      StateImage: {fileID: 21300000, guid: 2ab72dfc7caf3d34d9afae960a639a46, type: 3}
-      POW: 70
-      EffectTime: 3
+      StateImage: {fileID: 0}
+      POW: 0
+      EffectTime: 0
       ActorAbnormalState: 5
     POW: 80
     SkillNecessary: 15
@@ -413,11 +413,11 @@ MonoBehaviour:
     EffectScale: 15
     SkillElement: 5
     StateAbnormalData:
-      StateName: "\u6DF7\u4E71"
+      StateName: "\u306A\u3057"
       ID: 0
-      StateImage: {fileID: 21300000, guid: 2ab72dfc7caf3d34d9afae960a639a46, type: 3}
-      POW: 70
-      EffectTime: 3
+      StateImage: {fileID: 0}
+      POW: 0
+      EffectTime: 0
       ActorAbnormalState: 5
     POW: 80
     SkillNecessary: 15
@@ -482,11 +482,11 @@ MonoBehaviour:
     EffectScale: 30
     SkillElement: 6
     StateAbnormalData:
-      StateName: "\u6DF7\u4E71"
+      StateName: "\u306A\u3057"
       ID: 0
-      StateImage: {fileID: 21300000, guid: 2ab72dfc7caf3d34d9afae960a639a46, type: 3}
-      POW: 70
-      EffectTime: 3
+      StateImage: {fileID: 0}
+      POW: 0
+      EffectTime: 0
       ActorAbnormalState: 5
     POW: 80
     SkillNecessary: 15
@@ -643,11 +643,11 @@ MonoBehaviour:
     EffectScale: 15
     SkillElement: 7
     StateAbnormalData:
-      StateName: "\u6DF7\u4E71"
+      StateName: "\u306A\u3057"
       ID: 0
-      StateImage: {fileID: 21300000, guid: 2ab72dfc7caf3d34d9afae960a639a46, type: 3}
-      POW: 70
-      EffectTime: 3
+      StateImage: {fileID: 0}
+      POW: 0
+      EffectTime: 0
       ActorAbnormalState: 5
     POW: 50
     SkillNecessary: 3
@@ -666,11 +666,11 @@ MonoBehaviour:
     EffectScale: 15
     SkillElement: 7
     StateAbnormalData:
-      StateName: "\u6DF7\u4E71"
+      StateName: "\u306A\u3057"
       ID: 0
-      StateImage: {fileID: 21300000, guid: 2ab72dfc7caf3d34d9afae960a639a46, type: 3}
-      POW: 70
-      EffectTime: 3
+      StateImage: {fileID: 0}
+      POW: 0
+      EffectTime: 0
       ActorAbnormalState: 5
     POW: 50
     SkillNecessary: 3
@@ -689,11 +689,11 @@ MonoBehaviour:
     EffectScale: 15
     SkillElement: 7
     StateAbnormalData:
-      StateName: "\u6DF7\u4E71"
+      StateName: "\u306A\u3057"
       ID: 0
-      StateImage: {fileID: 21300000, guid: 2ab72dfc7caf3d34d9afae960a639a46, type: 3}
-      POW: 70
-      EffectTime: 3
+      StateImage: {fileID: 0}
+      POW: 0
+      EffectTime: 0
       ActorAbnormalState: 5
     POW: 50
     SkillNecessary: 3
@@ -712,11 +712,11 @@ MonoBehaviour:
     EffectScale: 15
     SkillElement: 7
     StateAbnormalData:
-      StateName: "\u6DF7\u4E71"
+      StateName: "\u306A\u3057"
       ID: 0
-      StateImage: {fileID: 21300000, guid: 2ab72dfc7caf3d34d9afae960a639a46, type: 3}
-      POW: 70
-      EffectTime: 3
+      StateImage: {fileID: 0}
+      POW: 0
+      EffectTime: 0
       ActorAbnormalState: 5
     POW: 50
     SkillNecessary: 3
@@ -735,11 +735,11 @@ MonoBehaviour:
     EffectScale: 15
     SkillElement: 7
     StateAbnormalData:
-      StateName: "\u6DF7\u4E71"
+      StateName: "\u306A\u3057"
       ID: 0
-      StateImage: {fileID: 21300000, guid: 2ab72dfc7caf3d34d9afae960a639a46, type: 3}
-      POW: 70
-      EffectTime: 3
+      StateImage: {fileID: 0}
+      POW: 0
+      EffectTime: 0
       ActorAbnormalState: 5
     POW: 50
     SkillNecessary: 3
@@ -758,11 +758,11 @@ MonoBehaviour:
     EffectScale: 15
     SkillElement: 7
     StateAbnormalData:
-      StateName: "\u6DF7\u4E71"
+      StateName: "\u306A\u3057"
       ID: 0
-      StateImage: {fileID: 21300000, guid: 2ab72dfc7caf3d34d9afae960a639a46, type: 3}
-      POW: 70
-      EffectTime: 3
+      StateImage: {fileID: 0}
+      POW: 0
+      EffectTime: 0
       ActorAbnormalState: 5
     POW: 50
     SkillNecessary: 3
@@ -781,11 +781,11 @@ MonoBehaviour:
     EffectScale: 15
     SkillElement: 7
     StateAbnormalData:
-      StateName: "\u6DF7\u4E71"
+      StateName: "\u306A\u3057"
       ID: 0
-      StateImage: {fileID: 21300000, guid: 2ab72dfc7caf3d34d9afae960a639a46, type: 3}
-      POW: 70
-      EffectTime: 3
+      StateImage: {fileID: 0}
+      POW: 0
+      EffectTime: 0
       ActorAbnormalState: 5
     POW: 25
     SkillNecessary: 5
@@ -827,11 +827,11 @@ MonoBehaviour:
     EffectScale: 15
     SkillElement: 7
     StateAbnormalData:
-      StateName: "\u6DF7\u4E71"
+      StateName: "\u306A\u3057"
       ID: 0
-      StateImage: {fileID: 21300000, guid: 2ab72dfc7caf3d34d9afae960a639a46, type: 3}
-      POW: 70
-      EffectTime: 3
+      StateImage: {fileID: 0}
+      POW: 0
+      EffectTime: 0
       ActorAbnormalState: 5
     POW: 100
     SkillNecessary: 15
@@ -850,11 +850,11 @@ MonoBehaviour:
     EffectScale: 15
     SkillElement: 7
     StateAbnormalData:
-      StateName: "\u6DF7\u4E71"
+      StateName: "\u306A\u3057"
       ID: 0
-      StateImage: {fileID: 21300000, guid: 2ab72dfc7caf3d34d9afae960a639a46, type: 3}
-      POW: 70
-      EffectTime: 3
+      StateImage: {fileID: 0}
+      POW: 0
+      EffectTime: 0
       ActorAbnormalState: 5
     POW: 25
     SkillNecessary: 8
@@ -896,11 +896,11 @@ MonoBehaviour:
     EffectScale: 15
     SkillElement: 7
     StateAbnormalData:
-      StateName: "\u6DF7\u4E71"
+      StateName: "\u306A\u3057"
       ID: 0
-      StateImage: {fileID: 21300000, guid: 2ab72dfc7caf3d34d9afae960a639a46, type: 3}
-      POW: 70
-      EffectTime: 3
+      StateImage: {fileID: 0}
+      POW: 0
+      EffectTime: 0
       ActorAbnormalState: 5
     POW: 100
     SkillNecessary: 18
@@ -919,11 +919,11 @@ MonoBehaviour:
     EffectScale: 15
     SkillElement: 7
     StateAbnormalData:
-      StateName: "\u6DF7\u4E71"
+      StateName: "\u306A\u3057"
       ID: 0
-      StateImage: {fileID: 21300000, guid: 2ab72dfc7caf3d34d9afae960a639a46, type: 3}
-      POW: 70
-      EffectTime: 3
+      StateImage: {fileID: 0}
+      POW: 0
+      EffectTime: 0
       ActorAbnormalState: 5
     POW: 100
     SkillNecessary: 3

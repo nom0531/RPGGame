@@ -4,12 +4,10 @@ using UnityEngine.UI;
 
 public class PlayerStatusSystem : MonoBehaviour
 {
-    [SerializeField, Header("参照データ"),Tooltip("プレイヤーのデータ")]
+    [SerializeField, Header("参照データ")]
     private PlayerDataBase PlayerData;
-    [SerializeField, Header("プレイヤーリスト"), Tooltip("生成するボタン")]
-    private GameObject Button;
-    [SerializeField, Tooltip("ボタンを追加するオブジェクト")]
-    private GameObject Content;
+    [SerializeField]
+    private SkillDataBase SkillData;
     [SerializeField, Header("表示用データ"), Tooltip("画像")]
     private GameObject Data_Sprite;
     [SerializeField, Tooltip("名前")]
@@ -30,8 +28,6 @@ public class PlayerStatusSystem : MonoBehaviour
     private GameObject Data_HP;
     [SerializeField]
     private GameObject Data_SP, Data_ATK, Data_DEF, Data_SPD, Data_LUCK;
-    [SerializeField]
-    private GameObject Data_AddHP, Data_AddSP, Data_AddATK, Data_AddDEF, Data_AddSPD, Data_AddLUCK;
     [SerializeField, Header("スキルデータ"), Tooltip("コンテンツ")]
     private GameObject SkillDataContent;
     [SerializeField, Tooltip("スキルアイコン")]
@@ -40,6 +36,16 @@ public class PlayerStatusSystem : MonoBehaviour
     private GameObject Element_Text;
     [SerializeField, Tooltip("ステータスのテキスト")]
     private GameObject Status_Text;
+    [SerializeField, Header("表示するCanvas")]
+    private GameObject Canvas;
+    [SerializeField, Header("所持しているEP")]
+    private GameObject HaveEP;
+    [SerializeField, Header("スキルデータ")]
+    private GameObject SkillName;
+    [SerializeField]
+    private GameObject SkillDetail, EnhancementPoint, SkillElement;
+    [SerializeField, Header("OKボタン")]
+    private GameObject OKButton;
 
     private GameManager m_gameManager;      // ゲームマネージャー
 
@@ -47,30 +53,8 @@ public class PlayerStatusSystem : MonoBehaviour
     private void Start()
     {
         m_gameManager = GameManager.Instance;
-        var playerNumber = m_gameManager.PlayerNumber;
-        // データを非表示
-        Data_Sprite.SetActive(false);
-        Data_Name.SetActive(false);
-        Element_Text.SetActive(false);
-        Status_Text.SetActive(false);
-        // ボタンを生成
-        for (int i = 0; i < PlayerData.playerDataList.Count; i++)
-        {
-            // ボタンを生成して子オブジェクトにする
-            var button = Instantiate(Button);
-            button.transform.SetParent(Content.transform);
-            // サイズを調整
-            button.transform.localScale = Vector3.one;
-            button.transform.localPosition = Vector3.zero;
-
-            var playerButton = button.GetComponent<PlayerButton>();
-            playerButton.SetPlayerStatus(
-                i,                                              // 番号
-                PlayerData.playerDataList[i].PlayerSprite,      // 画像
-                this
-                );
-        }
-        DisplaySetValue(playerNumber);
+        HaveEP.GetComponent<TextMeshProUGUI>().text = m_gameManager.SaveData.SaveData.saveData.EnhancementPoint.ToString();
+        DisplaySetValue(m_gameManager.PlayerNumber);
     }
 
     /// <summary>
@@ -112,13 +96,6 @@ public class PlayerStatusSystem : MonoBehaviour
         Data_DEF.GetComponent<TextMeshProUGUI>().text = $"{m_gameManager.SaveData.SaveData.saveData.PlayerList[number].DEF.ToString("000")}";
         Data_SPD.GetComponent<TextMeshProUGUI>().text = $"{m_gameManager.SaveData.SaveData.saveData.PlayerList[number].SPD.ToString("000")}";
         Data_LUCK.GetComponent<TextMeshProUGUI>().text = $"{m_gameManager.SaveData.SaveData.saveData.PlayerList[number].LUCK.ToString("000")}";
-        // 加算値
-        Data_AddHP.GetComponent<TextMeshProUGUI>().text = $"+{GetAddStatus(number, EnhancementStatus.enHP).ToString("000")}";
-        Data_AddSP.GetComponent<TextMeshProUGUI>().text = $"+{GetAddStatus(number, EnhancementStatus.enSP).ToString("000")}";
-        Data_AddATK.GetComponent<TextMeshProUGUI>().text = $"+{GetAddStatus(number, EnhancementStatus.enATK).ToString("000")}";
-        Data_AddDEF.GetComponent<TextMeshProUGUI>().text = $"+{GetAddStatus(number, EnhancementStatus.enDEF).ToString("000")}";
-        Data_AddSPD.GetComponent<TextMeshProUGUI>().text = $"+{GetAddStatus(number, EnhancementStatus.enSPD).ToString("000")}";
-        Data_AddLUCK.GetComponent<TextMeshProUGUI>().text = $"+{GetAddStatus(number, EnhancementStatus.enLUCK).ToString("000")}";
     }
 
     /// <summary>
@@ -144,26 +121,90 @@ public class PlayerStatusSystem : MonoBehaviour
     }
 
     /// <summary>
-    /// 加算値を取得する
+    /// データを表示
     /// </summary>
-    /// <param name="number">プレイヤーの番号</param>
-    /// <returns>加算値</returns>
-    private int GetAddStatus(int number, EnhancementStatus enhancementStatus)
+    public void DrawData(int skillNumber)
     {
-        var addValue = 0;
-        for(int i = 0; i< PlayerData.playerDataList[number].enhancementDataList.Count; i++)
+        // データを設定する
+        SkillName.GetComponent<TextMeshProUGUI>().text = SkillData.skillDataList[skillNumber].SkillName;
+        SkillDetail.GetComponent<TextMeshProUGUI>().text = SkillData.skillDataList[skillNumber].SkillDetail;
+        SkillElement.GetComponent<TextMeshProUGUI>().text = $"属性 {SetElementData(skillNumber)}";
+        EnhancementPoint.GetComponent<TextMeshProUGUI>().text = $"必要EP {SkillData.skillDataList[skillNumber].EnhancementPoint.ToString()}";
+        // ボタンが保持している番号を更新
+        OKButton.GetComponent<SkillButton>().MyNumber = skillNumber;
+    }
+
+    /// <summary>
+    /// データを取得してボタンのテキストを変更する
+    /// </summary>
+    /// <returns>trueなら既に開放している。falseなら開放していない</returns>
+    public void GetData(int skillNumber)
+    {
+        if(m_gameManager.SaveData.SaveData.saveData.SkillRegisters[m_gameManager.PlayerNumber].PlayerSkills[skillNumber] == true)
         {
-            if (m_gameManager.SaveData.SaveData.saveData.EnhancementRegisters[number].PlayerEnhancements[i] == false)
-            {
-                continue;   // 取得していないならスキップ
-            }
-            if(enhancementStatus != PlayerData.playerDataList[number].enhancementDataList[i].EnhancementStatus)
-            {
-                continue;   // 属性が異なるならスキップ
-            }
-            addValue += PlayerData.playerDataList[number].enhancementDataList[i].AddValue;
+            // ボタンのテキストを変更する
+            OKButton.GetComponent<Button>().interactable = false;
+            OKButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "解放済み";
+            return;
         }
-        return addValue;
+        // ボタンのテキストを変更する
+        OKButton.GetComponent<Button>().interactable = true;
+        OKButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "解放";
+    }
+
+    /// <summary>
+    /// 解放したスキルデータをセーブする
+    /// </summary>
+    public void SaveReleaseSkillData(int skillNumber)
+    {
+        // 値を設定する
+        m_gameManager.SaveData.SaveData.saveData.SkillRegisters[m_gameManager.PlayerNumber].PlayerSkills[skillNumber] = true;
+        m_gameManager.SaveData.SaveData.saveData.EnhancementPoint -= SkillData.skillDataList[skillNumber].EnhancementPoint;
+        // 値を更新
+        HaveEP.GetComponent<TextMeshProUGUI>().text = m_gameManager.SaveData.SaveData.saveData.EnhancementPoint.ToString();
+        m_gameManager.SaveData.Save();
+    }
+
+    /// <summary>
+    /// 属性を設定する
+    /// </summary>
+    /// <returns>属性名</returns>
+    private string SetElementData(int skillNumber)
+    {
+        var element = "";
+        switch (SkillData.skillDataList[skillNumber].SkillElement)
+        {
+            case ElementType.enFire:
+                element = "炎";
+                break;
+            case ElementType.enIce:
+                element = "氷";
+                break;
+            case ElementType.enWind:
+                element = "風";
+                break;
+            case ElementType.enThunder:
+                element = "雷";
+                break;
+            case ElementType.enLight:
+                element = "光";
+                break;
+            case ElementType.enDark:
+                element = "闇";
+                break;
+            case ElementType.enNone:
+                element = "ー";
+                break;
+        }
+        return element;
+    }
+
+    /// <summary>
+    /// Activeを切り替える
+    /// </summary>
+    public void SetActive(bool flag)
+    {
+        Canvas.SetActive(flag);
     }
 
     /// <summary>
@@ -175,10 +216,7 @@ public class PlayerStatusSystem : MonoBehaviour
 
         for (int i = 0; i < PlayerData.playerDataList[m_gameManager.PlayerNumber].skillDataList.Count; i++)
         {
-            if (m_gameManager.SaveData.SaveData.saveData.SkillRegisters[m_gameManager.PlayerNumber].PlayerSkills[i] == false)
-            {
-                continue;   // スキルを覚えていないならスキップ
-            }
+            ChangeTexture(i);
             // ボタンを生成して子オブジェクトにする
             var button = Instantiate(SkillDataIcon);
             button.transform.SetParent(SkillDataContent.transform);
@@ -187,6 +225,21 @@ public class PlayerStatusSystem : MonoBehaviour
             button.transform.localPosition = Vector3.zero;
             button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = 
                 PlayerData.playerDataList[m_gameManager.PlayerNumber].skillDataList[i].SkillName;
+            // 自身の番号を教える
+            button.GetComponent<SkillButton>().MyNumber = i;
+        }
+    }
+
+    /// <summary>
+    /// テクスチャを変更する
+    /// </summary>
+    /// <param name="skillNumber">スキルの番号</param>
+    private void ChangeTexture(int skillNumber)
+    {
+        if (m_gameManager.SaveData.SaveData.saveData.SkillRegisters[m_gameManager.PlayerNumber].PlayerSkills[skillNumber] == false)
+        {
+            // スキルを覚えていない
+            return;
         }
     }
 

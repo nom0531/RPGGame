@@ -8,6 +8,7 @@ public class PlayerDataEditor : EditorWindow
 {
     // 対象のデータベース
     private static PlayerDataBase m_playerDataBase;
+    private static SkillDataBase m_skillDataBase;
     // 名前一覧
     private static List<string> m_nameList = new List<string>();
     // スクロール位置
@@ -24,6 +25,7 @@ public class PlayerDataEditor : EditorWindow
     {
         // 読み込み
         m_playerDataBase = AssetDatabase.LoadAssetAtPath<PlayerDataBase>("Assets/Data/PlayerData.asset");
+        m_skillDataBase = AssetDatabase.LoadAssetAtPath<SkillDataBase>("Assets/Data/SkillData.assts");
         // 名前を変更
         GetWindow<PlayerDataEditor>("プレイヤーデータベース");
 
@@ -105,7 +107,7 @@ public class PlayerDataEditor : EditorWindow
             EditorGUILayout.EndHorizontal();
 
             // 項目数
-            GUILayout.Label("項目数:" + m_nameList.Count);
+            GUILayout.Label($"項目数: {m_nameList.Count}");
         }
         EditorGUILayout.EndVertical();
     }
@@ -187,6 +189,7 @@ public class PlayerDataEditor : EditorWindow
                     );
 
             EditorGUILayout.Space();
+            DrawSkill();
 
             // 値が異常な場合は警告を表示する
             if (m_playerDataBase.playerDataList[m_selectNumber].HP <= 0)
@@ -205,24 +208,53 @@ public class PlayerDataEditor : EditorWindow
     /// </summary>
     private void DrawElement()
     {
+        // 属性耐性
+        string[] elementText = { "炎", "氷", "風", "雷", "光", "闇", "無" };
+
+        for (int i = 0; i < (int)ElementType.enNum; i++)
         {
-            // 属性耐性
-            string[] elementText = { "炎", "氷", "風", "雷", "光", "闇", "無" };
+            m_playerDataBase.playerDataList[m_selectNumber].PlayerElement[i] =
+                 (ElementResistance)EditorGUILayout.Popup(
+                     elementText[i],
+                     (int)m_playerDataBase.playerDataList[m_selectNumber].PlayerElement[i],
+                     new string[] { "耐性", "弱点", "--" }
+                     );
+        }
 
-            for (int i = 0; i < (int)ElementType.enNum; i++)
-            {
-                m_playerDataBase.playerDataList[m_selectNumber].PlayerElement[i] =
-                     (ElementResistance)EditorGUILayout.Popup(
-                         elementText[i],
-                         (int)m_playerDataBase.playerDataList[m_selectNumber].PlayerElement[i],
-                         new string[] { "耐性", "弱点", "--" }
-                         );
-            }
+        // 一定以上設定された場合は警告を表示する
+        if (m_playerDataBase.playerDataList[m_selectNumber].PlayerElement.Length > (int)ElementType.enNum)
+        {
+            EditorGUILayout.HelpBox("警告：属性の種類が定義より多く設定されています！", MessageType.Warning);
+        }
+    }
 
-            // 一定以上設定された場合は警告を表示する
-            if (m_playerDataBase.playerDataList[m_selectNumber].PlayerElement.Length > (int)ElementType.enNum)
+    /// <summary>
+    /// 使用可能スキル
+    /// </summary>
+    private void DrawSkill()
+    {
+        for (int skillNumber = 0; skillNumber < m_playerDataBase.playerDataList[m_selectNumber].skillDataList.Count; skillNumber++)
+        {
+            for (int dataNumber = 0; dataNumber < m_skillDataBase.skillDataList.Count; dataNumber++)
             {
-                EditorGUILayout.HelpBox("警告：属性の種類が定義より多く設定されています！", MessageType.Warning);
+                // 識別番号が同じならデータを初期化する
+                if (m_playerDataBase.playerDataList[m_selectNumber].skillDataList[skillNumber].ID != m_skillDataBase.skillDataList[dataNumber].ID)
+                {
+                    continue;
+                }
+                m_playerDataBase.playerDataList[m_selectNumber].skillDataList[skillNumber].SkillName = m_skillDataBase.skillDataList[dataNumber].SkillName;
+                m_playerDataBase.playerDataList[m_selectNumber].skillDataList[skillNumber].SkillSprite = m_skillDataBase.skillDataList[dataNumber].SkillSprite;
+                m_playerDataBase.playerDataList[m_selectNumber].skillDataList[skillNumber].POW = m_skillDataBase.skillDataList[dataNumber].POW;
+                m_playerDataBase.playerDataList[m_selectNumber].skillDataList[skillNumber].SkillElement = m_skillDataBase.skillDataList[dataNumber].SkillElement;
+                m_playerDataBase.playerDataList[m_selectNumber].skillDataList[skillNumber].SkillNecessary = m_skillDataBase.skillDataList[dataNumber].SkillNecessary;
+                m_playerDataBase.playerDataList[m_selectNumber].skillDataList[skillNumber].SkillDetail = m_skillDataBase.skillDataList[dataNumber].SkillDetail;
+                m_playerDataBase.playerDataList[m_selectNumber].skillDataList[skillNumber].SkillEffect = m_skillDataBase.skillDataList[dataNumber].SkillEffect;
+                m_playerDataBase.playerDataList[m_selectNumber].skillDataList[skillNumber].EffectScale = m_skillDataBase.skillDataList[dataNumber].EffectScale;
+                m_playerDataBase.playerDataList[m_selectNumber].skillDataList[skillNumber].Type = m_skillDataBase.skillDataList[dataNumber].Type;
+                m_playerDataBase.playerDataList[m_selectNumber].skillDataList[skillNumber].SkillType = m_skillDataBase.skillDataList[dataNumber].SkillType;
+                m_playerDataBase.playerDataList[m_selectNumber].skillDataList[skillNumber].BuffType = m_skillDataBase.skillDataList[dataNumber].BuffType;
+                m_playerDataBase.playerDataList[m_selectNumber].skillDataList[skillNumber].EffectRange = m_skillDataBase.skillDataList[dataNumber].EffectRange;
+                m_playerDataBase.playerDataList[m_selectNumber].skillDataList[skillNumber].TargetState = m_skillDataBase.skillDataList[dataNumber].TargetState;
             }
         }
     }
