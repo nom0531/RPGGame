@@ -20,9 +20,9 @@ MonoBehaviour:
     PopLocation: 4
     EnhancementPoint: 10
     EnemyElement: 02000000010000000200000002000000020000000200000002000000
-    HP: 100
-    ATK: 5
-    DEF: 0
+    HP: 50
+    ATK: 10
+    DEF: 5
     SPD: 0
     LUCK: 5
     EnemyDetail: "\u3069\u3053\u306B\u3067\u3082\u3044\u308B\u3002\n\u3077\u308B\u3077\u308B\u3057\u3066\u3044\u308B\u3002"
@@ -40,9 +40,9 @@ MonoBehaviour:
     PopLocation: 0
     EnhancementPoint: 10
     EnemyElement: 01000000020000000000000001000000020000000200000002000000
-    HP: 250
+    HP: 50
     ATK: 10
-    DEF: 10
+    DEF: 5
     SPD: 10
     LUCK: 10
     EnemyDetail: 
@@ -205,9 +205,9 @@ MonoBehaviour:
     PopLocation: 1
     EnhancementPoint: 50
     EnemyElement: 01000000000000000200000002000000020000000200000002000000
-    HP: 450
+    HP: 50
     ATK: 10
-    DEF: 10
+    DEF: 5
     SPD: 10
     LUCK: 10
     EnemyDetail: 

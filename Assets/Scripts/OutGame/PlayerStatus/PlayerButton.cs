@@ -52,7 +52,7 @@ public class PlayerButton : MonoBehaviour
         if (m_playerNumber > MAX_NUM)
         {
             m_playerNumber = 0;
-        }        m_statusAnimation.SpriteAnimaiton(SpriteState.enActiveR);
+        }
         m_playerStatus.DisplaySetValue(m_playerNumber);
     }
 
