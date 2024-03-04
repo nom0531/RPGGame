@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using System.IO;
+using System.Text;
+using System.Security.Cryptography;
 
-public class SaveDataManager : MonoBehaviour
+public class SaveDataManager : SingletonMonoBehaviour<SaveDataManager>
 {
     [SerializeField, Header("セーブデータ用設定値"),Tooltip("プレイヤーデータ")]
     private PlayerDataBase PlayerData;
@@ -14,17 +17,21 @@ public class SaveDataManager : MonoBehaviour
     [SerializeField, Header("セーブデータ")]
     private SaveData GameSaveData;
 
-    private const bool BOOL = false;
+    private const bool BOOL = true;
     private const int DEFAULT_EP_POINT = 1500;
 
     private string m_filePath;  // 書き込み先のファイルパス
+    private static readonly string EncryptKey = "c6eahbq9sjuawhvdr9kvhpsm5qv393ga";
+    private static readonly int EncryptPasswordCount = 16;
+    private static readonly string PasswordChars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private static readonly int PasswordCharsLength = PasswordChars.Length;
 
     public SaveData SaveData
     {
         get => GameSaveData;
     }
 
-    private void Awake()
+    private void Start()
     {
         DontDestroyOnLoad(gameObject);
         // セーブデータを読み込む
@@ -42,10 +49,23 @@ public class SaveDataManager : MonoBehaviour
     /// </summary>
     public void Save()
     {
+        // 暗号化
         var json = JsonUtility.ToJson(GameSaveData);
-        var streamWriter = new StreamWriter(m_filePath);
-        streamWriter.Write(json);
-        streamWriter.Close();
+        var iv = "";
+        var base64 = "";
+        EncryptAesBase64(json, out iv, out base64);
+        // 保存
+        byte[] ivBytes = Encoding.UTF8.GetBytes(iv);
+        byte[] base64Bytes = Encoding.UTF8.GetBytes(base64);
+        using (FileStream fs = new FileStream(m_filePath, FileMode.Create, FileAccess.Write))
+        using (BinaryWriter bw = new BinaryWriter(fs))
+        {
+            bw.Write(ivBytes.Length);
+            bw.Write(ivBytes);
+            bw.Write(base64Bytes.Length);
+            bw.Write(base64Bytes);
+            bw.Close();
+        }
     }
 
     /// <summary>
@@ -54,17 +74,32 @@ public class SaveDataManager : MonoBehaviour
     /// <returns>成功したらtrue、失敗したらfalseを返す</returns>
     private bool Load()
     {
-        if (File.Exists(m_filePath))
+        if (File.Exists(m_filePath) == false)
         {
-            var streamReader = new StreamReader(m_filePath);
-            var data = streamReader.ReadToEnd();
-            streamReader.Close();
-            GameSaveData = JsonUtility.FromJson<SaveData>(data);
-            // ロードが出来たのでtrueを返す
-            return true;
+            // セーブデータが見つからなかったのでfalseを返す
+            return false;
         }
-        // セーブデータが見つからなかったのでfalseを返す
-        return false;
+        // 読み込み
+        byte[] ivBytes = null;
+        byte[] base64Bytes = null;
+        using (FileStream fs = new FileStream(m_filePath, FileMode.Open, FileAccess.Read))
+        using (BinaryReader br = new BinaryReader(fs))
+        {
+            int length = br.ReadInt32();
+            ivBytes = br.ReadBytes(length);
+
+            length = br.ReadInt32();
+            base64Bytes = br.ReadBytes(length);
+        }
+        // 複合化
+        string json;
+        string iv = Encoding.UTF8.GetString(ivBytes);
+        string base64 = Encoding.UTF8.GetString(base64Bytes);
+        DecryptAesBase64(base64, iv, out json);
+
+        // セーブデータ復元
+        GameSaveData = JsonUtility.FromJson<SaveData>(json);
+        return true;
     }
 
     /// <summary>
@@ -133,5 +168,96 @@ public class SaveDataManager : MonoBehaviour
         }
 
         Save();
+    }
+
+    /// <summary>
+    /// AES暗号化(Base64形式)
+    /// </summary>
+    public static void EncryptAesBase64(string json, out string iv, out string base64)
+    {
+        byte[] src = Encoding.UTF8.GetBytes(json);
+        byte[] dst;
+        EncryptAes(src, out iv, out dst);
+        base64 = Convert.ToBase64String(dst);
+    }
+
+    /// <summary>
+    /// AES複合化(Base64形式)
+    /// </summary>
+    public static void DecryptAesBase64(string base64, string iv, out string json)
+    {
+        byte[] src = Convert.FromBase64String(base64);
+        byte[] dst;
+        DecryptAes(src, iv, out dst);
+        json = Encoding.UTF8.GetString(dst).Trim('\0');
+    }
+
+    /// <summary>
+    /// AES暗号化
+    /// </summary>
+    public static void EncryptAes(byte[] src, out string iv, out byte[] dst)
+    {
+        iv = CreatePassword(EncryptPasswordCount);
+        dst = null;
+        using (RijndaelManaged rijndael = new RijndaelManaged())
+        {
+            rijndael.Padding = PaddingMode.PKCS7;
+            rijndael.Mode = CipherMode.CBC;
+            rijndael.KeySize = 256;
+            rijndael.BlockSize = 128;
+
+            byte[] key = Encoding.UTF8.GetBytes(EncryptKey);
+            byte[] vec = Encoding.UTF8.GetBytes(iv);
+
+            using (ICryptoTransform encryptor = rijndael.CreateEncryptor(key, vec))
+            using (MemoryStream ms = new MemoryStream())
+            using (CryptoStream cs = new CryptoStream(ms, encryptor, CryptoStreamMode.Write))
+            {
+                cs.Write(src, 0, src.Length);
+                cs.FlushFinalBlock();
+                dst = ms.ToArray();
+            }
+        }
+    }
+
+    /// <summary>
+    /// AES複合化
+    /// </summary>
+    public static void DecryptAes(byte[] src, string iv, out byte[] dst)
+    {
+        dst = new byte[src.Length];
+        using (RijndaelManaged rijndael = new RijndaelManaged())
+        {
+            rijndael.Padding = PaddingMode.PKCS7;
+            rijndael.Mode = CipherMode.CBC;
+            rijndael.KeySize = 256;
+            rijndael.BlockSize = 128;
+
+            byte[] key = Encoding.UTF8.GetBytes(EncryptKey);
+            byte[] vec = Encoding.UTF8.GetBytes(iv);
+
+            using (ICryptoTransform decryptor = rijndael.CreateDecryptor(key, vec))
+            using (MemoryStream ms = new MemoryStream(src))
+            using (CryptoStream cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Read))
+            {
+                cs.Read(dst, 0, dst.Length);
+            }
+        }
+    }
+
+    /// <summary>
+    /// パスワード生成
+    /// </summary>
+    /// <param name="count">文字列数</param>
+    /// <returns>パスワード</returns>
+    public static string CreatePassword(int count)
+    {
+        StringBuilder sb = new StringBuilder(count);
+        for (int i = count - 1; i >= 0; i--)
+        {
+            char c = PasswordChars[UnityEngine.Random.Range(0, PasswordCharsLength)];
+            sb.Append(c);
+        }
+        return sb.ToString();
     }
 }

@@ -36,19 +36,23 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         set => m_selectLevelNumber = value;
     }
 
-    new private void Awake()
+    private void Start()
     {
         // 自身はシーンを跨いでも削除されないようにする
         DontDestroyOnLoad(gameObject);
-
-        if (m_saveDataManager == null)
-        {
-            Instantiate(SaveDataObject);
-            // 存在していないなら探す
-            m_saveDataManager = FindObjectOfType<SaveDataManager>();
-        }
-
-        //Application.targetFrameRate = 60;
+        // セーブデータを作成する
+        var saveDataObject = Instantiate(SaveDataObject);
+        m_saveDataManager = saveDataObject.GetComponent<SaveDataManager>();
         Physics.autoSimulation = false;
     }
+
+#if UNITY_EDITOR
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SaveData.Save();
+        }
+    }
+#endif
 }
