@@ -69,7 +69,7 @@ public class PictureBookSystem : MonoBehaviour
     {
         // ’l‚ð”ñ•\Ž¦‚É‚·‚é
         Data_Sprite.SetActive(false);
-        m_saveDataManager = GameManager.Instance.SaveData;
+        m_saveDataManager = GameManager.Instance.SaveDataManager;
 
         for (int i = 0; i < EnemyData.enemyDataList.Count; i++)
         {

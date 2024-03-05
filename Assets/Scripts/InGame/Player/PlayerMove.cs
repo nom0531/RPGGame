@@ -115,7 +115,7 @@ public class PlayerMove : MonoBehaviour
 
     private void Awake()
     {
-        m_saveDataManager = GameManager.Instance.SaveData;
+        m_saveDataManager = GameManager.Instance.SaveDataManager;
         m_battleManager = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<BattleManager>();
         m_battleSystem = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<BattleSystem>();
         m_stagingManager = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<StagingManager>();

@@ -56,7 +56,7 @@ public class QuestStatusSystem : MonoBehaviour
             questObject.transform.localScale = Vector3.one;
             questObject.transform.localPosition = Vector3.zero;
             // 既にクリアしているなら
-            if (m_gameManager.SaveData.SaveData.saveData.ClearStage[QuestNumber] == true)
+            if (m_gameManager.SaveDataManager.SaveData.saveData.ClearStage[QuestNumber] == true)
             {
                 // Clearのテキストを表示する
                 questObject.transform.GetChild(1).gameObject.SetActive(true);
@@ -154,7 +154,7 @@ public class QuestStatusSystem : MonoBehaviour
                 enemyObject.transform.localScale = Vector3.one;
                 enemyObject.transform.localPosition = Vector3.zero;
 
-                if (m_gameManager.SaveData.SaveData.saveData.EnemyRegisters[enemyNumber] != true)
+                if (m_gameManager.SaveDataManager.SaveData.saveData.EnemyRegisters[enemyNumber] != true)
                 {
                     // 発見していないならカラーを変更する
                     enemyObject.GetComponent<Image>().color = Color.black;

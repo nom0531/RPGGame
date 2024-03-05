@@ -11,7 +11,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     private int m_selectLevelNumber = 0;
     private int m_selectPlayerNumber = 0;
 
-    public SaveDataManager SaveData
+    public SaveDataManager SaveDataManager
     {
         get
         {
@@ -51,7 +51,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SaveData.Save();
+            SaveDataManager.Save();
         }
     }
 #endif

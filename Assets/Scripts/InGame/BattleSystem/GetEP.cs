@@ -17,8 +17,8 @@ public class GetEP : MonoBehaviour
     public void SaveDropEP(int EP)
     {
         m_EP += EP;
-        GameManager.Instance.SaveData.SaveData.saveData.EnhancementPoint += m_EP;
-        GameManager.Instance.SaveData.Save();
+        GameManager.Instance.SaveDataManager.SaveData.saveData.EnhancementPoint += m_EP;
+        GameManager.Instance.SaveDataManager.Save();
     }
 
     /// <summary>

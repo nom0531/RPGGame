@@ -17,8 +17,8 @@ public class SaveDataManager : SingletonMonoBehaviour<SaveDataManager>
     [SerializeField, Header("セーブデータ")]
     private SaveData GameSaveData;
 
-    private const bool BOOL = true;
-    private const int DEFAULT_EP_POINT = 1500;
+    private const bool BOOL = false;
+    private const int DEFAULT_EP_POINT = 0;
 
     private string m_filePath;  // 書き込み先のファイルパス
     private static readonly string EncryptKey = "c6eahbq9sjuawhvdr9kvhpsm5qv393ga";
@@ -31,8 +31,10 @@ public class SaveDataManager : SingletonMonoBehaviour<SaveDataManager>
         get => GameSaveData;
     }
 
-    private void Start()
+    override protected void Awake()
     {
+        CheckInstance();
+
         DontDestroyOnLoad(gameObject);
         // セーブデータを読み込む
         m_filePath = $"{Application.persistentDataPath}/.savedata.json";

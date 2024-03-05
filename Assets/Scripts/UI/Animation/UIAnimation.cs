@@ -17,6 +17,12 @@ public class UIAnimation : MonoBehaviour
     private GameObject AnimatorGameObject;
     private Animator m_animator;
 
+    public GameObject Animator
+    {
+        get => AnimatorGameObject;
+        set => AnimatorGameObject = value;
+    }
+
     private void Start()
     {
         m_animator = AnimatorGameObject.GetComponent<Animator>();   // Animator‚ğQÆ

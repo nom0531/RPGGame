@@ -35,16 +35,16 @@ public class SkillButton : MonoBehaviour
     public void ButtonDown()
     {
         m_isGetData = true;
-        m_playerStatusSystem.SetActive(true);
+        m_playerStatusSystem.SetActiveTrue();
         m_playerStatusSystem.DrawData(MyNumber);
     }
 
     /// <summary>
-    /// 1つ前の画面に戻る
+    /// データを更新する
     /// </summary>
-    public void ChancelButtonDown()
+    public void DataUpDate()
     {
-        m_playerStatusSystem.SetActive(false);
+        m_playerStatusSystem.ChangeName(gameObject, MyNumber);
     }
 
     /// <summary>

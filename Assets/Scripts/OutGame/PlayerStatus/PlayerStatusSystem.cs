@@ -58,7 +58,7 @@ public class PlayerStatusSystem : MonoBehaviour
     {
         // データを取得
         m_gameManager = GameManager.Instance;
-        HaveEP.GetComponent<TextMeshProUGUI>().text = m_gameManager.SaveData.SaveData.saveData.EnhancementPoint.ToString();
+        HaveEP.GetComponent<TextMeshProUGUI>().text = $"<sprite=0>{m_gameManager.SaveDataManager.SaveData.saveData.EnhancementPoint.ToString("N0")}";
         var playerButtonList = FindObjectsOfType<PlayerButton>();
         m_playerButtonList = new List<PlayerButton>(playerButtonList);
         // データを表示
@@ -98,12 +98,12 @@ public class PlayerStatusSystem : MonoBehaviour
         GetResistance(Data_Light, number, (int)ElementType.enLight);
         GetResistance(Data_Dark, number, (int)ElementType.enDark);
         // ステータス
-        Data_HP.GetComponent<TextMeshProUGUI>().text = $"{m_gameManager.SaveData.SaveData.saveData.PlayerList[number].HP.ToString("000")}";
-        Data_SP.GetComponent<TextMeshProUGUI>().text = $"{m_gameManager.SaveData.SaveData.saveData.PlayerList[number].SP.ToString("000")}";
-        Data_ATK.GetComponent<TextMeshProUGUI>().text = $"{m_gameManager.SaveData.SaveData.saveData.PlayerList[number].ATK.ToString("000")}";
-        Data_DEF.GetComponent<TextMeshProUGUI>().text = $"{m_gameManager.SaveData.SaveData.saveData.PlayerList[number].DEF.ToString("000")}";
-        Data_SPD.GetComponent<TextMeshProUGUI>().text = $"{m_gameManager.SaveData.SaveData.saveData.PlayerList[number].SPD.ToString("000")}";
-        Data_LUCK.GetComponent<TextMeshProUGUI>().text = $"{m_gameManager.SaveData.SaveData.saveData.PlayerList[number].LUCK.ToString("000")}";
+        Data_HP.GetComponent<TextMeshProUGUI>().text = $"{m_gameManager.SaveDataManager.SaveData.saveData.PlayerList[number].HP.ToString("000")}";
+        Data_SP.GetComponent<TextMeshProUGUI>().text = $"{m_gameManager.SaveDataManager.SaveData.saveData.PlayerList[number].SP.ToString("000")}";
+        Data_ATK.GetComponent<TextMeshProUGUI>().text = $"{m_gameManager.SaveDataManager.SaveData.saveData.PlayerList[number].ATK.ToString("000")}";
+        Data_DEF.GetComponent<TextMeshProUGUI>().text = $"{m_gameManager.SaveDataManager.SaveData.saveData.PlayerList[number].DEF.ToString("000")}";
+        Data_SPD.GetComponent<TextMeshProUGUI>().text = $"{m_gameManager.SaveDataManager.SaveData.saveData.PlayerList[number].SPD.ToString("000")}";
+        Data_LUCK.GetComponent<TextMeshProUGUI>().text = $"{m_gameManager.SaveDataManager.SaveData.saveData.PlayerList[number].LUCK.ToString("000")}";
     }
 
     /// <summary>
@@ -153,11 +153,22 @@ public class PlayerStatusSystem : MonoBehaviour
     /// </summary>
     public void DrawData(int skillNumber)
     {
+        // ポイントが足りないならボタンは押せない
+        if (SkillData.skillDataList[skillNumber].EnhancementPoint > m_gameManager.SaveDataManager.SaveData.saveData.EnhancementPoint)
+        {
+            OKButton.GetComponent<Button>().interactable = false;
+        }
+        // スキルを開放しているかどうか
+        if (m_gameManager.SaveDataManager.SaveData.saveData.SkillRegisters[m_gameManager.PlayerNumber].PlayerSkills[skillNumber] == true)
+        {
+            // 開放しているなら表示するデータを変更
+
+            return;
+        }
         // データを設定する
         SkillName.GetComponent<TextMeshProUGUI>().text = SkillData.skillDataList[skillNumber].SkillName;
         SkillDetail.GetComponent<TextMeshProUGUI>().text = SkillData.skillDataList[skillNumber].SkillDetail;
         SkillElement.GetComponent<TextMeshProUGUI>().text = $"属性 {SetElementData(skillNumber)}";
-        EnhancementPoint.GetComponent<TextMeshProUGUI>().text = $"必要EP {SkillData.skillDataList[skillNumber].EnhancementPoint.ToString()}";
         // ボタンが保持している番号を更新
         OKButton.GetComponent<SkillButton>().MyNumber = skillNumber;
     }
@@ -165,19 +176,25 @@ public class PlayerStatusSystem : MonoBehaviour
     /// <summary>
     /// データを取得してボタンのテキストを変更する
     /// </summary>
-    /// <returns>trueなら既に開放している。falseなら開放していない</returns>
     public void GetData(int skillNumber)
     {
-        if(m_gameManager.SaveData.SaveData.saveData.SkillRegisters[m_gameManager.PlayerNumber].PlayerSkills[skillNumber] == true)
+        if (m_gameManager.SaveDataManager.SaveData.saveData.SkillRegisters[m_gameManager.PlayerNumber].PlayerSkills[skillNumber] == true)
         {
             // ボタンのテキストを変更する
             OKButton.GetComponent<Button>().interactable = false;
             OKButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "解放済み";
             return;
         }
+        // ポイントが足りないならボタンは押せない
+        if (SkillData.skillDataList[skillNumber].EnhancementPoint > m_gameManager.SaveDataManager.SaveData.saveData.EnhancementPoint)
+        {
+            OKButton.GetComponent<Button>().interactable = false;
+            EnhancementPoint.GetComponent<TextMeshProUGUI>().text = $"必要<sprite=0>{SkillData.skillDataList[skillNumber].EnhancementPoint}";
+            return;
+        }
         // ボタンのテキストを変更する
         OKButton.GetComponent<Button>().interactable = true;
-        OKButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "解放";
+        EnhancementPoint.GetComponent<TextMeshProUGUI>().text = $"必要<sprite=0>{SkillData.skillDataList[skillNumber].EnhancementPoint}";
     }
 
     /// <summary>
@@ -186,11 +203,11 @@ public class PlayerStatusSystem : MonoBehaviour
     public void SaveReleaseSkillData(int skillNumber)
     {
         // 値を設定する
-        m_gameManager.SaveData.SaveData.saveData.SkillRegisters[m_gameManager.PlayerNumber].PlayerSkills[skillNumber] = true;
-        m_gameManager.SaveData.SaveData.saveData.EnhancementPoint -= SkillData.skillDataList[skillNumber].EnhancementPoint;
+        m_gameManager.SaveDataManager.SaveData.saveData.SkillRegisters[m_gameManager.PlayerNumber].PlayerSkills[skillNumber] = true;
+        m_gameManager.SaveDataManager.SaveData.saveData.EnhancementPoint -= SkillData.skillDataList[skillNumber].EnhancementPoint;
         // 値を更新
-        HaveEP.GetComponent<TextMeshProUGUI>().text = m_gameManager.SaveData.SaveData.saveData.EnhancementPoint.ToString();
-        m_gameManager.SaveData.Save();
+        HaveEP.GetComponent<TextMeshProUGUI>().text = $"<sprite=0>{m_gameManager.SaveDataManager.SaveData.saveData.EnhancementPoint.ToString("N0")}";
+        m_gameManager.SaveDataManager.Save();
     }
 
     /// <summary>
@@ -230,9 +247,9 @@ public class PlayerStatusSystem : MonoBehaviour
     /// <summary>
     /// Activeを切り替える
     /// </summary>
-    public void SetActive(bool flag)
+    public void SetActiveTrue()
     {
-        Canvas.SetActive(flag);
+        Canvas.SetActive(true);
     }
 
     /// <summary>
@@ -244,31 +261,38 @@ public class PlayerStatusSystem : MonoBehaviour
 
         for (int i = 0; i < PlayerData.playerDataList[m_gameManager.PlayerNumber].skillDataList.Count; i++)
         {
-            ChangeTexture(i);
             // ボタンを生成して子オブジェクトにする
             var button = Instantiate(SkillDataIcon);
             button.transform.SetParent(SkillDataContent.transform);
+            ChangeName(button, i);
             // サイズを調整
             button.transform.localScale = Vector3.one;
             button.transform.localPosition = Vector3.zero;
-            button.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = 
-                PlayerData.playerDataList[m_gameManager.PlayerNumber].skillDataList[i].SkillName;
             // 自身の番号を教える
             button.GetComponent<SkillButton>().MyNumber = i;
+            // Animatorを所持しているオブジェクトを教える
+            button.GetComponent<UIAnimation>().Animator = Canvas;
         }
     }
 
     /// <summary>
-    /// テクスチャを変更する
+    /// 名前を変更する
     /// </summary>
-    /// <param name="skillNumber">スキルの番号</param>
-    private void ChangeTexture(int skillNumber)
+    public void ChangeName(GameObject gameObject, int skillNumber)
     {
-        if (m_gameManager.SaveData.SaveData.saveData.SkillRegisters[m_gameManager.PlayerNumber].PlayerSkills[skillNumber] == false)
+        if (m_gameManager.SaveDataManager.SaveData.saveData.SkillRegisters[m_gameManager.PlayerNumber].PlayerSkills[skillNumber] == true)
         {
-            // スキルを覚えていない
+            gameObject.GetComponent<Button>().interactable = true;
+            gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text =
+                $"　　{PlayerData.playerDataList[m_gameManager.PlayerNumber].skillDataList[skillNumber].SkillName}";
             return;
         }
+        // 解放できる場合は<sprite=1>を使用する。
+
+        // 解放できない場合は押せないようにする
+        //gameObject.GetComponent<Button>().interactable = false;
+        gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text =
+                        $"<sprite=2>{PlayerData.playerDataList[m_gameManager.PlayerNumber].skillDataList[skillNumber].SkillName}";
     }
 
     /// <summary>

@@ -18,6 +18,6 @@ public class SceneButton : MonoBehaviour
         var fadeCanvas = Instantiate(FadeCanvas);
         fadeCanvas.GetComponent<FadeScene>().FadeStart(sceneName);
         // ƒZ[ƒu
-        GameManager.Instance.SaveData.Save();
+        GameManager.Instance.SaveDataManager.Save();
     }
 }
