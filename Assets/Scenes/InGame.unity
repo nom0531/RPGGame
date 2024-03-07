@@ -931,7 +931,6 @@ GameObject:
   - component: {fileID: 48639633}
   - component: {fileID: 48639634}
   - component: {fileID: 48639632}
-  - component: {fileID: 48639631}
   m_Layer: 5
   m_Name: AttackButton
   m_TagString: Untagged
@@ -1007,18 +1006,6 @@ MonoBehaviour:
       - m_Target: {fileID: 48639630}
         m_TargetAssemblyTypeName: BattleButton, Assembly-CSharp
         m_MethodName: AttackButtonDown
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 48639632}
-        m_TargetAssemblyTypeName: ButtonAnimation, Assembly-CSharp
-        m_MethodName: ButtonDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1110,27 +1097,6 @@ MonoBehaviour:
   GuardButton: {fileID: 1931631621}
   OKButton: {fileID: 429066699}
   m_isButtonDown: 0
---- !u!95 &48639631
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 48639625}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a462d3b830af6c147990a987a2b6ccbb, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &48639632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12351,7 +12317,6 @@ GameObject:
   - component: {fileID: 1635772731}
   - component: {fileID: 1635772732}
   - component: {fileID: 1635772729}
-  - component: {fileID: 1635772728}
   m_Layer: 5
   m_Name: SelectEnemyButtonOK
   m_TagString: Untagged
@@ -12436,18 +12401,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1635772729}
-        m_TargetAssemblyTypeName: ButtonAnimation, Assembly-CSharp
-        m_MethodName: ButtonDown
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1635772731}
         m_TargetAssemblyTypeName: UIAnimation, Assembly-CSharp
         m_MethodName: ButtonDown_NotActive
@@ -12522,27 +12475,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b59ffdbf3fd1224fb271dbdd44e6dc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &1635772728
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1635772722}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a462d3b830af6c147990a987a2b6ccbb, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &1635772729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12733,7 +12665,6 @@ GameObject:
   - component: {fileID: 1666622244}
   - component: {fileID: 1666622245}
   - component: {fileID: 1666622242}
-  - component: {fileID: 1666622241}
   m_Layer: 5
   m_Name: SelectEnemyButtonCancel
   m_TagString: Untagged
@@ -12818,18 +12749,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1666622242}
-        m_TargetAssemblyTypeName: ButtonAnimation, Assembly-CSharp
-        m_MethodName: ButtonDown
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1666622244}
         m_TargetAssemblyTypeName: UIAnimation, Assembly-CSharp
         m_MethodName: ButtonDown_NotActive
@@ -12904,27 +12823,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b59ffdbf3fd1224fb271dbdd44e6dc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &1666622241
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1666622235}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a462d3b830af6c147990a987a2b6ccbb, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &1666622242
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -158,13 +158,6 @@ public class PlayerStatusSystem : MonoBehaviour
         {
             OKButton.GetComponent<Button>().interactable = false;
         }
-        // スキルを開放しているかどうか
-        if (m_gameManager.SaveDataManager.SaveData.saveData.SkillRegisters[m_gameManager.PlayerNumber].PlayerSkills[skillNumber] == true)
-        {
-            // 開放しているなら表示するデータを変更
-
-            return;
-        }
         // データを設定する
         SkillName.GetComponent<TextMeshProUGUI>().text = SkillData.skillDataList[skillNumber].SkillName;
         SkillDetail.GetComponent<TextMeshProUGUI>().text = SkillData.skillDataList[skillNumber].SkillDetail;
@@ -269,7 +262,7 @@ public class PlayerStatusSystem : MonoBehaviour
             button.transform.localScale = Vector3.one;
             button.transform.localPosition = Vector3.zero;
             // 自身の番号を教える
-            button.GetComponent<SkillButton>().MyNumber = i;
+            button.GetComponent<SkillButton>().MyNumber = PlayerData.playerDataList[m_gameManager.PlayerNumber].skillDataList[i].ID;
             // Animatorを所持しているオブジェクトを教える
             button.GetComponent<UIAnimation>().Animator = Canvas;
         }

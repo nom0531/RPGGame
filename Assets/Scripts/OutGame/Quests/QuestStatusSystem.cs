@@ -39,8 +39,6 @@ public class QuestStatusSystem : MonoBehaviour
         }
 
         m_gameManager = GameManager.Instance;
-        Data_QuestName.SetActive(false);
-        Data_QuestDetail.SetActive(false);
         QuestStartButton.GetComponent<Button>().interactable = false;
 
         for (int QuestNumber = 0; QuestNumber < LevelData.levelDataList.Count; QuestNumber++)
@@ -75,10 +73,11 @@ public class QuestStatusSystem : MonoBehaviour
     /// <param name="number">クエストの番号</param>
     private void SetLevelStatus(int number)
     {
+        //LevelData.levelDataList[number].enemyDataList.Clear();
         for (int dataNumber = 0; dataNumber < EnemyData.enemyDataList.Count; dataNumber++)
         {
             // 難易度の設定
-            if (LevelData.levelDataList[number].LevelState > EnemyData.enemyDataList[dataNumber].LevelState)
+            if (LevelData.levelDataList[number].LevelState < EnemyData.enemyDataList[dataNumber].LevelState)
             {
                 continue;
             }
@@ -98,9 +97,6 @@ public class QuestStatusSystem : MonoBehaviour
         m_gameManager.LevelNumber = number;
         QuestStartButton.GetComponent<Button>().interactable = true;
         DestroyEnemySprites();
-        Data_QuestName.SetActive(true);
-        Data_QuestDetail.SetActive(true);
-        Data_QuestLevel.SetActive(true);
         // 値を更新
         Data_QuestName.GetComponent<TextMeshProUGUI>().text = $"「{LevelData.levelDataList[number].LevelName}」";
         Data_QuestDetail.GetComponent<TextMeshProUGUI>().text = LevelData.levelDataList[number].LevelDetail;
