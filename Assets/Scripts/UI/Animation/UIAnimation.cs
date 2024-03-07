@@ -19,7 +19,6 @@ public class UIAnimation : MonoBehaviour
 
     public GameObject Animator
     {
-        get => AnimatorGameObject;
         set => AnimatorGameObject = value;
     }
 
@@ -53,6 +52,7 @@ public class UIAnimation : MonoBehaviour
         switch (animationState)
         {
             case AnimationState.enActive:
+                AnimatorGameObject.SetActive(true);
                 m_animator.SetTrigger("Active");
                 break;
             case AnimationState.enNotActive:

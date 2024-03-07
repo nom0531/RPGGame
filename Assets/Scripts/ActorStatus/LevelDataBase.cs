@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// スポーンする環境
+/// 難易度
 /// </summary>
-public enum LocationType
+public enum LevelState
 {
-    enHell,         // 平原
-    enForest,       // 森
-    enSea,          // 海
-    enVolcano,      // 火山
-    enAllLocation,  // 関係なし
+    enOne,
+    enTwo,
+    enThree,
+    enFour,
+    enFive,
 }
 
 /// <summary>
@@ -22,8 +22,7 @@ public class LevelData
 {
     [SerializeField, Header("レベル情報")]
     public string LevelName;                                    // レベルの名前(クエスト名)
-    public Texture LocationTexture;                             // 環境の画像
-    public LocationType LocationType;                           // レベルの環境
+    public LevelState LevelState;                               // 難易度
     [SerializeField, Header("詳細設定"), Multiline(3)]
     public string LevelDetail;                                  // 説明
     [SerializeField, Header("出現エネミー一覧")]

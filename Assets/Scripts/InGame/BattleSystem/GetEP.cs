@@ -26,6 +26,6 @@ public class GetEP : MonoBehaviour
     /// </summary>
     public void DrawText()
     {
-        Text.GetComponent<TextMeshProUGUI>().text = $"Šl“¾EPF{m_EP}";
+        Text.GetComponent<TextMeshProUGUI>().text = $"Šl“¾EPF<sprite=1>{m_EP}";
     }
 }

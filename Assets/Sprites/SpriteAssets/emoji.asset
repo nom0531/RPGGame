@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: emoji
   m_EditorClassIdentifier: 
   hashCode: 123227204
-  material: {fileID: 1810127851911747812}
+  material: {fileID: 4410759162389611420}
   materialHashCode: 0
   m_Version: 1.1.0
   m_FaceInfo:
@@ -58,58 +58,124 @@ MonoBehaviour:
     m_Scale: 1
     m_Name: emoji_2
     m_HashCode: 1050437577
+  - m_ElementType: 2
+    m_Unicode: 65534
+    m_GlyphIndex: 3
+    m_Scale: 1
+    m_Name: emoji_3
+    m_HashCode: 1050437576
+  - m_ElementType: 2
+    m_Unicode: 65534
+    m_GlyphIndex: 4
+    m_Scale: 1
+    m_Name: emoji_4
+    m_HashCode: 1050437583
+  - m_ElementType: 2
+    m_Unicode: 65534
+    m_GlyphIndex: 5
+    m_Scale: 1
+    m_Name: emoji_5
+    m_HashCode: 1050437582
   m_SpriteGlyphTable:
   - m_Index: 0
     m_Metrics:
+      m_Width: 209
+      m_Height: 183
+      m_HorizontalBearingX: -104.5
+      m_HorizontalBearingY: 91.5
+      m_HorizontalAdvance: 209
+    m_GlyphRect:
+      m_X: 1
+      m_Y: 2
+      m_Width: 209
+      m_Height: 183
+    m_Scale: 1
+    m_AtlasIndex: 0
+    m_ClassDefinitionType: 0
+    sprite: {fileID: -9002221, guid: 880a6d8a86d758c458594d4d92f476a3, type: 3}
+  - m_Index: 1
+    m_Metrics:
       m_Width: 182
       m_Height: 182
-      m_HorizontalBearingX: 40
-      m_HorizontalBearingY: 155
-      m_HorizontalAdvance: 300
+      m_HorizontalBearingX: -91
+      m_HorizontalBearingY: 91
+      m_HorizontalAdvance: 182
     m_GlyphRect:
-      m_X: 2
+      m_X: 214
       m_Y: 2
       m_Width: 182
       m_Height: 182
     m_Scale: 1
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
-    sprite: {fileID: -371683709, guid: 880a6d8a86d758c458594d4d92f476a3, type: 3}
-  - m_Index: 1
-    m_Metrics:
-      m_Width: 147
-      m_Height: 183
-      m_HorizontalBearingX: 135.2
-      m_HorizontalBearingY: 170
-      m_HorizontalAdvance: 300
-    m_GlyphRect:
-      m_X: 187
-      m_Y: 1
-      m_Width: 147
-      m_Height: 183
-    m_Scale: 1
-    m_AtlasIndex: 0
-    m_ClassDefinitionType: 0
-    sprite: {fileID: 483793341, guid: 880a6d8a86d758c458594d4d92f476a3, type: 3}
+    sprite: {fileID: 191529355, guid: 880a6d8a86d758c458594d4d92f476a3, type: 3}
   - m_Index: 2
     m_Metrics:
       m_Width: 147
       m_Height: 183
-      m_HorizontalBearingX: 135.2
-      m_HorizontalBearingY: 170
-      m_HorizontalAdvance: 300
+      m_HorizontalBearingX: -73.5
+      m_HorizontalBearingY: 91.5
+      m_HorizontalAdvance: 147
     m_GlyphRect:
-      m_X: 336
+      m_X: 399
       m_Y: 1
       m_Width: 147
       m_Height: 183
     m_Scale: 1
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
-    sprite: {fileID: 973811122, guid: 880a6d8a86d758c458594d4d92f476a3, type: 3}
+    sprite: {fileID: 1567378409, guid: 880a6d8a86d758c458594d4d92f476a3, type: 3}
+  - m_Index: 3
+    m_Metrics:
+      m_Width: 147
+      m_Height: 183
+      m_HorizontalBearingX: -73.5
+      m_HorizontalBearingY: 91.5
+      m_HorizontalAdvance: 147
+    m_GlyphRect:
+      m_X: 548
+      m_Y: 1
+      m_Width: 147
+      m_Height: 183
+    m_Scale: 1
+    m_AtlasIndex: 0
+    m_ClassDefinitionType: 0
+    sprite: {fileID: -667830491, guid: 880a6d8a86d758c458594d4d92f476a3, type: 3}
+  - m_Index: 4
+    m_Metrics:
+      m_Width: 191
+      m_Height: 183
+      m_HorizontalBearingX: 50
+      m_HorizontalBearingY: 162
+      m_HorizontalAdvance: 212
+    m_GlyphRect:
+      m_X: 698
+      m_Y: 1
+      m_Width: 191
+      m_Height: 183
+    m_Scale: 1
+    m_AtlasIndex: 0
+    m_ClassDefinitionType: 0
+    sprite: {fileID: -235334926, guid: 880a6d8a86d758c458594d4d92f476a3, type: 3}
+  - m_Index: 5
+    m_Metrics:
+      m_Width: 191
+      m_Height: 183
+      m_HorizontalBearingX: 50
+      m_HorizontalBearingY: 162
+      m_HorizontalAdvance: 212
+    m_GlyphRect:
+      m_X: 892
+      m_Y: 1
+      m_Width: 191
+      m_Height: 183
+    m_Scale: 1
+    m_AtlasIndex: 0
+    m_ClassDefinitionType: 0
+    sprite: {fileID: -1110923633, guid: 880a6d8a86d758c458594d4d92f476a3, type: 3}
   spriteInfoList: []
   fallbackSpriteAssets: []
---- !u!21 &1810127851911747812
+--- !u!21 &4410759162389611420
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 1

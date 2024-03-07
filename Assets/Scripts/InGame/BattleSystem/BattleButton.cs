@@ -50,7 +50,6 @@ public class BattleButton : MonoBehaviour
         m_battleManager = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<BattleManager>();
         m_playerSkill = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<PlayerSkill>();
 
-        // playerMove‚ğl”•ª—pˆÓ
         m_playerMoveList = m_battleManager.PlayerMoveList;
     }
 

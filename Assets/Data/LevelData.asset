@@ -13,17 +13,16 @@ MonoBehaviour:
   m_Name: LevelData
   m_EditorClassIdentifier: 
   levelDataList:
-  - LevelName: "\u4E181"
-    LocationTexture: {fileID: 2800000, guid: 7bd486cf36b61954d9012c6704ab80a4, type: 3}
-    LocationType: 0
+  - LevelName: "\u30AF\u30A8\u30B9\u30C81"
+    LevelState: 0
     LevelDetail: "\u8A73\u7D30\u8A2D\u5B9A"
     enemyDataList:
     - EnemyName: 
       ID: 0
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -37,8 +36,8 @@ MonoBehaviour:
       ID: 1
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -52,8 +51,8 @@ MonoBehaviour:
       ID: 2
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -67,8 +66,8 @@ MonoBehaviour:
       ID: 4
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -82,8 +81,8 @@ MonoBehaviour:
       ID: 10
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -97,8 +96,8 @@ MonoBehaviour:
       ID: 24
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -112,8 +111,8 @@ MonoBehaviour:
       ID: 27
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -127,8 +126,8 @@ MonoBehaviour:
       ID: 29
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -142,8 +141,8 @@ MonoBehaviour:
       ID: 30
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -157,8 +156,8 @@ MonoBehaviour:
       ID: 32
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -172,8 +171,8 @@ MonoBehaviour:
       ID: 34
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -187,8 +186,8 @@ MonoBehaviour:
       ID: 37
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -202,8 +201,8 @@ MonoBehaviour:
       ID: 39
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -217,8 +216,8 @@ MonoBehaviour:
       ID: 41
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -228,17 +227,16 @@ MonoBehaviour:
       EnemyDetail: 
       skillDataList: []
       enemyMoveList: []
-  - LevelName: "\u68EE1"
-    LocationTexture: {fileID: 2800000, guid: 2d46fcecf861db146a6a331115071f0e, type: 3}
-    LocationType: 1
+  - LevelName: "\u30AF\u30A8\u30B9\u30C82"
+    LevelState: 0
     LevelDetail: "\u8A73\u7D30\u8A2D\u5B9A"
     enemyDataList:
     - EnemyName: 
       ID: 0
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -252,8 +250,8 @@ MonoBehaviour:
       ID: 3
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -267,8 +265,8 @@ MonoBehaviour:
       ID: 4
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -282,8 +280,8 @@ MonoBehaviour:
       ID: 11
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -297,8 +295,8 @@ MonoBehaviour:
       ID: 15
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -312,8 +310,8 @@ MonoBehaviour:
       ID: 16
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -327,8 +325,8 @@ MonoBehaviour:
       ID: 17
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -342,8 +340,8 @@ MonoBehaviour:
       ID: 18
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -357,8 +355,8 @@ MonoBehaviour:
       ID: 22
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -372,8 +370,8 @@ MonoBehaviour:
       ID: 23
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -387,8 +385,8 @@ MonoBehaviour:
       ID: 24
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -402,8 +400,8 @@ MonoBehaviour:
       ID: 26
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -417,8 +415,8 @@ MonoBehaviour:
       ID: 28
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -432,8 +430,8 @@ MonoBehaviour:
       ID: 29
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -447,8 +445,8 @@ MonoBehaviour:
       ID: 31
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -462,8 +460,8 @@ MonoBehaviour:
       ID: 34
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -477,8 +475,8 @@ MonoBehaviour:
       ID: 36
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -492,8 +490,8 @@ MonoBehaviour:
       ID: 37
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -507,8 +505,8 @@ MonoBehaviour:
       ID: 38
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -522,8 +520,8 @@ MonoBehaviour:
       ID: 39
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -537,8 +535,8 @@ MonoBehaviour:
       ID: 41
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -548,17 +546,16 @@ MonoBehaviour:
       EnemyDetail: 
       skillDataList: []
       enemyMoveList: []
-  - LevelName: "\u6D771"
-    LocationTexture: {fileID: 2800000, guid: 85ed2b41abc7c82499e10ac4feaa0590, type: 3}
-    LocationType: 2
-    LevelDetail: 
+  - LevelName: "\u30AF\u30A8\u30B9\u30C83"
+    LevelState: 1
+    LevelDetail: "\u8A73\u7D30\u8A2D\u5B9A"
     enemyDataList:
     - EnemyName: 
       ID: 0
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -572,8 +569,8 @@ MonoBehaviour:
       ID: 4
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -587,8 +584,8 @@ MonoBehaviour:
       ID: 9
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -602,8 +599,8 @@ MonoBehaviour:
       ID: 12
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -617,8 +614,8 @@ MonoBehaviour:
       ID: 13
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -632,8 +629,8 @@ MonoBehaviour:
       ID: 14
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -647,8 +644,8 @@ MonoBehaviour:
       ID: 24
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -662,8 +659,8 @@ MonoBehaviour:
       ID: 29
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -677,8 +674,8 @@ MonoBehaviour:
       ID: 33
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -692,8 +689,8 @@ MonoBehaviour:
       ID: 34
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -707,8 +704,8 @@ MonoBehaviour:
       ID: 37
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -722,8 +719,8 @@ MonoBehaviour:
       ID: 39
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -737,8 +734,8 @@ MonoBehaviour:
       ID: 41
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -748,17 +745,16 @@ MonoBehaviour:
       EnemyDetail: 
       skillDataList: []
       enemyMoveList: []
-  - LevelName: "\u706B\u5C711"
-    LocationTexture: {fileID: 2800000, guid: 9de32f657d23953449e678af4ca10dfc, type: 3}
-    LocationType: 3
-    LevelDetail: 
+  - LevelName: "\u30AF\u30A8\u30B9\u30C84"
+    LevelState: 1
+    LevelDetail: "\u8A73\u7D30\u8A2D\u5B9A"
     enemyDataList:
     - EnemyName: 
       ID: 0
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -772,8 +768,8 @@ MonoBehaviour:
       ID: 4
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -787,8 +783,8 @@ MonoBehaviour:
       ID: 5
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -802,8 +798,8 @@ MonoBehaviour:
       ID: 6
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -817,8 +813,8 @@ MonoBehaviour:
       ID: 7
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -832,8 +828,8 @@ MonoBehaviour:
       ID: 8
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -847,8 +843,8 @@ MonoBehaviour:
       ID: 19
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -862,8 +858,8 @@ MonoBehaviour:
       ID: 20
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -877,8 +873,8 @@ MonoBehaviour:
       ID: 21
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -892,8 +888,8 @@ MonoBehaviour:
       ID: 24
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -907,8 +903,8 @@ MonoBehaviour:
       ID: 25
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -922,8 +918,8 @@ MonoBehaviour:
       ID: 29
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -937,8 +933,8 @@ MonoBehaviour:
       ID: 34
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -952,8 +948,8 @@ MonoBehaviour:
       ID: 35
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -967,8 +963,8 @@ MonoBehaviour:
       ID: 37
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -982,8 +978,8 @@ MonoBehaviour:
       ID: 39
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -997,8 +993,8 @@ MonoBehaviour:
       ID: 40
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -1012,8 +1008,8 @@ MonoBehaviour:
       ID: 41
       EnemySprite: {fileID: 0}
       EnemySize: 0
-      PopLocation: 0
       EnhancementPoint: 0
+      LevelState: 0
       EnemyElement: 00000000000000000000000000000000000000000000000000000000
       HP: 0
       ATK: 0
@@ -1023,3 +1019,27 @@ MonoBehaviour:
       EnemyDetail: 
       skillDataList: []
       enemyMoveList: []
+  - LevelName: "\u30AF\u30A8\u30B9\u30C85"
+    LevelState: 2
+    LevelDetail: "\u8A73\u7D30\u8A2D\u5B9A"
+    enemyDataList: []
+  - LevelName: "\u30AF\u30A8\u30B9\u30C86"
+    LevelState: 2
+    LevelDetail: "\u8A73\u7D30\u8A2D\u5B9A"
+    enemyDataList: []
+  - LevelName: "\u30AF\u30A8\u30B9\u30C87"
+    LevelState: 3
+    LevelDetail: 
+    enemyDataList: []
+  - LevelName: "\u30AF\u30A8\u30B9\u30C88"
+    LevelState: 3
+    LevelDetail: 
+    enemyDataList: []
+  - LevelName: "\u30AF\u30A8\u30B9\u30C89"
+    LevelState: 4
+    LevelDetail: 
+    enemyDataList: []
+  - LevelName: "\u30AF\u30A8\u30B9\u30C810"
+    LevelState: 4
+    LevelDetail: 
+    enemyDataList: []

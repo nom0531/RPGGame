@@ -10,10 +10,8 @@ public class QuestStatusSystem : MonoBehaviour
     LevelDataBase LevelData;
     [SerializeField]
     EnemyDataBase EnemyData;
-    [SerializeField, Header("表示用データ"),Tooltip("クエスト名")]
-    GameObject Data_QuestName;
-    [SerializeField,Tooltip("クエストの詳細")]
-    GameObject Data_QuestDetail;
+    [SerializeField, Header("表示用データ")]
+    GameObject Data_QuestName,Data_QuestDetail,Data_QuestLevel;
     [SerializeField, Header("クエストリスト"), Tooltip("生成するオブジェクト")]
     GameObject QuestContent;
     [SerializeField, Tooltip("生成するボタン")]
@@ -24,8 +22,6 @@ public class QuestStatusSystem : MonoBehaviour
     GameObject EnemyImage;
     [SerializeField, Header("参照オブジェクト")]
     GameObject QuestStartButton;
-
-    private const int MAX_INSTANTIATE_SUM = 3;  // エネミーの画像の最大数
 
     private GameManager m_gameManager;
 
@@ -81,23 +77,10 @@ public class QuestStatusSystem : MonoBehaviour
     {
         for (int dataNumber = 0; dataNumber < EnemyData.enemyDataList.Count; dataNumber++)
         {
-            // 環境の判定
-            switch (LevelData.levelDataList[number].LocationType)
+            // 難易度の設定
+            if (LevelData.levelDataList[number].LevelState > EnemyData.enemyDataList[dataNumber].LevelState)
             {
-                case LocationType.enHell:
-                case LocationType.enForest:
-                case LocationType.enSea:
-                case LocationType.enVolcano:
-                    // 全ての環境に対応しているなら処理を飛ばす
-                    if (EnemyData.enemyDataList[dataNumber].PopLocation == LocationType.enAllLocation)
-                    {
-                        break;
-                    }
-                    else if (LevelData.levelDataList[number].LocationType != EnemyData.enemyDataList[dataNumber].PopLocation)
-                    {
-                        continue;
-                    }
-                    break;
+                continue;
             }
             // 当てはまっているならデータを追加する
             var enemyData = new EnemyData();
@@ -117,11 +100,37 @@ public class QuestStatusSystem : MonoBehaviour
         DestroyEnemySprites();
         Data_QuestName.SetActive(true);
         Data_QuestDetail.SetActive(true);
+        Data_QuestLevel.SetActive(true);
         // 値を更新
         Data_QuestName.GetComponent<TextMeshProUGUI>().text = $"「{LevelData.levelDataList[number].LevelName}」";
         Data_QuestDetail.GetComponent<TextMeshProUGUI>().text = LevelData.levelDataList[number].LevelDetail;
-
+        SetLevel(number);
         SetEnemySprites(number);
+    }
+
+    /// <summary>
+    /// 難易度を設定する
+    /// </summary>
+    private void SetLevel(int number)
+    {
+        switch (LevelData.levelDataList[number].LevelState)
+        {
+            case LevelState.enOne:
+                Data_QuestLevel.GetComponent<TextMeshProUGUI>().text = $"難易度 <sprite=4><sprite=5><sprite=5><sprite=5><sprite=5>";
+                return;
+            case LevelState.enTwo:
+                Data_QuestLevel.GetComponent<TextMeshProUGUI>().text = $"難易度 <sprite=4><sprite=4><sprite=5><sprite=5><sprite=5>";
+                return;
+            case LevelState.enThree:
+                Data_QuestLevel.GetComponent<TextMeshProUGUI>().text = $"難易度 <sprite=4><sprite=4><sprite=4><sprite=5><sprite=5>";
+                return;
+            case LevelState.enFour:
+                Data_QuestLevel.GetComponent<TextMeshProUGUI>().text = $"難易度 <sprite=4><sprite=4><sprite=4><sprite=4><sprite=5>";
+                return;
+            case LevelState.enFive:
+                Data_QuestLevel.GetComponent<TextMeshProUGUI>().text = $"難易度 <sprite=4><sprite=4><sprite=4><sprite=4><sprite=4>";
+                return;
+        }
     }
 
     /// <summary>
@@ -130,16 +139,10 @@ public class QuestStatusSystem : MonoBehaviour
     /// <param name="number">クエストの番号</param>
     private void SetEnemySprites(int number)
     {
-        int InstantiateSum = 0; // オブジェクトの生成数
         for (int enemyNumber = 0; enemyNumber < LevelData.levelDataList[number].enemyDataList.Count; enemyNumber++)
         {
             for (int dataNumber = 0; dataNumber < EnemyData.enemyDataList.Count; dataNumber++)
             {
-                if(InstantiateSum >= MAX_INSTANTIATE_SUM)
-                {
-                    // 生成数が最大数を超えているなら終了する
-                    break;
-                }
                 // エネミーの画像を生成
                 if (LevelData.levelDataList[number].enemyDataList[enemyNumber].ID != EnemyData.enemyDataList[dataNumber].ID)
                 {
@@ -159,7 +162,6 @@ public class QuestStatusSystem : MonoBehaviour
                     // 発見していないならカラーを変更する
                     enemyObject.GetComponent<Image>().color = Color.black;
                 }
-                InstantiateSum++;
                 break;
             }
         }

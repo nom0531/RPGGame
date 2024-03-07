@@ -153,12 +153,12 @@ public class EnemyDataEditor : EditorWindow
                     (int)m_enemyDataBase.enemyDataList[m_selectNumber].EnemySize,
                     new string[] { "極小", "小", "中", "大" }
                     );
-            // 出現設定
-            m_enemyDataBase.enemyDataList[m_selectNumber].PopLocation =
-                (LocationType)EditorGUILayout.Popup(
-                    "出現する環境",
-                    (int)m_enemyDataBase.enemyDataList[m_selectNumber].PopLocation,
-                    new string[] { "平原", "森", "海", "火山", "--" }
+            // 難易度
+            m_enemyDataBase.enemyDataList[m_selectNumber].LevelState =
+                (LevelState)EditorGUILayout.Popup(
+                    "難易度",
+                    (int)m_enemyDataBase.enemyDataList[m_selectNumber].LevelState,
+                    new string[] { "★☆☆☆☆", "★★☆☆☆", "★★★☆☆", "★★★★☆", "★★★★★" }
                     );
             // EP
             m_enemyDataBase.enemyDataList[m_selectNumber].EnhancementPoint =

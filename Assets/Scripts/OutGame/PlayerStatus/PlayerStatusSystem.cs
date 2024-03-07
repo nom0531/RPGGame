@@ -58,7 +58,7 @@ public class PlayerStatusSystem : MonoBehaviour
     {
         // データを取得
         m_gameManager = GameManager.Instance;
-        HaveEP.GetComponent<TextMeshProUGUI>().text = $"<sprite=0>{m_gameManager.SaveDataManager.SaveData.saveData.EnhancementPoint.ToString("N0")}";
+        HaveEP.GetComponent<TextMeshProUGUI>().text = $"<sprite=1>{m_gameManager.SaveDataManager.SaveData.saveData.EnhancementPoint.ToString("N0")}";
         var playerButtonList = FindObjectsOfType<PlayerButton>();
         m_playerButtonList = new List<PlayerButton>(playerButtonList);
         // データを表示
@@ -189,12 +189,12 @@ public class PlayerStatusSystem : MonoBehaviour
         if (SkillData.skillDataList[skillNumber].EnhancementPoint > m_gameManager.SaveDataManager.SaveData.saveData.EnhancementPoint)
         {
             OKButton.GetComponent<Button>().interactable = false;
-            EnhancementPoint.GetComponent<TextMeshProUGUI>().text = $"必要<sprite=0>{SkillData.skillDataList[skillNumber].EnhancementPoint}";
+            EnhancementPoint.GetComponent<TextMeshProUGUI>().text = $"必要<sprite=1>{SkillData.skillDataList[skillNumber].EnhancementPoint}";
             return;
         }
         // ボタンのテキストを変更する
         OKButton.GetComponent<Button>().interactable = true;
-        EnhancementPoint.GetComponent<TextMeshProUGUI>().text = $"必要<sprite=0>{SkillData.skillDataList[skillNumber].EnhancementPoint}";
+        EnhancementPoint.GetComponent<TextMeshProUGUI>().text = $"必要<sprite=1>{SkillData.skillDataList[skillNumber].EnhancementPoint}";
     }
 
     /// <summary>
@@ -206,7 +206,7 @@ public class PlayerStatusSystem : MonoBehaviour
         m_gameManager.SaveDataManager.SaveData.saveData.SkillRegisters[m_gameManager.PlayerNumber].PlayerSkills[skillNumber] = true;
         m_gameManager.SaveDataManager.SaveData.saveData.EnhancementPoint -= SkillData.skillDataList[skillNumber].EnhancementPoint;
         // 値を更新
-        HaveEP.GetComponent<TextMeshProUGUI>().text = $"<sprite=0>{m_gameManager.SaveDataManager.SaveData.saveData.EnhancementPoint.ToString("N0")}";
+        HaveEP.GetComponent<TextMeshProUGUI>().text = $"<sprite=1>{m_gameManager.SaveDataManager.SaveData.saveData.EnhancementPoint.ToString("N0")}";
         m_gameManager.SaveDataManager.Save();
     }
 
@@ -292,7 +292,7 @@ public class PlayerStatusSystem : MonoBehaviour
         // 解放できない場合は押せないようにする
         //gameObject.GetComponent<Button>().interactable = false;
         gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text =
-                        $"<sprite=2>{PlayerData.playerDataList[m_gameManager.PlayerNumber].skillDataList[skillNumber].SkillName}";
+                        $"<sprite=3>{PlayerData.playerDataList[m_gameManager.PlayerNumber].skillDataList[skillNumber].SkillName}";
     }
 
     /// <summary>

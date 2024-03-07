@@ -24,8 +24,8 @@ public class EnemyData
     public int ID;                                                  // 自身の番号
     public Sprite EnemySprite;                                      // 画像
     public EnemySize EnemySize;                                     // エネミーのサイズ
-    public LocationType PopLocation;                                // スポーンする環境
     public int EnhancementPoint;                                    // ドロップする強化ポイント
+    public LevelState LevelState;                                   // 出現する難易度
     [SerializeField,Header("属性耐性")]
     public ElementResistance[] EnemyElement 
         = new ElementResistance[(int)ElementType.enNum];            // 属性耐性

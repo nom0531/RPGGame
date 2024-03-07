@@ -17,8 +17,8 @@ MonoBehaviour:
     ID: 0
     EnemySprite: {fileID: 21300000, guid: 4012f0a1df858b0459b5ad7e5ad26d67, type: 3}
     EnemySize: 0
-    PopLocation: 4
     EnhancementPoint: 10
+    LevelState: 0
     EnemyElement: 02000000010000000200000002000000020000000200000002000000
     HP: 50
     ATK: 10
@@ -37,8 +37,8 @@ MonoBehaviour:
     ID: 1
     EnemySprite: {fileID: 21300000, guid: ef931405f927a5047b897703d0a5ea37, type: 3}
     EnemySize: 1
-    PopLocation: 0
     EnhancementPoint: 10
+    LevelState: 0
     EnemyElement: 01000000020000000000000001000000020000000200000002000000
     HP: 50
     ATK: 10
@@ -108,8 +108,8 @@ MonoBehaviour:
     ID: 2
     EnemySprite: {fileID: 21300000, guid: a61f81185021dbf418a791a28f3b8913, type: 3}
     EnemySize: 1
-    PopLocation: 0
     EnhancementPoint: 35
+    LevelState: 0
     EnemyElement: 01000000020000000000000002000000020000000200000002000000
     HP: 50
     ATK: 10
@@ -202,8 +202,8 @@ MonoBehaviour:
     ID: 3
     EnemySprite: {fileID: 21300000, guid: e5b92bffd61cc384db109a9854291657, type: 3}
     EnemySize: 1
-    PopLocation: 1
     EnhancementPoint: 50
+    LevelState: 0
     EnemyElement: 01000000000000000200000002000000020000000200000002000000
     HP: 50
     ATK: 10
@@ -319,8 +319,8 @@ MonoBehaviour:
     ID: 4
     EnemySprite: {fileID: 21300000, guid: 2fff957969dcc1348ab076917b98ed15, type: 3}
     EnemySize: 0
-    PopLocation: 4
     EnhancementPoint: 1000
+    LevelState: 0
     EnemyElement: 00000000000000000000000000000000000000000000000002000000
     HP: 50
     ATK: 10
@@ -395,8 +395,8 @@ MonoBehaviour:
     ID: 5
     EnemySprite: {fileID: 21300000, guid: 3ceb7d5591c23c144b48f4e6cfc10bda, type: 3}
     EnemySize: 1
-    PopLocation: 3
     EnhancementPoint: 50
+    LevelState: 0
     EnemyElement: 00000000010000000200000001000000020000000200000002000000
     HP: 120
     ATK: 10
@@ -438,8 +438,8 @@ MonoBehaviour:
     ID: 6
     EnemySprite: {fileID: 21300000, guid: 5f87fc4462df0ef439c52aa911f7249e, type: 3}
     EnemySize: 2
-    PopLocation: 3
     EnhancementPoint: 100
+    LevelState: 0
     EnemyElement: 00000000010000000100000002000000020000000200000002000000
     HP: 50
     ATK: 10
@@ -555,8 +555,8 @@ MonoBehaviour:
     ID: 7
     EnemySprite: {fileID: 21300000, guid: 289c3d60eaaa37a40ba46d52cbb6a9a7, type: 3}
     EnemySize: 3
-    PopLocation: 3
     EnhancementPoint: 150
+    LevelState: 0
     EnemyElement: 00000000010000000000000002000000020000000200000002000000
     HP: 500
     ATK: 30
@@ -649,8 +649,8 @@ MonoBehaviour:
     ID: 8
     EnemySprite: {fileID: 21300000, guid: eee3366cf6c04cc4dad60fc660a118d1, type: 3}
     EnemySize: 3
-    PopLocation: 3
     EnhancementPoint: 250
+    LevelState: 0
     EnemyElement: 00000000010000000200000002000000020000000200000002000000
     HP: 50
     ATK: 10
@@ -664,12 +664,12 @@ MonoBehaviour:
     ID: 9
     EnemySprite: {fileID: 21300000, guid: 9f6f185796fc2f041a658ddc607ab83c, type: 3}
     EnemySize: 1
-    PopLocation: 2
     EnhancementPoint: 20
+    LevelState: 0
     EnemyElement: 01000000000000000200000001000000020000000200000002000000
-    HP: 120
-    ATK: 25
-    DEF: 10
+    HP: 50
+    ATK: 10
+    DEF: 5
     SPD: 15
     LUCK: 20
     EnemyDetail: 
@@ -712,12 +712,12 @@ MonoBehaviour:
     ID: 10
     EnemySprite: {fileID: 21300000, guid: 445c947fc72689e46846cc0bd6a18655, type: 3}
     EnemySize: 2
-    PopLocation: 0
     EnhancementPoint: 50
+    LevelState: 0
     EnemyElement: 01000000000000000100000002000000020000000200000002000000
-    HP: 450
-    ATK: 25
-    DEF: 20
+    HP: 50
+    ATK: 10
+    DEF: 5
     SPD: 15
     LUCK: 20
     EnemyDetail: 
@@ -783,8 +783,8 @@ MonoBehaviour:
     ID: 11
     EnemySprite: {fileID: 21300000, guid: 1d1f93bb1cb82d44eaf0586ec2c2b8fe, type: 3}
     EnemySize: 2
-    PopLocation: 1
     EnhancementPoint: 10
+    LevelState: 0
     EnemyElement: 01000000000000000000000002000000020000000100000002000000
     HP: 50
     ATK: 10
@@ -895,8 +895,8 @@ MonoBehaviour:
     ID: 12
     EnemySprite: {fileID: 21300000, guid: ae4975d7451794446b5a732cb2960e6d, type: 3}
     EnemySize: 2
-    PopLocation: 2
     EnhancementPoint: 50
+    LevelState: 0
     EnemyElement: 02000000010000000200000001000000000000000200000002000000
     HP: 730
     ATK: 30
@@ -994,8 +994,8 @@ MonoBehaviour:
     ID: 13
     EnemySprite: {fileID: 21300000, guid: edebba5ae674a284db60c51bcb3c2c72, type: 3}
     EnemySize: 2
-    PopLocation: 2
     EnhancementPoint: 70
+    LevelState: 0
     EnemyElement: 01000000020000000200000002000000010000000000000002000000
     HP: 50
     ATK: 10
@@ -1088,8 +1088,8 @@ MonoBehaviour:
     ID: 14
     EnemySprite: {fileID: 21300000, guid: 9c787676ed86d9c4d9ec2d0b6a4a495b, type: 3}
     EnemySize: 3
-    PopLocation: 2
     EnhancementPoint: 100
+    LevelState: 0
     EnemyElement: 01000000000000000200000000000000020000000000000002000000
     HP: 1200
     ATK: 35
@@ -1205,8 +1205,8 @@ MonoBehaviour:
     ID: 15
     EnemySprite: {fileID: 21300000, guid: 3b2cf15e96c15aa4bb11edbf31aa374c, type: 3}
     EnemySize: 1
-    PopLocation: 1
     EnhancementPoint: 20
+    LevelState: 0
     EnemyElement: 01000000020000000000000001000000020000000200000002000000
     HP: 120
     ATK: 15
@@ -1253,8 +1253,8 @@ MonoBehaviour:
     ID: 16
     EnemySprite: {fileID: 21300000, guid: 9a679125c8b944347ad8737684bfd3b3, type: 3}
     EnemySize: 2
-    PopLocation: 1
     EnhancementPoint: 50
+    LevelState: 0
     EnemyElement: 02000000020000000000000001000000020000000200000002000000
     HP: 350
     ATK: 25
@@ -1324,8 +1324,8 @@ MonoBehaviour:
     ID: 17
     EnemySprite: {fileID: 21300000, guid: 0dea51efe6bba9848b674bab76289c68, type: 3}
     EnemySize: 2
-    PopLocation: 1
     EnhancementPoint: 60
+    LevelState: 0
     EnemyElement: 00000000020000000000000001000000020000000200000002000000
     HP: 500
     ATK: 20
@@ -1441,8 +1441,8 @@ MonoBehaviour:
     ID: 18
     EnemySprite: {fileID: 21300000, guid: b791dc35b95d7904da2f171bad801f8f, type: 3}
     EnemySize: 3
-    PopLocation: 1
     EnhancementPoint: 100
+    LevelState: 0
     EnemyElement: 02000000020000000000000001000000020000000000000002000000
     HP: 1200
     ATK: 35
@@ -1535,8 +1535,8 @@ MonoBehaviour:
     ID: 19
     EnemySprite: {fileID: 21300000, guid: a35bc79f0eb8d2b4bb9cfa700cae3097, type: 3}
     EnemySize: 3
-    PopLocation: 3
     EnhancementPoint: 100
+    LevelState: 0
     EnemyElement: 02000000010000000000000000000000020000000200000002000000
     HP: 1500
     ATK: 20
@@ -1629,8 +1629,8 @@ MonoBehaviour:
     ID: 20
     EnemySprite: {fileID: 21300000, guid: a5b1188744bf61e41a9d9e14f3ddab72, type: 3}
     EnemySize: 1
-    PopLocation: 3
     EnhancementPoint: 20
+    LevelState: 0
     EnemyElement: 02000000020000000100000000000000020000000200000002000000
     HP: 120
     ATK: 10
@@ -1677,8 +1677,8 @@ MonoBehaviour:
     ID: 21
     EnemySprite: {fileID: 21300000, guid: ea6ce5eafcd65b24cba24d4307a7c820, type: 3}
     EnemySize: 2
-    PopLocation: 3
     EnhancementPoint: 50
+    LevelState: 0
     EnemyElement: 02000000020000000100000000000000020000000200000002000000
     HP: 145
     ATK: 20
@@ -1748,8 +1748,8 @@ MonoBehaviour:
     ID: 22
     EnemySprite: {fileID: 21300000, guid: 236ecdfcd25369546a5862967c319611, type: 3}
     EnemySize: 2
-    PopLocation: 1
     EnhancementPoint: 50
+    LevelState: 0
     EnemyElement: 02000000020000000100000000000000010000000200000002000000
     HP: 160
     ATK: 25
@@ -1842,8 +1842,8 @@ MonoBehaviour:
     ID: 23
     EnemySprite: {fileID: 21300000, guid: 0630f0872649d1c4fadbcd2941fd9489, type: 3}
     EnemySize: 3
-    PopLocation: 1
     EnhancementPoint: 100
+    LevelState: 0
     EnemyElement: 02000000010000000100000000000000000000000200000002000000
     HP: 1200
     ATK: 30
@@ -1982,8 +1982,8 @@ MonoBehaviour:
     ID: 24
     EnemySprite: {fileID: 21300000, guid: df55bd4fe31709d4e95a06fb8e553e8e, type: 3}
     EnemySize: 2
-    PopLocation: 4
     EnhancementPoint: 20
+    LevelState: 0
     EnemyElement: 02000000020000000100000002000000000000000100000002000000
     HP: 135
     ATK: 20
@@ -2030,8 +2030,8 @@ MonoBehaviour:
     ID: 25
     EnemySprite: {fileID: 21300000, guid: 09717e550c5f5254f876899376b3910d, type: 3}
     EnemySize: 2
-    PopLocation: 3
     EnhancementPoint: 50
+    LevelState: 0
     EnemyElement: 02000000020000000200000002000000000000000100000002000000
     HP: 250
     ATK: 15
@@ -2101,8 +2101,8 @@ MonoBehaviour:
     ID: 26
     EnemySprite: {fileID: 21300000, guid: 2f8cf9e2d83636e458e5eb41842bc6e1, type: 3}
     EnemySize: 2
-    PopLocation: 1
     EnhancementPoint: 60
+    LevelState: 0
     EnemyElement: 02000000020000000200000001000000000000000100000002000000
     HP: 180
     ATK: 15
@@ -2200,8 +2200,8 @@ MonoBehaviour:
     ID: 27
     EnemySprite: {fileID: 21300000, guid: e1ab14b6ee39452419d76534ad1d8b82, type: 3}
     EnemySize: 2
-    PopLocation: 0
     EnhancementPoint: 80
+    LevelState: 0
     EnemyElement: 02000000020000000200000002000000000000000000000002000000
     HP: 300
     ATK: 25
@@ -2294,8 +2294,8 @@ MonoBehaviour:
     ID: 28
     EnemySprite: {fileID: 21300000, guid: d283f155c6bf0f74f8b6012ae1b8367c, type: 3}
     EnemySize: 1
-    PopLocation: 1
     EnhancementPoint: 60
+    LevelState: 0
     EnemyElement: 02000000010000000200000002000000020000000100000002000000
     HP: 250
     ATK: 20
@@ -2388,8 +2388,8 @@ MonoBehaviour:
     ID: 29
     EnemySprite: {fileID: 21300000, guid: e33c74f756baec3429c5e896117660e3, type: 3}
     EnemySize: 2
-    PopLocation: 4
     EnhancementPoint: 50
+    LevelState: 0
     EnemyElement: 02000000020000000100000002000000020000000100000002000000
     HP: 350
     ATK: 20
@@ -2533,8 +2533,8 @@ MonoBehaviour:
     ID: 30
     EnemySprite: {fileID: 21300000, guid: 380e65d5356de1b45be85dbb73aa572a, type: 3}
     EnemySize: 3
-    PopLocation: 0
     EnhancementPoint: 100
+    LevelState: 0
     EnemyElement: 02000000020000000000000002000000020000000100000002000000
     HP: 1200
     ATK: 10
@@ -2627,8 +2627,8 @@ MonoBehaviour:
     ID: 31
     EnemySprite: {fileID: 21300000, guid: b5798825df5731342b914fe03419d681, type: 3}
     EnemySize: 1
-    PopLocation: 1
     EnhancementPoint: 20
+    LevelState: 0
     EnemyElement: 00000000020000000200000002000000010000000000000002000000
     HP: 10
     ATK: 10
@@ -2675,12 +2675,12 @@ MonoBehaviour:
     ID: 32
     EnemySprite: {fileID: 21300000, guid: 9a533111dc49ee14b8e7d8dc5735b381, type: 3}
     EnemySize: 2
-    PopLocation: 0
     EnhancementPoint: 50
+    LevelState: 0
     EnemyElement: 02000000000000000100000002000000010000000000000002000000
-    HP: 85
+    HP: 50
     ATK: 10
-    DEF: 10
+    DEF: 5
     SPD: 10
     LUCK: 10
     EnemyDetail: 
@@ -2769,8 +2769,8 @@ MonoBehaviour:
     ID: 33
     EnemySprite: {fileID: 21300000, guid: e1f984b89085ab94693e17b6056efe53, type: 3}
     EnemySize: 2
-    PopLocation: 2
     EnhancementPoint: 70
+    LevelState: 0
     EnemyElement: 02000000000000000200000002000000000000000100000002000000
     HP: 45
     ATK: 0
@@ -2863,8 +2863,8 @@ MonoBehaviour:
     ID: 34
     EnemySprite: {fileID: 21300000, guid: 6f3aad4ba33bbdc4f80bb42acb77c5b8, type: 3}
     EnemySize: 2
-    PopLocation: 4
     EnhancementPoint: 20
+    LevelState: 0
     EnemyElement: 02000000020000000200000002000000010000000000000002000000
     HP: 20
     ATK: 0
@@ -2934,8 +2934,8 @@ MonoBehaviour:
     ID: 35
     EnemySprite: {fileID: 21300000, guid: bb2daef099f9b914dbedf80b60e69b7e, type: 3}
     EnemySize: 3
-    PopLocation: 3
     EnhancementPoint: 100
+    LevelState: 0
     EnemyElement: 01000000020000000200000002000000010000000000000002000000
     HP: 120
     ATK: 0
@@ -3028,12 +3028,12 @@ MonoBehaviour:
     ID: 36
     EnemySprite: {fileID: 21300000, guid: 5fa42b21ca94d0341af23f4d2f75fcb7, type: 3}
     EnemySize: 2
-    PopLocation: 1
     EnhancementPoint: 50
+    LevelState: 0
     EnemyElement: 02000000010000000200000002000000010000000000000002000000
-    HP: 45
-    ATK: 0
-    DEF: 0
+    HP: 50
+    ATK: 10
+    DEF: 5
     SPD: 0
     LUCK: 0
     EnemyDetail: 
@@ -3122,8 +3122,8 @@ MonoBehaviour:
     ID: 37
     EnemySprite: {fileID: 21300000, guid: 7826d038be3cd20478aced750fb211b1, type: 3}
     EnemySize: 2
-    PopLocation: 4
     EnhancementPoint: 60
+    LevelState: 0
     EnemyElement: 02000000020000000200000002000000010000000200000002000000
     HP: 50
     ATK: 0
@@ -3216,8 +3216,8 @@ MonoBehaviour:
     ID: 38
     EnemySprite: {fileID: 21300000, guid: afa114ab39484b4499ea52dfb6564d1d, type: 3}
     EnemySize: 2
-    PopLocation: 1
     EnhancementPoint: 80
+    LevelState: 0
     EnemyElement: 01000000000000000200000002000000020000000000000002000000
     HP: 70
     ATK: 0
@@ -3310,8 +3310,8 @@ MonoBehaviour:
     ID: 39
     EnemySprite: {fileID: 21300000, guid: 67359830c08b8534fafa4b58cf216f1d, type: 3}
     EnemySize: 2
-    PopLocation: 4
     EnhancementPoint: 50
+    LevelState: 0
     EnemyElement: 02000000010000000200000002000000020000000200000002000000
     HP: 50
     ATK: 0
@@ -3330,12 +3330,12 @@ MonoBehaviour:
     ID: 40
     EnemySprite: {fileID: 21300000, guid: 5ffaf08ef47fe7c4fa693da37486e145, type: 3}
     EnemySize: 2
-    PopLocation: 3
     EnhancementPoint: 60
+    LevelState: 0
     EnemyElement: 00000000020000000200000000000000010000000000000002000000
-    HP: 100
-    ATK: 0
-    DEF: 0
+    HP: 50
+    ATK: 10
+    DEF: 5
     SPD: 0
     LUCK: 0
     EnemyDetail: 
@@ -3470,12 +3470,12 @@ MonoBehaviour:
     ID: 41
     EnemySprite: {fileID: 21300000, guid: 0346e51b50d24d64eb7c4b29df6df659, type: 3}
     EnemySize: 2
-    PopLocation: 4
     EnhancementPoint: 80
+    LevelState: 0
     EnemyElement: 02000000020000000200000002000000020000000000000002000000
-    HP: 60
-    ATK: 0
-    DEF: 0
+    HP: 50
+    ATK: 10
+    DEF: 5
     SPD: 0
     LUCK: 0
     EnemyDetail: 

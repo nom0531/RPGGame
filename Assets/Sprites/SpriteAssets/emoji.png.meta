@@ -67,7 +67,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -120,7 +120,28 @@ TextureImporter:
       name: emoji_0
       rect:
         serializedVersion: 2
-        x: 2
+        x: 1
+        y: 2
+        width: 209
+        height: 183
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9cdf1806fd79d344e877202cfe673999
+      internalID: -9002221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emoji_1
+      rect:
+        serializedVersion: 2
+        x: 214
         y: 2
         width: 182
         height: 182
@@ -131,29 +152,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 293134e9547e8194583efabbda94cd21
-      internalID: -371683709
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: emoji_1
-      rect:
-        serializedVersion: 2
-        x: 187
-        y: 1
-        width: 147
-        height: 183
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cc39134e74f7de543a4222781f4f44ff
-      internalID: 483793341
+      spriteID: 842d8f0c205f3c3459d700670ca3163c
+      internalID: 191529355
       vertices: []
       indices: 
       edges: []
@@ -162,7 +162,7 @@ TextureImporter:
       name: emoji_2
       rect:
         serializedVersion: 2
-        x: 336
+        x: 399
         y: 1
         width: 147
         height: 183
@@ -173,8 +173,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cbc4789745466ae4bac07dc950002290
-      internalID: 973811122
+      spriteID: b9a53a7da65368c4a9566cf46ca66844
+      internalID: 1567378409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emoji_3
+      rect:
+        serializedVersion: 2
+        x: 548
+        y: 1
+        width: 147
+        height: 183
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 118fc1187998bac49b0a8ec0a1a0885f
+      internalID: -667830491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emoji_4
+      rect:
+        serializedVersion: 2
+        x: 698
+        y: 1
+        width: 191
+        height: 183
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d009e85e46f8eeb4a896ca345f1334e1
+      internalID: -235334926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: emoji_5
+      rect:
+        serializedVersion: 2
+        x: 892
+        y: 1
+        width: 191
+        height: 183
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f82d53a639ef884fa962337f2d1c76a
+      internalID: -1110923633
       vertices: []
       indices: 
       edges: []
@@ -182,7 +245,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: ca64eb3a550d19147bc1a1cb87770025
+    spriteID: 35d88317c0e87724ca68bb1376ce2048
     internalID: 0
     vertices: []
     indices: 
@@ -190,9 +253,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      emoji_0: -371683709
-      emoji_1: 483793341
-      emoji_2: 973811122
+      emoji_0: -9002221
+      emoji_1: 191529355
+      emoji_2: 1567378409
+      emoji_3: -667830491
+      emoji_4: -235334926
+      emoji_5: -1110923633
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

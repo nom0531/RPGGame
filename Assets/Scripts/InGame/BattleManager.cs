@@ -145,9 +145,12 @@ public class BattleManager : MonoBehaviour
         m_drawStatusValue = GetComponent<DrawStatusValue>();
         m_drawBattleResult = GetComponent<DrawBattleResult>();
         m_stagingManager = GetComponent<StagingManager>();
+    }
 
+    private void Start()
+    {
         var SPD = int.MinValue;
-        for(int i = 0; i < (int)OperatingPlayer.enNum; i++)
+        for (int i = 0; i < (int)OperatingPlayer.enNum; i++)
         {
             // SPDのパラメータが上なら更新する
             if (PlayerData.playerDataList[i].SPD >= SPD)
@@ -156,13 +159,11 @@ public class BattleManager : MonoBehaviour
                 m_operatingPlayer = (OperatingPlayer)i;
             }
         }
+
         var playerMoveList = FindObjectsOfType<PlayerMove>();
         m_playerMoveList = new List<PlayerMove>(playerMoveList);
         m_playerMoveList.Sort((a, b) => a.MyNumber.CompareTo(b.MyNumber));    // 番号順にソート
-    }
 
-    private void Start()
-    {
         DrawStatus();
         var levelNumber = GameManager.Instance.LevelNumber;
         // エネミーを用意する

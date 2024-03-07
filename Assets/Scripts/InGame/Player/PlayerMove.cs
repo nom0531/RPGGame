@@ -115,7 +115,6 @@ public class PlayerMove : MonoBehaviour
 
     private void Awake()
     {
-        m_saveDataManager = GameManager.Instance.SaveDataManager;
         m_battleManager = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<BattleManager>();
         m_battleSystem = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<BattleSystem>();
         m_stagingManager = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<StagingManager>();
@@ -123,6 +122,11 @@ public class PlayerMove : MonoBehaviour
         m_buffCalculation = GetComponent<BuffCalculation>();
         m_drawCommandText = GetComponent<DrawCommandText>();
         m_playerAnimation = GetComponent<PlayerAnimation>();
+    }
+
+    private void Start()
+    {
+        m_saveDataManager = GameManager.Instance.SaveDataManager;
         SetStatus();
     }
 
@@ -131,8 +135,6 @@ public class PlayerMove : MonoBehaviour
     /// </summary>
     private void SetStatus()
     {
-        //SetData();
-
         m_playerBattleStatus.HP = m_saveDataManager.SaveData.saveData.PlayerList[MyNumber].HP;
         m_playerBattleStatus.SP = m_saveDataManager.SaveData.saveData.PlayerList[MyNumber].SP;
         m_playerBattleStatus.ATK = m_saveDataManager.SaveData.saveData.PlayerList[MyNumber].ATK;

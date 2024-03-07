@@ -17,15 +17,4 @@ public class SetActive : MonoBehaviour
             GameObjects[i].SetActive(false);
         }
     }
-
-    /// <summary>
-    /// オブジェクトを表示する
-    /// </summary>
-    public void SetActive_True()
-    {
-        for (int i = 0; i < GameObjects.Length; i++)
-        {
-            GameObjects[i].SetActive(true);
-        }
-    }
 }

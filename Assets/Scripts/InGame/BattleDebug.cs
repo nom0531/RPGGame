@@ -15,10 +15,12 @@ public class BattleDebug : MonoBehaviour
         Application.targetFrameRate = FrameRate;
     }
 
+#if UNITY_EDITOR
     // Update is called once per frame
     private void Update()
     {
         float fps = 1f / Time.deltaTime;
         Text.GetComponent<TextMeshProUGUI>().text = $"{fps.ToString("00")}:fps";
     }
+#endif
 }

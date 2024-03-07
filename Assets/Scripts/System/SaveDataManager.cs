@@ -17,7 +17,7 @@ public class SaveDataManager : SingletonMonoBehaviour<SaveDataManager>
     [SerializeField, Header("セーブデータ")]
     private SaveData GameSaveData;
 
-    private const bool BOOL = false;
+    private const bool BOOL = true;
     private const int DEFAULT_EP_POINT = 0;
 
     private string m_filePath;  // 書き込み先のファイルパス
@@ -44,6 +44,14 @@ public class SaveDataManager : SingletonMonoBehaviour<SaveDataManager>
         {
             InitData();
         }
+    }
+
+    /// <summary>
+    /// セーブデータを削除する
+    /// </summary>
+    public void Delete()
+    {
+        InitData();
     }
 
     /// <summary>

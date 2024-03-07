@@ -78,7 +78,7 @@ public class LevelDataEditor : EditorWindow
                     }
 
                     // ボタンが押された時の処理
-                    if (GUILayout.Button($"{i} : {m_nameList[i]}"));
+                    if (GUILayout.Button($"{i}:{m_nameList[i]}"))
                     {
                         // 対象変更
                         m_selectNumber = i;
@@ -106,7 +106,7 @@ public class LevelDataEditor : EditorWindow
             EditorGUILayout.EndHorizontal();
 
             // 項目数
-            GUILayout.Label($"項目数: { m_nameList.Count}");
+            GUILayout.Label($"項目数: {m_nameList.Count}");
         }
         EditorGUILayout.EndVertical();
     }
@@ -137,20 +137,13 @@ public class LevelDataEditor : EditorWindow
                     "名前",
                     m_levelDataBase.levelDataList[m_selectNumber].LevelName
                     );
-            // 出現設定
-            m_levelDataBase.levelDataList[m_selectNumber].LocationType =
-                (LocationType)EditorGUILayout.Popup(
-                    "レベルの環境",
-                    (int)m_levelDataBase.levelDataList[m_selectNumber].LocationType,
-                    new string[] { "平原", "森", "海", "火山", "--" }
+            // 難易度
+            m_levelDataBase.levelDataList[m_selectNumber].LevelState = 
+                (LevelState)EditorGUILayout.Popup(
+                    "難易度",
+                    (int)m_levelDataBase.levelDataList[m_selectNumber].LevelState,
+                    new string[] { "★☆☆☆☆", "★★☆☆☆", "★★★☆☆", "★★★★☆", "★★★★★" }
                     );
-            // 画像
-            m_levelDataBase.levelDataList[m_selectNumber].LocationTexture = 
-                EditorGUILayout.ObjectField(
-                    "地面",
-                    m_levelDataBase.levelDataList[m_selectNumber].LocationTexture,
-                    typeof(Texture), true) as Texture;
-
             EditorGUILayout.Space();
             // 説明
             GUILayout.Label("説明");
@@ -161,11 +154,6 @@ public class LevelDataEditor : EditorWindow
             if (m_levelDataBase.levelDataList[m_selectNumber].LevelName.Length >= MAX_TEXTNUM)
             {
                 EditorGUILayout.HelpBox("警告：クエスト名の文字数が多すぎます！", MessageType.Warning);
-            }
-            // 警告を表示
-            if (m_levelDataBase.levelDataList[m_selectNumber].LocationType == LocationType.enAllLocation)
-            {
-                EditorGUILayout.HelpBox("警告：レベルの環境が設定されていません！", MessageType.Warning);
             }
         }
         EditorGUILayout.EndVertical();
