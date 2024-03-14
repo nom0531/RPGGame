@@ -17,9 +17,14 @@ public class UIAnimation : MonoBehaviour
     private GameObject AnimatorGameObject;
     private Animator m_animator;
 
-    public GameObject Animator
+    public GameObject AnimatorObject
     {
         set => AnimatorGameObject = value;
+    }
+
+    public Animator Animator
+    {
+        set => m_animator = value;
     }
 
     private void Start()

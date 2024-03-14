@@ -123,7 +123,7 @@ public class DrawStatusValue : MonoBehaviour
     /// <summary>
     /// ƒo[‚ÌŠ„‡‚ğİ’è‚·‚é
     /// </summary>
-    async private void SetFillAmount(int number)
+    private void SetFillAmount(int number)
     {
         Data_HPBarGreen[number].GetComponent<Image>().fillAmount =
         CalculateRate(m_playerMove[number].PlayerStatus.HP, PlayerData.playerDataList[number].HP);

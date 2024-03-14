@@ -27,8 +27,8 @@ public class StagingSystem : MonoBehaviour
     private bool m_isPlayEffect = false;                        // trueなら再生中。falseなら再生していない
     private const float TARGET_WEIGHT = 1.0f;
     private const float TARGET_RADIUS = 1.0f;
-    private const float EFFECT_SCALE = 20.0f;                  // エフェクトのスケール
-    private const int VCAM_PRIORITY = 50;                       // カメラの優先度
+    private const float EFFECT_SCALE = 20.0f;                   // エフェクトのスケール
+    private const int VCAM_PRIORITY = 20;                       // カメラの優先度
 
     public SkillDataBase SkillDataBase
     {
@@ -191,20 +191,5 @@ public class StagingSystem : MonoBehaviour
             }
             m_drawDamageText.ViewDamage(textDataList[i].value.ToString(), textDataList[i].gameObject);
         }
-    }
-
-    /// <summary>
-    /// 再行動時の演出
-    /// </summary>
-    /// <param name="isOneMore">再行動できるかどうか</param>
-    public void OneMore(bool isOneMore)
-    {
-        if(isOneMore == false)
-        {
-            return;
-        }
-        // 文字を表示
-        Debug.Log("再行動");
-        // 再度行動させる
     }
 }

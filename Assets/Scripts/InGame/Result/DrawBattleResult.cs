@@ -1,16 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 public class DrawBattleResult : MonoBehaviour
 {
-    [SerializeField, Header("参照オブジェクト")]
-    private GameObject Canvas;
-    [SerializeField,]
+    [SerializeField]
     private GameObject ResultText;
 
+    private UIAnimation m_uIAnimation;
     private GetEP m_getEP;  // 獲得EPの記録
     private int m_EP;       // EP
 
@@ -23,7 +21,7 @@ public class DrawBattleResult : MonoBehaviour
     private void Start()
     {
         m_getEP = GetComponent<GetEP>();
-        Canvas.SetActive(false);
+        m_uIAnimation = GetComponent<UIAnimation>();
     }
 
     /// <summary>
@@ -31,7 +29,7 @@ public class DrawBattleResult : MonoBehaviour
     /// </summary>
     public void GameClearStaging()
     {
-        Canvas.SetActive(true);
+        m_uIAnimation.ButtonDown_Active();
         DrawEP();
         ResultText.GetComponent<TextMeshProUGUI>().text = "WIN!";
     }
@@ -41,7 +39,7 @@ public class DrawBattleResult : MonoBehaviour
     /// </summary>
     public void GameOverStaging()
     {
-        Canvas.SetActive(true);
+        m_uIAnimation.ButtonDown_Active();
         DrawEP();
         ResultText.GetComponent<TextMeshProUGUI>().text = "LOSE…";
     }

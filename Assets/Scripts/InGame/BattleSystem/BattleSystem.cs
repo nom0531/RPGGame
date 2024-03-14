@@ -59,7 +59,7 @@ public class BattleSystem : MonoBehaviour
     [SerializeField]
     private EnemyDataBase EnemyData;
 
-    private bool m_isOnemore = false;   // 再度行動できるかどうか
+    private bool m_isWeak = false;      // 弱点だったかどうか
     private bool m_isHit = false;       // 攻撃が当たるかどうか
 
     private const int NORMAL_ATTACK_PROBABILITY = 95;
@@ -67,13 +67,13 @@ public class BattleSystem : MonoBehaviour
     private const int SKILL_HEAL_PROBABILITY = 100;
     private const int SKILL_BUFF_PROBABILITY = 95;
 
-    public bool OneMore
+    public bool WeakFlag
     {
-        get => m_isOnemore;
-        set => m_isOnemore = value;
+        get => m_isWeak;
+        set => m_isWeak = value;
     }
 
-    public bool Hit
+    public bool HitFlag
     {
         get => m_isHit;
         set => m_isHit = value;
@@ -179,18 +179,7 @@ public class BattleSystem : MonoBehaviour
                 break;
             case global::ElementResistance.enWeak:
                 finalDamage *= 2.0f;
-
-                // 再度行動できるかどうかのフラグ
-                if (m_isOnemore == true)
-                {
-                    // 既にtrueになっているならフラグを戻す
-                    m_isOnemore = false;
-                }
-                else
-                {
-                    // そうでないなら再度行動できるようにする
-                    m_isOnemore = true;
-                }
+                WeakFlag = true;
                 break;
             case global::ElementResistance.enResist:
                 finalDamage *= 0.5f;
@@ -217,18 +206,7 @@ public class BattleSystem : MonoBehaviour
                 break;
             case global::ElementResistance.enWeak:
                 finalDamage *= 2.0f;
-
-                // 再度行動できるかどうかのフラグ
-                if (m_isOnemore == true)
-                {
-                    // 既にtrueになっているならフラグを戻す
-                    m_isOnemore = false;
-                }
-                else
-                {
-                    // そうでないなら再度行動できるようにする
-                    m_isOnemore = true;
-                }
+                WeakFlag = true;
                 break;
             case global::ElementResistance.enResist:
                 finalDamage *= 0.5f;

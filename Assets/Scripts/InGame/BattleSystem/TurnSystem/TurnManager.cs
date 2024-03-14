@@ -24,7 +24,7 @@ public class TurnManager : MonoBehaviour
 
     private BattleManager m_battleManager;
     private LockOnManager m_lockOnManager;
-    private GameManager m_gameManager;
+    private StagingManager m_stagingManager;
     private DrawBattleResult m_drawBattleResult;                // リザルト演出
     private int m_turnSum = 1;                                  // 総合ターン数
 
@@ -44,7 +44,7 @@ public class TurnManager : MonoBehaviour
         m_battleManager = GetComponent<BattleManager>();
         m_lockOnManager = GetComponent<LockOnManager>();
         m_drawBattleResult = ResultObject.GetComponent<DrawBattleResult>();
-        m_gameManager = GameManager.Instance;
+        m_stagingManager = GetComponent<StagingManager>();
 
         // タスクを設定する
         GameClearTask().Forget();
@@ -150,7 +150,7 @@ public class TurnManager : MonoBehaviour
     async UniTask GameClearTask()
     {
         // 演出が終了したなら以下の処理を実行する
-        await UniTask.WaitUntil(() => m_battleManager.GameState == GameState.enBattleWin);
+        await UniTask.WaitUntil(() => m_stagingManager.StangingState == StagingState.enStangingEnd && m_battleManager.GameState == GameState.enBattleWin);
         await UniTask.Delay(TimeSpan.FromSeconds(WaitTime));
         m_drawBattleResult.GameClearStaging();
     }
@@ -161,7 +161,7 @@ public class TurnManager : MonoBehaviour
     async UniTask GameOverTask()
     {
         // 演出が終了したなら以下の処理を実行する
-        await UniTask.WaitUntil(() => m_battleManager.GameState == GameState.enBattleLose);
+        await UniTask.WaitUntil(() => m_stagingManager.StangingState == StagingState.enStangingEnd && m_battleManager.GameState == GameState.enBattleLose);
         await UniTask.Delay(TimeSpan.FromSeconds(WaitTime));
         m_drawBattleResult.GameOverStaging();
     }

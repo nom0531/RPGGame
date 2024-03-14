@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   playerDataList:
-  - PlayerName: "\u30A2\u30BF\u30C3\u30AB\u30FC"
+  - PlayerName: Kohaku
     PlayerSprite: {fileID: 21300000, guid: 4f3dcf203103fca48bda2a05b3a3814e, type: 3}
     PlayerRoll: 0
     PlayerElement: 02000000020000000000000001000000020000000000000002000000
@@ -534,8 +534,8 @@ MonoBehaviour:
       EnhancementStatus: 5
       AddValue: 100
       EnhancementPoint: 30
-  - PlayerName: "\u30D0\u30C3\u30D5\u30A1\u30FC"
-    PlayerSprite: {fileID: 21300000, guid: 6069c473bf151a14191dbdbed57020a6, type: 3}
+  - PlayerName: Toko
+    PlayerSprite: {fileID: 21300000, guid: b9aa61d16a419c544821bfc00fb2c7d6, type: 3}
     PlayerRoll: 1
     PlayerElement: 00000000010000000200000000000000020000000200000002000000
     HP: 100
@@ -1032,8 +1032,8 @@ MonoBehaviour:
       EnhancementStatus: 5
       AddValue: 100
       EnhancementPoint: 30
-  - PlayerName: "\u30D2\u30FC\u30E9\u30FC"
-    PlayerSprite: {fileID: 21300000, guid: 1b3acf613c86a7443a5677f0280e4e43, type: 3}
+  - PlayerName: Yuko
+    PlayerSprite: {fileID: 21300000, guid: 6069c473bf151a14191dbdbed57020a6, type: 3}
     PlayerRoll: 2
     PlayerElement: 01000000000000000200000002000000000000000200000002000000
     HP: 100

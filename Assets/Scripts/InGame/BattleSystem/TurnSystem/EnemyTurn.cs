@@ -56,7 +56,7 @@ public class EnemyTurn : MonoBehaviour
         EnemyAction_Command(myNumber, actionType, skillNumber, targetNumber);
         // 演出を開始する
         m_stagingManager.ActionType = actionType;
-        m_stagingManager.RegistrationTargets(m_turnManager.TurnStatus, targetNumber, myNumber);
+        m_stagingManager.RegistrationTargets(m_turnManager.TurnStatus, false, targetNumber, myNumber);
         m_battleManager.EnemyMoveList[myNumber].ActionEnd(actionType, skillNumber);
         // 演出が終了したなら以下の処理を実行する
         await UniTask.WaitUntil(() => m_stagingManager.StangingState == StagingState.enStangingEnd);

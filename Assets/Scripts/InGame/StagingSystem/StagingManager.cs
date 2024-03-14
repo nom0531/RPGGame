@@ -28,12 +28,16 @@ public class StagingManager : MonoBehaviour
 {
     [SerializeField, Header("参照オブジェクト")]
     private GameObject CommandWindow;
+    [SerializeField]
+    private GameObject CutInObject;
     [SerializeField, Header("演出終了時に待機する時間(秒)")]
     private float WaitTime = 1.5f;
 
     private StagingSystem m_stangingSystem;     // 演出のシステム
     private LockOnManager m_lockOnSystem;       // ロックオンシステム
     private BattleManager m_battleManager;      // バトルマネージャー
+    private CutInManager m_cutInManager;        // カットイン演出のシステム
+    private UIAnimation m_uIAnimation;
     private List<EnemyMove> m_enemyMoveList;
     private List<PlayerMove> m_playerMoveList;
     private List<TextData> m_testDataList;
@@ -74,30 +78,16 @@ public class StagingManager : MonoBehaviour
         m_lockOnSystem = GetComponent<LockOnManager>();
         m_stangingSystem = GetComponent<StagingSystem>();
         m_battleManager = GetComponent<BattleManager>();
+        m_cutInManager = CutInObject.GetComponent<CutInManager>();
         m_skillData = m_battleManager.SkillDataBase;
         m_stangingSystem.SkillDataBase = m_skillData;
     }
 
     private void Start()
     {
+        m_uIAnimation = CommandWindow.GetComponent<UIAnimation>();
         m_enemyMoveList = m_battleManager.EnemyMoveList;
         m_playerMoveList = m_battleManager.PlayerMoveList;
-    }
-
-    private void Update()
-    {
-        if(m_battleManager.StagingStartFlag == false)
-        {
-            return;
-        }
-        if (m_stangingState == StagingState.enStangingStart)
-        {
-            CommandWindow.SetActive(false);
-        }
-        else
-        {
-            CommandWindow.SetActive(true);
-        }
     }
 
     /// <summary>
@@ -142,11 +132,12 @@ public class StagingManager : MonoBehaviour
     /// 演出を開始する
     /// </summary>
     /// <param name="effectRange">行動の効果範囲</param>
+    /// <param name="isCutin">カットインを挿入するかどうか</param>
     /// <param name="turnStatus">ターンを回す側</param>
     /// <param name="targetNumber">ターゲットの番号</param>
     /// <param name="myNumber">自身の番号</param>
     /// <param name="skillNumber">スキルの番号</param>
-    public void RegistrationTargets(TurnStatus turnStatus, int targetNumber, int myNumber, int skillNumber=0, EffectRange effectRange=EffectRange.enOne)
+    public void RegistrationTargets(TurnStatus turnStatus, bool isCutin, int targetNumber, int myNumber, int skillNumber=0, EffectRange effectRange=EffectRange.enOne)
     {
         var number = targetNumber;
         // ターゲットの番号を使用しない行動が選択されている場合
@@ -194,7 +185,7 @@ public class StagingManager : MonoBehaviour
                 }
                 break;
         }
-        StangingStart(skillNumber, effectRange, number);
+        StangingStart(skillNumber, effectRange,isCutin, number);
     }
 
     /// <summary>s
@@ -202,14 +193,28 @@ public class StagingManager : MonoBehaviour
     /// </summary>
     /// <param name="skillNumber">スキルの番号</param>
     /// <param name="effectRange">スキルの効果範囲</param>
+    /// <param name="isCutin">カットインを挿入するかどうか</param>
     /// <param name="number">ターゲットの番号</param>
-    private void StangingStart(int skillNumber, EffectRange effectRange, int number)
+    async private void StangingStart(int skillNumber, EffectRange effectRange,bool isCutin, int number)
     {
         m_stangingState = StagingState.enStangingStart;
         m_battleManager.StagingStartFlag = true;
+        m_stangingSystem.ChangeVcam((int)effectRange);
+        if (ActionType != ActionType.enGuard)
+        {
+            await UniTask.Delay(TimeSpan.FromSeconds(0.2f));
+        }
+        if (isCutin == true)
+        {
+            CutInStart();
+            await UniTask.Delay(TimeSpan.FromSeconds(WaitTime));
+        }
         // 演出を開始する
         DrawPlayers(true);
-        m_stangingSystem.ChangeVcam((int)effectRange);
+        if (ActionType != ActionType.enGuard)
+        {
+            m_uIAnimation.ButtonDown_NotActive();
+        }
         m_stangingSystem.PlayEffect(ActionType, skillNumber);
         StangingEnd(number);
     }
@@ -243,8 +248,17 @@ public class StagingManager : MonoBehaviour
         ShouldRemovePlayerList(number);
         // 設定をリセットする
         m_stangingSystem.ResetPriority();
+        m_uIAnimation.ButtonDown_Active();
         m_battleManager.StagingStartFlag = false;
         DrawPlayers(false);
         m_stangingState = StagingState.enStangingEnd;
+    }
+
+    /// <summary>
+    /// カットインの演出を開始する
+    /// </summary>
+    private void CutInStart()
+    {
+        m_cutInManager.CutIn();
     }
 }

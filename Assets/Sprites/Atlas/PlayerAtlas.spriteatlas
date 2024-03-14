@@ -23,7 +23,7 @@ SpriteAtlas:
     platformSettings:
     - serializedVersion: 3
       m_BuildTarget: DefaultTexturePlatform
-      m_MaxTextureSize: 1024
+      m_MaxTextureSize: 4096
       m_ResizeAlgorithm: 0
       m_TextureFormat: -1
       m_TextureCompression: 0
@@ -44,21 +44,30 @@ SpriteAtlas:
     secondaryTextureSettings: {}
     variantMultiplier: 1
     packables:
-    - {fileID: 2800000, guid: 1b3acf613c86a7443a5677f0280e4e43, type: 3}
+    - {fileID: 2800000, guid: 8925e786a9ba04d40b0dfee7cc9bda9b, type: 3}
     - {fileID: 2800000, guid: 4f3dcf203103fca48bda2a05b3a3814e, type: 3}
     - {fileID: 2800000, guid: 6069c473bf151a14191dbdbed57020a6, type: 3}
+    - {fileID: 2800000, guid: b9aa61d16a419c544821bfc00fb2c7d6, type: 3}
+    - {fileID: 2800000, guid: 2e080a38be6e1d545925a6be71ba4d61, type: 3}
+    - {fileID: 2800000, guid: c77aafc0e7089ae48a60bb406d0e32e1, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 4f3dcf203103fca48bda2a05b3a3814e, type: 3}
-  - {fileID: 21300000, guid: 1b3acf613c86a7443a5677f0280e4e43, type: 3}
+  - {fileID: 21300000, guid: c77aafc0e7089ae48a60bb406d0e32e1, type: 3}
+  - {fileID: 21300000, guid: b9aa61d16a419c544821bfc00fb2c7d6, type: 3}
   - {fileID: 21300000, guid: 6069c473bf151a14191dbdbed57020a6, type: 3}
+  - {fileID: 21300000, guid: 8925e786a9ba04d40b0dfee7cc9bda9b, type: 3}
+  - {fileID: 21300000, guid: 2e080a38be6e1d545925a6be71ba4d61, type: 3}
   m_PackedSpriteNamesToIndex:
   - portrait_kohaku_01
-  - portrait_misaki_B_01
+  - portrait_kohaku_03
+  - portrait_toko_05
   - portrait_yuko_01
+  - portrait_toko_03
+  - portrait_yuko_04
   m_RenderDataMap: {}
   m_Tag: PlayerAtlas
   m_IsVariant: 0

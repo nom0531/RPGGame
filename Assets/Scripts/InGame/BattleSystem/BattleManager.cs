@@ -52,7 +52,6 @@ public class BattleManager : MonoBehaviour
 
     private GameState m_gameState;                              // ゲームのステート
     private OperatingPlayer m_operatingPlayer;                  // 操作しているプレイヤー
-    private GameManager m_gameManager;
     private BattleSystem m_battleSystem;                        // バトルシステム
     private PauseManager m_pauseManager;
     private TurnManager m_turnManager;                          // ターン管理システム
@@ -141,9 +140,8 @@ public class BattleManager : MonoBehaviour
         m_playerMoveList = new List<PlayerMove>(playerMoveList);
         m_playerMoveList.Sort((a, b) => a.MyNumber.CompareTo(b.MyNumber));    // 番号順にソート
 
-        UpdateUIStatus();
-
         var levelNumber = GameManager.Instance.LevelNumber;
+
         // エネミーを用意する
         m_enemySum = m_battleSystem.GetRandomValue(1, MAX_ENEMY_NUM);
         // エネミーの画像を用意する
@@ -171,7 +169,6 @@ public class BattleManager : MonoBehaviour
                 enemyMove.SetTrueEnemyRegister(enemyMove.MyNumber);
             }
         }
-
         var enemyMoveList = FindObjectsOfType<EnemyMove>();
         m_enemyMoveList = new List<EnemyMove>(enemyMoveList);
 
@@ -185,8 +182,7 @@ public class BattleManager : MonoBehaviour
 #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            m_playerMoveList[0].DecrementHP(10);
-            m_playerMoveList[1].DecrementSP(10);
+            m_gameState = GameState.enBattleWin;
         }
 #endif
     }
@@ -220,19 +216,7 @@ public class BattleManager : MonoBehaviour
                     case OperatingPlayer.enAttacker:
                     case OperatingPlayer.enBuffer:
                     case OperatingPlayer.enHealer:
-#if UNITY_EDITOR
-                        Debug.Log(PlayerData.playerDataList[(int)m_operatingPlayer].PlayerName + "のターン");
-#endif
                         m_playerTurn.PlayerAction((int)m_operatingPlayer);
-
-                        // 再度行動可能なら
-                        if (m_battleSystem.OneMore == true)
-                        {
-                            // ターンを渡す
-                            m_playerMoveList[(int)m_operatingPlayer].ResetStatus();
-                            BattleButton[(int)m_operatingPlayer].ResetStatus();
-                            break;
-                        }
                         break;
                 }
                 break;
@@ -240,23 +224,12 @@ public class BattleManager : MonoBehaviour
             case TurnStatus.enEnemy:
                 for (int enemyNumber = m_enemyNumber; enemyNumber < m_enemyMoveList.Count; enemyNumber++)
                 {
-#if UNITY_EDITOR
-                    Debug.Log(EnemyData.enemyDataList[m_enemyMoveList[enemyNumber].MyNumber].EnemyName + "のターン");
-#endif
                     // 死亡している際は実行しない
                     if (m_enemyMoveList[enemyNumber].ActorHPState == ActorHPState.enDie)
                     {
                         continue;
                     }
                     m_enemyTurn.EnemyAction(enemyNumber);
-                    // 再度行動可能なら
-                    if (m_battleSystem.OneMore == true)
-                    {
-                        // ターンを渡す
-                        m_enemyMoveList[enemyNumber].ResetStatus();
-                        enemyNumber--;
-                        continue;
-                    }
                 }
                 m_enemyNumber++;
                 break;

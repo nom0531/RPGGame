@@ -117,6 +117,7 @@ public class PlayerStatusSystem : MonoBehaviour
         {
             Data_Sprite.GetComponent<Image>().sprite = PlayerData.playerDataList[number].PlayerSprite;
             ResetButton();
+            return;
         }
         if (m_playerButtonList[1].ButtonDownFlag == true)
         {
@@ -266,7 +267,7 @@ public class PlayerStatusSystem : MonoBehaviour
             skillButton.MyNumber = PlayerData.playerDataList[m_gameManager.PlayerNumber].skillDataList[i].ID;
             skillButton.MyNumberInPlayerData = i;
             // Animatorを所持しているオブジェクトを教える
-            button.GetComponent<UIAnimation>().Animator = Canvas;
+            button.GetComponent<UIAnimation>().AnimatorObject = Canvas;
         }
     }
 
