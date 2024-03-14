@@ -198,10 +198,6 @@ public class EnemyDataEditor : EditorWindow
                     m_enemyDataBase.enemyDataList[m_selectNumber].LUCK
                     );
 
-            m_enemyDataBase.enemyDataList[m_selectNumber].HP = 50;
-            m_enemyDataBase.enemyDataList[m_selectNumber].DEF = 5;
-            m_enemyDataBase.enemyDataList[m_selectNumber].ATK = 10;
-
             EditorGUILayout.Space();
 
             DrawSkill();

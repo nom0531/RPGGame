@@ -32,6 +32,7 @@ public class EnemyMove : MonoBehaviour
     private SaveDataManager m_saveDataManager;
     private BattleSystem m_battleSystem;
     private BattleManager m_battleManager;
+    private PauseManager m_pauseManager;
     private StagingManager m_stagingManager;
     private StateAbnormalCalculation m_abnormalCalculation;
     private BuffCalculation m_buffCalculation;
@@ -146,6 +147,7 @@ public class EnemyMove : MonoBehaviour
         m_stagingManager = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<StagingManager>();
         m_battleSystem = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<BattleSystem>();
         m_battleManager = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<BattleManager>();
+        m_pauseManager = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<PauseManager>();
         m_abnormalCalculation = GetComponent<StateAbnormalCalculation>();
         m_buffCalculation = GetComponent<BuffCalculation>();
         m_drawCommandText = GetComponent<DrawCommandText>();
@@ -167,7 +169,7 @@ public class EnemyMove : MonoBehaviour
         {
             return;
         }
-        if (m_battleManager.PauseFlag == true)
+        if (m_pauseManager.PauseFlag == true)
         {
             return;
         }

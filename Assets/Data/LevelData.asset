@@ -1719,7 +1719,7 @@ MonoBehaviour:
       enemyMoveList: []
   - LevelName: "\u30AF\u30A8\u30B9\u30C87"
     LevelState: 3
-    LevelDetail: 
+    LevelDetail: "\u8A73\u7D30\u8A2D\u5B9A"
     enemyDataList:
     - EnemyName: 
       ID: 0
@@ -2263,7 +2263,7 @@ MonoBehaviour:
       enemyMoveList: []
   - LevelName: "\u30AF\u30A8\u30B9\u30C88"
     LevelState: 3
-    LevelDetail: 
+    LevelDetail: "\u8A73\u7D30\u8A2D\u5B9A"
     enemyDataList:
     - EnemyName: 
       ID: 0
@@ -2807,7 +2807,7 @@ MonoBehaviour:
       enemyMoveList: []
   - LevelName: "\u30AF\u30A8\u30B9\u30C89"
     LevelState: 4
-    LevelDetail: 
+    LevelDetail: "\u8A73\u7D30\u8A2D\u5B9A"
     enemyDataList:
     - EnemyName: 
       ID: 0
@@ -3441,7 +3441,7 @@ MonoBehaviour:
       enemyMoveList: []
   - LevelName: "\u30AF\u30A8\u30B9\u30C810"
     LevelState: 4
-    LevelDetail: 
+    LevelDetail: "\u8A73\u7D30\u8A2D\u5B9A"
     enemyDataList:
     - EnemyName: 
       ID: 0

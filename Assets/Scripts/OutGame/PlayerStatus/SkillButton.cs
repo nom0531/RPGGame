@@ -5,13 +5,20 @@ using UnityEngine;
 public class SkillButton : MonoBehaviour
 {
     private PlayerStatusSystem m_playerStatusSystem;
-    private int m_myNumber = -1;        // 自身の番号
-    private bool m_isGetData = false;   // データを獲得する
+    private int m_myNumber = -1;                // 自身の番号
+    private int m_myNumberInPlayerData = -1;    // プレイヤーデータ内での自身の番号
+    private bool m_isGetData = false;           // データを獲得する
 
     public int MyNumber
     {
-        set => m_myNumber = value;
         get => m_myNumber;
+        set => m_myNumber = value;
+    }
+
+    public int MyNumberInPlayerData
+    {
+        get => m_myNumberInPlayerData;
+        set => m_myNumberInPlayerData = value;
     }
 
     private void Start()
@@ -25,7 +32,7 @@ public class SkillButton : MonoBehaviour
         {
             return;
         }
-        m_playerStatusSystem.GetData(MyNumber);
+        m_playerStatusSystem.GetData(MyNumber, MyNumberInPlayerData);
         m_isGetData = false;
     }
 

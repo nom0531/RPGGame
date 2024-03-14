@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
-    [SerializeField, Header("参照オブジェクト")]
-    private GameObject SaveDataObject;
+    [SerializeField]
+    private GameObject SaveDataObject, SoundObject;
 
     private SaveDataManager m_saveDataManager;
+    private SoundManager m_soundManamager;
     private int m_selectLevelNumber = 0;
     private int m_selectPlayerNumber = 0;
 
@@ -21,6 +22,19 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
                 m_saveDataManager = FindObjectOfType<SaveDataManager>();
             }
             return m_saveDataManager;
+        }
+    }
+
+    public SoundManager SoundManager
+    {
+        get
+        {
+            if (m_soundManamager == null)
+            {
+                // 存在していないなら探す
+                m_soundManamager = FindObjectOfType<SoundManager>();
+            }
+            return m_soundManamager;
         }
     }
 
@@ -40,9 +54,11 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         // 自身はシーンを跨いでも削除されないようにする
         DontDestroyOnLoad(gameObject);
-        // セーブデータを作成する
+        // オブジェクトを作成する
         var saveDataObject = Instantiate(SaveDataObject);
         m_saveDataManager = saveDataObject.GetComponent<SaveDataManager>();
+        var soundObject = Instantiate(SoundObject);
+        m_soundManamager = soundObject.GetComponent<SoundManager>();
         Physics.autoSimulation = false;
     }
 

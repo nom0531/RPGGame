@@ -62,9 +62,9 @@ public class BattleButton : MonoBehaviour
         }
 
         // 番号が異なる際に値を変更する
-        if (m_currentTurnPlayerNumber != m_battleManager.OperatingPlayerNumber)
+        if (m_currentTurnPlayerNumber != (int)m_battleManager.OperatingPlayer)
         {
-            m_currentTurnPlayerNumber = m_battleManager.OperatingPlayerNumber;
+            m_currentTurnPlayerNumber = (int)m_battleManager.OperatingPlayer;
         }
         // 沈黙状態ならボタンを押せない
         if (m_playerMoveList[m_currentTurnPlayerNumber].ActorAbnormalState == ActorAbnormalState.enSilence)

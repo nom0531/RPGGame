@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class LockOnButton : MonoBehaviour
 {
-    private LockOnSystem m_lockOnSystem;
+    private LockOnManager m_lockOnSystem;
 
     private void Awake()
     {
-        m_lockOnSystem = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<LockOnSystem>();
+        m_lockOnSystem = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<LockOnManager>();
     }
 
     /// <summary>

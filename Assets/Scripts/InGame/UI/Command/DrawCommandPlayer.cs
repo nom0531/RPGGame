@@ -14,15 +14,17 @@ public class DrawCommandPlayer : MonoBehaviour
     private float MoveSpeed = 10.0f;
 
     private BattleManager m_battleManager;
-    private int m_operatingPlayer = 0;     // 現在操作しているプレイヤー
+    private TurnManager m_turnManager;
+    private PauseManager m_pauseManager;
     private float m_timer = 0.0f;          // タイマー
 
     // Start is called before the first frame update
     private void Start()
     {
         m_battleManager = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<BattleManager>();
-        m_operatingPlayer = m_battleManager.OperatingPlayerNumber;
-        CommandUI.transform.position = PlayerIcon[m_operatingPlayer].transform.position;
+        m_pauseManager = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<PauseManager>();
+        m_turnManager = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<TurnManager>();
+        CommandUI.transform.position = PlayerIcon[(int)m_battleManager.OperatingPlayer].transform.position;
     }
 
     private void FixedUpdate()
@@ -36,18 +38,15 @@ public class DrawCommandPlayer : MonoBehaviour
             return;
         }
         // ポーズ中なら中断
-        if (m_battleManager.PauseFlag == true)
+        if (m_pauseManager.PauseFlag == true)
         {
             return;
         }
-
-        // エネミーのターン　または　番号が同じ時は処理を実行しない
-        if (m_battleManager.TurnStatus == TurnStatus.enEnemy
-            || m_operatingPlayer == m_battleManager.OperatingPlayerNumber)
+        // エネミーのターンは処理を実行しない
+        if (m_turnManager.TurnStatus == TurnStatus.enEnemy)
         {
             return;
         }
-
         m_timer = 0.0f;
     }
 
@@ -69,10 +68,9 @@ public class DrawCommandPlayer : MonoBehaviour
             return;
         }
 
-        m_operatingPlayer = m_battleManager.OperatingPlayerNumber;
         // 始点と終点を取得
         var start = CommandUI.transform.position;
-        var end = PlayerIcon[m_operatingPlayer].transform.position;
+        var end = PlayerIcon[(int)m_battleManager.OperatingPlayer].transform.position;
         // 補間位置を計算
         m_timer =+ Time.deltaTime * MoveSpeed;
         // -t^2 + 2t

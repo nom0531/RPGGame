@@ -45,7 +45,7 @@ MonoBehaviour:
     DEF: 5
     SPD: 10
     LUCK: 10
-    EnemyDetail: 
+    EnemyDetail: "\u6C17\u307E\u307E\u306B\u98DB\u3093\u3067\u3044\u308B\u3053\u3068\u304C\u591A\u3044\u3002\n\u975E\u529B\u3060\u304C\u7D20\u65E9\u3044\u3002"
     skillDataList:
     - SkillName: "\u30A6\u30A3\u30F3\u30C91"
       ID: 6
@@ -116,7 +116,7 @@ MonoBehaviour:
     DEF: 5
     SPD: 5
     LUCK: 20
-    EnemyDetail: 
+    EnemyDetail: "\u30D4\u30AF\u30B7\u30FC\u3092\u307E\u3068\u3081\u308B\u30EA\u30FC\u30C0\u30FC\u3002\n\u5C0F\u3055\u304F\u3066\u3059\u3070\u3057\u3063\u3053\u3044\u3002"
     skillDataList:
     - SkillName: "\u30A6\u30A3\u30F3\u30C91"
       ID: 6
@@ -198,7 +198,7 @@ MonoBehaviour:
       ActorHPState: 1
       ActorAbnormalState: 5
       ActionType: 1
-  - EnemyName: "\u30AA\u30A6\u30B5\u30DE\u30DA\u30F3\u30AE\u30F3"
+  - EnemyName: "\u30DA\u30F3\u30AE\u30F3\u30CA\u30A4\u30C8"
     ID: 3
     EnemySprite: {fileID: 21300000, guid: e5b92bffd61cc384db109a9854291657, type: 3}
     EnemySize: 1
@@ -210,7 +210,7 @@ MonoBehaviour:
     DEF: 5
     SPD: 10
     LUCK: 10
-    EnemyDetail: 
+    EnemyDetail: "\u9A0E\u58EB\u306B\u3042\u3053\u304C\u308C\u3066\u3044\u308B\u3002\n\u3069\u3046\u3084\u3063\u3066\u5263\u3092\u6301\u3063\u3066\u3044\u308B\u306E\u304B\u306F\u8B0E\u3002"
     skillDataList:
     - SkillName: "\u30A2\u30A4\u30B92"
       ID: 4
@@ -327,7 +327,7 @@ MonoBehaviour:
     DEF: 5
     SPD: 70
     LUCK: 85
-    EnemyDetail: "\u30E2\u30F3\u30B9\u30BF\u30FC\u306E\u305F\u307E\u3054\u3002"
+    EnemyDetail: "\u30E2\u30F3\u30B9\u30BF\u30FC\u306E\u305F\u307E\u3054\u3002\n\u5012\u3059\u3068\u3044\u3044\u3053\u3068\u304C\u3042\u308B\u2026\u304B\u3082\u3057\u308C\u306A\u3044\u3002"
     skillDataList:
     - SkillName: "\u7121\u5C5E\u60271"
       ID: 18
@@ -403,7 +403,7 @@ MonoBehaviour:
     DEF: 5
     SPD: 10
     LUCK: 10
-    EnemyDetail: 
+    EnemyDetail: "\u708E\u306E\u5996\u7CBE\u3002\n\u5E38\u306B\u71C3\u3048\u3066\u3044\u308B\u3002"
     skillDataList:
     - SkillName: "\u30D5\u30A1\u30A4\u30A21"
       ID: 0
@@ -446,7 +446,7 @@ MonoBehaviour:
     DEF: 5
     SPD: 25
     LUCK: 20
-    EnemyDetail: 
+    EnemyDetail: "\u708E\u306E\u7CBE\u970A\u3002\n\u71C3\u3048\u308B\u708E\u306E\u4E2D\u3084\u6EB6\u5CA9\u306E\u4E2D\u306B\u4F4F\u3093\u3067\u3044\u308B\u3002"
     skillDataList:
     - SkillName: "\u30D5\u30A1\u30A4\u30A21"
       ID: 0
@@ -563,7 +563,7 @@ MonoBehaviour:
     DEF: 5
     SPD: 35
     LUCK: 20
-    EnemyDetail: 
+    EnemyDetail: "\u4E0D\u6B7B\u9CE5\u3002\n\u5BFF\u547D\u3092\u8FCE\u3048\u3066\u3082\u3069\u3053\u304B\u3067\u5FA9\u6D3B\u3059\u308B\u3002"
     skillDataList:
     - SkillName: "\u30D5\u30A1\u30A4\u30A22"
       ID: 1
@@ -672,7 +672,7 @@ MonoBehaviour:
     DEF: 5
     SPD: 15
     LUCK: 20
-    EnemyDetail: 
+    EnemyDetail: "\u6C37\u306E\u5996\u7CBE\u3002\n\u56FA\u5F62\u3067\u306F\u4E0D\u4FBF\u306A\u306E\u304B\u6DB2\u4F53\u3067\u3042\u308B\u3053\u3068\u304C\u591A\u3044\u3002"
     skillDataList:
     - SkillName: "\u30A2\u30A4\u30B91"
       ID: 3
@@ -3470,7 +3470,7 @@ MonoBehaviour:
     ID: 41
     EnemySprite: {fileID: 21300000, guid: 0346e51b50d24d64eb7c4b29df6df659, type: 3}
     EnemySize: 2
-    EnhancementPoint: 80
+    EnhancementPoint: 120
     LevelState: 2
     EnemyElement: 02000000020000000200000002000000020000000000000002000000
     HP: 50

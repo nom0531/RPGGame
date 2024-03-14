@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1290138128823890218}
   - component: {fileID: -6414483010034345448}
   - component: {fileID: -2831462311912109265}
+  - component: {fileID: 4378727008524538313}
   m_Layer: 5
   m_Name: EnemyButton
   m_TagString: Untagged
@@ -148,6 +149,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4378727008524538313}
+        m_TargetAssemblyTypeName: SE, Assembly-CSharp
+        m_MethodName: PlaySE
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1290138128823890218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,3 +206,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4378727008524538313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1661888364248976764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56146db0b81c70b4286ee87605c68e42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SENumber: 0

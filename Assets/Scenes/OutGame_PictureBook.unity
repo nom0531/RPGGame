@@ -769,6 +769,75 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 304603225}
   m_CullTransparentMesh: 1
+--- !u!1001 &445448021
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5405443595314736232, guid: 3a416b8b4f28ed0488b8088d25042d98,
+        type: 3}
+      propertyPath: m_Name
+      value: BGM
+      objectReference: {fileID: 0}
+    - target: {fileID: 5405443595314736238, guid: 3a416b8b4f28ed0488b8088d25042d98,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5405443595314736238, guid: 3a416b8b4f28ed0488b8088d25042d98,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 764.4662
+      objectReference: {fileID: 0}
+    - target: {fileID: 5405443595314736238, guid: 3a416b8b4f28ed0488b8088d25042d98,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 265.40674
+      objectReference: {fileID: 0}
+    - target: {fileID: 5405443595314736238, guid: 3a416b8b4f28ed0488b8088d25042d98,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 358.96042
+      objectReference: {fileID: 0}
+    - target: {fileID: 5405443595314736238, guid: 3a416b8b4f28ed0488b8088d25042d98,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5405443595314736238, guid: 3a416b8b4f28ed0488b8088d25042d98,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5405443595314736238, guid: 3a416b8b4f28ed0488b8088d25042d98,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5405443595314736238, guid: 3a416b8b4f28ed0488b8088d25042d98,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5405443595314736238, guid: 3a416b8b4f28ed0488b8088d25042d98,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5405443595314736238, guid: 3a416b8b4f28ed0488b8088d25042d98,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5405443595314736238, guid: 3a416b8b4f28ed0488b8088d25042d98,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3a416b8b4f28ed0488b8088d25042d98, type: 3}
 --- !u!1 &496784062
 GameObject:
   m_ObjectHideFlags: 0
@@ -1754,6 +1823,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManagerObject
       objectReference: {fileID: 0}
+    - target: {fileID: 7878820532156880494, guid: 9a75827524d876e449fc04c7e1316f12,
+        type: 3}
+      propertyPath: SoundObject
+      value: 
+      objectReference: {fileID: 5255022437351948915, guid: 75a2c607143d2684893c0c29bb36e0ee,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a75827524d876e449fc04c7e1316f12, type: 3}
 --- !u!1 &1080682268
@@ -3602,6 +3677,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8972870903168949139, guid: 5772182cd2a5b7c4e95e6bf7c333a262,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8972870903168949139, guid: 5772182cd2a5b7c4e95e6bf7c333a262,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8972870903168949139, guid: 5772182cd2a5b7c4e95e6bf7c333a262,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 2138089476}
+    - target: {fileID: 8972870903168949139, guid: 5772182cd2a5b7c4e95e6bf7c333a262,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8972870903168949139, guid: 5772182cd2a5b7c4e95e6bf7c333a262,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: PlaySE
+      objectReference: {fileID: 0}
+    - target: {fileID: 8972870903168949139, guid: 5772182cd2a5b7c4e95e6bf7c333a262,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: SE, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8972870903168949139, guid: 5772182cd2a5b7c4e95e6bf7c333a262,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5772182cd2a5b7c4e95e6bf7c333a262, type: 3}
 --- !u!224 &2138089474 stripped
@@ -3610,3 +3720,22 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 2138089473}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2138089475 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8972870903168949136, guid: 5772182cd2a5b7c4e95e6bf7c333a262,
+    type: 3}
+  m_PrefabInstance: {fileID: 2138089473}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2138089476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2138089475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56146db0b81c70b4286ee87605c68e42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SENumber: 1

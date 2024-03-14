@@ -169,9 +169,9 @@ public class PlayerStatusSystem : MonoBehaviour
     /// <summary>
     /// データを取得してボタンのテキストを変更する
     /// </summary>
-    public void GetData(int skillNumber)
+    public void GetData(int skillNumber, int skillNumberInPlayerData)
     {
-        if (m_gameManager.SaveDataManager.SaveData.saveData.SkillRegisters[m_gameManager.PlayerNumber].PlayerSkills[skillNumber] == true)
+        if (m_gameManager.SaveDataManager.SaveData.saveData.SkillRegisters[m_gameManager.PlayerNumber].PlayerSkills[skillNumberInPlayerData] == true)
         {
             // ボタンのテキストを変更する
             OKButton.GetComponent<Button>().interactable = false;
@@ -262,7 +262,9 @@ public class PlayerStatusSystem : MonoBehaviour
             button.transform.localScale = Vector3.one;
             button.transform.localPosition = Vector3.zero;
             // 自身の番号を教える
-            button.GetComponent<SkillButton>().MyNumber = PlayerData.playerDataList[m_gameManager.PlayerNumber].skillDataList[i].ID;
+            var skillButton = button.GetComponent<SkillButton>();
+            skillButton.MyNumber = PlayerData.playerDataList[m_gameManager.PlayerNumber].skillDataList[i].ID;
+            skillButton.MyNumberInPlayerData = i;
             // Animatorを所持しているオブジェクトを教える
             button.GetComponent<UIAnimation>().Animator = Canvas;
         }

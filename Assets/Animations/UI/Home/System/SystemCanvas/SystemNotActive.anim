@@ -1311,18 +1311,18 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.33333334
-    functionName: SetActive_False
+  - time: 0
+    functionName: PushFlag_True
     data: 
-    objectReferenceParameter: {fileID: 11500000, guid: a94f783bd2afbc9479dc2ff3d9b9c98c,
+    objectReferenceParameter: {fileID: 11500000, guid: 2b0051ccafe8f864eb9919adfbdaa2c9,
       type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.33333334
-    functionName: PushFlag_True
+    functionName: SetActive_False
     data: 
-    objectReferenceParameter: {fileID: 11500000, guid: 2b0051ccafe8f864eb9919adfbdaa2c9,
+    objectReferenceParameter: {fileID: 11500000, guid: a94f783bd2afbc9479dc2ff3d9b9c98c,
       type: 3}
     floatParameter: 0
     intParameter: 0

@@ -74,7 +74,7 @@ public class PlayerSkill : MonoBehaviour
     public void InstantiateSkillButton()
     {
         var saveDataManager = GameManager.Instance.SaveDataManager;
-        m_playerNumber = m_battleManager.OperatingPlayerNumber;
+        m_playerNumber = (int)m_battleManager.OperatingPlayer;
 
         for (int i = 0; i < m_playerData.playerDataList[m_playerNumber].skillDataList.Count; i++)
         {

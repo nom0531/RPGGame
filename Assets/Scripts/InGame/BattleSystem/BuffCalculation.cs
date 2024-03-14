@@ -5,6 +5,8 @@ using UnityEngine;
 public class BuffCalculation : MonoBehaviour
 {
     private BattleManager m_battleManager;
+    private TurnManager m_turnManager;
+    private PauseManager m_pauseManager;
     private bool[] m_buffFlag =
         new bool[(int)BuffStatus.enNum];     // バフがかかっているかどうか
     private bool[] m_effectEndFlag =
@@ -75,14 +77,12 @@ public class BuffCalculation : MonoBehaviour
         m_buffEffectTime[(int)buffStatus] += effectTime;
     }
 
-    private void Awake()
-    {
-        m_battleManager = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<BattleManager>();
-    }
-
     // Start is called before the first frame update
     private void Start()
     {
+        m_turnManager = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<TurnManager>();
+        m_pauseManager = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<PauseManager>();
+        m_battleManager = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<BattleManager>();
         for (int i = 0; i < (int)BuffStatus.enNum; i++)
         {
             // 値を初期化する
@@ -99,17 +99,18 @@ public class BuffCalculation : MonoBehaviour
         {
             return;
         }
-        if(m_battleManager.PauseFlag == true)
+        // ポーズ中なら中断
+        if(m_pauseManager.PauseFlag == true)
         {
             return;
         }
         // 保持している経過ターン数が現在の経過ターン数と同じなら中断
-        if(m_turnSum == m_battleManager.TurnSum)
+        if(m_turnSum == m_turnManager.TurnSum)
         {
             return;
         }
         // 値を更新する
-        m_turnSum = m_battleManager.TurnSum;
+        m_turnSum = m_turnManager.TurnSum;
 
         for (int i = 0; i< (int)BuffStatus.enNum; i++)
         {
