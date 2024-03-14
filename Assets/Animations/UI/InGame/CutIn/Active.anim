@@ -487,6 +487,14 @@ AnimationClip:
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
   m_Events:
+  - time: 0
+    functionName: PlaySE
+    data: 
+    objectReferenceParameter: {fileID: 11500000, guid: a94f783bd2afbc9479dc2ff3d9b9c98c,
+      type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 1.1666666
     functionName: SetActive_False
     data: 

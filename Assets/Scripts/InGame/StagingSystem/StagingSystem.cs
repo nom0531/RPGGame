@@ -21,9 +21,10 @@ public class StagingSystem : MonoBehaviour
     [SerializeField, Tooltip("エフェクトの生成終了の待ち時間(秒)")]
     private float EndWaitTime = 1.5f;
 
-    private DrawDamageText m_drawDamageText;                    // ダメージ量
+    private BattleSystem m_battleSystem;
     private CinemachineTargetGroup m_cinemachineTargetGroup;    // ターゲットグループ
     private SkillDataBase m_skillData;
+    private SE m_se;
     private bool m_isPlayEffect = false;                        // trueなら再生中。falseなら再生していない
     private const float TARGET_WEIGHT = 1.0f;
     private const float TARGET_RADIUS = 1.0f;
@@ -43,7 +44,8 @@ public class StagingSystem : MonoBehaviour
 
     private void Start()
     {
-        m_drawDamageText = GameObject.FindGameObjectWithTag("UICanvas").GetComponent<DrawDamageText>();
+        m_se = GetComponent<SE>();
+        m_battleSystem = GetComponent<BattleSystem>();
         CommandImage.SetActive(false);
         CommandText.SetActive(false);
         ResetPriority();
@@ -145,14 +147,15 @@ public class StagingSystem : MonoBehaviour
         SetCommandName(actionType, skillNumber);
         // 生成するエフェクトを設定
         var effect = InstantiateEffect[(int)actionType];
+        m_se.Number = SENumber.enAttack;
         var scale = EFFECT_SCALE;
-        // スキルでの攻撃なら、データから参照する
         if (actionType == ActionType.enSkillAttack)
         {
+            // スキルでの攻撃なら、データから参照する
             effect = m_skillData.skillDataList[skillNumber].SkillEffect;
             scale = m_skillData.skillDataList[skillNumber].EffectScale;
+            SetSE(skillNumber);
         }
-        // 生成エフェクトがNullでない場合
         if(effect != null)
         {
             // サイズを調整
@@ -160,9 +163,44 @@ public class StagingSystem : MonoBehaviour
             Instantiate(effect, TargetGroupObject.transform);
         }
         m_isPlayEffect = true;
+        m_se.PlaySE();                                            // 効果音を再生
         await UniTask.Delay(TimeSpan.FromSeconds(EndWaitTime));
-        CommandImage.SetActive(false);                        // テキストを非表示
-        m_isPlayEffect = false;                               // 再生を終了する
+        CommandImage.SetActive(false);                          // テキストを非表示
+        m_isPlayEffect = false;                                 // 再生を終了する
+    }
+
+    /// <summary>
+    /// SEを設定する
+    /// </summary>
+    private void SetSE(int skillNumber)
+    {
+        // スキルの効果別
+        switch (m_skillData.skillDataList[skillNumber].SkillType)
+        {
+            case SkillType.enBuff:
+                //m_se.Number = SENumber.enBuff;
+                return;
+            case SkillType.enDeBuff:
+                //m_se.Number = SENumber.enDebuff;
+                return;
+            case SkillType.enHeal:
+            case SkillType.enResurrection:
+                m_se.Number = SENumber.enHeal;
+                return;
+        }
+        // 属性耐性別
+        switch (m_battleSystem.ResistanceState)
+        {
+            case ResistanceState.enWeak:
+                m_se.Number = SENumber.enWeak;
+                return;
+            case ResistanceState.enNormal:
+                m_se.Number = SENumber.enMagicAttack;
+                return;
+            case ResistanceState.enResist:
+                m_se.Number = SENumber.enRegister;
+                return;
+        }
     }
 
     /// <summary>
@@ -175,21 +213,5 @@ public class StagingSystem : MonoBehaviour
         CommandText.SetActive(true);
         await UniTask.Delay(TimeSpan.FromSeconds(EndWaitTime));
         CommandText.SetActive(false);
-    }
-
-    /// <summary>
-    /// 値を表示する
-    /// </summary>
-    public void DrawValue(List<TextData> textDataList)
-    {
-        for (int i = 0; i< textDataList.Count; i++)
-        {
-            if (textDataList[i].isHit == false)
-            {
-                m_drawDamageText.ViewDamage("miss", textDataList[i].gameObject);
-                return;
-            }
-            m_drawDamageText.ViewDamage(textDataList[i].value.ToString(), textDataList[i].gameObject);
-        }
     }
 }

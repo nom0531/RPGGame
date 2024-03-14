@@ -7,6 +7,11 @@ public class SE : MonoBehaviour
     [SerializeField, Header("Ä¶‚·‚éSE‚Ì”Ô†")]
     private SENumber SENumber;
 
+    public SENumber Number
+    {
+        set => SENumber = value;
+    }
+
     private SoundManager m_soundManager;
 
     // Start is called before the first frame update

@@ -14,16 +14,6 @@ public enum StagingState
     enStangingEnd,      // 演出終了
 }
 
-/// <summary>
-/// テキスト表示用のデータ
-/// </summary>
-public struct TextData
-{
-    public int value;
-    public bool isHit;
-    public GameObject gameObject;
-}
-
 public class StagingManager : MonoBehaviour
 {
     [SerializeField, Header("参照オブジェクト")]
@@ -40,7 +30,6 @@ public class StagingManager : MonoBehaviour
     private UIAnimation m_uIAnimation;
     private List<EnemyMove> m_enemyMoveList;
     private List<PlayerMove> m_playerMoveList;
-    private List<TextData> m_testDataList;
     private SkillDataBase m_skillData;
     private StagingState m_stangingState = StagingState.enStangingWaiting;
     private ActionType m_actionType = ActionType.enNull;
@@ -55,22 +44,6 @@ public class StagingManager : MonoBehaviour
     {
         get => m_actionType;
         set => m_actionType = value;
-    }
-
-    public List<TextData> TextData
-    {
-        get => m_testDataList;
-    }
-
-    /// <summary>
-    /// テキストデータを追加する
-    /// </summary>
-    /// <param name="value">値</param>
-    /// <param name="isHit">攻撃がヒットしたかどうか</param>
-    public void AddTextData(int value, bool isHit, GameObject gameObject)
-    {
-        var textData = new TextData() { value = value, isHit = isHit, gameObject = gameObject};
-        m_testDataList.Add(textData);
     }
 
     private void Awake()

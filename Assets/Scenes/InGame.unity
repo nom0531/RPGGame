@@ -4506,6 +4506,7 @@ GameObject:
   - component: {fileID: 608233984}
   - component: {fileID: 608233983}
   - component: {fileID: 608233986}
+  - component: {fileID: 608233987}
   m_Layer: 0
   m_Name: ResultSystem
   m_TagString: Untagged
@@ -4567,6 +4568,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AnimatorGameObject: {fileID: 1554104038}
+--- !u!114 &608233987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 608233982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56146db0b81c70b4286ee87605c68e42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SENumber: 0
 --- !u!1 &624913498
 GameObject:
   m_ObjectHideFlags: 0
@@ -9027,7 +9041,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1185286901}
-  m_LocalRotation: {x: -0.16712253, y: 0.73077285, z: 0.19290228, w: 0.63311124}
+  m_LocalRotation: {x: -0.16712254, y: 0.7307729, z: 0.19290236, w: 0.6331111}
   m_LocalPosition: {x: 53, y: 10, z: 196.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9073,7 +9087,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 113175931}
-          m_TargetAssemblyTypeName: 
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: 
           m_Mode: 1
           m_Arguments:
@@ -9471,6 +9485,7 @@ GameObject:
   - component: {fileID: 1227436734}
   - component: {fileID: 1227436731}
   - component: {fileID: 1227436732}
+  - component: {fileID: 1227436735}
   m_Layer: 0
   m_Name: BattleSystem
   m_TagString: BattleSystem
@@ -9738,6 +9753,19 @@ MonoBehaviour:
   ResultObject: {fileID: 608233982}
   m_turnStatus: 0
   WaitTime: 1
+--- !u!114 &1227436735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1227436718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56146db0b81c70b4286ee87605c68e42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SENumber: 0
 --- !u!1 &1229299627
 GameObject:
   m_ObjectHideFlags: 0
@@ -15497,7 +15525,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1910193627}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4044717213e31446939f7bd49c896ea, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f7633c93f0364a418841eeb8b058634, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_TrackedObjectOffset: {x: 0, y: 0, z: 0}
@@ -15515,6 +15543,18 @@ MonoBehaviour:
   m_BiasX: 0
   m_BiasY: 0
   m_CenterOnActivate: 1
+  m_GroupFramingSize: 0.8
+  m_FramingMode: 2
+  m_FrameDamping: 2
+  m_AdjustmentMode: 0
+  m_MaxDollyIn: 5000
+  m_MaxDollyOut: 5000
+  m_MinimumDistance: 1
+  m_MaximumDistance: 5000
+  m_MinimumFOV: 3
+  m_MaximumFOV: 60
+  m_MinimumOrthoSize: 1
+  m_MaximumOrthoSize: 5000
 --- !u!1 &1916602594
 GameObject:
   m_ObjectHideFlags: 0
@@ -15680,6 +15720,7 @@ GameObject:
   - component: {fileID: 1922690761}
   - component: {fileID: 1922690759}
   - component: {fileID: 1922690760}
+  - component: {fileID: 1922690762}
   m_Layer: 0
   m_Name: CutIn
   m_TagString: Untagged
@@ -15774,6 +15815,19 @@ MonoBehaviour:
   - {r: 0.05240294, g: 0.603864, b: 0.8679245, a: 1}
   - {r: 0.49705726, g: 0.8509804, b: 0.027450955, a: 1}
   - {r: 0.9339623, g: 0.5447671, b: 0.17093267, a: 1}
+--- !u!114 &1922690762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922690756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56146db0b81c70b4286ee87605c68e42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SENumber: 5
 --- !u!1 &1931631621
 GameObject:
   m_ObjectHideFlags: 0

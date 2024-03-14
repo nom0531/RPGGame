@@ -52,6 +52,16 @@ public enum BuffStatus
     enNum
 }
 
+/// <summary>
+/// 属性との相性
+/// </summary>
+public enum ResistanceState
+{
+    enWeak,
+    enNormal,
+    enResist,
+}
+
 public class BattleSystem : MonoBehaviour
 {
     [SerializeField, Header("参照データ")]
@@ -59,19 +69,28 @@ public class BattleSystem : MonoBehaviour
     [SerializeField]
     private EnemyDataBase EnemyData;
 
-    private bool m_isWeak = false;      // 弱点だったかどうか
-    private bool m_isHit = false;       // 攻撃が当たるかどうか
+    private ResistanceState m_compatibilityState = ResistanceState.enNormal;  // 耐性
+    private bool m_isWeak = false;                                            // 弱点を付いたならtrue
+    private bool m_isHit = false;                                             // 攻撃が当たるかどうか
 
     private const int NORMAL_ATTACK_PROBABILITY = 95;
     private const int SKILL_ATTACK_PROBABILITY = 95;
     private const int SKILL_HEAL_PROBABILITY = 100;
     private const int SKILL_BUFF_PROBABILITY = 95;
 
+    public ResistanceState ResistanceState
+    {
+        get => m_compatibilityState;
+        set => m_compatibilityState = value;
+    }
+
+
     public bool WeakFlag
     {
         get => m_isWeak;
-        set => m_isWeak = value;
+        set => m_isWeak = false;
     }
+
 
     public bool HitFlag
     {
@@ -173,16 +192,19 @@ public class BattleSystem : MonoBehaviour
     public int PlayerElementResistance(int playerNumber, int skillElement, int damage)
     {
         float finalDamage = damage;
-        switch(EnemyData.enemyDataList[playerNumber].EnemyElement[skillElement])
+        ResistanceState = ResistanceState.enNormal;
+        switch (EnemyData.enemyDataList[playerNumber].EnemyElement[skillElement])
         {
             case global::ElementResistance.enNormal:
                 break;
             case global::ElementResistance.enWeak:
                 finalDamage *= 2.0f;
-                WeakFlag = true;
+                m_isWeak = true;
+                ResistanceState = ResistanceState.enWeak;
                 break;
             case global::ElementResistance.enResist:
                 finalDamage *= 0.5f;
+                ResistanceState = ResistanceState.enResist;
                 break;
         }
         // 補正
@@ -200,16 +222,19 @@ public class BattleSystem : MonoBehaviour
     public int EnemyElementResistance(int enemyNumber, int skillElement, int damage)
     {
         float finalDamage = damage;
+        ResistanceState = ResistanceState.enNormal;
         switch (EnemyData.enemyDataList[enemyNumber].EnemyElement[skillElement])
         {
             case global::ElementResistance.enNormal:
                 break;
             case global::ElementResistance.enWeak:
                 finalDamage *= 2.0f;
-                WeakFlag = true;
+                m_isWeak = true;
+                ResistanceState = ResistanceState.enWeak;
                 break;
             case global::ElementResistance.enResist:
                 finalDamage *= 0.5f;
+                ResistanceState = ResistanceState.enResist;
                 break;
         }
         // 補正

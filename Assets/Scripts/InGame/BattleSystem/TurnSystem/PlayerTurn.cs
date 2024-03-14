@@ -49,11 +49,16 @@ public class PlayerTurn : MonoBehaviour
             var targetNumber = 0;
 
             // ガード以外のコマンド  かつ　単体攻撃なら
-            if (m_battleManager.PlayerDataBase.playerDataList[myNumber].skillDataList[skillNumber].EffectRange != EffectRange.enAll
-                && m_battleManager.PlayerMoveList[myNumber].NextActionType != ActionType.enGuard)
+            if(m_battleManager.PlayerMoveList[myNumber].NextActionType != ActionType.enGuard)
             {
+                if (m_battleManager.PlayerMoveList[myNumber].NextActionType == ActionType.enSkillAttack &&
+                    m_battleManager.PlayerDataBase.playerDataList[myNumber].skillDataList[skillNumber].EffectRange == EffectRange.enAll)
+                {
+                    PlayerAction_Move(myNumber, skillNumber, targetNumber);
+                    return;
+                }
                 m_lockOnManager.SetTargetState(m_battleManager.PlayerDataBase.playerDataList[myNumber].skillDataList[skillNumber].ID,
-                    m_battleManager.PlayerMoveList[myNumber].NextActionType);
+                m_battleManager.PlayerMoveList[myNumber].NextActionType);
                 // 攻撃対象が選択されたら以下の処理を実行する
                 await UniTask.WaitUntil(() => m_lockOnManager.ButtonDown == true);
                 // 対象を再設定する
@@ -89,7 +94,7 @@ public class PlayerTurn : MonoBehaviour
         // ロックオンの設定を初期化・再設定する
         m_lockOnManager.ButtonDown = false;
         m_lockOnManager.ResetCinemachine();
-        // フラグをリセットする
+        // フラグをリセット
         m_battleSystem.WeakFlag = false;
     }
 

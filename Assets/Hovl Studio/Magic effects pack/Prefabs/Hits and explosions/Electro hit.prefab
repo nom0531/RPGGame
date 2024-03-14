@@ -4890,6 +4890,8 @@ GameObject:
   - component: {fileID: 1388872548669538631}
   - component: {fileID: 4033287822461114141}
   - component: {fileID: 4657519583580483318}
+  - component: {fileID: 2251018897805047267}
+  - component: {fileID: -6237160983116409754}
   m_Layer: 0
   m_Name: Electro hit
   m_TagString: Untagged
@@ -9809,6 +9811,32 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &2251018897805047267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2965222256817593503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56146db0b81c70b4286ee87605c68e42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SENumber: 7
+--- !u!114 &-6237160983116409754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2965222256817593503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56146db0b81c70b4286ee87605c68e42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SENumber: 7
 --- !u!1 &6611330793121379885
 GameObject:
   m_ObjectHideFlags: 0

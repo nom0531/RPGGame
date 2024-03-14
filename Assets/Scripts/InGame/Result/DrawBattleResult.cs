@@ -9,6 +9,7 @@ public class DrawBattleResult : MonoBehaviour
     private GameObject ResultText;
 
     private UIAnimation m_uIAnimation;
+    private SE m_se;
     private GetEP m_getEP;  // älìæEPÇÃãLò^
     private int m_EP;       // EP
 
@@ -21,6 +22,7 @@ public class DrawBattleResult : MonoBehaviour
     private void Start()
     {
         m_getEP = GetComponent<GetEP>();
+        m_se = GetComponent<SE>();
         m_uIAnimation = GetComponent<UIAnimation>();
     }
 
@@ -29,6 +31,7 @@ public class DrawBattleResult : MonoBehaviour
     /// </summary>
     public void GameClearStaging()
     {
+        SetSE(true);
         m_uIAnimation.ButtonDown_Active();
         DrawEP();
         ResultText.GetComponent<TextMeshProUGUI>().text = "WIN!";
@@ -39,9 +42,26 @@ public class DrawBattleResult : MonoBehaviour
     /// </summary>
     public void GameOverStaging()
     {
+        SetSE(false);
         m_uIAnimation.ButtonDown_Active();
         DrawEP();
         ResultText.GetComponent<TextMeshProUGUI>().text = "LOSEÅc";
+    }
+
+    /// <summary>
+    /// SEÇê›íËÇ∑ÇÈ
+    /// </summary>
+    private void SetSE(bool isWin)
+    {
+        if(isWin == true)
+        {
+            m_se.Number = SENumber.enWin;
+        }
+        else
+        {
+            m_se.Number = SENumber.enLose;
+        }
+        m_se.PlaySE();
     }
 
     /// <summary>

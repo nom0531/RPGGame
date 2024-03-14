@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// BGMÇÃî‘çÜ
+/// </summary>
 public enum BGMNumber
 {
     enOutGame,
@@ -10,6 +13,9 @@ public enum BGMNumber
     enNum
 }
 
+/// <summary>
+/// SEÇÃî‘çÜ
+/// </summary>
 public enum SENumber
 {
     enButtonDown,
@@ -17,6 +23,18 @@ public enum SENumber
     enChancel,
     enDeleteSave,
     enUseEP,
+    enCutin,
+    enAttack,
+    enMagicAttack,
+    enWeak,
+    enRegister,
+    enAbsorption,
+    enReflection,
+    enHeal,
+    enBuff,
+    enDebuff,
+    enWin,
+    enLose,
     enNum
 }
 
@@ -35,8 +53,8 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
 
     private BGM m_bgm;
     private BGMNumber m_BGMNumber = BGMNumber.enOutGame;    // åªç›çƒê∂ÇµÇƒÇ¢ÇÈBGM
-    private float m_BGMVolume = VOLUME;
-    private float m_SEVolume = VOLUME;
+    private float m_BGMVolume = GameManager.Instance.SaveDataManager.SaveData.saveData.BGMVolume;
+    private float m_SEVolume = GameManager.Instance.SaveDataManager.SaveData.saveData.SEVolume;
 
     public BGMNumber BGMNumber
     {
@@ -82,18 +100,11 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
         }
     }
 
-    new private void Awake()
-    {
-        CheckInstance();
-        DontDestroyOnLoad(gameObject);
-        var saveDataManager = GameManager.Instance.SaveDataManager;
-        m_BGMVolume = saveDataManager.SaveData.saveData.BGMVolume;
-        m_SEVolume = saveDataManager.SaveData.saveData.SEVolume;
-    }
-
     private void Start()
     {
+        DontDestroyOnLoad(gameObject);
         m_bgm = GameObject.FindGameObjectWithTag("BGM").GetComponent<BGM>();
+        SetBGMVolume();
         PlayBGM(BGMNumber.enInGame, FadeMode.enNone);
     }
 
