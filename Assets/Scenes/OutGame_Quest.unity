@@ -857,6 +857,7 @@ GameObject:
   - component: {fileID: 201750776}
   - component: {fileID: 201750775}
   - component: {fileID: 201750774}
+  - component: {fileID: 201750777}
   m_Layer: 5
   m_Name: Viewport
   m_TagString: Untagged
@@ -936,6 +937,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 201750772}
   m_CullTransparentMesh: 1
+--- !u!114 &201750777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201750772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding: {x: 0, y: 0, z: 0, w: 0}
+  m_Softness: {x: 0, y: 50}
 --- !u!1 &229390815
 GameObject:
   m_ObjectHideFlags: 0
@@ -2208,6 +2223,7 @@ GameObject:
   - component: {fileID: 1633693582}
   - component: {fileID: 1633693581}
   - component: {fileID: 1633693580}
+  - component: {fileID: 1633693583}
   m_Layer: 5
   m_Name: Viewport
   m_TagString: Untagged
@@ -2287,6 +2303,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1633693578}
   m_CullTransparentMesh: 1
+--- !u!114 &1633693583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633693578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding: {x: 0, y: 0, z: 0, w: 0}
+  m_Softness: {x: 10, y: 0}
 --- !u!1 &1647167453
 GameObject:
   m_ObjectHideFlags: 0
@@ -2375,7 +2405,7 @@ GameObject:
   - component: {fileID: 1707545142}
   - component: {fileID: 1707545141}
   m_Layer: 5
-  m_Name: QuestStatus
+  m_Name: QuestStatus_Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
