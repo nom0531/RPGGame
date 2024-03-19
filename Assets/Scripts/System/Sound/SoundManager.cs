@@ -20,6 +20,7 @@ public enum SENumber
 {
     enButtonDown,
     enSceneChange,
+    enOK,
     enChancel,
     enDeleteSave,
     enUseEP,
@@ -51,10 +52,12 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
     private const float MIN = 0.0f;
     private const float VOLUME = 0.5f;
 
+    private GameManager m_gameManager;
     private BGM m_bgm;
     private BGMNumber m_BGMNumber = BGMNumber.enOutGame;    // 現在再生しているBGM
-    private float m_BGMVolume = GameManager.Instance.SaveDataManager.SaveData.saveData.BGMVolume;
-    private float m_SEVolume = GameManager.Instance.SaveDataManager.SaveData.saveData.SEVolume;
+    private bool m_isInit = false;                          // 初期化が完了したならture
+    private float m_BGMVolume = 0.0f;
+    private float m_SEVolume = 0.0f;
 
     public BGMNumber BGMNumber
     {
@@ -104,9 +107,25 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
     {
         DontDestroyOnLoad(gameObject);
         m_bgm = GameObject.FindGameObjectWithTag("BGM").GetComponent<BGM>();
+        InitVolume();
         SetBGMVolume();
         PlayBGM(BGMNumber.enInGame, FadeMode.enNone);
     }
+
+    /// <summary>
+    /// 音量の初期化
+    /// </summary>
+    private void InitVolume()
+    {
+        if(m_isInit == true)
+        {
+            return;
+        }
+        m_gameManager = GameManager.Instance;
+        m_BGMVolume = m_gameManager.SaveDataManager.SaveData.saveData.BGMVolume;
+        m_SEVolume = m_gameManager.SaveDataManager.SaveData.saveData.SEVolume;
+        m_isInit = true;
+}
 
     /// <summary>
     /// BGMの音量を変更する
@@ -123,6 +142,7 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
     /// <param name="mode">フェードの種類</param>
     public void PlayBGM(BGMNumber number, FadeMode mode)
     {
+        InitVolume();
         m_BGMNumber = number;
         m_bgm.AudioSource.clip = BGMSounds[(int)number];
         m_bgm.FadeStart(mode);

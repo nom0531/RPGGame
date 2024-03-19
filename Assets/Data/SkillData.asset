@@ -500,16 +500,16 @@ MonoBehaviour:
     ID: 21
     SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
     SkillType: 0
-    SkillEffect: {fileID: 2060900179291159282, guid: ca6705a3f9070d14d819d179493bcfa0,
+    SkillEffect: {fileID: 1171201465392465800, guid: 4aa9f30a28a77224ba84b2a2c334c71b,
       type: 3}
     EffectScale: 15
     SkillElement: 7
     StateAbnormalData:
-      StateName: "\u6DF7\u4E71"
+      StateName: "\u306A\u3057"
       ID: 0
-      StateImage: {fileID: 21300000, guid: 2ab72dfc7caf3d34d9afae960a639a46, type: 3}
-      POW: 70
-      EffectTime: 3
+      StateImage: {fileID: 0}
+      POW: 0
+      EffectTime: 0
       ActorAbnormalState: 5
     POW: 20
     SkillNecessary: 5
@@ -523,7 +523,7 @@ MonoBehaviour:
     ID: 22
     SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
     SkillType: 0
-    SkillEffect: {fileID: 2060900179291159282, guid: ca6705a3f9070d14d819d179493bcfa0,
+    SkillEffect: {fileID: 1171201465392465800, guid: 4aa9f30a28a77224ba84b2a2c334c71b,
       type: 3}
     EffectScale: 15
     SkillElement: 7
@@ -546,7 +546,7 @@ MonoBehaviour:
     ID: 23
     SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
     SkillType: 0
-    SkillEffect: {fileID: 2060900179291159282, guid: ca6705a3f9070d14d819d179493bcfa0,
+    SkillEffect: {fileID: 1171201465392465800, guid: 4aa9f30a28a77224ba84b2a2c334c71b,
       type: 3}
     EffectScale: 15
     SkillElement: 7

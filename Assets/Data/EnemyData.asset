@@ -36,7 +36,7 @@ MonoBehaviour:
   - EnemyName: "\u30D4\u30AF\u30B7\u30FC"
     ID: 1
     EnemySprite: {fileID: 21300000, guid: ef931405f927a5047b897703d0a5ea37, type: 3}
-    EnemySize: 1
+    EnemySize: 2
     EnhancementPoint: 10
     LevelState: 0
     EnemyElement: 01000000020000000000000001000000020000000200000002000000
@@ -94,16 +94,16 @@ MonoBehaviour:
       EnhancementPoint: 20
       SkillDetail: 
     enemyMoveList:
-    - MoveName: "\u901A\u5E38\u653B\u6483"
-      ID: 0
-      ActorHPState: 3
-      ActorAbnormalState: 0
-      ActionType: 0
     - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
       ID: 1
       ActorHPState: 1
       ActorAbnormalState: 5
       ActionType: 1
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
   - EnemyName: "\u30CF\u30A4\u30D4\u30AF\u30B7\u30FC"
     ID: 2
     EnemySprite: {fileID: 21300000, guid: a61f81185021dbf418a791a28f3b8913, type: 3}
@@ -376,21 +376,21 @@ MonoBehaviour:
       EnhancementPoint: 50
       SkillDetail: 
     enemyMoveList:
-    - MoveName: "\u901A\u5E38\u653B\u6483"
-      ID: 0
-      ActorHPState: 3
-      ActorAbnormalState: 0
-      ActionType: 0
-    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
-      ID: 1
-      ActorHPState: 1
-      ActorAbnormalState: 5
-      ActionType: 1
     - MoveName: "\u9003\u8D70"
       ID: 6
       ActorHPState: 1
       ActorAbnormalState: 0
       ActionType: 3
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
+      ID: 1
+      ActorHPState: 1
+      ActorAbnormalState: 5
+      ActionType: 1
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
   - EnemyName: "\u30D5\u30A1\u30A4\u30A2"
     ID: 5
     EnemySprite: {fileID: 21300000, guid: 3ceb7d5591c23c144b48f4e6cfc10bda, type: 3}
@@ -541,16 +541,16 @@ MonoBehaviour:
       EnhancementPoint: 10
       SkillDetail: 
     enemyMoveList:
-    - MoveName: "\u901A\u5E38\u653B\u6483"
-      ID: 0
-      ActorHPState: 3
-      ActorAbnormalState: 0
-      ActionType: 0
     - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
       ID: 1
       ActorHPState: 1
       ActorAbnormalState: 5
       ActionType: 1
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
   - EnemyName: "\u30D5\u30A7\u30CB\u30C3\u30AF\u30B9"
     ID: 7
     EnemySprite: {fileID: 21300000, guid: 289c3d60eaaa37a40ba46d52cbb6a9a7, type: 3}
@@ -635,16 +635,16 @@ MonoBehaviour:
       EnhancementPoint: 30
       SkillDetail: 
     enemyMoveList:
-    - MoveName: "\u901A\u5E38\u653B\u6483"
-      ID: 0
-      ActorHPState: 3
-      ActorAbnormalState: 0
-      ActionType: 0
     - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
       ID: 1
       ActorHPState: 1
       ActorAbnormalState: 5
       ActionType: 1
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
   - EnemyName: "\u30C9\u30EC\u30A4\u30AF"
     ID: 8
     EnemySprite: {fileID: 21300000, guid: eee3366cf6c04cc4dad60fc660a118d1, type: 3}
@@ -659,7 +659,12 @@ MonoBehaviour:
     LUCK: 25
     EnemyDetail: 
     skillDataList: []
-    enemyMoveList: []
+    enemyMoveList:
+    - MoveName: 
+      ID: 0
+      ActorHPState: 0
+      ActorAbnormalState: 0
+      ActionType: 0
   - EnemyName: "\u30A2\u30A4\u30B9"
     ID: 9
     EnemySprite: {fileID: 21300000, guid: 9f6f185796fc2f041a658ddc607ab83c, type: 3}
@@ -698,16 +703,16 @@ MonoBehaviour:
       EnhancementPoint: 10
       SkillDetail: 
     enemyMoveList:
-    - MoveName: "\u901A\u5E38\u653B\u6483"
-      ID: 0
-      ActorHPState: 3
-      ActorAbnormalState: 0
-      ActionType: 0
     - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
       ID: 1
       ActorHPState: 1
       ActorAbnormalState: 5
       ActionType: 1
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
   - EnemyName: "\u30A6\u30F3\u30C7\u30A3\u30FC\u30CD"
     ID: 10
     EnemySprite: {fileID: 21300000, guid: 445c947fc72689e46846cc0bd6a18655, type: 3}
@@ -769,16 +774,16 @@ MonoBehaviour:
       EnhancementPoint: 20
       SkillDetail: 
     enemyMoveList:
-    - MoveName: "\u901A\u5E38\u653B\u6483"
-      ID: 0
-      ActorHPState: 3
-      ActorAbnormalState: 0
-      ActionType: 0
     - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
       ID: 1
       ActorHPState: 1
       ActorAbnormalState: 5
       ActionType: 1
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
   - EnemyName: "\u30D6\u30EA\u30B6\u30FC\u30C9"
     ID: 11
     EnemySprite: {fileID: 21300000, guid: 1d1f93bb1cb82d44eaf0586ec2c2b8fe, type: 3}
@@ -975,21 +980,21 @@ MonoBehaviour:
       EnhancementPoint: 20
       SkillDetail: 
     enemyMoveList:
-    - MoveName: "\u901A\u5E38\u653B\u6483"
-      ID: 0
-      ActorHPState: 3
-      ActorAbnormalState: 0
-      ActionType: 0
-    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
-      ID: 1
-      ActorHPState: 1
-      ActorAbnormalState: 5
-      ActionType: 1
     - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u56DE\u5FA9"
       ID: 2
       ActorHPState: 1
       ActorAbnormalState: 5
       ActionType: 1
+    - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
+      ID: 1
+      ActorHPState: 1
+      ActorAbnormalState: 5
+      ActionType: 1
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
   - EnemyName: "\u30AF\u30E9\u30FC\u30B1\u30F3"
     ID: 13
     EnemySprite: {fileID: 21300000, guid: edebba5ae674a284db60c51bcb3c2c72, type: 3}
@@ -1074,16 +1079,16 @@ MonoBehaviour:
       EnhancementPoint: 15
       SkillDetail: 
     enemyMoveList:
-    - MoveName: "\u901A\u5E38\u653B\u6483"
-      ID: 0
-      ActorHPState: 3
-      ActorAbnormalState: 0
-      ActionType: 0
     - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
       ID: 1
       ActorHPState: 1
       ActorAbnormalState: 5
       ActionType: 1
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
   - EnemyName: "\u30EA\u30F4\u30A1\u30A4\u30A2\u30B5\u30F3"
     ID: 14
     EnemySprite: {fileID: 21300000, guid: 9c787676ed86d9c4d9ec2d0b6a4a495b, type: 3}
@@ -1191,16 +1196,16 @@ MonoBehaviour:
       EnhancementPoint: 10
       SkillDetail: 
     enemyMoveList:
-    - MoveName: "\u901A\u5E38\u653B\u6483"
-      ID: 0
-      ActorHPState: 3
-      ActorAbnormalState: 0
-      ActionType: 0
     - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
       ID: 1
       ActorHPState: 1
       ActorAbnormalState: 5
       ActionType: 1
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
   - EnemyName: "\u30D7\u30E9\u30F3\u30C8"
     ID: 15
     EnemySprite: {fileID: 21300000, guid: 3b2cf15e96c15aa4bb11edbf31aa374c, type: 3}
@@ -1239,16 +1244,16 @@ MonoBehaviour:
       EnhancementPoint: 10
       SkillDetail: 
     enemyMoveList:
-    - MoveName: "\u901A\u5E38\u653B\u6483"
-      ID: 0
-      ActorHPState: 3
-      ActorAbnormalState: 0
-      ActionType: 0
     - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
       ID: 1
       ActorHPState: 1
       ActorAbnormalState: 5
       ActionType: 1
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
   - EnemyName: "\u30A2\u30EB\u30E9\u30A6\u30CD"
     ID: 16
     EnemySprite: {fileID: 21300000, guid: 9a679125c8b944347ad8737684bfd3b3, type: 3}
@@ -1310,16 +1315,16 @@ MonoBehaviour:
       EnhancementPoint: 20
       SkillDetail: 
     enemyMoveList:
-    - MoveName: "\u901A\u5E38\u653B\u6483"
-      ID: 0
-      ActorHPState: 3
-      ActorAbnormalState: 0
-      ActionType: 0
     - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
       ID: 1
       ActorHPState: 1
       ActorAbnormalState: 5
       ActionType: 1
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
   - EnemyName: "\u30C6\u30F3\u30B0"
     ID: 17
     EnemySprite: {fileID: 21300000, guid: 0dea51efe6bba9848b674bab76289c68, type: 3}
@@ -1427,16 +1432,16 @@ MonoBehaviour:
       EnhancementPoint: 20
       SkillDetail: 
     enemyMoveList:
-    - MoveName: "\u901A\u5E38\u653B\u6483"
-      ID: 0
-      ActorHPState: 3
-      ActorAbnormalState: 0
-      ActionType: 0
     - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
       ID: 1
       ActorHPState: 1
       ActorAbnormalState: 5
       ActionType: 1
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
   - EnemyName: "\u30E4\u30DE\u30BF\u30CE\u30AA\u30ED\u30C1"
     ID: 18
     EnemySprite: {fileID: 21300000, guid: b791dc35b95d7904da2f171bad801f8f, type: 3}
@@ -1521,16 +1526,16 @@ MonoBehaviour:
       EnhancementPoint: 15
       SkillDetail: 
     enemyMoveList:
-    - MoveName: "\u901A\u5E38\u653B\u6483"
-      ID: 0
-      ActorHPState: 3
-      ActorAbnormalState: 0
-      ActionType: 0
     - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
       ID: 1
       ActorHPState: 1
       ActorAbnormalState: 5
       ActionType: 1
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
   - EnemyName: "\u30B4\u30FC\u30EC\u30E0"
     ID: 19
     EnemySprite: {fileID: 21300000, guid: a35bc79f0eb8d2b4bb9cfa700cae3097, type: 3}
@@ -1615,16 +1620,16 @@ MonoBehaviour:
       EnhancementPoint: 20
       SkillDetail: 
     enemyMoveList:
-    - MoveName: "\u901A\u5E38\u653B\u6483"
-      ID: 0
-      ActorHPState: 3
-      ActorAbnormalState: 0
-      ActionType: 0
     - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
       ID: 1
       ActorHPState: 1
       ActorAbnormalState: 5
       ActionType: 1
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
   - EnemyName: "\u30DC\u30EB\u30C8"
     ID: 20
     EnemySprite: {fileID: 21300000, guid: a5b1188744bf61e41a9d9e14f3ddab72, type: 3}
@@ -1663,16 +1668,16 @@ MonoBehaviour:
       EnhancementPoint: 10
       SkillDetail: 
     enemyMoveList:
-    - MoveName: "\u901A\u5E38\u653B\u6483"
-      ID: 0
-      ActorHPState: 3
-      ActorAbnormalState: 0
-      ActionType: 0
     - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
       ID: 1
       ActorHPState: 1
       ActorAbnormalState: 5
       ActionType: 1
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
   - EnemyName: "\u30D5\u30EB\u30B4\u30E9"
     ID: 21
     EnemySprite: {fileID: 21300000, guid: ea6ce5eafcd65b24cba24d4307a7c820, type: 3}
@@ -1734,16 +1739,16 @@ MonoBehaviour:
       EnhancementPoint: 20
       SkillDetail: 
     enemyMoveList:
-    - MoveName: "\u901A\u5E38\u653B\u6483"
-      ID: 0
-      ActorHPState: 3
-      ActorAbnormalState: 0
-      ActionType: 0
     - MoveName: "\u30B9\u30AD\u30EB\uFF1A\u653B\u6483"
       ID: 1
       ActorHPState: 1
       ActorAbnormalState: 5
       ActionType: 1
+    - MoveName: "\u901A\u5E38\u653B\u6483"
+      ID: 0
+      ActorHPState: 3
+      ActorAbnormalState: 0
+      ActionType: 0
   - EnemyName: "\u30DF\u30A4\u30E9"
     ID: 22
     EnemySprite: {fileID: 21300000, guid: 236ecdfcd25369546a5862967c319611, type: 3}
@@ -2448,7 +2453,7 @@ MonoBehaviour:
       ID: 22
       SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
       SkillType: 0
-      SkillEffect: {fileID: 2060900179291159282, guid: ca6705a3f9070d14d819d179493bcfa0,
+      SkillEffect: {fileID: 1171201465392465800, guid: 4aa9f30a28a77224ba84b2a2c334c71b,
         type: 3}
       EffectScale: 15
       SkillElement: 7
@@ -2471,7 +2476,7 @@ MonoBehaviour:
       ID: 23
       SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
       SkillType: 0
-      SkillEffect: {fileID: 2060900179291159282, guid: ca6705a3f9070d14d819d179493bcfa0,
+      SkillEffect: {fileID: 1171201465392465800, guid: 4aa9f30a28a77224ba84b2a2c334c71b,
         type: 3}
       EffectScale: 15
       SkillElement: 7
@@ -2570,7 +2575,7 @@ MonoBehaviour:
       ID: 22
       SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
       SkillType: 0
-      SkillEffect: {fileID: 2060900179291159282, guid: ca6705a3f9070d14d819d179493bcfa0,
+      SkillEffect: {fileID: 1171201465392465800, guid: 4aa9f30a28a77224ba84b2a2c334c71b,
         type: 3}
       EffectScale: 15
       SkillElement: 7
@@ -2626,7 +2631,7 @@ MonoBehaviour:
   - EnemyName: "\u30B4\u30FC\u30B9\u30C8"
     ID: 31
     EnemySprite: {fileID: 21300000, guid: b5798825df5731342b914fe03419d681, type: 3}
-    EnemySize: 1
+    EnemySize: 2
     EnhancementPoint: 20
     LevelState: 0
     EnemyElement: 00000000020000000200000002000000010000000000000002000000
@@ -2712,7 +2717,7 @@ MonoBehaviour:
       ID: 21
       SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
       SkillType: 0
-      SkillEffect: {fileID: 2060900179291159282, guid: ca6705a3f9070d14d819d179493bcfa0,
+      SkillEffect: {fileID: 1171201465392465800, guid: 4aa9f30a28a77224ba84b2a2c334c71b,
         type: 3}
       EffectScale: 15
       SkillElement: 7
@@ -2735,7 +2740,7 @@ MonoBehaviour:
       ID: 22
       SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
       SkillType: 0
-      SkillEffect: {fileID: 2060900179291159282, guid: ca6705a3f9070d14d819d179493bcfa0,
+      SkillEffect: {fileID: 1171201465392465800, guid: 4aa9f30a28a77224ba84b2a2c334c71b,
         type: 3}
       EffectScale: 15
       SkillElement: 7
@@ -2971,7 +2976,7 @@ MonoBehaviour:
       ID: 22
       SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
       SkillType: 0
-      SkillEffect: {fileID: 2060900179291159282, guid: ca6705a3f9070d14d819d179493bcfa0,
+      SkillEffect: {fileID: 1171201465392465800, guid: 4aa9f30a28a77224ba84b2a2c334c71b,
         type: 3}
       EffectScale: 15
       SkillElement: 7
@@ -2994,7 +2999,7 @@ MonoBehaviour:
       ID: 23
       SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
       SkillType: 0
-      SkillEffect: {fileID: 2060900179291159282, guid: ca6705a3f9070d14d819d179493bcfa0,
+      SkillEffect: {fileID: 1171201465392465800, guid: 4aa9f30a28a77224ba84b2a2c334c71b,
         type: 3}
       EffectScale: 15
       SkillElement: 7
@@ -3413,7 +3418,7 @@ MonoBehaviour:
       ID: 22
       SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
       SkillType: 0
-      SkillEffect: {fileID: 2060900179291159282, guid: ca6705a3f9070d14d819d179493bcfa0,
+      SkillEffect: {fileID: 1171201465392465800, guid: 4aa9f30a28a77224ba84b2a2c334c71b,
         type: 3}
       EffectScale: 15
       SkillElement: 7
@@ -3436,7 +3441,7 @@ MonoBehaviour:
       ID: 23
       SkillSprite: {fileID: 21300000, guid: 75702b59a3789d245807f3259576b8a2, type: 3}
       SkillType: 0
-      SkillEffect: {fileID: 2060900179291159282, guid: ca6705a3f9070d14d819d179493bcfa0,
+      SkillEffect: {fileID: 1171201465392465800, guid: 4aa9f30a28a77224ba84b2a2c334c71b,
         type: 3}
       EffectScale: 15
       SkillElement: 7

@@ -295,6 +295,7 @@ public class EnemyDataEditor : EditorWindow
                 m_enemyDataBase.enemyDataList[m_selectNumber].enemyMoveList[moveNumber].ActorAbnormalState = m_enemyMoveDataBase.enemyMoveDataList[dataNumber].ActorAbnormalState;
                 m_enemyDataBase.enemyDataList[m_selectNumber].enemyMoveList[moveNumber].ActionType = m_enemyMoveDataBase.enemyMoveDataList[dataNumber].ActionType;
             }
+            m_enemyDataBase.enemyDataList[m_selectNumber].enemyMoveList.Sort((a, b) => b.ID.CompareTo(a.ID));
         }
     }
 

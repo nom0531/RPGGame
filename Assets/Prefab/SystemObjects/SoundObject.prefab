@@ -51,6 +51,7 @@ MonoBehaviour:
   SESounds:
   - {fileID: 8300000, guid: 6322a1e1de62ab84f98cff34fef5798b, type: 3}
   - {fileID: 8300000, guid: 30d17cdec96a7884d869ded2c5ab4679, type: 3}
+  - {fileID: 8300000, guid: db942c2e7f685fe478c2a7e660c89be0, type: 3}
   - {fileID: 8300000, guid: 2d341fa47b8f2f749af4e93b0ac29038, type: 3}
   - {fileID: 8300000, guid: 7e40fe9533d0fae4d9df2f6fb83e7c0d, type: 3}
   - {fileID: 8300000, guid: a1458376618c1f349b42c403d1e406f7, type: 3}

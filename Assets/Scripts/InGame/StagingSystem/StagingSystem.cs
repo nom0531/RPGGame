@@ -9,9 +9,9 @@ using TMPro;
 public class StagingSystem : MonoBehaviour
 {
     [SerializeField, Header("参照オブジェクト")]
-    private GameObject CommandImage;
+    private GameObject CommandCanvas;
     [SerializeField]
-    private GameObject CommandText;
+    private GameObject CommandImage,CommandText,EnemyHPBarCanvas, EnemyHPBarObject;
     [SerializeField,Header("仮想カメラ")]
     private CinemachineVirtualCameraBase[] Vcam_Stanging;
     [SerializeField, Tooltip("カメラに映すターゲット")]
@@ -20,21 +20,34 @@ public class StagingSystem : MonoBehaviour
     private GameObject[] InstantiateEffect;
     [SerializeField, Tooltip("エフェクトの生成終了の待ち時間(秒)")]
     private float EndWaitTime = 1.5f;
+    [SerializeField, Header("ダメージ量を表示するテキスト")]
+    private GameObject Damagetext;
 
-    private BattleSystem m_battleSystem;
-    private CinemachineTargetGroup m_cinemachineTargetGroup;    // ターゲットグループ
-    private SkillDataBase m_skillData;
-    private SE m_se;
-    private bool m_isPlayEffect = false;                        // trueなら再生中。falseなら再生していない
     private const float TARGET_WEIGHT = 1.0f;
     private const float TARGET_RADIUS = 1.0f;
     private const float EFFECT_SCALE = 20.0f;                   // エフェクトのスケール
     private const int VCAM_PRIORITY = 20;                       // カメラの優先度
 
+    private BattleSystem m_battleSystem;
+    private CinemachineTargetGroup m_cinemachineTargetGroup;    // ターゲットグループ
+    private SkillDataBase m_skillData;
+    private TurnManager m_turnManager;
+    private EnemyHitPoint m_enemyHitPoint;
+    private UIAnimation m_commandAnimaton;
+    private UIAnimation m_enemyHPBarAnimation;
+    private SE m_se;
+    private bool m_isPlayEffect = false;                        // trueなら再生中。falseなら再生していない
+    private int m_damage = 0;
+
     public SkillDataBase SkillDataBase
     {
         get => m_skillData;
         set => m_skillData = value;
+    }
+
+    public int Damage
+    {
+        set => m_damage = value;
     }
 
     private void Awake()
@@ -44,10 +57,15 @@ public class StagingSystem : MonoBehaviour
 
     private void Start()
     {
+        m_commandAnimaton = CommandCanvas.GetComponent<UIAnimation>();
+        m_commandAnimaton.Animator = CommandCanvas.GetComponent<Animator>();
+        m_enemyHPBarAnimation = EnemyHPBarCanvas.GetComponent<UIAnimation>();
+        m_enemyHPBarAnimation.Animator = EnemyHPBarCanvas.GetComponent<Animator>();
+        m_enemyHitPoint = EnemyHPBarObject.GetComponent<EnemyHitPoint>();
         m_se = GetComponent<SE>();
         m_battleSystem = GetComponent<BattleSystem>();
-        CommandImage.SetActive(false);
-        CommandText.SetActive(false);
+        m_turnManager = GetComponent<TurnManager>();
+        CommandCanvas.SetActive(false);
         ResetPriority();
     }
 
@@ -106,19 +124,23 @@ public class StagingSystem : MonoBehaviour
         switch (actionType)
         {
             case ActionType.enAttack:
-                CommandImage.gameObject.SetActive(true);
+                CommandImage.SetActive(true);
+                CommandText.SetActive(false);
                 CommandImage.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"攻撃";
                 break;
             case ActionType.enSkillAttack:
-                CommandImage.gameObject.SetActive(true);
+                CommandImage.SetActive(true);
+                CommandText.SetActive(false);
                 CommandImage.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"{m_skillData.skillDataList[skillNumber].SkillName}";
                 break;
             case ActionType.enGuard:
-                CommandImage.gameObject.SetActive(true);
+                CommandImage.SetActive(true);
+                CommandText.SetActive(false);
                 CommandImage.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"防御";
                 break;
             case ActionType.enEscape:
-                CommandImage.gameObject.SetActive(true);
+                CommandImage.SetActive(true);
+                CommandText.SetActive(false);
                 CommandImage.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"逃走";
                 break;
             case ActionType.enNull:
@@ -126,6 +148,7 @@ public class StagingSystem : MonoBehaviour
                 SetAddInfoCommandText($"様子を見ている…");
                 break;
         }
+        m_commandAnimaton.ButtonDown_Active();
     }
 
     /// <summary>
@@ -135,16 +158,37 @@ public class StagingSystem : MonoBehaviour
     /// <param name="skillNumber">スキルの番号</param>
     async public void PlayEffect(ActionType actionType, int skillNumber)
     {
-        if(m_isPlayEffect == true)
+        if (actionType == ActionType.enGuard)
         {
             return;
         }
-        if(actionType == ActionType.enGuard)
-        {
-            return;
-        }
-
         SetCommandName(actionType, skillNumber);
+        if(actionType != ActionType.enNull && m_turnManager.TurnStatus == TurnStatus.enPlayer)
+        {
+            m_enemyHPBarAnimation.ButtonDown_Active();
+        }
+        CreateEffect(actionType, skillNumber);
+        // HPのバーを再設定する
+        m_enemyHitPoint.SetFillAmount();
+        await UniTask.Delay(TimeSpan.FromSeconds(EndWaitTime));
+        // 設定をリセット
+        m_commandAnimaton.ButtonDown_NotActive();
+        m_enemyHPBarAnimation.ButtonDown_NotActive();
+        m_isPlayEffect = false;
+    }
+
+    /// <summary>
+    /// エフェクトを作成
+    /// </summary>
+    /// <param name="actionType">行動パターン</param>
+    /// <param name="skillNumber">スキルの番号</param>
+    private void CreateEffect(ActionType actionType, int skillNumber)
+    {
+        if (m_isPlayEffect == true)
+        {
+            return;
+        }
+        m_isPlayEffect = true;
         // 生成するエフェクトを設定
         var effect = InstantiateEffect[(int)actionType];
         m_se.Number = SENumber.enAttack;
@@ -156,17 +200,21 @@ public class StagingSystem : MonoBehaviour
             scale = m_skillData.skillDataList[skillNumber].EffectScale;
             SetSE(skillNumber);
         }
-        if(effect != null)
+        if (effect != null)
         {
-            // サイズを調整
+            // エフェクトを生成
             effect.transform.localScale = new Vector3(scale, scale, scale);
             Instantiate(effect, TargetGroupObject.transform);
+            // ダメージを生成
+            var drawDamage = Damagetext.GetComponent<DrawDamage>();
+            drawDamage.Damage = 999;
+            Instantiate(Damagetext, TargetGroupObject.transform);
+            drawDamage.Draw();
         }
-        m_isPlayEffect = true;
-        m_se.PlaySE();                                            // 効果音を再生
-        await UniTask.Delay(TimeSpan.FromSeconds(EndWaitTime));
-        CommandImage.SetActive(false);                          // テキストを非表示
-        m_isPlayEffect = false;                                 // 再生を終了する
+        if (actionType != ActionType.enNull)
+        {
+            m_se.PlaySE();
+        }
     }
 
     /// <summary>
@@ -178,10 +226,10 @@ public class StagingSystem : MonoBehaviour
         switch (m_skillData.skillDataList[skillNumber].SkillType)
         {
             case SkillType.enBuff:
-                //m_se.Number = SENumber.enBuff;
+                m_se.Number = SENumber.enBuff;
                 return;
             case SkillType.enDeBuff:
-                //m_se.Number = SENumber.enDebuff;
+                m_se.Number = SENumber.enDebuff;
                 return;
             case SkillType.enHeal:
             case SkillType.enResurrection:
@@ -207,11 +255,9 @@ public class StagingSystem : MonoBehaviour
     /// 追加情報を設定する
     /// </summary>
     /// <param name="text">表示するテキスト</param>
-    async public void SetAddInfoCommandText(string text)
+    public void SetAddInfoCommandText(string text)
     {
         CommandText.GetComponent<TextMeshProUGUI>().text = text;
         CommandText.SetActive(true);
-        await UniTask.Delay(TimeSpan.FromSeconds(EndWaitTime));
-        CommandText.SetActive(false);
     }
 }

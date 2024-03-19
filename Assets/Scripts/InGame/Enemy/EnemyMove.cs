@@ -41,7 +41,6 @@ public class EnemyMove : MonoBehaviour
     private ActorHPState m_actorHPState = ActorHPState.enMaxHP;                         // HPの状態
     private ActorAbnormalState m_actorAbnormalState = ActorAbnormalState.enNormal;      // 状態異常
     private ActionType m_actionType = ActionType.enNull;                                // 次の行動
-    private float m_Yup = 0.0f;                                                         // 加算座標
     private int m_myNumber = 0;                                                         // 自身の番号
     private int m_basicValue = 0;                                                       // ダメージ量・回復量
     private int m_defencePower = 0;                                                     // 防御力

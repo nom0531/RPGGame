@@ -8,9 +8,11 @@ public class DrawBattleResult : MonoBehaviour
     [SerializeField]
     private GameObject ResultText;
 
+    private SaveDataManager m_saveDataManager;
     private UIAnimation m_uIAnimation;
     private SE m_se;
     private GetEP m_getEP;  // 獲得EPの記録
+    private int m_myNumber; // 自身の番号
     private int m_EP;       // EP
 
     public int EP
@@ -24,6 +26,8 @@ public class DrawBattleResult : MonoBehaviour
         m_getEP = GetComponent<GetEP>();
         m_se = GetComponent<SE>();
         m_uIAnimation = GetComponent<UIAnimation>();
+        m_saveDataManager = GameManager.Instance.SaveDataManager;
+        m_myNumber = GameManager.Instance.LevelNumber;
     }
 
     /// <summary>
@@ -35,6 +39,7 @@ public class DrawBattleResult : MonoBehaviour
         m_uIAnimation.ButtonDown_Active();
         DrawEP();
         ResultText.GetComponent<TextMeshProUGUI>().text = "WIN!";
+        m_saveDataManager.SaveData.saveData.ClearStage[m_myNumber] = true;  // クリア
     }
 
     /// <summary>

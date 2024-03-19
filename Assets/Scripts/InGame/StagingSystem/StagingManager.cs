@@ -31,6 +31,7 @@ public class StagingManager : MonoBehaviour
     private List<EnemyMove> m_enemyMoveList;
     private List<PlayerMove> m_playerMoveList;
     private SkillDataBase m_skillData;
+    private EnemyHitPoint m_enemyHitPoint;
     private StagingState m_stangingState = StagingState.enStangingWaiting;
     private ActionType m_actionType = ActionType.enNull;
 
@@ -180,8 +181,9 @@ public class StagingManager : MonoBehaviour
         if (isCutin == true)
         {
             CutInStart();
-            await UniTask.Delay(TimeSpan.FromSeconds(WaitTime));
+            await UniTask.Delay(TimeSpan.FromSeconds(1.3f));
         }
+        await UniTask.Delay(TimeSpan.FromSeconds(0.2f));
         // ââèoÇäJénÇ∑ÇÈ
         DrawPlayers(true);
         if (ActionType != ActionType.enGuard)

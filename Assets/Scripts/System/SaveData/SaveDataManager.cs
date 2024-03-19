@@ -17,7 +17,7 @@ public class SaveDataManager : SingletonMonoBehaviour<SaveDataManager>
     [SerializeField, Header("セーブデータ")]
     private SaveData GameSaveData;
 
-    private const bool BOOL = true;
+    private const bool BOOL = false;
     private const float DEFAULT_VOLUME = 0.5f;
     private const int DEFAULT_EP_POINT = 0;
 
@@ -52,7 +52,7 @@ public class SaveDataManager : SingletonMonoBehaviour<SaveDataManager>
     /// </summary>
     public void Delete()
     {
-        InitData();
+        SetData();
     }
 
     /// <summary>
@@ -128,8 +128,17 @@ public class SaveDataManager : SingletonMonoBehaviour<SaveDataManager>
         // 値を初期化
         GameSaveData.saveData.BGMVolume = DEFAULT_VOLUME;
         GameSaveData.saveData.SEVolume = DEFAULT_VOLUME;
+
+        SetData();
+    }
+
+    /// <summary>
+    /// データを設定する
+    /// </summary>
+    private void SetData()
+    {
         GameSaveData.saveData.EnhancementPoint = DEFAULT_EP_POINT;                                      // 所持している強化ポイント
-        
+
         // エネミーと戦ったか、エネミーの属性を発見したか
         for (int enemyNumber = 0; enemyNumber < GameSaveData.saveData.EnemyRegisters.Length; enemyNumber++)
         {
@@ -137,7 +146,7 @@ public class SaveDataManager : SingletonMonoBehaviour<SaveDataManager>
             GameSaveData.saveData.EnemyRegisters[enemyNumber] = BOOL;
             GameSaveData.saveData.ElementRegisters[enemyNumber] = new Element { Elements = new bool[(int)ElementType.enNum] };
 
-            for(int elementNumber = 0; elementNumber < (int)ElementType.enNum; elementNumber++)
+            for (int elementNumber = 0; elementNumber < (int)ElementType.enNum; elementNumber++)
             {
                 GameSaveData.saveData.ElementRegisters[enemyNumber].Elements[elementNumber] = BOOL;
             }
@@ -180,7 +189,6 @@ public class SaveDataManager : SingletonMonoBehaviour<SaveDataManager>
             // クリアしていない
             GameSaveData.saveData.ClearStage[stageNumber] = BOOL;
         }
-
         Save();
     }
 

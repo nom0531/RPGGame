@@ -85,11 +85,6 @@ public class DrawStatusValue : MonoBehaviour
 
     private void Update()
     {
-        // 開始しないならスキップ
-        if(m_decreaseProcess == DecreaseProcess.enEnd)
-        {
-            return;
-        }
         Decrease();
     }
 
@@ -137,7 +132,7 @@ public class DrawStatusValue : MonoBehaviour
     /// </summary>
     /// <param name="nowValue">現在値</param>
     /// <param name="maxValue">最大値</param>
-    private float CalculateRate(int nowValue, int maxValue)
+    public float CalculateRate(int nowValue, int maxValue)
     {
         var rate = 0.0f;
         return rate = (float)nowValue / (float)maxValue;
@@ -176,7 +171,7 @@ public class DrawStatusValue : MonoBehaviour
     /// <param name="rate">自身の割合</param>
     /// <param name="nowRate">現在の割合</param>
     /// <returns>計算後の自身の割合</returns>
-    private float SetRate(float rate, float nowRate)
+    public float SetRate(float rate, float nowRate)
     {
         // 既に割合が同じかそれ以下なら実行しない
         if (rate <= nowRate)

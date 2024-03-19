@@ -23,6 +23,8 @@ public class LockOnManager : MonoBehaviour
     private LockOnButton RightButton, LeftButton, OKButton, CancelButton;
     [SerializeField]
     private GameObject LockOnCanvas;
+    [SerializeField, Header("HP")]
+    private GameObject EnemyHPObject;
 
     private const int VCAM_PRIORITY = 10;           // カメラ使用時の優先度
     private const int NUM_MIN = 0;                  // 最小番号
@@ -34,6 +36,7 @@ public class LockOnManager : MonoBehaviour
     private List<PlayerMove> m_playerMoveList;
     private DrawStatusValue m_drawStatusValue;
     private SkillDataBase m_skillData;
+    private EnemyHitPoint m_enemyHitPoint;
     private TargetState m_target;                   // ターゲットにする相手
     private int m_operatingPlayerNumber = 0;              // 現在操作しているプレイヤー
     private int m_selectTargetNumber = 0;           // 現在選択しているターゲットの番号
@@ -77,6 +80,7 @@ public class LockOnManager : MonoBehaviour
 
     private void Start()
     {
+        m_enemyHitPoint = EnemyHPObject.GetComponent<EnemyHitPoint>();
         m_operatingPlayerNumber = (int)m_battleManager.OperatingPlayer;
         SetCinemachineVirtualCameraPriority(m_operatingPlayerNumber, false, null);
         LockOnCanvas.SetActive(false);
@@ -100,13 +104,11 @@ public class LockOnManager : MonoBehaviour
         {
             return;
         }
-
         // ロックオンを開始していないなら実行しない
         if(m_isLockOnStart == false)
         {
             return;
         }
-
         LockOnStart();
     }
     
@@ -151,6 +153,8 @@ public class LockOnManager : MonoBehaviour
         // オブジェクトの表示、非表示を切り替える
         LockOnCanvas.SetActive(true);
         m_playerMoveList[m_operatingPlayerNumber].gameObject.SetActive(true);
+        // HPバーを再設定する
+        m_enemyHitPoint.SetFillAmount();
         // ボタンが押せるかどうか設定する
         SetInteractable(true);
         // カメラを設定する
@@ -201,6 +205,7 @@ public class LockOnManager : MonoBehaviour
                 m_selectTargetNumber = NUM_MIN;
             }
         }
+        m_enemyHitPoint.SetFillAmount();
         SetCinemachineVirtualCameraPriority(m_operatingPlayerNumber, true, SetLookAtTarget());
     }
 
@@ -230,6 +235,7 @@ public class LockOnManager : MonoBehaviour
                 m_selectTargetNumber = max;
             }
         }
+        m_enemyHitPoint.SetFillAmount();
         SetCinemachineVirtualCameraPriority(m_operatingPlayerNumber, true, SetLookAtTarget());
     }
 
