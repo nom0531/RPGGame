@@ -21,6 +21,7 @@
 ---
 <dd>
 
+[プレイ動画](https://www.youtube.com/watch?v=oPProivvqHs "https://www.youtube.com/watch?v=oPProivvqHs")<br>
 </dd>
 
 ### 3. 作品概要
@@ -71,10 +72,10 @@
 ---
 #### 5.1. エディタ拡張
 <dd>
-<img src="Portfolio/png/4_editor.png" width="90%"><br>
+<img src="Portfolio/png/4_editor.png" width="60%"><br>
 本作ではプレイヤーデータ、エネミーデータ等、膨大な量のデータを使用しています。<br>そのデータを簡単に、わかりやすく扱うためにエディタ拡張を追加しています。
 
-<img src="Portfolio/png/4_editor2.png" width="90%"><br>
+<img src="Portfolio/png/4_editor2.png" width="60%"><br>
 いくつかあるデータの中でも、エネミーデータが最も多く、データ入力、データ追加を考えると非常に効率が悪くなることが考えられるため、エディタ拡張を導入しました。<br><br>
 データとして扱っているものすべてをエディタとして管理できるようにしたため、データを簡単に管理できるようになりました。
 </dd>
@@ -88,11 +89,11 @@
 #### 5.3. Unitask
 <dd>
 ゲームオーバー、ゲームクリアなどの判定を行うほか、演出部分で一定時間待機する等の処理に使用しています。<br>
-※黄色のラインの部分がUnitaskのコード
-<img src="Portfolio/png/4_Unitask.png" width="90%"><br>
+※黄色のラインの部分がUnitaskのコード<br>
+<img src="Portfolio/png/4_Unitask.png" width="60%"><br>
 ▲ 演出の終了処理
 
-<img src="Portfolio/png/4_Unitask2.png" width="90%"><br>
+<img src="Portfolio/png/4_Unitask2.png" width="60%"><br>
 ▲ ゲームの終了処理
 
 </dd>
@@ -111,7 +112,7 @@
 <dd>
 
 #### 6.2. アニメーション
-<img src="Portfolio/gif/5_Animation.gif" width="90%"><br>
+<img src="Portfolio/gif/5_Animation.gif" width="60%"><br>
 UIにこだわりたいと考え、ボタンを押したときなどのアニメーションを個別に追加しています。<br>
 同一のAnimatorを使用しており、同じスクリプトをアタッチして設定するだけでで制御できるようにしています。
 </dd>
@@ -120,10 +121,10 @@ UIにこだわりたいと考え、ボタンを押したときなどのアニメ
 ---
 <dd>
 
-[RPGドット【Rド】](http://rpgdot3319.g1.xrea.com/muz/002.html)<br>
+[RPGドット【Rド】](http://rpgdot3319.g1.xrea.com/muz/002.html "http://rpgdot3319.g1.xrea.com/muz/002.html")<br>
 七三ゆきのアトリエ<br>
-[自家製フォント工房](http://jikasei.me/font/jf-dotfont/)<br>
-[ひみつ ゲーム用フリー素材](http://uros.web.fc2.com/frame.html)<br>
+[自家製フォント工房](http://jikasei.me/font/jf-dotfont/ "http://jikasei.me/font/jf-dotfont/")<br>
+[ひみつ ゲーム用フリー素材](http://uros.web.fc2.com/frame.html "http://uros.web.fc2.com/frame.html")<br>
 © Unity Technologies Japan/UCL<br>
 
 </dd>
