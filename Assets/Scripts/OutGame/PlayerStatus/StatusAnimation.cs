@@ -8,9 +8,7 @@ using UnityEngine;
 public enum SpriteState
 {
     enActiveR,
-    enNotActiveR,
     enActiveL,
-    enNotActiveL,
 }
 
 public class StatusAnimation : MonoBehaviour

@@ -202,19 +202,34 @@ public class StagingSystem : MonoBehaviour
         }
         if (effect != null)
         {
-            // エフェクトを生成
-            effect.transform.localScale = new Vector3(scale, scale, scale);
-            Instantiate(effect, TargetGroupObject.transform);
-            // ダメージを生成
-            var drawDamage = Damagetext.GetComponent<DrawDamage>();
-            drawDamage.Damage = 999;
-            Instantiate(Damagetext, TargetGroupObject.transform);
-            drawDamage.Draw();
+            CreateEffect(effect, scale);
+            DrawDamage();
         }
         if (actionType != ActionType.enNull)
         {
             m_se.PlaySE();
         }
+    }
+
+    /// <summary>
+    /// エフェクトを生成する
+    /// </summary>
+    private void CreateEffect(GameObject effect, float scale)
+    {
+        effect.transform.localScale = new Vector3(scale, scale, scale);
+        Instantiate(effect, TargetGroupObject.transform);
+    }
+
+    /// <summary>
+    /// ダメージ量を描画
+    /// </summary>
+    private void DrawDamage()
+    {
+        // ダメージテキストを生成
+        var damageCanvas = Instantiate(Damagetext, TargetGroupObject.transform);
+        var drawDamage = damageCanvas.GetComponent<DrawDamage>();
+        drawDamage.Damage = m_damage;
+        drawDamage.Draw();
     }
 
     /// <summary>

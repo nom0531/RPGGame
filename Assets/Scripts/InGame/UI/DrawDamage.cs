@@ -17,7 +17,7 @@ public class DrawDamage : MonoBehaviour
     /// </summary>
     public void Draw()
     {
-        GetComponent<TextMeshProUGUI>().text = m_damage.ToString();
+        transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = m_damage.ToString();
         var uiAnimation = GetComponent<UIAnimation>();
         uiAnimation.Animator = GetComponent<Animator>();
         uiAnimation.ButtonDown_Active();

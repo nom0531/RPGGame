@@ -77,18 +77,19 @@ public class PlayerTurn : MonoBehaviour
     /// <param name="targetNumber">ターゲットの番号</param>
     async private void PlayerAction_Move(int myNumber, int skillNumber, int targetNumber)
     {
-        m_battleManager.PlayerMoveList[myNumber].CalculationAbnormalState();
+        var player = m_battleManager.PlayerMoveList[myNumber];
+        player.CalculationAbnormalState();
         PlayerAction_Command(myNumber, targetNumber, m_battleManager.PlayerMoveList[myNumber].NextActionType, skillNumber);
         // 演出を開始する
         m_stagingManager.ActionType = m_battleManager.PlayerMoveList[myNumber].NextActionType;
-        m_stagingManager.RegistrationTargets(m_turnManager.TurnStatus, m_battleSystem.WeakFlag, targetNumber, myNumber,
+        m_stagingManager.RegistrationTargets(m_turnManager.TurnStatus, m_battleSystem.WeakFlag, targetNumber, myNumber, player.BasicValue,
             m_battleManager.PlayerDataBase.playerDataList[myNumber].skillDataList[skillNumber].ID,
             m_battleManager.PlayerDataBase.playerDataList[myNumber].skillDataList[skillNumber].EffectRange);
         // 行動を終了する
-        m_battleManager.PlayerMoveList[myNumber].ActionEnd(m_battleManager.PlayerMoveList[myNumber].NextActionType, skillNumber);
+        player.ActionEnd(m_battleManager.PlayerMoveList[myNumber].NextActionType, skillNumber);
         // 演出が終了したなら以下の処理を実行する
         await UniTask.WaitUntil(() => m_stagingManager.StangingState == StagingState.enStangingEnd);
-        m_battleManager.PlayerMoveList[myNumber].DecrementHP(m_battleManager.PlayerMoveList[myNumber].PoisonDamage);
+        player.DecrementHP(player.PoisonDamage);
         // 次のプレイヤーを設定する
         m_battleManager.OperatingPlayer = m_battleManager.NextOperatingPlayer();
         // ロックオンの設定を初期化・再設定する

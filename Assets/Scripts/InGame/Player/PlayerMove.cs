@@ -514,6 +514,10 @@ public class PlayerMove : MonoBehaviour
         }
         if (m_abnormalCalculation.RecoverToAbnormal(ActorAbnormalState) == true)
         {
+            PoisonDamage = 0;
+            NextActionType = ActionType.enNull;
+            ConfusionFlag = false;
+            ActorAbnormalState = ActorAbnormalState.enNormal;
             return;
         }
         switch (ActorAbnormalState)

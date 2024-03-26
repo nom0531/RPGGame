@@ -45,31 +45,22 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 2800000, guid: b0b8f2f87f76cdb4b9976eefa7993082, type: 3}
-    - {fileID: 2800000, guid: b9034603fa6e80b4d95d8bdbff61fe62, type: 3}
-    - {fileID: 2800000, guid: 3b33fc9014bdb3145a501629c7dd315a, type: 3}
     - {fileID: 2800000, guid: 5a4420d08f2b1f642bf424a225d49935, type: 3}
     - {fileID: 2800000, guid: 037203b48a611054d9e2860a14c0cc76, type: 3}
     - {fileID: 2800000, guid: d1c6652e3df1c634e90428a4ef80e3f2, type: 3}
-    - {fileID: 2800000, guid: dd9794d36792e7443952b235bd687357, type: 3}
     - {fileID: 2800000, guid: 809d0e5d356318b41b94a2ca594a2d3a, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
-  - {fileID: 21300000, guid: 3b33fc9014bdb3145a501629c7dd315a, type: 3}
   - {fileID: 21300000, guid: 5a4420d08f2b1f642bf424a225d49935, type: 3}
-  - {fileID: 21300000, guid: b9034603fa6e80b4d95d8bdbff61fe62, type: 3}
-  - {fileID: 21300000, guid: dd9794d36792e7443952b235bd687357, type: 3}
   - {fileID: 21300000, guid: 037203b48a611054d9e2860a14c0cc76, type: 3}
   - {fileID: 21300000, guid: b0b8f2f87f76cdb4b9976eefa7993082, type: 3}
   - {fileID: 21300000, guid: 809d0e5d356318b41b94a2ca594a2d3a, type: 3}
   - {fileID: 21300000, guid: d1c6652e3df1c634e90428a4ef80e3f2, type: 3}
   m_PackedSpriteNamesToIndex:
-  - buttonImage2
   - buttonImage3
-  - buttonImage
-  - windowImage
   - buttonImage4
   - clearImage
   - buttonImage6

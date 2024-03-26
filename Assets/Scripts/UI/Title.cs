@@ -30,28 +30,18 @@ public class Title : MonoBehaviour
         m_animator = AnimationText.GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    private void Update()
-    {
-        SceneChange();
-    }
-
     /// <summary>
     /// シーンを切り替える
     /// </summary>
-    private void SceneChange()
+    public void SceneChange()
     {
-        if (Input.GetMouseButtonDown(0) == false)
-        {
-            return;
-        }
-        PlayAnimation();
         var sceneName = SceneName;
         if (SceneName == "")
         {
             // 空白の場合は現在のシーンの名前を使用する
             sceneName = SceneManager.GetActiveScene().name;
         }
+        PlayAnimation();
         // フェードを開始する
         var fadeCanvas = Instantiate(FadeCanvas);
         fadeCanvas.GetComponent<FadeScene>().FadeStart(sceneName);
@@ -59,9 +49,6 @@ public class Title : MonoBehaviour
         playableDirector.Play();
     }
 
-    /// <summary>
-    /// アニメーションを再生する
-    /// </summary>
     private void PlayAnimation()
     {
         m_animator.SetTrigger("ClickTitle");

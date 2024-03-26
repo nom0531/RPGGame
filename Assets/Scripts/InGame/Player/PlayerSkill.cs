@@ -96,7 +96,6 @@ public class PlayerSkill : MonoBehaviour
             skillButton.SetPlayerSkill(
                 i,                                                                          // î‘çÜ
                 m_playerData.playerDataList[m_playerNumber].skillDataList[i].SkillName,     // ñºëO
-                Color.black,
                 this
                 );
 

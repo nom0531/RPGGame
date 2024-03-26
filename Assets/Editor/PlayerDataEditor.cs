@@ -189,7 +189,6 @@ public class PlayerDataEditor : EditorWindow
                     );
 
             EditorGUILayout.Space();
-            DrawSkill();
 
             // 値が異常な場合は警告を表示する
             if (m_playerDataBase.playerDataList[m_selectNumber].HP <= 0)
@@ -225,37 +224,6 @@ public class PlayerDataEditor : EditorWindow
         if (m_playerDataBase.playerDataList[m_selectNumber].PlayerElement.Length > (int)ElementType.enNum)
         {
             EditorGUILayout.HelpBox("警告：属性の種類が定義より多く設定されています！", MessageType.Warning);
-        }
-    }
-
-    /// <summary>
-    /// 使用可能スキル
-    /// </summary>
-    private void DrawSkill()
-    {
-        for (int skillNumber = 0; skillNumber < m_playerDataBase.playerDataList[m_selectNumber].skillDataList.Count; skillNumber++)
-        {
-            for (int dataNumber = 0; dataNumber < m_skillDataBase.skillDataList.Count; dataNumber++)
-            {
-                // 識別番号が同じならデータを初期化する
-                if (m_playerDataBase.playerDataList[m_selectNumber].skillDataList[skillNumber].ID != m_skillDataBase.skillDataList[dataNumber].ID)
-                {
-                    continue;
-                }
-                m_playerDataBase.playerDataList[m_selectNumber].skillDataList[skillNumber].SkillName = m_skillDataBase.skillDataList[dataNumber].SkillName;
-                m_playerDataBase.playerDataList[m_selectNumber].skillDataList[skillNumber].SkillSprite = m_skillDataBase.skillDataList[dataNumber].SkillSprite;
-                m_playerDataBase.playerDataList[m_selectNumber].skillDataList[skillNumber].POW = m_skillDataBase.skillDataList[dataNumber].POW;
-                m_playerDataBase.playerDataList[m_selectNumber].skillDataList[skillNumber].SkillElement = m_skillDataBase.skillDataList[dataNumber].SkillElement;
-                m_playerDataBase.playerDataList[m_selectNumber].skillDataList[skillNumber].SkillNecessary = m_skillDataBase.skillDataList[dataNumber].SkillNecessary;
-                m_playerDataBase.playerDataList[m_selectNumber].skillDataList[skillNumber].SkillDetail = m_skillDataBase.skillDataList[dataNumber].SkillDetail;
-                m_playerDataBase.playerDataList[m_selectNumber].skillDataList[skillNumber].SkillEffect = m_skillDataBase.skillDataList[dataNumber].SkillEffect;
-                m_playerDataBase.playerDataList[m_selectNumber].skillDataList[skillNumber].EffectScale = m_skillDataBase.skillDataList[dataNumber].EffectScale;
-                m_playerDataBase.playerDataList[m_selectNumber].skillDataList[skillNumber].Type = m_skillDataBase.skillDataList[dataNumber].Type;
-                m_playerDataBase.playerDataList[m_selectNumber].skillDataList[skillNumber].SkillType = m_skillDataBase.skillDataList[dataNumber].SkillType;
-                m_playerDataBase.playerDataList[m_selectNumber].skillDataList[skillNumber].BuffType = m_skillDataBase.skillDataList[dataNumber].BuffType;
-                m_playerDataBase.playerDataList[m_selectNumber].skillDataList[skillNumber].EffectRange = m_skillDataBase.skillDataList[dataNumber].EffectRange;
-                m_playerDataBase.playerDataList[m_selectNumber].skillDataList[skillNumber].TargetState = m_skillDataBase.skillDataList[dataNumber].TargetState;
-            }
         }
     }
 

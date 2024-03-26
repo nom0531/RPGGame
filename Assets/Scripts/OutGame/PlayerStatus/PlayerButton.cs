@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerButton : MonoBehaviour
 {
     [SerializeField]
-    private GameObject Data_Sprite;
+    private GameObject Data_Sprite, Data_Shadow;
 
     private const int MAX_NUM = 2;  // プレイヤーの最大値
 
@@ -33,6 +33,7 @@ public class PlayerButton : MonoBehaviour
     {
         m_isDown = true;
         m_playerNumber--;
+        Data_Shadow.GetComponent<Animator>().SetTrigger("NotActive");
         m_statusAnimation.SpriteAnimaiton(SpriteState.enActiveL);
         if (m_playerNumber < 0)
         {
@@ -48,6 +49,7 @@ public class PlayerButton : MonoBehaviour
     {
         m_isDown = true;
         m_playerNumber++;
+        Data_Shadow.GetComponent<Animator>().SetTrigger("NotActive");
         m_statusAnimation.SpriteAnimaiton(SpriteState.enActiveR);
         if (m_playerNumber > MAX_NUM)
         {

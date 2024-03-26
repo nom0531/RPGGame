@@ -59,7 +59,6 @@ public class QuestStatusSystem : MonoBehaviour
             questButton.SetQuestStatus(
                 QuestNumber,
                 LevelData.levelDataList[QuestNumber].LevelName,
-                Color.black,
                 this
                 );
 
@@ -156,7 +155,7 @@ public class QuestStatusSystem : MonoBehaviour
                 if (m_gameManager.SaveDataManager.SaveData.saveData.EnemyRegisters[enemyNumber] != true)
                 {
                     // ”­Œ©‚µ‚Ä‚¢‚È‚¢‚È‚çƒJƒ‰[‚ğ•ÏX‚·‚é
-                    enemyObject.GetComponent<Image>().color = Color.black;
+                    enemyObject.GetComponent<Image>().color = Color.gray;
                 }
                 break;
             }

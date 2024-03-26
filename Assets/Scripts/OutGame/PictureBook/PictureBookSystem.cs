@@ -84,7 +84,7 @@ public class PictureBookSystem : MonoBehaviour
             // Œ©‚Â‚©‚Á‚Ä‚¢‚È‚¢‚È‚ç‰æ‘œ‚ðˆÃ‚­‚·‚é
             if (m_saveDataManager.SaveData.saveData.EnemyRegisters[i] == false)
             {
-                button.GetComponent<Image>().color = Color.black;
+                button.GetComponent<Image>().color = Color.gray;
             }
             else
             {

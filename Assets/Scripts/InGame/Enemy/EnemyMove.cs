@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
-using System;
+using DG.Tweening;
+using UnityEngine.UI;
 
 /// <summary>
 /// 戦闘時のエネミーのステータス
@@ -25,9 +26,7 @@ public class EnemyMove : MonoBehaviour
     private EnemyMoveDataBase EnemyMoveData;
 
     private const int HPMIN_VALUE = 0;              // HPの最小値
-    private const float WAIT_TIME = 2.0f;           // 死亡判定時の待機時間
 
-    private Animator m_animator;
     private List<PlayerMove> m_playerMoveList;
     private SaveDataManager m_saveDataManager;
     private BattleSystem m_battleSystem;
@@ -150,12 +149,11 @@ public class EnemyMove : MonoBehaviour
         m_abnormalCalculation = GetComponent<StateAbnormalCalculation>();
         m_buffCalculation = GetComponent<BuffCalculation>();
         m_drawCommandText = GetComponent<DrawCommandText>();
-        m_animator = GetComponent<Animator>();
-        SetStatus();
     }
 
     private void Start()
     {
+        SetStatus();
         // プレイヤーのリストを参照
         m_playerMoveList = m_battleManager.PlayerMoveList;
         SetLookAtPosition();
@@ -409,10 +407,7 @@ public class EnemyMove : MonoBehaviour
         {
             return;
         }
-        var sprite = gameObject.GetComponent<SpriteRenderer>();
-        var alpha = DownTransparency(0.05f);
-        sprite.color = new Color(1.0f, 1.0f, 1.0f, alpha);  // 透明度を下げる
-        m_animator.SetTrigger("Escape");                    // アニメーションを再生
+        // 透明度を下げる
         m_battleManager.EnemyListRemove(m_myNumber);        // 成功したらリストから自身を削除
     }
 
@@ -456,7 +451,6 @@ public class EnemyMove : MonoBehaviour
             // 死亡した
             m_enemyBattleStatus.HP = HPMIN_VALUE;
         }
-        m_animator.SetTrigger("Damage");            // アニメーションを再生
         ActorHPState = SetHPStatus();
     }
 
@@ -658,6 +652,10 @@ public class EnemyMove : MonoBehaviour
         }
         if (m_abnormalCalculation.RecoverToAbnormal(ActorAbnormalState) == true)
         {
+            PoisonDamage = 0;
+            NextActionType = ActionType.enNull;
+            ConfusionFlag = false;
+            ActorAbnormalState = ActorAbnormalState.enNormal;
             return;
         }
         switch (ActorAbnormalState)
@@ -753,7 +751,9 @@ public class EnemyMove : MonoBehaviour
     {
         // 演出が終了したなら以下の処理を実行する
         await UniTask.WaitUntil(() => m_stagingManager.StangingState == StagingState.enStangingEnd);
-        await UniTask.Delay(TimeSpan.FromSeconds(WAIT_TIME));
+        // 画像を透過
+        var image = GetComponent<Image>();
+        image.DOFade(endValue: 0f, duration: 1f);
         tag = "DieEnemy";              // タグを変更する
     }
 }

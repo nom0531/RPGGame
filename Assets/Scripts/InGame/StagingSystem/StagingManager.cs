@@ -31,7 +31,6 @@ public class StagingManager : MonoBehaviour
     private List<EnemyMove> m_enemyMoveList;
     private List<PlayerMove> m_playerMoveList;
     private SkillDataBase m_skillData;
-    private EnemyHitPoint m_enemyHitPoint;
     private StagingState m_stangingState = StagingState.enStangingWaiting;
     private ActionType m_actionType = ActionType.enNull;
 
@@ -111,9 +110,10 @@ public class StagingManager : MonoBehaviour
     /// <param name="targetNumber">ターゲットの番号</param>
     /// <param name="myNumber">自身の番号</param>
     /// <param name="skillNumber">スキルの番号</param>
-    public void RegistrationTargets(TurnStatus turnStatus, bool isCutin, int targetNumber, int myNumber, int skillNumber=0, EffectRange effectRange=EffectRange.enOne)
+    public void RegistrationTargets(TurnStatus turnStatus, bool isCutin, int targetNumber, int myNumber, int damage, int skillNumber=0, EffectRange effectRange=EffectRange.enOne)
     {
         var number = targetNumber;
+        m_stangingSystem.Damage = damage;
         // ターゲットの番号を使用しない行動が選択されている場合
         if (ActionType != ActionType.enAttack && ActionType != ActionType.enSkillAttack)
         {

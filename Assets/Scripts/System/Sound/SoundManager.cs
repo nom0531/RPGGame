@@ -109,7 +109,7 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
         m_bgm = GameObject.FindGameObjectWithTag("BGM").GetComponent<BGM>();
         InitVolume();
         SetBGMVolume();
-        PlayBGM(BGMNumber.enInGame, FadeMode.enNone);
+        PlayBGM(BGMNumber.enTitle, FadeMode.enNone);
     }
 
     /// <summary>

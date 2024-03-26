@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class EnemyHitPoint : MonoBehaviour
 {
     /// <summary>
-    /// HP‚Ì­ˆ—
+    /// HP‚ÌŒ¸­ˆ—
     /// </summary>
     private enum DecreaseProcess
     {

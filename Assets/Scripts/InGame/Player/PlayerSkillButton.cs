@@ -21,12 +21,11 @@ public class PlayerSkillButton : MonoBehaviour
     /// <param name="number">スキルの番号</param>
     /// <param name="skillName">スキルの名前</param>
     /// <param name="fontColor">文字の色</param>
-    public void SetPlayerSkill(int number, string skillName, Color fontColor, PlayerSkill playerSkill)
+    public void SetPlayerSkill(int number, string skillName, PlayerSkill playerSkill)
     {
         // それぞれの値を登録する
         m_skillNumber = number;
         transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = skillName;
-        transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = fontColor;
         // 図鑑システムを登録する
         m_playerSkill = playerSkill;
     }

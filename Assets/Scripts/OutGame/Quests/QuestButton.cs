@@ -17,7 +17,7 @@ public class QuestButton : MonoBehaviour
     /// <param name="number">クエストの番号</param>
     /// <param name="questName">クエストの名前</param>
     /// <param name="fontColor">文字の色</param>
-    public void SetQuestStatus(int number,string questName,Color fontColor,QuestStatusSystem questStatusSystem)
+    public void SetQuestStatus(int number,string questName,QuestStatusSystem questStatusSystem)
     {
         // 文字が一定以上なら
         if (questName.Length >= STRING_MAX)
@@ -33,7 +33,6 @@ public class QuestButton : MonoBehaviour
 
         m_myNumber = number;
         transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = questName;
-        transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = fontColor;
         // 登録
         m_questStatusSystem = questStatusSystem;
     }

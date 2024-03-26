@@ -50,18 +50,19 @@ public class EnemyTurn : MonoBehaviour
     /// <param name="skillNumber">スキルの番号</param>
     async private void EnemyAction_Move(int myNumber, ActionType actionType, int skillNumber)
     {
-        m_battleManager.EnemyMoveList[myNumber].CalculationAbnormalState();
+        var enemy = m_battleManager.EnemyMoveList[myNumber];
+        enemy.CalculationAbnormalState();
         // ターゲットの番号を取得する
-        var targetNumber = m_battleManager.EnemyMoveList[myNumber].SelectTargetPlayer();
+        var targetNumber = enemy.SelectTargetPlayer();
         EnemyAction_Command(myNumber, actionType, skillNumber, targetNumber);
         // 演出を開始する
         m_stagingManager.ActionType = actionType;
-        m_stagingManager.RegistrationTargets(m_turnManager.TurnStatus, false, targetNumber, myNumber);
-        m_battleManager.EnemyMoveList[myNumber].ActionEnd(actionType, skillNumber);
+        m_stagingManager.RegistrationTargets(m_turnManager.TurnStatus, false, targetNumber, myNumber, enemy.BasicValue);
+        enemy.ActionEnd(actionType, skillNumber);
         // 演出が終了したなら以下の処理を実行する
         await UniTask.WaitUntil(() => m_stagingManager.StangingState == StagingState.enStangingEnd);
         // 毒状態時のダメージを与える
-        m_battleManager.EnemyMoveList[myNumber].DecrementHP(m_battleManager.EnemyMoveList[myNumber].PoisonDamage);
+        enemy.DecrementHP(enemy.PoisonDamage);
     }
 
     /// <summary>
@@ -74,7 +75,6 @@ public class EnemyTurn : MonoBehaviour
         {
             return;
         }
-
         switch (actionType)
         {
             case ActionType.enAttack:
