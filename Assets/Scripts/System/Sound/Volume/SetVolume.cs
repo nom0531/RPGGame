@@ -18,7 +18,6 @@ public class SetVolume : MonoBehaviour
     private SoundState SoundState;
 
     private SoundManager m_soundManager;
-    private VolumeData m_volumeData;
     private Slider m_slider;
 
     private void Start()

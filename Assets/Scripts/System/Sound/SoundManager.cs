@@ -10,6 +10,7 @@ public enum BGMNumber
     enOutGame,
     enInGame,
     enTitle,
+    enNone,         // 流さない
     enNum
 }
 
@@ -106,7 +107,6 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
-        m_bgm = GameObject.FindGameObjectWithTag("BGM").GetComponent<BGM>();
         InitVolume();
         SetBGMVolume();
         PlayBGM(BGMNumber.enTitle, FadeMode.enNone);
@@ -132,6 +132,7 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
     /// </summary>
     public void SetBGMVolume()
     {
+        m_bgm = GameObject.FindGameObjectWithTag("BGM").GetComponent<BGM>();
         m_bgm.AudioSource.volume = BGMVolume;
     }
 
@@ -142,6 +143,10 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
     /// <param name="mode">フェードの種類</param>
     public void PlayBGM(BGMNumber number, FadeMode mode)
     {
+        if(number == BGMNumber.enNone)
+        {
+            return;
+        }
         InitVolume();
         m_BGMNumber = number;
         m_bgm.AudioSource.clip = BGMSounds[(int)number];

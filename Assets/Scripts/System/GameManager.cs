@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
     [SerializeField]
-    private GameObject SaveDataObject, SoundObject;
+    private GameObject SaveDataObject, SoundObject, AnimationObject;
 
     private SaveDataManager m_saveDataManager;
     private SoundManager m_soundManamager;
@@ -57,8 +57,9 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         // オブジェクトを作成する
         var saveDataObject = Instantiate(SaveDataObject);
         m_saveDataManager = saveDataObject.GetComponent<SaveDataManager>();
-        var soundObject = Instantiate(SoundObject);
-        m_soundManamager = soundObject.GetComponent<SoundManager>();
+        m_saveDataManager.AnimationObject = AnimationObject;
+        Instantiate(SoundObject);
+        m_soundManamager = SoundObject.GetComponent<SoundManager>();
         Physics.autoSimulation = false;
     }
 

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class QuestButton : MonoBehaviour
 {
-    private const int STRING_MAX = 5; // 文字の最大表示数
+    private const int STRING_MAX = 8; // 文字の最大表示数
 
     private QuestStatusSystem m_questStatusSystem;
     private int m_myNumber = -1;     // クエストの番号

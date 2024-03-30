@@ -73,7 +73,6 @@ public class BGM : SingletonMonoBehaviour<BGM>
         {
             m_fadeDatas.m_volume = 0.0f;
         }
-
     }
 
     private void Update()

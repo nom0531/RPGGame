@@ -7,21 +7,29 @@ using TMPro;
 public class QuestStatusSystem : MonoBehaviour
 {
     [SerializeField, Header("参照データ")]
-    LevelDataBase LevelData;
+    private LevelDataBase LevelData;
     [SerializeField]
-    EnemyDataBase EnemyData;
+    private EnemyDataBase EnemyData;
     [SerializeField, Header("表示用データ")]
-    GameObject Data_QuestName,Data_QuestDetail,Data_QuestLevel;
+    private GameObject Data_QuestName;
+    [SerializeField]
+    private GameObject Data_QuestDetail,Data_QuestLevel;
     [SerializeField, Header("クエストリスト"), Tooltip("生成するオブジェクト")]
-    GameObject QuestContent;
+    private GameObject QuestContent;
     [SerializeField, Tooltip("生成するボタン")]
-    GameObject QuestButton;
+    private GameObject QuestButton;
     [SerializeField, Header("エネミーリスト"), Tooltip("生成するオブジェクト")]
-    GameObject EnemyContent;
+    private GameObject EnemyContent;
     [SerializeField, Tooltip("生成する画像")]
-    GameObject EnemyImage;
+    private GameObject EnemyImage;
+    [SerializeField]
+    private GameObject AnimatorObject;
+    [SerializeField, Tooltip("名前")]
+    private GameObject Data_EnemyName;
+    [SerializeField, Tooltip("属性")]
+    private GameObject Data_Fire, Data_Ice, Data_Wind, Data_Thunder, Data_Light, Data_Dark;
     [SerializeField, Header("参照オブジェクト")]
-    GameObject QuestStartButton;
+    private GameObject QuestStartButton;
 
     private GameManager m_gameManager;
 
@@ -151,8 +159,14 @@ public class QuestStatusSystem : MonoBehaviour
                 // サイズを調整
                 enemyObject.transform.localScale = Vector3.one;
                 enemyObject.transform.localPosition = Vector3.zero;
+                // データを設定
+                var enemyData = enemyObject.GetComponent<DrawEnemyStatus>();
+                enemyData.MyNumber = instrantiateNumber;
+                enemyData.SetObject(Data_EnemyName, Data_Fire, Data_Ice, Data_Wind, Data_Thunder, Data_Light, Data_Dark);
+                var uiAnimation = enemyObject.GetComponent<UIAnimation>();
+                uiAnimation.AnimatorObject = AnimatorObject;
 
-                if (m_gameManager.SaveDataManager.SaveData.saveData.EnemyRegisters[enemyNumber] != true)
+                if (m_gameManager.SaveDataManager.SaveData.saveData.EnemyRegisters[instrantiateNumber] == false)
                 {
                     // 発見していないならカラーを変更する
                     enemyObject.GetComponent<Image>().color = Color.gray;

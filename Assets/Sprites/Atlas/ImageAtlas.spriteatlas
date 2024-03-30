@@ -70,6 +70,7 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 2ef57e45714e4114ba7c7dfe3faa811f, type: 3}
     - {fileID: 2800000, guid: dc41a6922a3dd974fac7129ae348b2ec, type: 3}
     - {fileID: 2800000, guid: 20e30151685fa4e43b97785c6ac630d6, type: 3}
+    - {fileID: 2800000, guid: 8c33f0e179ef53d4c939e3b400c7a9bb, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -80,6 +81,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 20e30151685fa4e43b97785c6ac630d6, type: 3}
   - {fileID: 21300000, guid: 24231b91facce8d4f811dcb82456bb1c, type: 3}
   - {fileID: 21300000, guid: cda20cb1f6f217f479c94cab09290d8f, type: 3}
+  - {fileID: 21300000, guid: 8c33f0e179ef53d4c939e3b400c7a9bb, type: 3}
   - {fileID: 21300000, guid: dc41a6922a3dd974fac7129ae348b2ec, type: 3}
   - {fileID: 21300000, guid: da3ecfb2dff2cd6408ca3502c2ee71ea, type: 3}
   - {fileID: 21300000, guid: 391b4323edfbeae4b8a618fb944c55ad, type: 3}
@@ -107,6 +109,7 @@ SpriteAtlas:
   - commandImage
   - game icon_condition_22
   - Magic2
+  - cutInOutFrame
   - statusBar_image
   - Debuff
   - Death

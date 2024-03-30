@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/OutGame_Logo.unity
+    guid: d727cae399a82e64f9e114a53b934aab
+  - enabled: 1
     path: Assets/Scenes/OutGame_Title.unity
     guid: 2424e6e3a6e4b3a49b2c0b6a8301ea62
   - enabled: 1

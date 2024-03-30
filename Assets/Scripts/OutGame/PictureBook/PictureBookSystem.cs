@@ -49,11 +49,25 @@ public class PictureBookSystem : MonoBehaviour
         Data_Name.SetActive(true);
         Data_Detail.SetActive(true);
         Data_Sprite.SetActive(true);
-
-        // 値を更新する
-        Data_Name.GetComponent<TextMeshProUGUI>().text = EnemyData.enemyDataList[number].EnemyName;
-        Data_Detail.GetComponent<TextMeshProUGUI>().text = EnemyData.enemyDataList[number].EnemyDetail;
+        // 見つかっていないなら画像を暗くする
+        if (m_saveDataManager.SaveData.saveData.EnemyRegisters[number] == false)
+        {
+            // 値を更新する
+            Data_Name.GetComponent<TextMeshProUGUI>().text = "？？？";
+            Data_Detail.GetComponent<TextMeshProUGUI>().text = "（遭遇時にアンロックされます）";
+            Data_Detail.GetComponent<TextMeshProUGUI>().color = Color.gray;
+            Data_Sprite.GetComponent<Image>().color = Color.gray;
+        }
+        else
+        {
+            // 値を更新する
+            Data_Name.GetComponent<TextMeshProUGUI>().text = EnemyData.enemyDataList[number].EnemyName;
+            Data_Detail.GetComponent<TextMeshProUGUI>().text = EnemyData.enemyDataList[number].EnemyDetail;
+            Data_Detail.GetComponent<TextMeshProUGUI>().color = Color.white;
+            Data_Sprite.GetComponent<Image>().color = Color.white;
+        }
         Data_Sprite.GetComponent<Image>().sprite = EnemyData.enemyDataList[number].EnemySprite;
+        LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)Data_Sprite.transform);
         Data_EnemyNumber.GetComponent<TextMeshProUGUI>().text = (number + 1).ToString("00");
         // 属性耐性
         GetResistance(Data_Fire, number, (int)ElementType.enFire);
@@ -104,11 +118,9 @@ public class PictureBookSystem : MonoBehaviour
             enemyButton.SetPictureBook(
                 i,                                                          // 番号
                 EnemyData.enemyDataList[i].EnemySprite,                     // 画像
-                m_saveDataManager.SaveData.saveData.EnemyRegisters[i],      // 発見しているかどうか
                 this
                 );
         }
-
         RegistrationRate();
     }
 
@@ -137,7 +149,7 @@ public class PictureBookSystem : MonoBehaviour
     /// <param name="gameObjct">ゲームオブジェクト</param>
     /// <param name="enemyNumber">エネミーの番号</param>
     /// <param name="elementNumber">属性の識別番号</param>
-    void GetResistance(GameObject gameObjct,int enemyNumber,int elementNumber)
+    public void GetResistance(GameObject gameObjct,int enemyNumber,int elementNumber)
     {
         // 発見していないなら
         if (m_saveDataManager.SaveData.saveData.ElementRegisters[enemyNumber].Elements[elementNumber] == false)

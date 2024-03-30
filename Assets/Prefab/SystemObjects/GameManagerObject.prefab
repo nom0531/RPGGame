@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SaveDataObject: {fileID: 4004178743821787674, guid: 9da1736c85406f644b283815b5a6b8f1,
     type: 3}
-  PlayerListObject: {fileID: 0}
-  EnemyListObject: {fileID: 0}
-  SkillListObject: {fileID: 0}
+  SoundObject: {fileID: 5255022437351948915, guid: 75a2c607143d2684893c0c29bb36e0ee,
+    type: 3}
+  AnimationObject: {fileID: 9117991967738062999, guid: 27c76c178849a074b92a701db96792bb,
+    type: 3}

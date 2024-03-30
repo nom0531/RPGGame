@@ -36,17 +36,10 @@ public class Title : MonoBehaviour
     public void SceneChange()
     {
         var sceneName = SceneName;
-        if (SceneName == "")
-        {
-            // 空白の場合は現在のシーンの名前を使用する
-            sceneName = SceneManager.GetActiveScene().name;
-        }
         PlayAnimation();
         // フェードを開始する
         var fadeCanvas = Instantiate(FadeCanvas);
         fadeCanvas.GetComponent<FadeScene>().FadeStart(sceneName);
-        // タイムラインを再生
-        playableDirector.Play();
     }
 
     private void PlayAnimation()

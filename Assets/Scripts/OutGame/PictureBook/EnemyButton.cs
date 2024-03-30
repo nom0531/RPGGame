@@ -16,13 +16,11 @@ public class EnemyButton : MonoBehaviour
     /// <param name="number">エネミーの番号</param>
     /// <param name="enemyImage">エネミーの画像</param>
     /// <param name="interactable">登録済みかどうか</param>
-    public void SetPictureBook(int number,Sprite enemyImage,bool interactable,PictureBookSystem pictureBookSystem)
+    public void SetPictureBook(int number,Sprite enemyImage,PictureBookSystem pictureBookSystem)
     { 
         // それぞれの値を登録する
         m_enemyNumber = number;
         GetComponent<Image>().sprite = enemyImage;
-        // 押せるかどうか設定する
-        GetComponent<Button>().interactable = interactable;
         // 図鑑システムを登録する
         m_pictureBookSystem = pictureBookSystem;
     }

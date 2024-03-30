@@ -27,9 +27,16 @@ public class SaveDataManager : SingletonMonoBehaviour<SaveDataManager>
     private static readonly string PasswordChars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static readonly int PasswordCharsLength = PasswordChars.Length;
 
+    private GameObject m_animationObject;
+
     public SaveData SaveData
     {
         get => GameSaveData;
+    }
+
+    public GameObject AnimationObject
+    {
+        set => m_animationObject = value;
     }
 
     override protected void Awake()
@@ -60,6 +67,8 @@ public class SaveDataManager : SingletonMonoBehaviour<SaveDataManager>
     /// </summary>
     public void Save()
     {
+        DrawUI();
+
         // à√çÜâª
         var json = JsonUtility.ToJson(GameSaveData);
         var iv = "";
@@ -77,6 +86,14 @@ public class SaveDataManager : SingletonMonoBehaviour<SaveDataManager>
             bw.Write(base64Bytes);
             bw.Close();
         }
+    }
+
+    /// <summary>
+    /// ÉZÅ[ÉuéûÇÃUI
+    /// </summary>
+    private void DrawUI()
+    {
+        Instantiate(m_animationObject);
     }
 
     /// <summary>
