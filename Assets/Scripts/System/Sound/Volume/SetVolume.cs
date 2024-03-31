@@ -48,6 +48,7 @@ public class SetVolume : MonoBehaviour
                 break;
             case SoundState.enSE:
                 rate = m_saveDataManager.SaveData.saveData.SEVolume;
+                m_soundManager.SEVolume = rate;
                 break;
         }
         m_slider.value = rate;

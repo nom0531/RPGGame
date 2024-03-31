@@ -65,9 +65,9 @@ public class SaveDataManager : SingletonMonoBehaviour<SaveDataManager>
     /// <summary>
     /// 現在の状況をセーブする
     /// </summary>
-    public void Save()
+    public void Save(bool flag=true)
     {
-        DrawUI();
+        DrawUI(flag);
 
         // 暗号化
         var json = JsonUtility.ToJson(GameSaveData);
@@ -91,8 +91,14 @@ public class SaveDataManager : SingletonMonoBehaviour<SaveDataManager>
     /// <summary>
     /// セーブ時のUI
     /// </summary>
-    private void DrawUI()
+    /// <param name="flag">描画するかどうか</param>
+    private void DrawUI(bool flag)
     {
+        // 描画しない
+        if (flag == false)
+        {
+            return;
+        }
         Instantiate(m_animationObject);
     }
 

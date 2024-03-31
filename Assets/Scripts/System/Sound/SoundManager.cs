@@ -50,10 +50,10 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
     private GameObject SEObject;
 
     private const float MAX = 1.0f;
-    private const float MIN = 0.0f;
+    private const float MIN = 0.0001f;
     private const float VOLUME = 0.5f;
 
-    private GameManager m_gameManager;
+    private SaveDataManager m_saveDataManager;
     private BGM m_bgm;
     private BGMNumber m_BGMNumber = BGMNumber.enOutGame;    // Œ»İÄ¶‚µ‚Ä‚¢‚éBGM
     private bool m_isInit = false;                          // ‰Šú‰»‚ªŠ®—¹‚µ‚½‚È‚çture
@@ -121,9 +121,9 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
         {
             return;
         }
-        m_gameManager = GameManager.Instance;
-        m_BGMVolume = m_gameManager.SaveDataManager.SaveData.saveData.BGMVolume;
-        m_SEVolume = m_gameManager.SaveDataManager.SaveData.saveData.SEVolume;
+        m_saveDataManager = GameManager.Instance.SaveDataManager;
+        BGMVolume = m_saveDataManager.SaveData.saveData.BGMVolume;
+        SEVolume = m_saveDataManager.SaveData.saveData.SEVolume;
         m_isInit = true;
 }
 
@@ -159,6 +159,7 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
     /// <param name="number">”Ô†</param>
     public void PlaySE(SENumber number)
     {
+        InitVolume();
         var gameObject = Instantiate(SEObject);
         var audioSouse = gameObject.GetComponent<AudioSource>();
         // ‰¹Šy‚ÌÄ¶‚ğŠJn‚·‚é
