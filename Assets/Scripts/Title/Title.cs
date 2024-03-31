@@ -21,12 +21,10 @@ public class Title : MonoBehaviour
     [SerializeField, Tooltip("アニメーションするテキスト")]
     private GameObject AnimationText;
 
-    private PlayableDirector playableDirector;  // タイムラインの制御
     private Animator m_animator;                // アニメーター
 
     private void Start()
     {
-        playableDirector = Camera.main.GetComponent<PlayableDirector>();
         m_animator = AnimationText.GetComponent<Animator>();
     }
 

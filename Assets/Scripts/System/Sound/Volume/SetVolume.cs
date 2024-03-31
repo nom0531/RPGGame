@@ -17,11 +17,13 @@ public class SetVolume : MonoBehaviour
     [SerializeField]
     private SoundState SoundState;
 
+    private SaveDataManager m_saveDataManager;
     private SoundManager m_soundManager;
     private Slider m_slider;
 
     private void Start()
     {
+        m_saveDataManager = GameManager.Instance.SaveDataManager;
         m_soundManager = GameManager.Instance.SoundManager;
         m_slider = GetComponent<Slider>();
         InitRate();
@@ -41,11 +43,11 @@ public class SetVolume : MonoBehaviour
         switch (SoundState)
         {
             case SoundState.enBGM:
-                rate = m_soundManager.BGMVolume;
+                rate = m_saveDataManager.SaveData.saveData.BGMVolume;
                 m_soundManager.SetBGMVolume();
                 break;
             case SoundState.enSE:
-                rate = m_soundManager.SEVolume;
+                rate = m_saveDataManager.SaveData.saveData.SEVolume;
                 break;
         }
         m_slider.value = rate;

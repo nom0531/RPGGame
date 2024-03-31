@@ -174,10 +174,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1280, y: 720}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -283,9 +283,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95aa79fffb82c8640ab86f4cbbad6c55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Timer: 4
+  Timer: 6
   ChangeSceneName: OutGame_Title
-  InstantiateTimer: 0.5
+  InstantiateTimer: 0
   AnimationCanvas: {fileID: 9117991967328621675}
 --- !u!1001 &285719903
 PrefabInstance:
@@ -356,7 +356,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a75827524d876e449fc04c7e1316f12, type: 3}
---- !u!1001 &530850576
+--- !u!1001 &395310939
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -669,7 +669,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u672C\u4F5C\u54C1\u306F\u30AA\u30FC\u30C8\u30BB\u30FC\u30D6\u3067\u3059\u3002\n\u30A2\u30CB\u30E1\u30FC\u30B7\u30E7\u30F3\u304C\u8868\u793A\u3055\u308C\u3066\u3044\u308B\u9593\u306F\u30B2\u30FC\u30E0\u3092\u7D42\u4E86\u3057\u306A\u3044\u3067\u4E0B\u3055\u3044\u3002"
+  m_text: "\u672C\u4F5C\u54C1\u306F\u30AA\u30FC\u30C8\u30BB\u30FC\u30D6\u3067\u3059\u3002\n\u30AA\u30FC\u30C8\u30BB\u30FC\u30D6\u4E2D\u306F\u30B2\u30FC\u30E0\u3092\u7D42\u4E86\u3057\u306A\u3044\u3067\u4E0B\u3055\u3044\u3002"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b52b348867ff4fd4ba1d9a9b72fd3b4f, type: 2}
   m_sharedMaterial: {fileID: -62200710560889107, guid: b52b348867ff4fd4ba1d9a9b72fd3b4f,
@@ -931,7 +931,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 15
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &9117991967328621671
 RectTransform:
@@ -983,10 +983,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1280, y: 720}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -1027,7 +1027,7 @@ Animator:
   m_GameObject: {fileID: 9117991967328621675}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b4913e46f8da84f45bff1aa004eb35c4, type: 2}
+  m_Controller: {fileID: 9100000, guid: 20c3acbe5f4e2ee469db09cde45d8d1d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
