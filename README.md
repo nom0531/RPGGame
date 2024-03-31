@@ -21,7 +21,8 @@
 ---
 <dd>
 
-[プレイ動画](https://www.youtube.com/watch?v=oPProivvqHs "https://www.youtube.com/watch?v=oPProivvqHs")<br>
+[プレイ動画(旧)](https://www.youtube.com/watch?v=oPProivvqHs "https://www.youtube.com/watch?v=oPProivvqHs")<br>
+[プレイ動画(最新版)](https://www.youtube.com/watch?v=3p30X7y2MSg "https://www.youtube.com/watch?v=3p30X7y2MSg")
 </dd>
 
 ### 3. 作品概要
@@ -114,7 +115,7 @@
 #### 6.2. アニメーション
 <img src="Portfolio/gif/5_Animation.gif" width="60%"><br>
 UIにこだわりたいと考え、ボタンを押したときなどのアニメーションを個別に追加しています。<br>
-同一のAnimatorを使用しており、同じスクリプトをアタッチして設定するだけでで制御できるようにしています。
+同一のAnimatorを使用しており、同じスクリプトをアタッチして設定するだけで制御できるようにしています。
 </dd>
 
 ### 7.使用素材
