@@ -336,7 +336,7 @@ public class BattleManager : MonoBehaviour
     {
         // Šù‚É‘®«‘Ï«‚ğ”­Œ©‚µ‚Ä‚¢‚é‚È‚çÀs‚µ‚È‚¢
         if (m_enemyMoveList[targetNumber].GetTrueElementRegister
-            ((int)PlayerData.playerDataList[myNumber].skillDataList[skillNumber].SkillElement) != true)
+            ((int)PlayerData.playerDataList[myNumber].skillDataList[skillNumber].SkillElement) == true)
         {
             return;
         }

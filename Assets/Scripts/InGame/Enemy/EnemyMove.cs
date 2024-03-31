@@ -117,7 +117,7 @@ public class EnemyMove : MonoBehaviour
     public void SetTrueEnemyRegister(int enemyNumber)
     {
         m_saveDataManager.SaveData.saveData.EnemyRegisters[enemyNumber] = true;
-        m_saveDataManager.Save();
+        m_saveDataManager.Save(false);
     }
 
     /// <summary>
@@ -136,7 +136,7 @@ public class EnemyMove : MonoBehaviour
     public void SetTrueElementRegister(int elementNumber)
     {
         m_saveDataManager.SaveData.saveData.ElementRegisters[m_myNumber].Elements[elementNumber] = true;
-        m_saveDataManager.Save();
+        m_saveDataManager.Save(false);
     }
 
     private void Awake()
