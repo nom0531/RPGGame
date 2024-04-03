@@ -1,4 +1,6 @@
 # RPGGAME
+<img src="Portfolio/png/0_title.png" width="60%"><br>
+
 ### 目次
 ---
 1. 自己紹介
@@ -21,8 +23,7 @@
 ---
 <dd>
 
-[プレイ動画(旧)](https://www.youtube.com/watch?v=oPProivvqHs "https://www.youtube.com/watch?v=oPProivvqHs")<br>
-[プレイ動画(最新版)](https://www.youtube.com/watch?v=3p30X7y2MSg "https://www.youtube.com/watch?v=3p30X7y2MSg")
+[プレイ動画](https://www.youtube.com/watch?v=3p30X7y2MSg "https://www.youtube.com/watch?v=3p30X7y2MSg")
 </dd>
 
 ### 3. 作品概要
