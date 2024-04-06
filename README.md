@@ -1,5 +1,5 @@
 # RPGGAME
-<img src="Portfolio/png/0_title.png" width="60%"><br>
+<img src="Portfolio/png/0_Title.png" width="60%"><br>
 
 ### 目次
 ---
