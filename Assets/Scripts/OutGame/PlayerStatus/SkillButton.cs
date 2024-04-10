@@ -36,7 +36,6 @@ public class SkillButton : MonoBehaviour
     /// </summary>
     public void ButtonDown()
     {
-        m_playerStatusSystem.SetActiveTrue();
         m_playerStatusSystem.DrawData(MyNumber, MyNumberInPlayerData, gameObject);
         DataUpdate();
     }

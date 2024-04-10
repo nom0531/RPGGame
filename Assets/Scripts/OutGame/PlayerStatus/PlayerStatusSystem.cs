@@ -35,18 +35,24 @@ public class PlayerStatusSystem : MonoBehaviour
     private GameObject SkillDataContent;
     [SerializeField, Tooltip("スキルアイコン")]
     private GameObject SkillDataIcon;
-    [SerializeField, Header("参照オブジェクト"),Tooltip("属性のテキスト")]
+    [SerializeField, Header("参照オブジェクト"), Tooltip("属性のテキスト")]
     private GameObject Element_Text;
     [SerializeField, Tooltip("ステータスのテキスト")]
     private GameObject Status_Text;
     [SerializeField, Header("表示するCanvas")]
-    private GameObject Canvas;
+    private GameObject SkillDataCanvas;
+    [SerializeField]
+    private GameObject SkillStatusCanvas;
     [SerializeField, Header("所持しているEP")]
     private GameObject HaveEP;
     [SerializeField, Header("スキルデータ")]
     private GameObject SkillName;
     [SerializeField]
     private GameObject SkillDetail, EnhancementPoint, SkillElement;
+    [SerializeField, Header("ポップアップ用データ")]
+    private GameObject SkillDataName;
+    [SerializeField]
+    private GameObject SkillDataDetil, SkillDataElement;
     [SerializeField, Header("OKボタン")]
     private GameObject OKButton;
     [SerializeField, Header("情報変更ボタン")]
@@ -248,7 +254,7 @@ public class PlayerStatusSystem : MonoBehaviour
     /// 属性を設定する
     /// </summary>
     /// <returns>属性名</returns>
-    private string SetElementData(int skillNumber)
+    public string SetElementData(int skillNumber)
     {
         var element = "";
         switch (SkillData.skillDataList[skillNumber].SkillElement)
@@ -279,14 +285,6 @@ public class PlayerStatusSystem : MonoBehaviour
     }
 
     /// <summary>
-    /// Activeを切り替える
-    /// </summary>
-    public void SetActiveTrue()
-    {
-        Canvas.SetActive(true);
-    }
-
-    /// <summary>
     /// スキルボタンを生成
     /// </summary>
     private void InstantiateSkillDataButton()
@@ -307,8 +305,14 @@ public class PlayerStatusSystem : MonoBehaviour
             skillButton.MyNumber = PlayerData.playerDataList[m_gameManager.PlayerNumber].skillDataList[i].ID;
             skillButton.MyNumberInPlayerData = i;
             skillButton.SkillNameObject = button;
+            // オブジェクトを設定
+            var skillStatus = button.GetComponent<DrawSkillStatus>();
+            skillStatus.SetObject(SkillDataName, SkillDataElement, SkillDataDetil);
+            skillStatus.MyNumber = PlayerData.playerDataList[m_gameManager.PlayerNumber].skillDataList[i].ID;
             // Animatorを所持しているオブジェクトを教える
-            button.GetComponent<UIAnimation>().AnimatorObject = Canvas;
+            var conponents = button.GetComponents<UIAnimation>();
+            conponents[0].AnimatorObject = SkillDataCanvas;
+            conponents[1].AnimatorObject = SkillStatusCanvas;
         }
     }
 

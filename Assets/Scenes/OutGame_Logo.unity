@@ -283,7 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95aa79fffb82c8640ab86f4cbbad6c55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Timer: 6
+  Timer: 200
   ChangeSceneName: OutGame_Title
   InstantiateTimer: 0
   AnimationCanvas: {fileID: 9117991967328621675}
@@ -461,7 +461,7 @@ Camera:
   m_GameObject: {fileID: 1087895509}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 4
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
