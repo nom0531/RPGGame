@@ -189,9 +189,6 @@ public class BattleManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-#if UNITY_EDITOR
-        Debug.Log($"現在のターン数：{m_turnManager.TurnSum}ターン目");
-#endif
         // ゲームが終了しているなら、これより以下の処理は実行されない
         if (GameState != GameState.enPlay)
         {

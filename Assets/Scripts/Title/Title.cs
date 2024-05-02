@@ -25,6 +25,7 @@ public class Title : MonoBehaviour
 
     private void Start()
     {
+        
         m_animator = AnimationText.GetComponent<Animator>();
     }
 

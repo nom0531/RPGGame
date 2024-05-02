@@ -12,6 +12,8 @@ public enum AnimationState
     enSkillAttack,
     enGurad,
     enDamage,
+    enDamage_Down,
+    enDamage_Up,
     enWin,
     enLose,
 }
@@ -45,6 +47,12 @@ public class PlayerAnimation : MonoBehaviour
                 break;
             case AnimationState.enDamage:
                 m_animator.SetTrigger("Damage");
+                break;
+            case AnimationState.enDamage_Down:
+                m_animator.SetTrigger("Down");
+                break;
+            case AnimationState.enDamage_Up:
+                m_animator.SetTrigger("Up");
                 break;
             case AnimationState.enWin:
                 m_animator.SetTrigger("Win");

@@ -46,6 +46,9 @@ GameObject:
   - component: {fileID: -8150472034665455355}
   - component: {fileID: 6564204634683458435}
   - component: {fileID: 8036122241917982689}
+  - component: {fileID: 7387707131968974680}
+  - component: {fileID: 496638191020749864}
+  - component: {fileID: 5977451669666015693}
   m_Layer: 5
   m_Name: EnemySprite
   m_TagString: Enemy
@@ -187,3 +190,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StateAbnormalData: {fileID: 11400000, guid: bdaaa6fe93354f644a7473153b4b59dd, type: 2}
+--- !u!95 &7387707131968974680
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8557275430850057381}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 91ba0bbcc2d85074185f3f22a1a55671, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &496638191020749864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8557275430850057381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a94f783bd2afbc9479dc2ff3d9b9c98c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameObjects:
+  - {fileID: 8557275430850057381}
+--- !u!114 &5977451669666015693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8557275430850057381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27be47fc5638cff4494217d3df75a817, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Materials:
+  - {fileID: 2100000, guid: 637220d0540a89c43bd8313c31291ed3, type: 2}
+  - {fileID: 2100000, guid: 646d720bdaa5de94591fdc7a1c1a9a24, type: 2}

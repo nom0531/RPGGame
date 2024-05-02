@@ -43,7 +43,6 @@ public class DrawCommandText : MonoBehaviour
                 actionText = "—lŽq‚ðŒ©‚Ä‚¢‚é";
                 break;
         }
-        Debug.Log(actionText);
     }
 
     /// <summary>

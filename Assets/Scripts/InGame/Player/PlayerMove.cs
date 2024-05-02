@@ -177,8 +177,8 @@ public class PlayerMove : MonoBehaviour
     {
         // ダメージ量を計算
         BasicValue = m_battleSystem.NormalAttack(
-            PlayerStatus.ATK,// 攻撃力
-            attackedDEF                                         // 防御力
+            PlayerStatus.ATK,   // 攻撃力
+            attackedDEF         // 防御力
             );
         // 混乱状態なら
         if (ConfusionFlag == true)
@@ -187,7 +187,7 @@ public class PlayerMove : MonoBehaviour
             return;
         }
         m_battleManager.DamageEnemy(targetNumber, BasicValue);
-        m_playerAnimation.PlayAnimation(AnimationState.enAttack);            // アニメーションを再生
+        m_playerAnimation.PlayAnimation(AnimationState.enAttack);
     }
 
     /// <summary>
@@ -220,7 +220,7 @@ public class PlayerMove : MonoBehaviour
         // ダメージを設定する
         m_battleManager.DamageEnemy(targetNumber, BasicValue);
         PlayerAction_Decrement(skillNumber);
-        m_playerAnimation.PlayAnimation(AnimationState.enSkillAttack);            // アニメーションを再生
+        m_playerAnimation.PlayAnimation(AnimationState.enSkillAttack);
     }
 
     /// <summary>
@@ -251,7 +251,6 @@ public class PlayerMove : MonoBehaviour
     /// <param name="attackedATK">防御側の攻撃力</param>
     /// <param name="attackedDEF">防御側の防御力</param>
     /// <param name="attackedSPD">防御側の素早さ</param>
-    /// <param name="isBuff">trueならバフ。falseならデバフ</param>
     public int PlayerAction_Buff(int skillNumber, int attackedATK, int attackedDEF, int attackedSPD)
     {
         // パラメータを参照
@@ -349,7 +348,14 @@ public class PlayerMove : MonoBehaviour
         {
             m_playerBattleStatus.HP = HPMIN_VALUE;
         }
-        m_playerAnimation.PlayAnimation(AnimationState.enDamage);            // アニメーションを再生
+        if(m_playerBattleStatus.HP <= 0)
+        {
+            m_playerAnimation.PlayAnimation(AnimationState.enDamage_Down);
+        }
+        else
+        {
+            m_playerAnimation.PlayAnimation(AnimationState.enDamage);
+        }
         ActorHPState = SetHPStatus();
     }
 

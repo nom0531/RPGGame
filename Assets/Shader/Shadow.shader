@@ -9,26 +9,21 @@ Shader "Custom/Shadow"
         _MainTexScale("MainTexture Tiling", Float) = 1
         [Space]
         _MultiplyStrength("Multiply Strength", Range(0.0, 1.0)) = 1
+
+        //// UVスクロール
+        //[Header(UVScroll)][Space]
+        //// 影のテクスチャ
+        //[NoScaleOffset]_ShadowTex("ShadowTex", 2D) = "white" {}
+        //_ShadowTexScale("ShadowTexture Tiling", Float) = 1
+        //[Space]
+        //// 加速値
+        //_ScrollSpeedX("Scroll Speed X", Range(-1.0, 1.0)) = 0.25
+        //_ScrollSpeedY("Scroll Speed Y", Range(-1.0, 1.0)) = 0.25
+        //[Space]
+        //// 移動方向
+        //_ScrollShiftX("Scroll Shift X", Range(-1.0, 1.0)) = 0.25
+        //_ScrollShiftY("Scroll Shift Y", Range(-1.0, 1.0)) = 0.25
         [Space]
-        //[Toggle(UV_SCROLL)]
-        //_UseUVScroll("Use UVScroll", Float) = 0
-        [Toggle(DRAW_CIRCLE)]
-        _UseDrawCircle("Use DrawCircle", Float) = 0
-        [Space(10)]
-        // UVスクロール
-        [Header(UVScroll)][Space]
-        // 影のテクスチャ
-        [NoScaleOffset]_ShadowTex("ShadowTex", 2D) = "white" {}
-        _ShadowTexScale("ShadowTexture Tiling", Float) = 1
-        [Space]
-        // 加速値
-        _ScrollSpeedX("Scroll Speed X", Range(-1.0, 1.0)) = 0.25
-        _ScrollSpeedY("Scroll Speed Y", Range(-1.0, 1.0)) = 0.25
-        [Space]
-        // 移動方向
-        _ScrollShiftX("Scroll Shift X", Range(-1.0, 1.0)) = 0.25
-        _ScrollShiftY("Scroll Shift Y", Range(-1.0, 1.0)) = 0.25
-        [Space(10)]
         // 円を描画する
         [Header(DrawCircle)][Space]
         _Frequency("Frequency", Float) = 50
@@ -40,11 +35,7 @@ Shader "Custom/Shadow"
 
     SubShader
     {
-        Tags {  "RenderType" = "Opaque"
-                "RenderPipeline" = "UniversalPipeline"
-                "UniversalMaterialType" = "SimpleLit" 
-                "IgnoreProjector" = "True" "ShaderModel" = "4.5"
-        }
+     Tags { "RenderType" = "Opaque" "RenderPipeline" = "UniversalPipeline" "UniversalMaterialType" = "SimpleLit" "IgnoreProjector" = "True" "ShaderModel" = "4.5"}
         LOD 300
 
         Pass
@@ -136,16 +127,16 @@ Shader "Custom/Shadow"
                 return light;
             }
 
-            // UVスクロール
-            half4 UVScroll(float2 uv)
-            {
-                float2 uvShadow;
-                uvShadow.x = uv.x + (_ScrollSpeedX * _ScrollShiftX * _Time.x);
-                uvShadow.y = uv.y + (_ScrollSpeedY * _ScrollShiftY * _Time.y);
-                uvShadow *= _ShadowTexScale;
-                // テクスチャをサンプリング
-                return tex2D(_ShadowTex, uvShadow);
-            }
+            //// UVスクロール
+            //half4 UVScroll(float2 uv)
+            //{
+            //    float2 uvShadow;
+            //    uvShadow.x = uv.x + (_ScrollSpeedX * _ScrollShiftX * _Time.x);
+            //    uvShadow.y = uv.y + (_ScrollSpeedY * _ScrollShiftY * _Time.y);
+            //    uvShadow *= _ShadowTexScale;
+            //    // テクスチャをサンプリング
+            //    return tex2D(_ShadowTex, uvShadow);
+            //}
 
             // 円を描画する
             half4 DrawCircle(float2 uv)
@@ -158,7 +149,6 @@ Shader "Custom/Shadow"
             // 影を描画する
             half4 LitPassFragmentSimple(Varyings input) : SV_Target
             {
-                half4 positon = (0, 0, 0, 0);
                 half4 shadowCoord = TransformWorldToShadowCoord(input.positionWS);
                 Light mainLight = MyGetMainLight(shadowCoord);
                 // テクスチャをサンプリング

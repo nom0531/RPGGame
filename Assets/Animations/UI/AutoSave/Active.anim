@@ -340,21 +340,24 @@ AnimationClip:
   - time: 0.25
     functionName: ChangeSprite
     data: 
-    objectReferenceParameter: {fileID: 0}
+    objectReferenceParameter: {fileID: 11500000, guid: 9732e25cde81b2f409ad1c1cf207c749,
+      type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.9166667
     functionName: ReturnSprite
     data: 
-    objectReferenceParameter: {fileID: 0}
+    objectReferenceParameter: {fileID: 11500000, guid: 9732e25cde81b2f409ad1c1cf207c749,
+      type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.45
     functionName: ChangeSprite
     data: 
-    objectReferenceParameter: {fileID: 0}
+    objectReferenceParameter: {fileID: 11500000, guid: 9732e25cde81b2f409ad1c1cf207c749,
+      type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
@@ -368,21 +371,23 @@ AnimationClip:
   - time: 1.7
     functionName: ChangeSprite
     data: 
-    objectReferenceParameter: {fileID: 0}
+    objectReferenceParameter: {fileID: 11500000, guid: 9732e25cde81b2f409ad1c1cf207c749,
+      type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 2.25
     functionName: ReturnSprite
     data: 
-    objectReferenceParameter: {fileID: 0}
+    objectReferenceParameter: {fileID: 11500000, guid: 9732e25cde81b2f409ad1c1cf207c749,
+      type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 2.5
-    functionName: SetActive_False
+    functionName: DestroyThis
     data: 
-    objectReferenceParameter: {fileID: 11500000, guid: a94f783bd2afbc9479dc2ff3d9b9c98c,
+    objectReferenceParameter: {fileID: 11500000, guid: 9732e25cde81b2f409ad1c1cf207c749,
       type: 3}
     floatParameter: 0
     intParameter: 0

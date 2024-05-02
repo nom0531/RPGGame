@@ -78,7 +78,6 @@ public class StagingManager : MonoBehaviour
         {
             return;
         }
-        m_enemyMoveList[number].gameObject.SetActive(false);    // 非表示
         m_enemyMoveList.Remove(m_enemyMoveList[number]);        // リストから削除
     }
 
@@ -97,7 +96,6 @@ public class StagingManager : MonoBehaviour
         {
             return;
         }
-        m_playerMoveList[number].gameObject.SetActive(false);   // 非表示
         m_playerMoveList.Remove(m_playerMoveList[number]);      // リストから削除
     }
 
@@ -205,7 +203,7 @@ public class StagingManager : MonoBehaviour
             {
                 continue;
             }
-            m_playerMoveList[i].gameObject.SetActive(flag) ;
+            m_playerMoveList[i].gameObject.SetActive(flag);
         }
     }
 

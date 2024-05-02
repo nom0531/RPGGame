@@ -27,4 +27,12 @@ public class AutoSaveAnimation : MonoBehaviour
     {
         transform.GetChild(0).GetComponent<Image>().sprite = Sprite;
     }
+
+    /// <summary>
+    /// ©g‚ğíœ‚·‚é
+    /// </summary>
+    public void DestroyThis()
+    {
+        Destroy(gameObject);
+    }
 }

@@ -2,17 +2,9 @@ Shader "Custom/Character"
 {
     Properties
     {
-        [MainTexture] _BaseMap("Texture", 2D) = "white" {}
+        [MainTexture] _BaseMap("Sprite", 2D) = "white" {}
         [MainColor] _BaseColor("Color", Color) = (1, 1, 1, 1)
         _Cutoff("AlphaCutout", Range(0.0, 1.0)) = 0.5
-
-        // ディソルブ表現
-        [Toggle(DISSOLVE)]
-        _UseDisolve("Use Dissolve", Float) = 0
-        [NoScaleOffset] _DissolveTex("DissolveTexture", 2D) = "white" {}
-        _EdgeColor("Dissolve Color", Color) = (0, 0, 0, 0)
-        [PowerSlider(0.5)]_EdgeWidth("Dissolve Margin Width", Range(0.0, 1.0)) = 0.5
-        [PowerSlider(0.0)]_AlphaClipThreshold("Alpha Clip Threshold", Range(0.0, 1.0)) = 0.0
 
             // BlendMode
             _Surface("__surface", Float) = 0.0
@@ -71,59 +63,10 @@ Shader "Custom/Character"
                     #pragma vertex UnlitPassVertex
                     #pragma fragment UnlitPassFragment
 
-                    #pragma shader_feature DISSOLVE
-
-                    struct appData
-                    {
-                        float4 vartex : POSITION;
-                        float2 uv : TEXCOORD0;
-                    };
-
-                    struct v2f
-                    {
-                        float2 uv : TEXCOORD0;
-                        float4 vartex : SV_POSITION;
-                    };
-
-                    sampler2D _DissolveTex;
-                    half4 _EdgeColor;
-                    half _AlphaClopThreshold;
-                    half _EdgeWidth;
-                    float4 _MainTex_ST;
-                    float4 _DissolveTex_ST;
-
                     #include "Packages/com.unity.render-pipelines.universal/Shaders/UnlitInput.hlsl"
                     #include "Packages/com.unity.render-pipelines.universal/Shaders/UnlitForwardPass.hlsl"
 
-                    #ifdef DISSOLVE
-                    // ディソルブ表現
-                    v2f vart(appdata input) 
-                    {
-                        v2f output;
-                        output.vartex = UnityObjectToClipPos(input.vartex);
-                        output.uv = TANCEFORM_TEX(input.uv, _MainTex);
-                        return output;
-                    }
 
-                    half4 frag(v2f input) : SV_Target
-                    {
-                        half4 edgeColor = half4(1.0f, 1.0f, 1.0f, 1.0f);
-                        // テクスチャからα値を取得
-                        half4 dissolve = tex2D(_DissolveTex, input.uv);
-                        float alpha = dissolve.r * 0.2f + dissolve.g * 0.7f + dissolve.b * 0.1f;
-
-                        // 段階的な色変化で実現する
-                        if (alpha < _AlphaClipThreshold + _EdgeWidth && _AlphaClipThreshold > 0) 
-                        {
-                            edgeColor = _EdgeColor;
-                        }
-                        if (alpha < _AlphaClipThreshold) 
-                        {
-                            discard;
-                        }
-                        return tex2D(_BaseMap, input.uv) * _BaseColor * edgeColor;
-                    }
-                    #endif
                 ENDHLSL
                 }
                 Pass

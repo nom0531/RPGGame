@@ -18,7 +18,6 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         {
             if (m_saveDataManager == null)
             {
-                // ‘¶İ‚µ‚Ä‚¢‚È‚¢‚È‚ç’T‚·
                 m_saveDataManager = FindObjectOfType<SaveDataManager>();
             }
             return m_saveDataManager;
@@ -31,7 +30,6 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         {
             if (m_soundManamager == null)
             {
-                // ‘¶İ‚µ‚Ä‚¢‚È‚¢‚È‚ç’T‚·
                 m_soundManamager = FindObjectOfType<SoundManager>();
             }
             return m_soundManamager;

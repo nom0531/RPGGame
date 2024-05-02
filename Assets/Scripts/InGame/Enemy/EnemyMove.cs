@@ -407,7 +407,7 @@ public class EnemyMove : MonoBehaviour
         {
             return;
         }
-        // 透明度を下げる
+        Dissolve();
         m_battleManager.EnemyListRemove(m_myNumber);        // 成功したらリストから自身を削除
     }
 
@@ -751,9 +751,19 @@ public class EnemyMove : MonoBehaviour
     {
         // 演出が終了したなら以下の処理を実行する
         await UniTask.WaitUntil(() => m_stagingManager.StangingState == StagingState.enStangingEnd);
-        // 画像を透過
-        var image = GetComponent<Image>();
-        image.DOFade(endValue: 0f, duration: 1f);
+        Dissolve();
         tag = "DieEnemy";              // タグを変更する
+    }
+
+    /// <summary>
+    /// ディソルブ処理
+    /// </summary>
+    private void Dissolve()
+    {
+        var changeMaterial = GetComponent<ChangeMaterial>();
+        var material = GetComponent<SpriteRenderer>().material = changeMaterial.Change(1);
+        material.SetTexture("_MainTex", EnemyData.enemyDataList[MyNumber].EnemySprite.texture);
+
+        GetComponent<Animator>().SetTrigger("Dissolve");
     }
 }

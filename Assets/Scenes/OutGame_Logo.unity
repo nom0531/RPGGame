@@ -283,8 +283,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95aa79fffb82c8640ab86f4cbbad6c55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Timer: 200
-  ChangeSceneName: OutGame_Title
+  Timer: 5
+  ChangeSceneName: OutGame_BG
   InstantiateTimer: 0
   AnimationCanvas: {fileID: 9117991967328621675}
 --- !u!1001 &285719903
@@ -480,7 +480,7 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
