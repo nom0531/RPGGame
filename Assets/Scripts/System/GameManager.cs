@@ -7,6 +7,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     [SerializeField]
     private GameObject SaveDataObject, SoundObject, AnimationObject;
 
+    private PlayTimelineManager m_playTimelineManager;
     private SaveDataManager m_saveDataManager;
     private SoundManager m_soundManamager;
     private int m_selectLevelNumber = 0;
@@ -36,6 +37,18 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         }
     }
 
+    public PlayTimelineManager PlayTimelineManager
+    {
+        get
+        {
+            if (m_playTimelineManager == null)
+            {
+                m_playTimelineManager = FindObjectOfType<PlayTimelineManager>();
+            }
+            return m_playTimelineManager;
+        }
+    }
+
     public int PlayerNumber
     {
         get => m_selectPlayerNumber;
@@ -58,6 +71,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         m_saveDataManager.AnimationObject = AnimationObject;
         Instantiate(SoundObject);
         m_soundManamager = SoundObject.GetComponent<SoundManager>();
+        m_playTimelineManager = null;
         Physics.autoSimulation = false;
     }
 

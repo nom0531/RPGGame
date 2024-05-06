@@ -268,7 +268,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: OutGame_TItle
+            m_StringArgument: OutGame_Main
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!114 &254897984
@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Timer: 5
-  ChangeSceneName: OutGame_BG
+  ChangeSceneName: OutGame_Main
   InstantiateTimer: 0
   AnimationCanvas: {fileID: 9117991967328621675}
 --- !u!1001 &285719903

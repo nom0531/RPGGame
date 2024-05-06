@@ -34,6 +34,8 @@ public class PictureBookSystem : MonoBehaviour
     private GameObject Data_EnemyNumber;
     [SerializeField,Header("参照オブジェクト")]
     private GameObject RegistrationRateText;
+    [SerializeField]
+    private Animator Animator;
 
     private SaveDataManager m_saveDataManager;      // セーブデータ
     private int m_enemyCount = 0;                   // 見つけているエネミーの数
@@ -45,6 +47,7 @@ public class PictureBookSystem : MonoBehaviour
     /// <param name="number">エネミーの番号</param>
     public void DisplaySetValue(int number)
     {
+        Animator.GetComponent<Animator>().SetTrigger("ChangeData");
         // 値を表示する
         Data_Name.SetActive(true);
         Data_Detail.SetActive(true);

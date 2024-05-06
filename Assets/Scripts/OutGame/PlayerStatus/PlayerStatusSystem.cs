@@ -57,6 +57,8 @@ public class PlayerStatusSystem : MonoBehaviour
     private GameObject OKButton;
     [SerializeField, Header("情報変更ボタン")]
     private GameObject[] ChangeButton;
+    [SerializeField]
+    private Animator Animator;
 
     private GameManager m_gameManager;      // ゲームマネージャー
     private List<PlayerButton> m_playerButtonList;
@@ -71,7 +73,6 @@ public class PlayerStatusSystem : MonoBehaviour
         m_playerButtonList = new List<PlayerButton>(playerButtonList);
         // データを表示
         DisplaySetValue(m_gameManager.PlayerNumber);
-        Data_Shadow.GetComponent<Animator>().SetTrigger("Active");
     }
 
     /// <summary>
@@ -81,6 +82,7 @@ public class PlayerStatusSystem : MonoBehaviour
     public void DisplaySetValue(int number)
     {
         m_gameManager.PlayerNumber = number;    // 番号を更新
+        Animator.SetTrigger("ChangeData");
         // データを表示
         Data_Sprite.SetActive(true);
         Data_Name.SetActive(true);

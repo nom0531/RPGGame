@@ -9,24 +9,24 @@ EditorBuildSettings:
     path: Assets/Scenes/OutGame_Logo.unity
     guid: d727cae399a82e64f9e114a53b934aab
   - enabled: 1
-    path: Assets/Scenes/OutGame_Title.unity
+    path: Assets/Scenes/OutGame/OutGame_Title.unity
     guid: 2424e6e3a6e4b3a49b2c0b6a8301ea62
   - enabled: 1
-    path: Assets/Scenes/OutGame_Home.unity
+    path: Assets/Scenes/OutGame/OutGame_Home.unity
     guid: 904c2f041e288574dbce463d59a2b55d
   - enabled: 1
-    path: Assets/Scenes/OutGame_PictureBook.unity
+    path: Assets/Scenes/OutGame/OutGame_PictureBook.unity
     guid: 191c6342362066e47b3ff29f04e2f7b5
   - enabled: 1
-    path: Assets/Scenes/OutGame_PlayerStatus.unity
+    path: Assets/Scenes/OutGame/OutGame_PlayerStatus.unity
     guid: 6a520606c3eba544ebb9f9bfeb3df74a
   - enabled: 1
-    path: Assets/Scenes/OutGame_Quest.unity
+    path: Assets/Scenes/OutGame/OutGame_Quest.unity
     guid: aeeeacf1399d3ee4b9c778a1d468382e
-  - enabled: 1
-    path: Assets/Scenes/InGame.unity
-    guid: bfc121862839ae44593673081420507e
   - enabled: 1
     path: Assets/Scenes/OutGame_Main.unity
     guid: 128d459bbb662784b9c97bc17e746ca0
+  - enabled: 1
+    path: Assets/Scenes/InGame.unity
+    guid: bfc121862839ae44593673081420507e
   m_configObjects: {}

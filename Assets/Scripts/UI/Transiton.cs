@@ -17,7 +17,6 @@ public class Transiton : MonoBehaviour
 
     // シェーダー内で定義されている特定のプロパティをint型に変換
     private readonly int m_progressID = Shader.PropertyToID("_Progress");
-    private TransitionState m_transitionState;
 
     // Start is called before the first frame update
     private void Start()

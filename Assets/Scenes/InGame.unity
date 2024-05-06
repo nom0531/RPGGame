@@ -1081,7 +1081,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: OutGame_Quest
+          m_StringArgument: OutGame_Main
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 45138813}
@@ -5509,7 +5509,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: OutGame_Quest
+          m_StringArgument: OutGame_Main
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 685223886}
@@ -6805,7 +6805,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &781305743
@@ -9297,7 +9297,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1185286901}
-  m_LocalRotation: {x: -0.16712257, y: 0.730773, z: 0.1929024, w: 0.633111}
+  m_LocalRotation: {x: -0.16712253, y: 0.730773, z: 0.1929024, w: 0.63311106}
   m_LocalPosition: {x: 53, y: 10, z: 196.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10665,8 +10665,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1280703057}
-  m_LocalRotation: {x: -0.06842585, y: -0.4441139, z: -0.034041382, w: 0.89270484}
-  m_LocalPosition: {x: 243.95308, y: 114.197845, z: 157.14021}
+  m_LocalRotation: {x: -0.014342407, y: -0.21573466, z: -0.003169134, w: 0.97634155}
+  m_LocalPosition: {x: 240.60307, y: 114.63284, z: 152.93022}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -12810,7 +12810,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1536153106
@@ -12841,7 +12841,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1554104039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16537,7 +16537,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0.00012207031, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1999741159

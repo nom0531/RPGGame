@@ -50,5 +50,5 @@ MonoBehaviour:
     type: 3}
   AnimationObject: {fileID: 9117991967738062999, guid: 27c76c178849a074b92a701db96792bb,
     type: 3}
-  SeamlessManagerObject: {fileID: 1524327609461332277, guid: 890a37c7650b8ff42b48c2f2adb5ebef,
+  SeamlessManagerObject: {fileID: 5516911579073750474, guid: 413793becdd525d47ba350cfee42ac81,
     type: 3}
