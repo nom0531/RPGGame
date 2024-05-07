@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Playables;
 
 public enum SceneNumber
 {
@@ -11,7 +10,6 @@ public enum SceneNumber
     enPictureBook,
     enPlayerStatus,
     enQuest,
-    enNum
 }
 
 public class SeamlessManager : MonoBehaviour

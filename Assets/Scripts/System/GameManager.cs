@@ -12,6 +12,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     private SoundManager m_soundManamager;
     private int m_selectLevelNumber = 0;
     private int m_selectPlayerNumber = 0;
+    private SceneNumber m_sceneNumber = SceneNumber.enTitle;    // スクリプト側で合成するシーン番号
 
     public SaveDataManager SaveDataManager
     {
@@ -59,6 +60,12 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         get => m_selectLevelNumber;
         set => m_selectLevelNumber = value;
+    }
+
+    public SceneNumber SceneNumber
+    {
+        get => m_sceneNumber;
+        set => m_sceneNumber = value;
     }
 
     private void Start()

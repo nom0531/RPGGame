@@ -7,6 +7,8 @@ public class SceneButton : MonoBehaviour
 {
     [SerializeField, Header("参照オブジェクト"), Tooltip("フェードを開始するキャンバス")]
     private GameObject FadeCanvas;
+    [SerializeField, Header("追加でロードするシーン")]
+    SceneNumber SceneNumber;
 
     /// <summary>
     /// シーンを遷移する
@@ -18,6 +20,11 @@ public class SceneButton : MonoBehaviour
         var fadeCanvas = Instantiate(FadeCanvas);
         fadeCanvas.GetComponent<FadeScene>().FadeStart(sceneName);
         // セーブ
-        GameManager.Instance.SaveDataManager.Save(false);
+        var gameManager = GameManager.Instance;
+        if(sceneName == "OutGame_Main")
+        {
+            gameManager.SceneNumber = SceneNumber;      // 追加でロードするシーンを設定
+        }
+        gameManager.SaveDataManager.Save(false);
     }
 }

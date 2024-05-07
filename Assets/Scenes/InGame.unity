@@ -1160,6 +1160,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FadeCanvas: {fileID: 3995090342758580441, guid: 74a6822cd9aeb6a489cc170772b42136,
     type: 3}
+  SceneNumber: 4
 --- !u!95 &45138812
 Animator:
   serializedVersion: 5
@@ -1802,7 +1803,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &74213528
@@ -1906,7 +1907,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &104848631
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5456,6 +5457,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FadeCanvas: {fileID: 3995090342758580441, guid: 74a6822cd9aeb6a489cc170772b42136,
     type: 3}
+  SceneNumber: 4
 --- !u!114 &685223888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6067,7 +6069,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &690522603
@@ -7631,7 +7633,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &931953549
@@ -9297,7 +9299,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1185286901}
-  m_LocalRotation: {x: -0.16712253, y: 0.730773, z: 0.1929024, w: 0.63311106}
+  m_LocalRotation: {x: -0.16712254, y: 0.7307729, z: 0.19290236, w: 0.6331111}
   m_LocalPosition: {x: 53, y: 10, z: 196.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9953,7 +9955,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1227436718}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5aac1ee8537889747b0424ad89901d35, type: 3}
   m_Name: 
@@ -11456,6 +11458,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FadeCanvas: {fileID: 3995090342758580441, guid: 74a6822cd9aeb6a489cc170772b42136,
     type: 3}
+  SceneNumber: 0
 --- !u!114 &1357967163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14883,6 +14886,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FadeCanvas: {fileID: 3995090342758580441, guid: 74a6822cd9aeb6a489cc170772b42136,
     type: 3}
+  SceneNumber: 0
 --- !u!114 &1780014602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16673,7 +16677,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &2004046552

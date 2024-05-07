@@ -45,6 +45,7 @@ public class ChangeScene : MonoBehaviour
         if(m_timer >= Timer)
         {
             m_sceneButton.SceneChange(ChangeSceneName);
+            GameManager.Instance.SceneNumber = SceneNumber.enTitle;
             m_timer = 0.0f;
         }
     }
