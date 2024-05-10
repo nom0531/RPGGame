@@ -53,7 +53,7 @@ public class SeamlessManager : MonoBehaviour
         {
             return;
         }
-        SceneManager.LoadScene(SetSceneName(number), LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync(SetSceneName(number), LoadSceneMode.Additive);
     }
 
     /// <summary>

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Cysharp.Threading.Tasks;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class FadeScene : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class FadeScene : MonoBehaviour
     private string m_sceneName = "";
     // 自身が使用するImage
     private Image m_image;
+    private Image m_cardImage;
+    private TextMeshProUGUI m_textMeshProUGUI;
 
     /// <summary>
     /// フェードを開始する処理
@@ -34,8 +37,18 @@ public class FadeScene : MonoBehaviour
             // 遷移先のシーン名を保存
             m_sceneName = sceneName;
         }
-        // 自身の子オブジェクトのImageを保存
-        m_image = transform.GetChild(0).GetComponent<Image>();
+        GetChilds();
+    }
+
+    /// <summary>
+    /// 子オブジェクトを取得
+    /// </summary>
+    private void GetChilds()
+    {
+        var image = transform.GetChild(0);
+        m_image = image.GetComponent<Image>();
+        m_cardImage = image.GetChild(0).GetComponent<Image>();
+        m_textMeshProUGUI = transform.GetChild(1).GetComponent<TextMeshProUGUI>();
     }
 
     private void Update()
@@ -68,8 +81,19 @@ public class FadeScene : MonoBehaviour
         }
 
         // 不透明度を設定する
-        Color nowColor = m_image.color;
+        m_image.color = SetColor(m_image.color);
+        m_cardImage.color = SetColor(m_cardImage.color);
+        m_textMeshProUGUI.color = SetColor(m_textMeshProUGUI.color);
+    }
+
+    /// <summary>
+    /// 不透明度を設定
+    /// </summary>
+    /// <param name="color">オブジェクトのカラー</param>
+    private Color SetColor(Color color)
+    {
+        Color nowColor = color;
         nowColor.a = m_alpha;
-        m_image.color = nowColor;
+        return nowColor;
     }
 }

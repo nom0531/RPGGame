@@ -172,10 +172,12 @@ public class StagingManager : MonoBehaviour
         m_stangingState = StagingState.enStangingStart;
         m_battleManager.StagingStartFlag = true;
         m_stangingSystem.ChangeVcam((int)effectRange);
+        // 行動が防御時の処理
         if (ActionType != ActionType.enGuard)
         {
             await UniTask.Delay(TimeSpan.FromSeconds(0.2f));
         }
+        // カットインを挿入するなら
         if (isCutin == true)
         {
             CutInStart();

@@ -61,6 +61,10 @@ SpriteAtlas:
     - {fileID: 2800000, guid: 08384c9480be89e479a5f691c55a8da6, type: 3}
     - {fileID: 2800000, guid: 9826f4500e2f9da48847c0257ebfdaf8, type: 3}
     - {fileID: 2800000, guid: ddb2eed53840d52459f3bee7c477a07f, type: 3}
+    - {fileID: 2800000, guid: 250b4311f4fc6e246a5ef30a5c098b55, type: 3}
+    - {fileID: 2800000, guid: aa8d6772a403c904eb0a5d7afb51b37c, type: 3}
+    - {fileID: 2800000, guid: 2597516653121094e8e26e0f78b9fbe3, type: 3}
+    - {fileID: 2800000, guid: fcf713dc357485542a16c57082e6bee2, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -68,17 +72,21 @@ SpriteAtlas:
   m_PackedSprites:
   - {fileID: 21300000, guid: 9826f4500e2f9da48847c0257ebfdaf8, type: 3}
   - {fileID: 21300000, guid: 5a4420d08f2b1f642bf424a225d49935, type: 3}
+  - {fileID: 21300000, guid: 250b4311f4fc6e246a5ef30a5c098b55, type: 3}
   - {fileID: 21300000, guid: e87d0ff114adafd4b9d7f672106e0bc9, type: 3}
+  - {fileID: 21300000, guid: aa8d6772a403c904eb0a5d7afb51b37c, type: 3}
   - {fileID: 21300000, guid: 734c7e5342f18bc428605dcc8e7ee94d, type: 3}
   - {fileID: 21300000, guid: 3f6b31b3ca8b05b41afb2fbd0c4bbedf, type: 3}
   - {fileID: 21300000, guid: 08384c9480be89e479a5f691c55a8da6, type: 3}
   - {fileID: 21300000, guid: 037203b48a611054d9e2860a14c0cc76, type: 3}
   - {fileID: 21300000, guid: 6887e9158e74cf94cb186d5d9abaf7a8, type: 3}
   - {fileID: 21300000, guid: ddb2eed53840d52459f3bee7c477a07f, type: 3}
+  - {fileID: 21300000, guid: 2597516653121094e8e26e0f78b9fbe3, type: 3}
   - {fileID: 21300000, guid: a6d936d609628424c96e2cf0441bb243, type: 3}
   - {fileID: 21300000, guid: b0b8f2f87f76cdb4b9976eefa7993082, type: 3}
   - {fileID: 21300000, guid: 490831da41d51fb498693d130cba473b, type: 3}
   - {fileID: 21300000, guid: 1ec10e1c8a2cb944fafc58ee69c43b74, type: 3}
+  - {fileID: 21300000, guid: fcf713dc357485542a16c57082e6bee2, type: 3}
   - {fileID: 21300000, guid: 809d0e5d356318b41b94a2ca594a2d3a, type: 3}
   - {fileID: 21300000, guid: dfe6c37df48ba46439b49016e5ae7f2d, type: 3}
   - {fileID: 21300000, guid: d1c6652e3df1c634e90428a4ef80e3f2, type: 3}
@@ -86,17 +94,21 @@ SpriteAtlas:
   m_PackedSpriteNamesToIndex:
   - windowImage 1
   - buttonImage3
+  - light
   - changeButton
+  - pictureBook
   - buttonImage2 1
   - buttonImage2-b
   - nameWindow
   - buttonImage4
   - pictureBookButton
   - windowImage2
+  - quest
   - buttonImage 1
   - clearImage
   - conprete
   - questButton
+  - status
   - buttonImage6
   - statusButton
   - buttonImage5
