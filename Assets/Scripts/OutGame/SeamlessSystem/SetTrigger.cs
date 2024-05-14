@@ -26,6 +26,9 @@ public class SetTrigger : MonoBehaviour
         }
         switch (SeamlessNumber)
         {
+            case SeamlessNumber.enTitleFromLogo:
+                Animator.SetTrigger("Title From Logo");
+                break;
             case SeamlessNumber.enHomeFromTitle:
                 Animator.SetTrigger("Home From Title");
                 break;

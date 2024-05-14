@@ -65,6 +65,9 @@ SpriteAtlas:
     - {fileID: 2800000, guid: aa8d6772a403c904eb0a5d7afb51b37c, type: 3}
     - {fileID: 2800000, guid: 2597516653121094e8e26e0f78b9fbe3, type: 3}
     - {fileID: 2800000, guid: fcf713dc357485542a16c57082e6bee2, type: 3}
+    - {fileID: 2800000, guid: 1f26a7a42c00508418b9a53662a9cf66, type: 3}
+    - {fileID: 2800000, guid: 4014125b1c3527b4a94a550de6f48ad9, type: 3}
+    - {fileID: 2800000, guid: 250b4311f4fc6e246a5ef30a5c098b55, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -78,6 +81,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 734c7e5342f18bc428605dcc8e7ee94d, type: 3}
   - {fileID: 21300000, guid: 3f6b31b3ca8b05b41afb2fbd0c4bbedf, type: 3}
   - {fileID: 21300000, guid: 08384c9480be89e479a5f691c55a8da6, type: 3}
+  - {fileID: 21300000, guid: 1f26a7a42c00508418b9a53662a9cf66, type: 3}
   - {fileID: 21300000, guid: 037203b48a611054d9e2860a14c0cc76, type: 3}
   - {fileID: 21300000, guid: 6887e9158e74cf94cb186d5d9abaf7a8, type: 3}
   - {fileID: 21300000, guid: ddb2eed53840d52459f3bee7c477a07f, type: 3}
@@ -85,6 +89,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: a6d936d609628424c96e2cf0441bb243, type: 3}
   - {fileID: 21300000, guid: b0b8f2f87f76cdb4b9976eefa7993082, type: 3}
   - {fileID: 21300000, guid: 490831da41d51fb498693d130cba473b, type: 3}
+  - {fileID: 21300000, guid: 4014125b1c3527b4a94a550de6f48ad9, type: 3}
   - {fileID: 21300000, guid: 1ec10e1c8a2cb944fafc58ee69c43b74, type: 3}
   - {fileID: 21300000, guid: fcf713dc357485542a16c57082e6bee2, type: 3}
   - {fileID: 21300000, guid: 809d0e5d356318b41b94a2ca594a2d3a, type: 3}
@@ -100,6 +105,7 @@ SpriteAtlas:
   - buttonImage2 1
   - buttonImage2-b
   - nameWindow
+  - titleLogo_image
   - buttonImage4
   - pictureBookButton
   - windowImage2
@@ -107,6 +113,7 @@ SpriteAtlas:
   - buttonImage 1
   - clearImage
   - conprete
+  - titleLogo_Text
   - questButton
   - status
   - buttonImage6

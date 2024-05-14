@@ -12,6 +12,7 @@ public enum SeamlessNumber
     enHomeFromPictureBook,
     enHomeFromPlayerStatus,
     enHomeFromQuest,
+    enTitleFromLogo,
 }
 
 public class PlayTimelineManager : MonoBehaviour
@@ -25,6 +26,10 @@ public class PlayTimelineManager : MonoBehaviour
     /// <param name="number">Ä¶‚·‚éƒ^ƒCƒ€ƒ‰ƒCƒ“‚Ì”Ô†</param>
     public void Play(SeamlessNumber number)
     {
+        if(m_directors[(int)number] == null)
+        {
+            return;
+        }
         m_directors[(int)number].Play();
     }
 }

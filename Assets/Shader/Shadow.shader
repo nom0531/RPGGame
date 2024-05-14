@@ -154,14 +154,8 @@ Shader "Custom/Shadow"
                 // テクスチャをサンプリング
                 half4 mainTexColor = tex2D(_MainTex, input.uv);
                 half4 shadowColor;
-                #ifdef UV_SCROLL
-                shadowColor = UVScroll(input.uv);
-                #elif DRAW_CIRCLE
-                shadowColor = DrawCircle(input.uv);
-                #else
-                shadowColor = _ShadowColor;
-                #endif
                 // 最終カラーを計算
+                shadowColor = DrawCircle(input.uv);
                 shadowColor *= 1.0f - (1.0f - mainTexColor) * _MultiplyStrength;
                 half3 finalColor = lerp(shadowColor.rgb, mainTexColor.rgb, mainLight.shadowAttenuation);
                 return half4(finalColor, 1.0f);
