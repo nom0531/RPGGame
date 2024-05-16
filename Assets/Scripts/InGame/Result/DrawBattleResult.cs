@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 
 public class DrawBattleResult : MonoBehaviour
 {
     [SerializeField]
-    private GameObject ResultText;
+    private GameObject ResultTextImage;
+    [SerializeField]
+    private Sprite[] Sprites;
 
     private SaveDataManager m_saveDataManager;
     private UIAnimation m_uIAnimation;
@@ -38,7 +40,7 @@ public class DrawBattleResult : MonoBehaviour
         SetSE(true);
         m_uIAnimation.ButtonDown_Active();
         DrawEP();
-        ResultText.GetComponent<TextMeshProUGUI>().text = "WIN!";
+        ResultTextImage.GetComponent<Image>().sprite = Sprites[0];
         m_saveDataManager.SaveData.saveData.ClearStage[m_myNumber] = true;  // ÉNÉäÉA
     }
 
@@ -50,7 +52,7 @@ public class DrawBattleResult : MonoBehaviour
         SetSE(false);
         m_uIAnimation.ButtonDown_Active();
         DrawEP();
-        ResultText.GetComponent<TextMeshProUGUI>().text = "LOSEÅc";
+        ResultTextImage.GetComponent<Image>().sprite = Sprites[1];
     }
 
     /// <summary>

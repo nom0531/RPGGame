@@ -33,7 +33,7 @@ public class PictureBookSystem : MonoBehaviour
     [SerializeField, Tooltip("図鑑番号")]
     private GameObject Data_EnemyNumber;
     [SerializeField,Header("参照オブジェクト")]
-    private GameObject RegistrationRateText;
+    private GameObject RegistrationRateText, CompleteTextImage;
     [SerializeField]
     private Animator Animator;
 
@@ -85,6 +85,7 @@ public class PictureBookSystem : MonoBehaviour
     void Start()
     {
         // 値を非表示にする
+        CompleteTextImage.SetActive(false);
         Data_Sprite.SetActive(false);
         m_saveDataManager = GameManager.Instance.SaveDataManager;
 
@@ -144,6 +145,12 @@ public class PictureBookSystem : MonoBehaviour
         var text = $"{rate.ToString("F1")}%";
         // 値を代入
         RegistrationRateText.GetComponent<TextMeshProUGUI>().text = text;
+
+        // 登録率が100パーセントなら
+        if (rate >= 100)
+        {
+            CompleteTextImage.SetActive(true);
+        }
     }
 
     /// <summary>

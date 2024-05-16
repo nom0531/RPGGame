@@ -3029,7 +3029,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Animator: {fileID: 647090456}
-  SeamlessNumber: 6
+  SeamlessNumber: 3
 --- !u!1 &1898839364
 GameObject:
   m_ObjectHideFlags: 0
