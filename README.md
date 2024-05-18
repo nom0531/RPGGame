@@ -23,7 +23,7 @@
 ---
 <dd>
 
-[プレイ動画](https://www.youtube.com/watch?v=3p30X7y2MSg "https://www.youtube.com/watch?v=3p30X7y2MSg")
+[プレイ動画](https://youtu.be/Tf6d_NLJHek "https://youtu.be/Tf6d_NLJHek")
 </dd>
 
 ### 3. 作品概要
