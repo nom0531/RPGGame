@@ -87,14 +87,14 @@ public class TurnManager : MonoBehaviour
     /// <summary>
     /// 場のステータスをリセットして、次のターンに移行する
     /// </summary>
-    private void TurnEnd()
+    async private void TurnEnd()
     {
+        await UniTask.WaitUntil(() => m_stagingManager.StangingState == StagingState.enStangingEnd);
         // 次の操作キャラクターを決定、カメラを再設定する
         m_battleManager.InitValue();
         m_lockOnManager.ResetCinemachine();
         m_battleManager.ResetGameStatus();
-        // ターンを渡す
-        m_turnStatus = TurnStatus.enPlayer;
+        TurnStatus = TurnStatus.enPlayer;
         m_turnSum++;
     }
 
