@@ -9,7 +9,8 @@
 4. 制作環境<br>
 5. 技術紹介<br>
 6. こだわり<br>
-7. 参考サイト・使用素材<br>
+7. 使用素材<br>
+8. 楽曲に関しまして<br>
 
 ### 1. 自己紹介
 ---
@@ -165,5 +166,15 @@ CutInStart()関数内ではアニメーションの再生に加えて<br>カッ�
 [自家製フォント工房](http://jikasei.me/font/jf-dotfont/ "http://jikasei.me/font/jf-dotfont/")<br>
 [ひみつ ゲーム用フリー素材](http://uros.web.fc2.com/frame.html "http://uros.web.fc2.com/frame.html")<br>
 © Unity Technologies Japan/UCL<br>
+
+</dd>
+
+### 8.楽曲に関しまして
+---
+<dd>
+
+こちらの作品に使用しております楽曲、[A Summer's Dream (向香織 様制作)](https://audiostock.jp/audio/1120600 "https://audiostock.jp/audio/1120600")
+に関しまして、<br>
+Audiostockにてダウンロードしたものになりますのでご了承ください。<br>
 
 </dd>
