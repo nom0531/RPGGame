@@ -146,7 +146,7 @@ Unityの機能であるTimelineについての理解を深めたいと思い、<
 <img src="Portfolio/gif/6_CutIn.gif" width="60%"><br>
 「エネミーの弱点を突いた」際の効果として、カットインを実装しています。
 
-<img src="Portfolio/png/6_CutIn.png" width="90%">
+<img src="Portfolio/png/6_Cutin.png" width="90%">
 
 ▲ 演出を開始する関数<br>
 ※黄色のラインの部分でカットインのアニメーションを再生。
