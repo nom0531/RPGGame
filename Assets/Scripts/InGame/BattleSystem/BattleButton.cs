@@ -17,6 +17,8 @@ public class BattleButton : MonoBehaviour
     private GameObject GuardButton;
     [SerializeField]
     private GameObject OKButton;
+    [SerializeField]
+    private GameObject AllOutAttackButton;
     [SerializeField, Header("何れかのボタンが押されたかどうか")]
     private bool m_isButtonDown = false;
 
@@ -119,6 +121,15 @@ public class BattleButton : MonoBehaviour
         SetInteractable(false);
         ButtonDown = true;
         m_playerMoveList[m_currentTurnPlayerNumber].NextActionType = ActionType.enGuard;
+    }
+
+    /// <summary>
+    /// AllOutAttackボタンが押された時の処理
+    /// </summary>
+    public void AllOutAttackButtonDown()
+    {
+        SetInteractable(false);
+        ButtonDown = true;
     }
 
     /// <summary>

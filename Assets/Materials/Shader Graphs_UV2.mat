@@ -40,9 +40,9 @@ Material:
     m_Ints: []
     m_Floats:
     - _Alpha: 1
-    - _Speed: 0.5
-    - _Width: 10
-    - _positionY: 1
+    - _Speed: 0.2
+    - _Width: 25
+    - _positionY: 0
     - _positonX: 0
     m_Colors:
     - _Color: {r: 0.21176471, g: 0.81960785, b: 0.9019608, a: 1}

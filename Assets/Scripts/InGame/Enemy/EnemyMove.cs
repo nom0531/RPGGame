@@ -46,6 +46,7 @@ public class EnemyMove : MonoBehaviour
     private int m_poisonDamage = 0;                                                     // 毒状態時のダメージ
     private bool m_isConfusion = false;                                                 // 混乱しているかどうか
     private bool m_isActionEnd = false;                                                 // 行動が終了しているかどうか
+    private bool m_isWeak = false;                                                      // 弱点を突かれたかどうか
 
     public int MyNumber
     {
@@ -79,7 +80,12 @@ public class EnemyMove : MonoBehaviour
     public bool ActionEndFlag
     {
         get => m_isActionEnd;
-        set => m_isActionEnd = value;
+    }
+
+    public bool WeakFlag
+    {
+        get => m_isWeak;
+        set => m_isWeak = value;
     }
 
     public bool ConfusionFlag
@@ -161,7 +167,6 @@ public class EnemyMove : MonoBehaviour
 
     private void FixedUpdate()
     {
-        RotationSprite();
         if (m_battleManager.GameState != GameState.enPlay)
         {
             return;
@@ -187,10 +192,17 @@ public class EnemyMove : MonoBehaviour
     /// </summary>
     private void SetStatus()
     {
+#if UNITY_EDITOR
+        m_enemyBattleStatus.HP = 9999;  // デバッグ用
+        m_enemyBattleStatus.ATK = EnemyData.enemyDataList[m_myNumber].ATK;
+        m_enemyBattleStatus.DEF = EnemyData.enemyDataList[m_myNumber].DEF;
+        m_enemyBattleStatus.SPD = EnemyData.enemyDataList[m_myNumber].SPD;
+#else
         m_enemyBattleStatus.HP = EnemyData.enemyDataList[m_myNumber].HP;
         m_enemyBattleStatus.ATK = EnemyData.enemyDataList[m_myNumber].ATK;
         m_enemyBattleStatus.DEF = EnemyData.enemyDataList[m_myNumber].DEF;
         m_enemyBattleStatus.SPD = EnemyData.enemyDataList[m_myNumber].SPD;
+#endif
     }
 
     /// <summary>
@@ -240,6 +252,7 @@ public class EnemyMove : MonoBehaviour
         }
         NextActionType = ActionType.enNull;
         m_isActionEnd = false;
+        m_isWeak = false;
     }
 
     /// <summary>
@@ -412,17 +425,6 @@ public class EnemyMove : MonoBehaviour
     }
 
     /// <summary>
-    /// 透明度を下げる処理
-    /// </summary>
-    /// <param name="value">下げるスピード</param>
-    /// <returns>透明度</returns>
-    private float DownTransparency(float value)
-    {
-        var alpha = 1.0f;
-        return alpha -= value * Time.deltaTime;
-    }
-
-    /// <summary>
     /// HPを回復する処理
     /// </summary>
     /// <param name="recoverValue">回復量</param>
@@ -506,19 +508,6 @@ public class EnemyMove : MonoBehaviour
     }
 
     /// <summary>
-    /// 画像を回転させる
-    /// </summary>
-    private void RotationSprite()
-    {
-        var lookAtCamera = Camera.main.transform.position;
-        lookAtCamera.y = transform.gameObject.transform.position.y;
-        transform.LookAt(lookAtCamera);
-        var lookAtCamera2 = lookAtCamera;
-        lookAtCamera2.y = transform.parent.gameObject.transform.position.y;
-        transform.transform.parent.gameObject.transform.LookAt(lookAtCamera2);
-    }
-
-    /// <summary>
     /// ターゲットプレイヤーを選択する処理
     /// </summary>
     /// <returns>プレイヤーの番号</returns>
@@ -591,14 +580,10 @@ public class EnemyMove : MonoBehaviour
     /// <summary>
     /// 行動を終了する
     /// </summary>
-    /// <param name="actionType">行動パターン</param>
-    /// <param name="skillNumber">スキルの番号</param>
-    public void ActionEnd(ActionType actionType, int skillNumber)
+    public void ActionEnd()
     {
-#if UNITY_EDITOR
-        m_drawCommandText.SetCommandText(actionType, 0);
-#endif
-        ActionEndFlag = true;
+        m_isActionEnd = true;
+        WeakFlag = false;
     }
 
     /// <summary>

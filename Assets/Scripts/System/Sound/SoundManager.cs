@@ -27,6 +27,7 @@ public enum SENumber
     enUseEP,
     enCutin,
     enAttack,
+    enMiss,
     enMagicAttack,
     enWeak,
     enRegister,

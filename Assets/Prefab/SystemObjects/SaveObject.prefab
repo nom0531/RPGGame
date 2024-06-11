@@ -49,45 +49,12 @@ MonoBehaviour:
   LevelData: {fileID: 11400000, guid: 90bc944d3736a5e4a8728f62fe12ef58, type: 2}
   GameSaveData:
     saveData:
-      EnemyRegister: 00000000000000000000000000000000000000000000000000000000000000000000000000
-      ElementRegister:
-      - Elements: 00000000000000
-      - Elements: 00000000000000
-      - Elements: 00000000000000
-      - Elements: 00000000000000
-      - Elements: 00000000000000
-      - Elements: 00000000000000
-      - Elements: 00000000000000
-      - Elements: 00000000000000
-      - Elements: 00000000000000
-      - Elements: 00000000000000
-      - Elements: 00000000000000
-      - Elements: 00000000000000
-      - Elements: 00000000000000
-      - Elements: 00000000000000
-      - Elements: 00000000000000
-      - Elements: 00000000000000
-      - Elements: 00000000000000
-      - Elements: 00000000000000
-      - Elements: 00000000000000
-      - Elements: 00000000000000
-      - Elements: 00000000000000
-      - Elements: 00000000000000
-      - Elements: 00000000000000
-      - Elements: 00000000000000
-      - Elements: 00000000000000
-      - Elements: 00000000000000
-      - Elements: 00000000000000
-      - Elements: 00000000000000
-      - Elements: 00000000000000
-      - Elements: 00000000000000
-      - Elements: 00000000000000
-      - Elements: 00000000000000
-      - Elements: 00000000000000
-      - Elements: 00000000000000
-      - Elements: 00000000000000
-      - Elements: 00000000000000
-      - Elements: 00000000000000
-      Players: []
+      BGMVolume: 0
+      SEVolume: 0
+      EnemyRegisters: 
+      ElementRegisters: []
+      SkillRegisters: []
+      EnhancementRegisters: []
+      PlayerList: []
       ClearStage: 
-      EnhancementPoint: 500
+      EnhancementPoint: 0

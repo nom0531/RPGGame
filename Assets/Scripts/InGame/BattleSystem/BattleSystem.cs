@@ -11,6 +11,7 @@ public enum ActionType
     enSkillAttack,          // スキル攻撃
     enGuard,                // 防御
     enEscape,               // 逃走
+    enWeak,                 // 弱点を突かれた
     enNull,                 // 何もしない
 }
 
@@ -62,6 +63,9 @@ public enum ResistanceState
     enResist,
 }
 
+/// <summary>
+/// 攻撃の計算処理をまとめたクラス
+/// </summary>
 public class BattleSystem : MonoBehaviour
 {
     [SerializeField, Header("参照データ")]
@@ -88,7 +92,7 @@ public class BattleSystem : MonoBehaviour
     public bool WeakFlag
     {
         get => m_isWeak;
-        set => m_isWeak = false;
+        set => m_isWeak = value;
     }
 
 
@@ -123,7 +127,7 @@ public class BattleSystem : MonoBehaviour
     /// <returns>ダメージ量。小数点以下は切り捨て</returns>
     public int NormalAttack(int attackATK, int attackedDEF)
     {
-        var rand = GetRandomValue(0, 9);    // 補正値
+        var rand = GetRandomValue(1, 9);    // 補正値
 
         float damage =
             (attackATK * 0.5f) - (attackedDEF * 0.25f) + rand;
@@ -142,7 +146,7 @@ public class BattleSystem : MonoBehaviour
     /// <returns>ダメージ量。小数点以下は切り捨て</returns>
     public int SkillAttack(int attackATK, int skillPOW, int attackedDEF)
     {
-        var rand = GetRandomValue(0, 5);    // 補正値
+        var rand = GetRandomValue(1, 5);    // 補正値
 
         float damage =
             (attackATK + skillPOW * 0.01f) - attackedDEF + rand;
@@ -199,7 +203,7 @@ public class BattleSystem : MonoBehaviour
                 break;
             case global::ElementResistance.enWeak:
                 finalDamage *= 2.0f;
-                m_isWeak = true;
+                WeakFlag = true;
                 ResistanceState = ResistanceState.enWeak;
                 break;
             case global::ElementResistance.enResist:
@@ -229,7 +233,7 @@ public class BattleSystem : MonoBehaviour
                 break;
             case global::ElementResistance.enWeak:
                 finalDamage *= 2.0f;
-                m_isWeak = true;
+                WeakFlag = true;
                 ResistanceState = ResistanceState.enWeak;
                 break;
             case global::ElementResistance.enResist:
@@ -270,6 +274,20 @@ public class BattleSystem : MonoBehaviour
         }
 
         return flag;
+    }
+
+    /// <summary>
+    /// 総攻撃の処理
+    /// </summary>
+    /// <returns>ダメージ量</returns>
+    public int AllOutAttack()
+    {
+        int damage = 0;
+        for (int i=0; i<PlayerData.playerDataList.Count; i++)
+        {
+            damage += PlayerData.playerDataList[i].ATK;
+        }
+        return damage;
     }
 
     /// <summary>

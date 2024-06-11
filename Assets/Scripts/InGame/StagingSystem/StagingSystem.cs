@@ -18,6 +18,8 @@ public class StagingSystem : MonoBehaviour
     private GameObject TargetGroupObject;
     [SerializeField, Header("基本エフェクト")]
     private GameObject[] InstantiateEffect;
+    [SerializeField, Header("HPバーのオブジェクト")]
+    private GameObject EnemyHPBar;
     [SerializeField, Tooltip("エフェクトの生成終了の待ち時間(秒)")]
     private float EndWaitTime = 1.5f;
     [SerializeField, Header("ダメージ量を表示するテキスト")]
@@ -32,7 +34,6 @@ public class StagingSystem : MonoBehaviour
     private CinemachineTargetGroup m_cinemachineTargetGroup;    // ターゲットグループ
     private SkillDataBase m_skillData;
     private TurnManager m_turnManager;
-    private EnemyHitPoint m_enemyHitPoint;
     private UIAnimation m_commandAnimaton;
     private UIAnimation m_enemyHPBarAnimation;
     private SE m_se;
@@ -61,7 +62,6 @@ public class StagingSystem : MonoBehaviour
         m_commandAnimaton.Animator = CommandCanvas.GetComponent<Animator>();
         m_enemyHPBarAnimation = EnemyHPBarCanvas.GetComponent<UIAnimation>();
         m_enemyHPBarAnimation.Animator = EnemyHPBarCanvas.GetComponent<Animator>();
-        m_enemyHitPoint = EnemyHPBarObject.GetComponent<EnemyHitPoint>();
         m_se = GetComponent<SE>();
         m_battleSystem = GetComponent<BattleSystem>();
         m_turnManager = GetComponent<TurnManager>();
@@ -143,6 +143,10 @@ public class StagingSystem : MonoBehaviour
                 CommandText.SetActive(false);
                 CommandImage.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = $"逃走";
                 break;
+            case ActionType.enWeak:
+                CommandImage.gameObject.SetActive(false);
+                SetAddInfoCommandText($"ダウンしている…");
+                break;
             case ActionType.enNull:
                 CommandImage.gameObject.SetActive(false);
                 SetAddInfoCommandText($"様子を見ている…");
@@ -152,11 +156,11 @@ public class StagingSystem : MonoBehaviour
     }
 
     /// <summary>
-    /// エフェクトを再生する
+    /// 攻撃演出を再生する
     /// </summary>
     /// <param name="actionType">行動パターン</param>
     /// <param name="skillNumber">スキルの番号</param>
-    async public void PlayEffect(ActionType actionType, int skillNumber)
+    async public void PlayStaging(ActionType actionType, int skillNumber)
     {
         if (actionType == ActionType.enGuard)
         {
@@ -167,9 +171,7 @@ public class StagingSystem : MonoBehaviour
         {
             m_enemyHPBarAnimation.ButtonDown_Active();
         }
-        CreateEffect(actionType, skillNumber);
-        // HPのバーを再設定する
-        m_enemyHitPoint.SetFillAmount();
+        CreateStaging(actionType, skillNumber);
         await UniTask.Delay(TimeSpan.FromSeconds(EndWaitTime));
         // 設定をリセット
         m_commandAnimaton.ButtonDown_NotActive();
@@ -178,33 +180,19 @@ public class StagingSystem : MonoBehaviour
     }
 
     /// <summary>
-    /// エフェクトを作成
+    /// 攻撃演出を作成
     /// </summary>
     /// <param name="actionType">行動パターン</param>
     /// <param name="skillNumber">スキルの番号</param>
-    private void CreateEffect(ActionType actionType, int skillNumber)
+    private void CreateStaging(ActionType actionType, int skillNumber)
     {
         if (m_isPlayEffect == true)
         {
             return;
         }
         m_isPlayEffect = true;
-        // 生成するエフェクトを設定
-        var effect = InstantiateEffect[(int)actionType];
-        m_se.Number = SENumber.enAttack;
-        var scale = EFFECT_SCALE;
-        if (actionType == ActionType.enSkillAttack)
-        {
-            // スキルでの攻撃なら、データから参照する
-            effect = m_skillData.skillDataList[skillNumber].SkillEffect;
-            scale = m_skillData.skillDataList[skillNumber].EffectScale;
-            SetSE(skillNumber);
-        }
-        if (effect != null)
-        {
-            CreateEffect(effect, scale);
-            DrawDamage();
-        }
+        CreateEffect(actionType,skillNumber);
+        CreateDamageText(actionType);
         if (actionType != ActionType.enNull)
         {
             m_se.PlaySE();
@@ -212,23 +200,77 @@ public class StagingSystem : MonoBehaviour
     }
 
     /// <summary>
-    /// エフェクトを生成する
+    /// エフェクトを作成する関数
     /// </summary>
-    private void CreateEffect(GameObject effect, float scale)
+    private void CreateEffect(ActionType actionType, int skillNumber)
     {
-        effect.transform.localScale = new Vector3(scale, scale, scale);
-        Instantiate(effect, TargetGroupObject.transform);
+        // 生成するエフェクトを設定
+        var effect = InstantiateEffect[(int)actionType];
+        var scale = EFFECT_SCALE;
+        m_se.Number = SENumber.enAttack;
+        if (actionType == ActionType.enSkillAttack)
+        {
+            // スキルでの攻撃なら、データから参照する
+            effect = m_skillData.skillDataList[skillNumber].SkillEffect;
+            scale = m_skillData.skillDataList[skillNumber].EffectScale;
+            SetSE(skillNumber);
+        }
+        // 攻撃が当たっていないなら
+        if (m_battleSystem.HitFlag == false)
+        {
+            m_se.Number = SENumber.enMiss;
+            effect = null;
+        }
+        if (effect != null)
+        {
+            effect.transform.localScale = new Vector3(scale, scale, scale);
+            Instantiate(effect, TargetGroupObject.transform);
+        }
+    }
+
+    /// <summary>
+    /// ダメージテキストを作成する関数
+    /// </summary>
+    private void CreateDamageText(ActionType actionType)
+    {
+        if (actionType != ActionType.enAttack && actionType != ActionType.enSkillAttack)
+        {
+            return;
+        }
+        var childCount = m_cinemachineTargetGroup.m_Targets.Length;
+        for (int i = 0; i < childCount; i++)
+        {
+            DrawDamage(m_cinemachineTargetGroup.m_Targets[i].target);
+        }
     }
 
     /// <summary>
     /// ダメージ量を描画
     /// </summary>
-    private void DrawDamage()
+    private void DrawDamage(Transform transform)
     {
         // ダメージテキストを生成
-        var damageCanvas = Instantiate(Damagetext, TargetGroupObject.transform);
+        var damageCanvas = Instantiate(Damagetext, transform);
+        Debug.Log("生成時の座標：" + transform.position);
+
+        // Canvasの座標をビューポート座標に変換
+        var viewportPoint = Camera.main.WorldToViewportPoint(transform.position);
+        damageCanvas.transform.position = viewportPoint;
+        // 子オブジェクトの座標を調整
+        var childPosition = damageCanvas.transform.GetChild(0).position;
+        childPosition = new Vector3(0.0f, childPosition.y, 0.0f);
+        Debug.Log("CanvasPosition：" + damageCanvas.transform.position);
+        Debug.Log("ChildPosition：" + childPosition);
+
+        // ダメージ量を設定
         var drawDamage = damageCanvas.GetComponent<DrawDamage>();
-        drawDamage.Damage = m_damage;
+        drawDamage.Damage = m_damage.ToString();
+
+        // 攻撃が当たっていないなら
+        if (m_battleSystem.HitFlag == false)
+        {
+            drawDamage.Damage = "miss";
+        }
         drawDamage.Draw();
     }
 

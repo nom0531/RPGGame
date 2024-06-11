@@ -50,6 +50,8 @@ public class PlayerMove : MonoBehaviour
     private int m_poisonDamage = 0;                                                 // 毒状態時のダメージ
     private bool m_isActionEnd = false;                                             // 行動が終了しているかどうか
     private bool m_isConfusion = false;                                             // 混乱しているかどうか
+    private bool m_isWeak = false;                                                  // 弱点を突かれたかどうか
+    private bool m_isDecrement = false;
 
     public int MyNumber
     {
@@ -65,7 +67,6 @@ public class PlayerMove : MonoBehaviour
     public bool ActionEndFlag
     {
         get => m_isActionEnd;
-        set => m_isActionEnd = value;
     }
 
     public ActionType NextActionType
@@ -137,17 +138,25 @@ public class PlayerMove : MonoBehaviour
     /// </summary>
     private void SetStatus()
     {
+#if UNITY_EDITOR
+        m_playerBattleStatus.HP = 9999;  // デバッグ用
+        m_playerBattleStatus.SP = 9999;
+        m_playerBattleStatus.ATK = m_saveDataManager.SaveData.saveData.PlayerList[MyNumber].ATK;
+        m_playerBattleStatus.DEF = m_saveDataManager.SaveData.saveData.PlayerList[MyNumber].DEF;
+        m_playerBattleStatus.SPD = m_saveDataManager.SaveData.saveData.PlayerList[MyNumber].SPD;
+        m_playerBattleStatus.LUCK = m_saveDataManager.SaveData.saveData.PlayerList[MyNumber].LUCK;
+#else
         m_playerBattleStatus.HP = m_saveDataManager.SaveData.saveData.PlayerList[MyNumber].HP;
         m_playerBattleStatus.SP = m_saveDataManager.SaveData.saveData.PlayerList[MyNumber].SP;
         m_playerBattleStatus.ATK = m_saveDataManager.SaveData.saveData.PlayerList[MyNumber].ATK;
         m_playerBattleStatus.DEF = m_saveDataManager.SaveData.saveData.PlayerList[MyNumber].DEF;
         m_playerBattleStatus.SPD = m_saveDataManager.SaveData.saveData.PlayerList[MyNumber].SPD;
         m_playerBattleStatus.LUCK = m_saveDataManager.SaveData.saveData.PlayerList[MyNumber].LUCK;
+#endif
     }
 
     private void FixedUpdate()
     {
-        RotationSprite();
         if (m_battleManager.GameState != GameState.enPlay)
         {
             return;
@@ -297,6 +306,10 @@ public class PlayerMove : MonoBehaviour
     /// </summary>
     private void PlayerAction_Decrement(int skillNumber)
     {
+        if(m_isDecrement == true)
+        {
+            return;
+        }
         // 値を計算する
         var necessaryValue = PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].SkillNecessary;
         // SP・HPを消費する
@@ -309,6 +322,7 @@ public class PlayerMove : MonoBehaviour
                 DecrementHP(necessaryValue);
                 break;
         }
+        m_isDecrement = true;
     }
 
     /// <summary>
@@ -423,28 +437,14 @@ public class PlayerMove : MonoBehaviour
                 break;
         }
     }
-
-    /// <summary>
-    /// 画像を回転させる
-    /// </summary>
-    private void RotationSprite()
-    {
-        var lookAtCamera = Camera.main.transform.position;
-        lookAtCamera.y = transform.position.y;  // 補正
-        transform.LookAt(lookAtCamera);
-    }
     
     /// <summary>
     /// 自身の行動を終了する
     /// </summary>
-    /// <param name="actionType">行動パターン</param>
-    /// <param name="skillNumber">スキルの番号</param>
-    public void ActionEnd(ActionType actionType, int skillNumber)
+    public void ActionEnd()
     {
-#if UNITY_EDITOR
-        m_drawCommandText.SetCommandText(actionType, PlayerData.playerDataList[m_myNumber].skillDataList[skillNumber].ID);
-#endif
-        ActionEndFlag = true;
+        m_isActionEnd = true;
+        m_isDecrement = false;
     }
 
     /// <summary>

@@ -5,11 +5,11 @@ using TMPro;
 
 public class DrawDamage : MonoBehaviour
 {
-    private int m_damage = 0;
+    private string m_damageText = "";
 
-    public int Damage
+    public string Damage
     {
-        set => m_damage = value;
+        set => m_damageText = value;
     }
 
     /// <summary>
@@ -17,7 +17,10 @@ public class DrawDamage : MonoBehaviour
     /// </summary>
     public void Draw()
     {
-        transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = m_damage.ToString();
+        // テキストの設定
+        var text = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+        text.text = m_damageText;
+        // アニメーション
         var uiAnimation = GetComponent<UIAnimation>();
         uiAnimation.Animator = GetComponent<Animator>();
         uiAnimation.ButtonDown_Active();

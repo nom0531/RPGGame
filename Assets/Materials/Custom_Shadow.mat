@@ -127,7 +127,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _MainTexScale: 70
+    - _MainTexScale: 25
     - _Metallic: 0
     - _Mode: 0
     - _MultiplyStrength: 0.955

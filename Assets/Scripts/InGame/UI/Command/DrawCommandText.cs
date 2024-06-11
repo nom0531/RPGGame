@@ -17,35 +17,6 @@ public class DrawCommandText : MonoBehaviour
     }
 
     /// <summary>
-    /// 行動テキストの表示処理
-    /// </summary>
-    /// <param name="actionType">行動パターン</param>
-    /// <param name="skillNumber">使用スキルの番号</param>
-    public void SetCommandText(ActionType actionType, int skillNumber = 0)
-    {
-        string actionText = "";
-        // テキストの分岐
-        switch (actionType)
-        {
-            case ActionType.enAttack:
-                actionText = "攻撃";
-                break;
-            case ActionType.enSkillAttack:
-                actionText = SkillData.skillDataList[skillNumber].SkillName;
-                break;
-            case ActionType.enGuard:
-                actionText = "防御";
-                break;
-            case ActionType.enEscape:
-                actionText = "逃走";
-                break;
-            case ActionType.enNull:
-                actionText = "様子を見ている";
-                break;
-        }
-    }
-
-    /// <summary>
     /// バフがかかったときのテキスト
     /// </summary>
     /// <param name="buffStatus">バフのタイプ</param>

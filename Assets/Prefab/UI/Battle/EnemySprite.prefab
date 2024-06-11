@@ -49,6 +49,7 @@ GameObject:
   - component: {fileID: 7387707131968974680}
   - component: {fileID: 496638191020749864}
   - component: {fileID: 5977451669666015693}
+  - component: {fileID: 597648156130072661}
   m_Layer: 5
   m_Name: EnemySprite
   m_TagString: Enemy
@@ -240,3 +241,15 @@ MonoBehaviour:
   Materials:
   - {fileID: 2100000, guid: 637220d0540a89c43bd8313c31291ed3, type: 2}
   - {fileID: 2100000, guid: 646d720bdaa5de94591fdc7a1c1a9a24, type: 2}
+--- !u!114 &597648156130072661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8557275430850057381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13494f7b85d6de94a8169c59e848ebd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

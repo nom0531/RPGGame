@@ -82,11 +82,11 @@ public class PlayerTurn : MonoBehaviour
         PlayerAction_Command(myNumber, targetNumber, m_battleManager.PlayerMoveList[myNumber].NextActionType, skillNumber);
         // 演出を開始する
         m_stagingManager.ActionType = m_battleManager.PlayerMoveList[myNumber].NextActionType;
-        m_stagingManager.RegistrationTargets(m_turnManager.TurnStatus, m_battleSystem.WeakFlag, targetNumber, myNumber, player.BasicValue,
+        m_stagingManager.RegistrationTargets(targetNumber, myNumber, player.BasicValue,
             m_battleManager.PlayerDataBase.playerDataList[myNumber].skillDataList[skillNumber].ID,
             m_battleManager.PlayerDataBase.playerDataList[myNumber].skillDataList[skillNumber].EffectRange);
         // 行動を終了する
-        player.ActionEnd(m_battleManager.PlayerMoveList[myNumber].NextActionType, skillNumber);
+        player.ActionEnd();
         // 演出が終了したなら以下の処理を実行する
         await UniTask.WaitUntil(() => m_stagingManager.StangingState == StagingState.enStangingEnd);
         player.DecrementHP(player.PoisonDamage);
@@ -95,8 +95,6 @@ public class PlayerTurn : MonoBehaviour
         // ロックオンの設定を初期化・再設定する
         m_lockOnManager.ButtonDown = false;
         m_lockOnManager.ResetCinemachine();
-        // フラグをリセット
-        m_battleSystem.WeakFlag = false;
     }
 
     /// <summary>

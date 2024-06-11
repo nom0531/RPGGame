@@ -176,16 +176,17 @@ public class BattleManager : MonoBehaviour
         InitValue();
     }
 
+#if UNITY_EDITOR
     // Update is called once per frame
     private void Update()
     {
-#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            m_gameState = GameState.enBattleWin;
+            //m_battleSystem.HitFlag = false;
+            GetComponent<AllOutAttackSystem>().CanStartFlag = true;
         }
-#endif
     }
+#endif
 
     private void FixedUpdate()
     {

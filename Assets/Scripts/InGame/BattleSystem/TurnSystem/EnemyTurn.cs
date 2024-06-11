@@ -55,10 +55,14 @@ public class EnemyTurn : MonoBehaviour
         // ターゲットの番号を取得する
         var targetNumber = enemy.SelectTargetPlayer();
         EnemyAction_Command(myNumber, actionType, skillNumber, targetNumber);
+        if (m_battleManager.EnemyMoveList[myNumber].WeakFlag == true)
+        {
+            actionType = ActionType.enWeak;
+        }
         // 演出を開始する
         m_stagingManager.ActionType = actionType;
-        m_stagingManager.RegistrationTargets(m_turnManager.TurnStatus, false, targetNumber, myNumber, enemy.BasicValue);
-        enemy.ActionEnd(actionType, skillNumber);
+        m_stagingManager.RegistrationTargets(targetNumber, myNumber, enemy.BasicValue);
+        enemy.ActionEnd();
         // 演出が終了したなら以下の処理を実行する
         await UniTask.WaitUntil(() => m_stagingManager.StangingState == StagingState.enStangingEnd);
         // 毒状態時のダメージを与える
@@ -199,7 +203,7 @@ public class EnemyTurn : MonoBehaviour
             case ActionType.enEscape:
                 m_battleManager.EnemyMoveList[myNumber].EnemyAction_Escape();
                 break;
-            case ActionType.enNull:
+            default:
                 break;
         }
     }

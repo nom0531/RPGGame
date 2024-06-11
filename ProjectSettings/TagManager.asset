@@ -17,6 +17,7 @@ TagManager:
   - SkillNameIcon
   - BGM
   - SE
+  - EnemyHPBar
   layers:
   - Default
   - TransparentFX

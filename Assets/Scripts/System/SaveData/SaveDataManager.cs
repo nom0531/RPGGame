@@ -17,7 +17,9 @@ public class SaveDataManager : SingletonMonoBehaviour<SaveDataManager>
     [SerializeField, Header("セーブデータ")]
     private SaveData GameSaveData;
 
+#if UNITY_EDITOR
     private const bool BOOL = false;
+#endif
     private const float DEFAULT_VOLUME = 0.5f;
     private const int DEFAULT_EP_POINT = 0;
 

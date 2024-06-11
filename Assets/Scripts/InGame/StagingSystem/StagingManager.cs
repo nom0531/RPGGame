@@ -26,13 +26,17 @@ public class StagingManager : MonoBehaviour
     private StagingSystem m_stangingSystem;     // 演出のシステム
     private LockOnManager m_lockOnSystem;       // ロックオンシステム
     private BattleManager m_battleManager;      // バトルマネージャー
+    private BattleSystem m_battleSystem;        // バトルシステム
+    private TurnManager m_turnManager;
     private CutInManager m_cutInManager;        // カットイン演出のシステム
+    private AllOutAttackSystem m_allOutAttackSystem;    // 総攻撃演出のシステム
     private UIAnimation m_uIAnimation;
     private List<EnemyMove> m_enemyMoveList;
     private List<PlayerMove> m_playerMoveList;
     private SkillDataBase m_skillData;
     private StagingState m_stangingState = StagingState.enStangingWaiting;
     private ActionType m_actionType = ActionType.enNull;
+    private int m_targetNumber = 0;
 
     public StagingState StangingState
     {
@@ -51,7 +55,10 @@ public class StagingManager : MonoBehaviour
         m_lockOnSystem = GetComponent<LockOnManager>();
         m_stangingSystem = GetComponent<StagingSystem>();
         m_battleManager = GetComponent<BattleManager>();
+        m_battleSystem = GetComponent<BattleSystem>();
+        m_turnManager = GetComponent<TurnManager>();
         m_cutInManager = CutInObject.GetComponent<CutInManager>();
+        m_allOutAttackSystem = GetComponent<AllOutAttackSystem>();
         m_skillData = m_battleManager.SkillDataBase;
         m_stangingSystem.SkillDataBase = m_skillData;
     }
@@ -100,22 +107,20 @@ public class StagingManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 演出を開始する
+    /// ターゲットを設定
     /// </summary>
     /// <param name="effectRange">行動の効果範囲</param>
-    /// <param name="isCutin">カットインを挿入するかどうか</param>
-    /// <param name="turnStatus">ターンを回す側</param>
     /// <param name="targetNumber">ターゲットの番号</param>
     /// <param name="myNumber">自身の番号</param>
     /// <param name="skillNumber">スキルの番号</param>
-    public void RegistrationTargets(TurnStatus turnStatus, bool isCutin, int targetNumber, int myNumber, int damage, int skillNumber=0, EffectRange effectRange=EffectRange.enOne)
+    public void RegistrationTargets(int targetNumber, int myNumber, int damage, int skillNumber=0, EffectRange effectRange=EffectRange.enOne)
     {
-        var number = targetNumber;
+        m_targetNumber = targetNumber;
         m_stangingSystem.Damage = damage;
         // ターゲットの番号を使用しない行動が選択されている場合
         if (ActionType != ActionType.enAttack && ActionType != ActionType.enSkillAttack)
         {
-            if (turnStatus == TurnStatus.enPlayer)
+            if (m_turnManager.TurnStatus == TurnStatus.enPlayer)
             {
                 m_lockOnSystem.TargetState = TargetState.enPlayer;
             }
@@ -124,7 +129,7 @@ public class StagingManager : MonoBehaviour
                 m_lockOnSystem.TargetState = TargetState.enEnemy;
             }
             // 使用する番号を自身の番号に切り替える
-            number = myNumber;
+            m_targetNumber = myNumber;
         }
         // オブジェクトをカメラのターゲットとして設定する
         switch (effectRange)
@@ -133,10 +138,10 @@ public class StagingManager : MonoBehaviour
             case EffectRange.enOne:
                 if (m_lockOnSystem.TargetState == TargetState.enPlayer)
                 {
-                    m_stangingSystem.SetCameraTarget(m_playerMoveList[number].transform.GetChild(0).gameObject);
+                    m_stangingSystem.SetCameraTarget(m_playerMoveList[m_targetNumber].transform.GetChild(0).gameObject);
                     break;
                 }
-                m_stangingSystem.SetCameraTarget(m_enemyMoveList[number].transform.GetChild(0).gameObject);
+                m_stangingSystem.SetCameraTarget(m_enemyMoveList[m_targetNumber].transform.GetChild(0).gameObject);
                 break;
             // 全体攻撃
             case EffectRange.enAll:
@@ -157,40 +162,55 @@ public class StagingManager : MonoBehaviour
                 }
                 break;
         }
-        StangingStart(skillNumber, effectRange,isCutin, number);
+        StangingStart(skillNumber, effectRange, m_targetNumber);
     }
 
     /// <summary>s
     /// 演出を開始
     /// </summary>
-    /// <param name="skillNumber">スキルの番号</param>
-    /// <param name="effectRange">スキルの効果範囲</param>
-    /// <param name="isCutin">カットインを挿入するかどうか</param>
-    /// <param name="number">ターゲットの番号</param>
-    async private void StangingStart(int skillNumber, EffectRange effectRange,bool isCutin, int number)
+    private void StangingStart(int skillNumber, EffectRange effectRange, int number)
     {
         m_stangingState = StagingState.enStangingStart;
         m_battleManager.StagingStartFlag = true;
+
+        // 処理の分岐
+        if (m_allOutAttackSystem.StartAllOutFlag)
+        {
+            m_allOutAttackSystem.StartAllOutAttack();
+        }
+        else
+        {
+            NormalNormalStaging(skillNumber, effectRange, number);
+        }
+    }
+
+    /// <summary>
+    /// 通常演出
+    /// </summary>
+    /// <param name="skillNumber">スキルの番号</param>
+    /// <param name="effectRange">スキルの効果範囲</param>
+    /// <param name="number">ターゲットの番号</param>
+    async private void NormalNormalStaging(int skillNumber, EffectRange effectRange, int number)
+    {
+        DrawPlayers(true);
         m_stangingSystem.ChangeVcam((int)effectRange);
         // 行動が防御時の処理
         if (ActionType != ActionType.enGuard)
         {
             await UniTask.Delay(TimeSpan.FromSeconds(0.2f));
         }
-        // カットインを挿入するなら
-        if (isCutin == true)
+        if (m_battleSystem.WeakFlag == true)
         {
             CutInStart();
             await UniTask.Delay(TimeSpan.FromSeconds(1.3f));
         }
         await UniTask.Delay(TimeSpan.FromSeconds(0.2f));
         // 演出を開始する
-        DrawPlayers(true);
         if (ActionType != ActionType.enGuard)
         {
             m_uIAnimation.ButtonDown_NotActive();
         }
-        m_stangingSystem.PlayEffect(ActionType, skillNumber);
+        m_stangingSystem.PlayStaging(ActionType, skillNumber);
         StangingEnd(number);
     }
 
@@ -225,6 +245,8 @@ public class StagingManager : MonoBehaviour
         m_stangingSystem.ResetPriority();
         m_uIAnimation.ButtonDown_Active();
         m_battleManager.StagingStartFlag = false;
+        m_battleSystem.WeakFlag = false;
+        m_battleSystem.HitFlag = false;
         DrawPlayers(false);
         m_stangingState = StagingState.enStangingEnd;
     }
@@ -234,6 +256,26 @@ public class StagingManager : MonoBehaviour
     /// </summary>
     private void CutInStart()
     {
+        if(m_turnManager.TurnStatus == TurnStatus.enEnemy)
+        {
+            return;
+        }
+        if(m_battleSystem.HitFlag == false)
+        {
+            return;
+        }
         m_cutInManager.CutIn();
+        SetWeakFlag();
+    }
+
+    /// <summary>
+    /// Weakフラグを設定する
+    /// </summary>
+    private void SetWeakFlag()
+    {
+        m_enemyMoveList[m_targetNumber].WeakFlag = true;
+#if UNITY_EDITOR
+        Debug.Log("weak!");
+#endif
     }
 }

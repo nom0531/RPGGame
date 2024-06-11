@@ -76,6 +76,10 @@ public class TurnManager : MonoBehaviour
         }
         for (int enemyNumber = 0; enemyNumber < m_battleManager.EnemyMoveList.Count; enemyNumber++)
         {
+            if(m_battleManager.EnemyMoveList[enemyNumber].ActorHPState == ActorHPState.enDie)
+            {
+                continue;
+            }
             if (m_battleManager.EnemyMoveList[enemyNumber].ActionEndFlag == false)
             {
                 return;
