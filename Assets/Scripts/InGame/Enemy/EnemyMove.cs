@@ -192,17 +192,17 @@ public class EnemyMove : MonoBehaviour
     /// </summary>
     private void SetStatus()
     {
-#if UNITY_EDITOR
-        m_enemyBattleStatus.HP = 9999;  // デバッグ用
-        m_enemyBattleStatus.ATK = EnemyData.enemyDataList[m_myNumber].ATK;
-        m_enemyBattleStatus.DEF = EnemyData.enemyDataList[m_myNumber].DEF;
-        m_enemyBattleStatus.SPD = EnemyData.enemyDataList[m_myNumber].SPD;
-#else
+//#if UNITY_EDITOR
+//        m_enemyBattleStatus.HP = 9999;  // デバッグ用
+//        m_enemyBattleStatus.ATK = EnemyData.enemyDataList[m_myNumber].ATK;
+//        m_enemyBattleStatus.DEF = EnemyData.enemyDataList[m_myNumber].DEF;
+//        m_enemyBattleStatus.SPD = EnemyData.enemyDataList[m_myNumber].SPD;
+//#else
         m_enemyBattleStatus.HP = EnemyData.enemyDataList[m_myNumber].HP;
         m_enemyBattleStatus.ATK = EnemyData.enemyDataList[m_myNumber].ATK;
         m_enemyBattleStatus.DEF = EnemyData.enemyDataList[m_myNumber].DEF;
         m_enemyBattleStatus.SPD = EnemyData.enemyDataList[m_myNumber].SPD;
-#endif
+//#endif
     }
 
     /// <summary>
@@ -420,7 +420,7 @@ public class EnemyMove : MonoBehaviour
         {
             return;
         }
-        Dissolve();
+        //Dissolve();
         m_battleManager.EnemyListRemove(m_myNumber);        // 成功したらリストから自身を削除
     }
 
@@ -732,12 +732,10 @@ public class EnemyMove : MonoBehaviour
     /// <summary>
     /// 死亡演出
     /// </summary>
-    async private void Die()
+    private void Die()
     {
-        // 演出が終了したなら以下の処理を実行する
-        await UniTask.WaitUntil(() => m_stagingManager.StangingState == StagingState.enStangingEnd);
-        Dissolve();
         tag = "DieEnemy";              // タグを変更する
+        gameObject.SetActive(false);
     }
 
     /// <summary>
