@@ -44,12 +44,15 @@ SpriteAtlas:
     secondaryTextureSettings: {}
     variantMultiplier: 1
     packables:
-    - {fileID: 2800000, guid: 8925e786a9ba04d40b0dfee7cc9bda9b, type: 3}
     - {fileID: 2800000, guid: 4f3dcf203103fca48bda2a05b3a3814e, type: 3}
-    - {fileID: 2800000, guid: 6069c473bf151a14191dbdbed57020a6, type: 3}
-    - {fileID: 2800000, guid: b9aa61d16a419c544821bfc00fb2c7d6, type: 3}
-    - {fileID: 2800000, guid: 2e080a38be6e1d545925a6be71ba4d61, type: 3}
     - {fileID: 2800000, guid: c77aafc0e7089ae48a60bb406d0e32e1, type: 3}
+    - {fileID: 2800000, guid: 4ca0b674ebb4c354a851cda93da4745f, type: 3}
+    - {fileID: 2800000, guid: eca01c4c2f9c724409f88e14d1dd21af, type: 3}
+    - {fileID: 2800000, guid: 8925e786a9ba04d40b0dfee7cc9bda9b, type: 3}
+    - {fileID: 2800000, guid: b9aa61d16a419c544821bfc00fb2c7d6, type: 3}
+    - {fileID: 2800000, guid: 6069c473bf151a14191dbdbed57020a6, type: 3}
+    - {fileID: 2800000, guid: 27b2fb2b69a92404e8e8bedef8a1edfa, type: 3}
+    - {fileID: 2800000, guid: 2e080a38be6e1d545925a6be71ba4d61, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -59,15 +62,21 @@ SpriteAtlas:
   - {fileID: 21300000, guid: c77aafc0e7089ae48a60bb406d0e32e1, type: 3}
   - {fileID: 21300000, guid: b9aa61d16a419c544821bfc00fb2c7d6, type: 3}
   - {fileID: 21300000, guid: 6069c473bf151a14191dbdbed57020a6, type: 3}
+  - {fileID: 21300000, guid: 4ca0b674ebb4c354a851cda93da4745f, type: 3}
   - {fileID: 21300000, guid: 8925e786a9ba04d40b0dfee7cc9bda9b, type: 3}
   - {fileID: 21300000, guid: 2e080a38be6e1d545925a6be71ba4d61, type: 3}
+  - {fileID: 21300000, guid: 27b2fb2b69a92404e8e8bedef8a1edfa, type: 3}
+  - {fileID: 21300000, guid: eca01c4c2f9c724409f88e14d1dd21af, type: 3}
   m_PackedSpriteNamesToIndex:
   - portrait_kohaku_01
   - portrait_kohaku_03
   - portrait_toko_05
   - portrait_yuko_01
+  - portrait_kohaku_05
   - portrait_toko_03
   - portrait_yuko_04
+  - portrait_yuko_02
+  - portrait_toko_01
   m_RenderDataMap: {}
   m_Tag: PlayerAtlas
   m_IsVariant: 0
