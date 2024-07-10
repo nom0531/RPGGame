@@ -17,8 +17,6 @@ public class BattleButton : MonoBehaviour
     private GameObject GuardButton;
     [SerializeField]
     private GameObject OKButton;
-    [SerializeField]
-    private GameObject AllOutAttackButton;
     [SerializeField, Header("‰½‚ê‚©‚Ìƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚©‚Ç‚¤‚©")]
     private bool m_isButtonDown = false;
 
@@ -55,7 +53,7 @@ public class BattleButton : MonoBehaviour
         m_playerMoveList = m_battleManager.PlayerMoveList;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (m_battleManager.GameState != GameState.enPlay)
         {

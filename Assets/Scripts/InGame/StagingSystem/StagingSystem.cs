@@ -256,11 +256,7 @@ public class StagingSystem : MonoBehaviour
         // Canvasの座標をビューポート座標に変換
         var viewportPoint = Camera.main.WorldToViewportPoint(transform.position);
         damageCanvas.transform.position = viewportPoint;
-        // 子オブジェクトの座標を調整
-        var childPosition = damageCanvas.transform.GetChild(0).position;
-        childPosition = new Vector3(0.0f, childPosition.y, 0.0f);
         Debug.Log("CanvasPosition：" + damageCanvas.transform.position);
-        Debug.Log("ChildPosition：" + childPosition);
 
         // ダメージ量を設定
         var drawDamage = damageCanvas.GetComponent<DrawDamage>();

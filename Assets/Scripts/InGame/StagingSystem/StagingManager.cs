@@ -29,7 +29,6 @@ public class StagingManager : MonoBehaviour
     private BattleSystem m_battleSystem;        // バトルシステム
     private TurnManager m_turnManager;
     private CutInManager m_cutInManager;        // カットイン演出のシステム
-    private AllOutAttackSystem m_allOutAttackSystem;    // 総攻撃演出のシステム
     private UIAnimation m_uIAnimation;
     private List<EnemyMove> m_enemyMoveList;
     private List<PlayerMove> m_playerMoveList;
@@ -58,7 +57,6 @@ public class StagingManager : MonoBehaviour
         m_battleSystem = GetComponent<BattleSystem>();
         m_turnManager = GetComponent<TurnManager>();
         m_cutInManager = CutInObject.GetComponent<CutInManager>();
-        m_allOutAttackSystem = GetComponent<AllOutAttackSystem>();
         m_skillData = m_battleManager.SkillDataBase;
         m_stangingSystem.SkillDataBase = m_skillData;
     }
@@ -173,15 +171,7 @@ public class StagingManager : MonoBehaviour
         m_stangingState = StagingState.enStangingStart;
         m_battleManager.StagingStartFlag = true;
 
-        // 処理の分岐
-        if (m_allOutAttackSystem.StartAllOutFlag)
-        {
-            m_allOutAttackSystem.StartAllOutAttack();
-        }
-        else
-        {
-            NormalNormalStaging(skillNumber, effectRange, number);
-        }
+        NormalNormalStaging(skillNumber, effectRange, number);
     }
 
     /// <summary>

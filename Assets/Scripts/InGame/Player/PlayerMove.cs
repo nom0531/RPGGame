@@ -50,7 +50,6 @@ public class PlayerMove : MonoBehaviour
     private int m_poisonDamage = 0;                                                 // 毒状態時のダメージ
     private bool m_isActionEnd = false;                                             // 行動が終了しているかどうか
     private bool m_isConfusion = false;                                             // 混乱しているかどうか
-    private bool m_isWeak = false;                                                  // 弱点を突かれたかどうか
     private bool m_isDecrement = false;
 
     public int MyNumber

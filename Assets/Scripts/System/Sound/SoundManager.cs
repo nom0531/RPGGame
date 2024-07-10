@@ -38,6 +38,10 @@ public enum SENumber
     enDebuff,
     enWin,
     enLose,
+    enStartAllOutAttack,
+    enEventAttack,
+    enEventAttack2,
+    enExplosion,
     enNum
 }
 
@@ -158,14 +162,14 @@ public class SoundManager : SingletonMonoBehaviour<SoundManager>
     /// SE‚ğÄ¶‚·‚é
     /// </summary>
     /// <param name="number">”Ô†</param>
-    public void PlaySE(SENumber number)
+    public void PlaySE(SENumber number, float decrementValue=1.0f)
     {
         InitVolume();
         var gameObject = Instantiate(SEObject);
         var audioSouse = gameObject.GetComponent<AudioSource>();
         // ‰¹Šy‚ÌÄ¶‚ğŠJn‚·‚é
         gameObject.GetComponent<DestroySEObject>().PlayFlag = true;
-        audioSouse.volume = SEVolume;
+        audioSouse.volume = SEVolume* decrementValue;
         audioSouse.PlayOneShot(SESounds[(int)number]);
     }
 }

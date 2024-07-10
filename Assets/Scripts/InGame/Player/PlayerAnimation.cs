@@ -33,6 +33,11 @@ public class PlayerAnimation : MonoBehaviour
     /// <param name="animationState">アニメーションステート</param>
     public void PlayAnimation(AnimationState animationState)
     {
+        if(m_animator == null)
+        {
+            m_animator = GetComponent<Animator>();
+        }
+        // 再生処理
         switch (animationState)
         {
             case AnimationState.enIdle:

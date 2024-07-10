@@ -8,7 +8,6 @@ public class EnemyTurn : MonoBehaviour
     private BattleManager m_battleManager;
     private LockOnManager m_lockOnManager;
     private StagingManager m_stagingManager;
-    private TurnManager m_turnManager;
 
     // Start is called before the first frame update
     private void Start()
@@ -16,7 +15,6 @@ public class EnemyTurn : MonoBehaviour
         m_battleManager = GetComponent<BattleManager>();
         m_lockOnManager = GetComponent<LockOnManager>();
         m_stagingManager = GetComponent<StagingManager>();
-        m_turnManager = GetComponent<TurnManager>();
     }
 
     /// <summary>

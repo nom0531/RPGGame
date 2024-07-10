@@ -12,7 +12,6 @@ public class PlayerTurn : MonoBehaviour
     private BattleSystem m_battleSystem;
     private StagingManager m_stagingManager;
     private LockOnManager m_lockOnManager;
-    private TurnManager m_turnManager;
 
     private void Start()
     {
@@ -20,7 +19,6 @@ public class PlayerTurn : MonoBehaviour
         m_battleSystem = GetComponent<BattleSystem>();
         m_stagingManager = GetComponent<StagingManager>();
         m_lockOnManager = GetComponent<LockOnManager>();
-        m_turnManager = GetComponent<TurnManager>();
     }
 
     /// <summary>

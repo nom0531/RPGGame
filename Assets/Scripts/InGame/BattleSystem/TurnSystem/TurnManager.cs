@@ -25,8 +25,16 @@ public class TurnManager : MonoBehaviour
     private BattleManager m_battleManager;
     private LockOnManager m_lockOnManager;
     private StagingManager m_stagingManager;
+    private AllOutAttackSystem m_allOutAttackSystem;
     private DrawBattleResult m_drawBattleResult;                // リザルト演出
     private int m_turnSum = 1;                                  // 総合ターン数
+    private bool m_isAllOutAttack = false;                      // trueなら総攻撃イベント
+
+    public bool AllOutAttackFlag
+    {
+        get => m_isAllOutAttack;
+        set => m_isAllOutAttack = value;
+    }
 
     public int TurnSum
     {
@@ -41,19 +49,19 @@ public class TurnManager : MonoBehaviour
 
     private void Start()
     {
+        m_allOutAttackSystem = GetComponent<AllOutAttackSystem>();
         m_battleManager = GetComponent<BattleManager>();
         m_lockOnManager = GetComponent<LockOnManager>();
         m_drawBattleResult = ResultObject.GetComponent<DrawBattleResult>();
         m_stagingManager = GetComponent<StagingManager>();
 
-        // タスクを設定する
         GameClearTask().Forget();
         GameOverTask().Forget();
     }
 
     private void Update()
     {
-        if(m_battleManager.GameState != GameState.enPlay)
+        if (m_battleManager.GameState != GameState.enPlay)
         {
             return;
         }
@@ -76,7 +84,7 @@ public class TurnManager : MonoBehaviour
         }
         for (int enemyNumber = 0; enemyNumber < m_battleManager.EnemyMoveList.Count; enemyNumber++)
         {
-            if(m_battleManager.EnemyMoveList[enemyNumber].ActorHPState == ActorHPState.enDie)
+            if (m_battleManager.EnemyMoveList[enemyNumber].ActorHPState == ActorHPState.enDie)
             {
                 continue;
             }
@@ -140,6 +148,7 @@ public class TurnManager : MonoBehaviour
                 return;
             }
         }
+
         m_battleManager.GameState = GameState.enBattleLose;
         // アニメーションを再生
         for (int i = 0; i < m_battleManager.PlayerMoveList.Count; i++)
@@ -153,8 +162,15 @@ public class TurnManager : MonoBehaviour
     /// </summary>
     async UniTask GameClearTask()
     {
-        // 演出が終了したなら以下の処理を実行する
-        await UniTask.WaitUntil(() => m_stagingManager.StangingState == StagingState.enStangingEnd && m_battleManager.GameState == GameState.enBattleWin);
+        await UniTask.WaitUntil(() => m_battleManager.GameState == GameState.enBattleWin);
+        if (AllOutAttackFlag == false)
+        {
+            await UniTask.WaitUntil(() => m_stagingManager.StangingState == StagingState.enStangingEnd);
+        }
+        else
+        {
+            await UniTask.WaitUntil(() => m_allOutAttackSystem.AllOutAttackState == AllOutAttackState.enAllOutAttackEnd && m_allOutAttackSystem.AllEnemyDieFlag == true);
+        }
         await UniTask.Delay(TimeSpan.FromSeconds(WaitTime));
         m_drawBattleResult.GameClearStaging();
     }
@@ -164,8 +180,8 @@ public class TurnManager : MonoBehaviour
     /// </summary>
     async UniTask GameOverTask()
     {
-        // 演出が終了したなら以下の処理を実行する
-        await UniTask.WaitUntil(() => m_stagingManager.StangingState == StagingState.enStangingEnd && m_battleManager.GameState == GameState.enBattleLose);
+        await UniTask.WaitUntil(() => m_battleManager.GameState == GameState.enBattleLose);
+        await UniTask.WaitUntil(() => m_stagingManager.StangingState == StagingState.enStangingEnd);
         await UniTask.Delay(TimeSpan.FromSeconds(WaitTime));
         m_drawBattleResult.GameOverStaging();
     }

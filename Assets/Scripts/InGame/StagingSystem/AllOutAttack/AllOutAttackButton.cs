@@ -23,6 +23,6 @@ public class AllOutAttackButton : MonoBehaviour
     /// </summary>
     public void PushButton()
     {
-        m_allOutAttackSystem.StartAllOutFlag = true;    // ‘UŒ‚‚ğŠJn‚·‚é
+        m_allOutAttackSystem.StartAllOutAttack();
     }
 }

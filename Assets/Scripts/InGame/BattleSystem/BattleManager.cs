@@ -176,20 +176,16 @@ public class BattleManager : MonoBehaviour
         InitValue();
     }
 
-#if UNITY_EDITOR
-    // Update is called once per frame
+
     private void Update()
     {
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             //m_battleSystem.HitFlag = false;
             GetComponent<AllOutAttackSystem>().CanStartFlag = true;
         }
-    }
 #endif
-
-    private void FixedUpdate()
-    {
         // ゲームが終了しているなら、これより以下の処理は実行されない
         if (GameState != GameState.enPlay)
         {
@@ -201,10 +197,20 @@ public class BattleManager : MonoBehaviour
             return;
         }
         // 演出が開始されたなら実行しない
-        if(m_stagingManager.StangingState == StagingState.enStangingStart)
+        if (m_stagingManager.StangingState == StagingState.enStangingStart)
         {
             return;
         }
+        Main();
+        UpdateUIStatus();
+        m_turnManager.IsTurnEnd();
+    }
+
+    /// <summary>
+    /// インゲームの処理
+    /// </summary>
+    private void Main()
+    {
         switch (m_turnManager.TurnStatus)
         {
             // プレイヤーのターン
@@ -232,8 +238,6 @@ public class BattleManager : MonoBehaviour
                 m_enemyNumber++;
                 break;
         }
-        UpdateUIStatus();
-        m_turnManager.IsTurnEnd();
     }
 
     /// <summary>
