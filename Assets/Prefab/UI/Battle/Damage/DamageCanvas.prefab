@@ -13,8 +13,6 @@ GameObject:
   - component: {fileID: 1154762367089667681}
   - component: {fileID: 1154762367089667710}
   - component: {fileID: 1154762367089667684}
-  - component: {fileID: 1154762367089667685}
-  - component: {fileID: 1154762367089667682}
   - component: {fileID: 1154762367089667683}
   m_Layer: 5
   m_Name: DamageCanvas
@@ -63,7 +61,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!114 &1154762367089667681
 MonoBehaviour:
@@ -117,33 +115,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3db2a1f3c57435e4996851c1f6c6863e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1154762367089667685
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1154762367089667708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a94f783bd2afbc9479dc2ff3d9b9c98c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GameObjects:
-  - {fileID: 1154762367089667708}
---- !u!114 &1154762367089667682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1154762367089667708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 247a638f46e50f24da6e97933787b706, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AnimatorGameObject: {fileID: 1154762367089667708}
 --- !u!95 &1154762367089667683
 Animator:
   serializedVersion: 5
