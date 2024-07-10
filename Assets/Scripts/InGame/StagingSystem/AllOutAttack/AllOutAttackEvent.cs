@@ -24,6 +24,8 @@ public class AllOutAttackEvent : MonoBehaviour
     private GameObject SECanvas;
     [SerializeField, Tooltip("生成する範囲")]
     private Vector3 RangeA, RangeB;
+    [SerializeField, Header("画像")]
+    private Sprite[] CharacterImage;
 
     private SoundManager m_soundManager;
     private AllOutAttackSystem m_allOutAttackSystem;
@@ -34,8 +36,10 @@ public class AllOutAttackEvent : MonoBehaviour
     private BattleSystem m_battleSystem;
     private SetImage m_setImage;
     private GameObject m_effectObject = null;   // 生成したオブジェクト
+    private GameObject m_dummyObject;           // イベント用のダミーオブジェクト
 
     private OperatingPlayer m_operatingPlayer;
+    private Vector3 m_dummyPosition = Vector3.zero;
 
 
     private void Start()
@@ -47,6 +51,8 @@ public class AllOutAttackEvent : MonoBehaviour
         m_allOutAttackSystem = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<AllOutAttackSystem>();
         m_battleManager = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<BattleManager>();
         m_battleSystem = GameObject.FindGameObjectWithTag("BattleSystem").GetComponent<BattleSystem>();
+        m_dummyObject = transform.GetChild(1).gameObject;
+        m_dummyPosition = m_dummyObject.transform.position;
         m_setImage = GetComponent<SetImage>();
         m_operatingPlayer = m_battleManager.OperatingPlayer;    // 操作中のキャラクターを更新
     }
@@ -83,6 +89,31 @@ public class AllOutAttackEvent : MonoBehaviour
             return;
         }
         m_setImage.SetTextImage(1);
+    }
+
+    /// <summary>
+    /// アニメーションを再生する
+    /// </summary>
+    public void PlayAnimation()
+    {
+        m_operatingPlayer = m_battleManager.OperatingPlayer;                                            // 操作中のキャラクターを更新
+        m_dummyObject.GetComponent<SpriteRenderer>().sprite = CharacterImage[(int)m_operatingPlayer];   // 画像を更新
+        m_dummyObject.transform.position = m_dummyPosition;                                             // 画面内に映らない位置に調節する
+        var animator = m_dummyObject.GetComponent<Animator>();
+        string animationTrigger = "";
+        switch (m_operatingPlayer)
+        {
+            case OperatingPlayer.enAttacker:
+                animationTrigger = "PlayerName_Unity";
+                break;
+            case OperatingPlayer.enBuffer:
+                animationTrigger = "PlayerName_Toko";
+                break;
+            case OperatingPlayer.enHealer:
+                animationTrigger = "PlayerName_Yuko";
+                break;
+        }
+        animator.SetTrigger(animationTrigger);
     }
 
     /// <summary>
