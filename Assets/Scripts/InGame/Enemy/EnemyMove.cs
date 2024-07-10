@@ -165,7 +165,7 @@ public class EnemyMove : MonoBehaviour
         SetLookAtPosition();
     }
 
-    private void FixedUpdate()
+    async private void FixedUpdate()
     {
         if (m_battleManager.GameState != GameState.enPlay)
         {
@@ -174,6 +174,12 @@ public class EnemyMove : MonoBehaviour
         if (m_pauseManager.PauseFlag == true)
         {
             return;
+        }
+        if(m_actorHPState == ActorHPState.enDie)
+        {
+            // 演出が終了したなら実行
+            await UniTask.WaitUntil(() => m_stagingManager.StangingState == StagingState.enStangingEnd);
+            Die();
         }
         for (int i = 0; i < (int)BuffStatus.enNum; i++)
         {
@@ -420,8 +426,8 @@ public class EnemyMove : MonoBehaviour
         {
             return;
         }
-        //Dissolve();
         m_battleManager.EnemyListRemove(m_myNumber);        // 成功したらリストから自身を削除
+        Destroy(gameObject);
     }
 
     /// <summary>
@@ -719,7 +725,6 @@ public class EnemyMove : MonoBehaviour
     {
         if (EnemyStatus.HP <= HPMIN_VALUE)
         {
-            Die();  // 死亡処理
             return ActorHPState.enDie;
         }
         if (EnemyStatus.HP <= EnemyData.enemyDataList[m_myNumber].HP / 4)
@@ -734,19 +739,7 @@ public class EnemyMove : MonoBehaviour
     /// </summary>
     private void Die()
     {
-        tag = "DieEnemy";              // タグを変更する
+        tag = "DieEnemy";
         gameObject.SetActive(false);
-    }
-
-    /// <summary>
-    /// ディソルブ処理
-    /// </summary>
-    private void Dissolve()
-    {
-        var changeMaterial = GetComponent<ChangeMaterial>();
-        var material = GetComponent<SpriteRenderer>().material = changeMaterial.Change(1);
-        material.SetTexture("_MainTex", EnemyData.enemyDataList[MyNumber].EnemySprite.texture);
-
-        GetComponent<Animator>().SetTrigger("Dissolve");
     }
 }

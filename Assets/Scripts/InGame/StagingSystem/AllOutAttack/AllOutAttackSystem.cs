@@ -89,6 +89,7 @@ public class AllOutAttackSystem : MonoBehaviour
                 Debug.Log("生存してるエネミーがいる");
                 return;
             }
+            m_battleManager.EnemyMoveList[i].gameObject.SetActive(false);
         }
         Debug.Log("生存してるエネミーはいないよ");
         AllEnemyDieFlag = true;
