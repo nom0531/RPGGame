@@ -172,11 +172,11 @@ public class StagingSystem : MonoBehaviour
             m_enemyHPBarAnimation.ButtonDown_Active();
         }
         CreateStaging(actionType, skillNumber);
-        await UniTask.Delay(TimeSpan.FromSeconds(EndWaitTime));
         // 設定をリセット
+        m_isPlayEffect = false;
+        await UniTask.Delay(TimeSpan.FromSeconds(EndWaitTime));
         m_commandAnimaton.ButtonDown_NotActive();
         m_enemyHPBarAnimation.ButtonDown_NotActive();
-        m_isPlayEffect = false;
     }
 
     /// <summary>
@@ -250,19 +250,24 @@ public class StagingSystem : MonoBehaviour
     /// </summary>
     private void DrawDamage(Transform transform)
     {
-        // ダメージテキストを生成
-        var damageCanvas = Instantiate(Damagetext, transform);
-        Debug.Log("生成時の座標：" + transform.position);
-
-        // Canvasの座標をビューポート座標に変換
-        var viewportPoint = Camera.main.WorldToViewportPoint(transform.position);
-        damageCanvas.transform.position = viewportPoint;
-        Debug.Log("CanvasPosition：" + damageCanvas.transform.position);
+        GameObject damageCanvas = null;
+        if (transform.gameObject.transform.parent.tag != "Player")
+        {
+            // ダメージテキストを生成
+            damageCanvas = Instantiate(Damagetext, transform);
+            // Canvasの座標をビューポート座標に変換
+            var viewportPoint = Camera.main.WorldToViewportPoint(transform.position);
+            damageCanvas.transform.position = viewportPoint;
+        }
+        else
+        {
+            // ダメージテキストを生成
+            damageCanvas = Instantiate(Damagetext, TargetGroupObject.transform);
+        }
 
         // ダメージ量を設定
         var drawDamage = damageCanvas.GetComponent<DrawDamage>();
         drawDamage.Damage = m_damage.ToString();
-
         // 攻撃が当たっていないなら
         if (m_battleSystem.HitFlag == false)
         {

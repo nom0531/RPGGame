@@ -40,6 +40,7 @@ public class AllOutAttackEvent : MonoBehaviour
 
     private OperatingPlayer m_operatingPlayer;
     private Vector3 m_dummyPosition = Vector3.zero;
+    private int m_damageMax = 0;                // ダメージ量
 
 
     private void Start()
@@ -171,13 +172,19 @@ public class AllOutAttackEvent : MonoBehaviour
     /// </summary>
     public void DrawDamage()
     {
+        if (m_damageMax <= 0)
+        {
+            return;
+        }
         var position = SetRandPosition();
         // ダメージテキストを生成
         var canvas = Instantiate(Canvas);
         canvas.transform.GetChild(0).position = position;
         // ダメージ量を設定
         var drawDamage = canvas.GetComponent<DrawDamage>();
-        drawDamage.Damage = Random.Range(5, 50).ToString();
+        drawDamage.Damage = Random.Range(1, m_damageMax).ToString();
+        // 最大値から減らす
+        m_damageMax -= int.Parse(drawDamage.Damage);
         drawDamage.Draw();
     }
 
@@ -196,12 +203,10 @@ public class AllOutAttackEvent : MonoBehaviour
     /// </summary>
     public void AddDamage()
     {
-#if UNITY_EDITOR
-        m_turnManager.AllOutAttackFlag = true;
-#endif
         for (int i = 0; i<m_battleManager.EnemyMoveList.Count; i++)
         {
-            m_battleManager.DamageEnemy(i, m_battleSystem.AllOutAttack());
+            m_damageMax += m_battleSystem.AllOutAttack();
+            m_battleManager.DamageEnemy(i, m_damageMax);
         }
     }
 }

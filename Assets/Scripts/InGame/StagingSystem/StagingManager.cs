@@ -210,7 +210,7 @@ public class StagingManager : MonoBehaviour
     private void DrawPlayers(bool flag)
     {
         // –hŒä‚ÍÀs‚µ‚È‚¢
-        if(ActionType == ActionType.enGuard)
+        if(m_turnManager.TurnStatus == TurnStatus.enPlayer && ActionType == ActionType.enGuard)
         {
             return;
         }

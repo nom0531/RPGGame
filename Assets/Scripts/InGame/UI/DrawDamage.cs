@@ -13,6 +13,7 @@ public class DrawDamage : MonoBehaviour
 
     public string Damage
     {
+        get => m_damageText;
         set => m_damageText = value;
     }
 
@@ -23,7 +24,7 @@ public class DrawDamage : MonoBehaviour
         m_cinemachineBrain.m_CameraActivatedEvent.AddListener(OnChangeCamera);
     }
 
-    // バーチャルカメラが切り替わったときに呼ばれる
+    //バーチャルカメラが切り替わったときに呼ばれる
     private void OnChangeCamera(ICinemachineCamera incomingVcam, ICinemachineCamera outgoingVcam)
     {
         m_isChangeCamera = true;
