@@ -237,6 +237,7 @@ public class StagingSystem : MonoBehaviour
         {
             return;
         }
+        // ƒ_ƒ[ƒW‚ğ•`‰æ‚·‚é
         var childCount = m_cinemachineTargetGroup.m_Targets.Length;
         for (int i = 0; i < childCount; i++)
         {

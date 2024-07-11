@@ -209,6 +209,11 @@ public class StagingManager : MonoBehaviour
     /// </summary>
     private void DrawPlayers(bool flag)
     {
+        // –hŒä‚ÍÀs‚µ‚È‚¢
+        if(ActionType == ActionType.enGuard)
+        {
+            return;
+        }
         for(int i= 0; i < m_playerMoveList.Count; i++)
         {
             if(i == (int)m_battleManager.OperatingPlayer)

@@ -180,8 +180,8 @@ public class TurnManager : MonoBehaviour
     /// </summary>
     async UniTask GameOverTask()
     {
-        await UniTask.WaitUntil(() => m_battleManager.GameState == GameState.enBattleLose);
-        await UniTask.WaitUntil(() => m_stagingManager.StangingState == StagingState.enStangingEnd);
+        await UniTask.WaitUntil(() => m_battleManager.GameState == GameState.enBattleLose
+        && m_stagingManager.StangingState == StagingState.enStangingEnd);
         await UniTask.Delay(TimeSpan.FromSeconds(WaitTime));
         m_drawBattleResult.GameOverStaging();
     }

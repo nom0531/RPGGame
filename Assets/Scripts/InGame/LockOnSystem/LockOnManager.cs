@@ -69,7 +69,6 @@ public class LockOnManager : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        ReSetVcamStatus();
         m_drawStatusValue = GetComponent<DrawStatusValue>();
         m_battleManager = GetComponent<BattleManager>();
         m_turnManager = GetComponent<TurnManager>();
@@ -80,9 +79,10 @@ public class LockOnManager : MonoBehaviour
 
     private void Start()
     {
-        m_enemyHitPoint = EnemyHPObject.GetComponent<EnemyHitPoint>();
         m_operatingPlayerNumber = (int)m_battleManager.OperatingPlayer;
-        SetCinemachineVirtualCameraPriority(m_operatingPlayerNumber, false, null);
+        ReSetVcamStatus(m_operatingPlayerNumber);
+        m_enemyHitPoint = EnemyHPObject.GetComponent<EnemyHitPoint>();
+        SetCinemachineVirtualCameraPriority(m_operatingPlayerNumber);
         LockOnCanvas.SetActive(false);
         // エネミーのリスト
         m_enemyMoveList = m_battleManager.EnemyMoveList;
@@ -158,7 +158,7 @@ public class LockOnManager : MonoBehaviour
         // ボタンが押せるかどうか設定する
         SetInteractable(true);
         // カメラを設定する
-        SetCinemachineVirtualCameraPriority(m_operatingPlayerNumber, true, SetLookAtTarget());
+        SetCinemachineVirtualCameraPriority(m_operatingPlayerNumber, SetLookAtTarget());
         m_isActive = true;
     }
 
@@ -168,7 +168,7 @@ public class LockOnManager : MonoBehaviour
     public void LockOnEnd()
     {
         // カメラを元に戻す
-        SetCinemachineVirtualCameraPriority(m_operatingPlayerNumber, false, null);
+        SetCinemachineVirtualCameraPriority(m_operatingPlayerNumber);
         // フラグをリセット
         SetInteractable(false);
         LockOn = false;
@@ -206,7 +206,7 @@ public class LockOnManager : MonoBehaviour
             }
         }
         m_enemyHitPoint.SetFillAmount();
-        SetCinemachineVirtualCameraPriority(m_operatingPlayerNumber, true, SetLookAtTarget());
+        SetCinemachineVirtualCameraPriority(m_operatingPlayerNumber, SetLookAtTarget());
     }
 
     /// <summary>
@@ -236,7 +236,7 @@ public class LockOnManager : MonoBehaviour
             }
         }
         m_enemyHitPoint.SetFillAmount();
-        SetCinemachineVirtualCameraPriority(m_operatingPlayerNumber, true, SetLookAtTarget());
+        SetCinemachineVirtualCameraPriority(m_operatingPlayerNumber, SetLookAtTarget());
     }
 
     /// <summary>
@@ -257,33 +257,43 @@ public class LockOnManager : MonoBehaviour
     /// <param name="number">現在操作しているプレイヤーの番号</param>
     /// <param name="isLockOn">trueならロックオンを開始する。falseならロックオンしない</param>
     /// <param name="gameObject">ロックオンする相手のオブジェクト</param>
-    private void SetCinemachineVirtualCameraPriority(int number, bool isLockOn, GameObject gameObject)
+    private void SetCinemachineVirtualCameraPriority(int number, GameObject gameObject = null)
     {
         if (m_battleManager.GameState != GameState.enPlay)
         {
             return;
         }
-        ReSetVcamStatus();
-        if (isLockOn == true)
+        // ターゲットが設定されているなら
+        if (gameObject != null)
         {
-            // ターゲットを設定する
             Vcam_LockOn[0].Priority = VCAM_PRIORITY;
             Vcam_LockOn[0].LookAt = gameObject.transform;
+            ReSetVcamStatus(0, true);
             return;
         }
-        // 優先度を設定
         Vcam_Default[number].Priority = VCAM_PRIORITY;
+        ReSetVcamStatus(number);
     }
 
     /// <summary>
-    /// 仮装カメラの優先度をリセットする
+    /// 仮想カメラの優先度をリセットする
     /// </summary>
-    private void ReSetVcamStatus()
+    private void ReSetVcamStatus(int number, bool isLockOn=false)
     {
-        Vcam_LockOn[0].Priority = 0;
-
+        for (int i = 0; i < Vcam_LockOn.Length; i++)
+        {
+            if(isLockOn == true && i == 0)
+            {
+                continue;
+            }
+            Vcam_LockOn[i].Priority = 0;
+        }
         for (int i = 0; i < Vcam_Default.Length; i++)
         {
+            if(isLockOn == false && i == number)
+            {
+                continue;
+            }
             Vcam_Default[i].Priority = 0;
         }
     }
