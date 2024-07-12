@@ -18,6 +18,7 @@ TagManager:
   - BGM
   - SE
   - EnemyHPBar
+  - AllOutAttackObject
   layers:
   - Default
   - TransparentFX

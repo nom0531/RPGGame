@@ -73,6 +73,7 @@ public class BattleSystem : MonoBehaviour
     [SerializeField]
     private EnemyDataBase EnemyData;
 
+    private AllOutAttackGauge m_allOutAttackGauge;
     private ResistanceState m_compatibilityState = ResistanceState.enNormal;  // ëœê´
     private bool m_isWeak = false;                                            // é„ì_ÇïtÇ¢ÇΩÇ»ÇÁtrue
     private bool m_isHit = false;                                             // çUåÇÇ™ìñÇΩÇÈÇ©Ç«Ç§Ç©
@@ -100,6 +101,11 @@ public class BattleSystem : MonoBehaviour
     {
         get => m_isHit;
         set => m_isHit = value;
+    }
+
+    private void Awake()
+    {
+        m_allOutAttackGauge = GameObject.FindGameObjectWithTag("AllOutAttackObject").GetComponent<AllOutAttackGauge>();
     }
 
     /// <summary>
@@ -134,6 +140,7 @@ public class BattleSystem : MonoBehaviour
         // ï‚ê≥
         damage = Mathf.Max(0.0f, damage);
         damage = AttackHit(damage, NORMAL_ATTACK_PROBABILITY);
+        m_allOutAttackGauge.AddPoint(AddState.enAttack);
         return (int)damage;
     }
 
@@ -200,15 +207,18 @@ public class BattleSystem : MonoBehaviour
         switch (EnemyData.enemyDataList[playerNumber].EnemyElement[skillElement])
         {
             case global::ElementResistance.enNormal:
+                m_allOutAttackGauge.AddPoint(AddState.enAttack);
                 break;
             case global::ElementResistance.enWeak:
                 finalDamage *= 2.0f;
                 WeakFlag = true;
                 ResistanceState = ResistanceState.enWeak;
+                m_allOutAttackGauge.AddPoint(AddState.enWeak);
                 break;
             case global::ElementResistance.enResist:
                 finalDamage *= 0.5f;
                 ResistanceState = ResistanceState.enResist;
+                m_allOutAttackGauge.AddPoint(AddState.enResist);
                 break;
         }
         // ï‚ê≥
@@ -230,15 +240,18 @@ public class BattleSystem : MonoBehaviour
         switch (EnemyData.enemyDataList[enemyNumber].EnemyElement[skillElement])
         {
             case global::ElementResistance.enNormal:
+                m_allOutAttackGauge.AddPoint(AddState.enAttack);
                 break;
             case global::ElementResistance.enWeak:
                 finalDamage *= 2.0f;
                 WeakFlag = true;
                 ResistanceState = ResistanceState.enWeak;
+                m_allOutAttackGauge.AddPoint(AddState.enWeak);
                 break;
             case global::ElementResistance.enResist:
                 finalDamage *= 0.5f;
                 ResistanceState = ResistanceState.enResist;
+                m_allOutAttackGauge.AddPoint(AddState.enResist);
                 break;
         }
         // ï‚ê≥
@@ -254,6 +267,7 @@ public class BattleSystem : MonoBehaviour
     public int Guard(int attackDEF)
     {
         float defensePower = attackDEF + attackDEF * 0.01f;
+        m_allOutAttackGauge.AddPoint(AddState.enGurad);
         return (int)defensePower;
     }
 

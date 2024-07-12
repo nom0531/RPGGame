@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.Playables;
+using UnityEngine.UI;
 
 /// <summary>
 /// 演出のステート
@@ -63,15 +63,14 @@ public class AllOutAttackSystem : MonoBehaviour
     /// </summary>
     private void CanAllOutAttack()
     {
-        // 既にアクティブなら実行しない
-        if (Button.activeInHierarchy == true)
-        {
-            return;
-        }
         // 総攻撃ができるなら
         if(m_canStart == true)
         {
-            Button.SetActive(true);     // ボタンをアクティブにする
+            Button.GetComponent<Button>().interactable = true;
+        }
+        else
+        {
+            Button.GetComponent<Button>().interactable = false;
         }
     }
 
@@ -110,11 +109,11 @@ public class AllOutAttackSystem : MonoBehaviour
     /// </summary>
     public void EndAllOutAttack()
     {
-        Button.SetActive(false);     // ボタンを非アクティブにする
         CanStartFlag = false;
+        Button.GetComponent<AllOutAttackGauge>().ResetPoint();
 
         // もしエネミーが全て死亡していないなら
-        if(AllEnemyDieFlag == false)
+        if (AllEnemyDieFlag == false)
         {
             Canvas.GetComponent<Animator>().SetTrigger("NotActive");
             Canvas.gameObject.transform.GetChild(1).GetComponent<Animator>().SetTrigger("NotActive");

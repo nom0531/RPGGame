@@ -137,21 +137,21 @@ public class PlayerMove : MonoBehaviour
     /// </summary>
     private void SetStatus()
     {
-#if UNITY_EDITOR
-        m_playerBattleStatus.HP = 9999;  // デバッグ用
-        m_playerBattleStatus.SP = 9999;
-        m_playerBattleStatus.ATK = m_saveDataManager.SaveData.saveData.PlayerList[MyNumber].ATK;
-        m_playerBattleStatus.DEF = m_saveDataManager.SaveData.saveData.PlayerList[MyNumber].DEF;
-        m_playerBattleStatus.SPD = m_saveDataManager.SaveData.saveData.PlayerList[MyNumber].SPD;
-        m_playerBattleStatus.LUCK = m_saveDataManager.SaveData.saveData.PlayerList[MyNumber].LUCK;
-#else
+//#if UNITY_EDITOR
+//        m_playerBattleStatus.HP = 9999;  // デバッグ用
+//        m_playerBattleStatus.SP = 9999;
+//        m_playerBattleStatus.ATK = m_saveDataManager.SaveData.saveData.PlayerList[MyNumber].ATK;
+//        m_playerBattleStatus.DEF = m_saveDataManager.SaveData.saveData.PlayerList[MyNumber].DEF;
+//        m_playerBattleStatus.SPD = m_saveDataManager.SaveData.saveData.PlayerList[MyNumber].SPD;
+//        m_playerBattleStatus.LUCK = m_saveDataManager.SaveData.saveData.PlayerList[MyNumber].LUCK;
+//#else
         m_playerBattleStatus.HP = m_saveDataManager.SaveData.saveData.PlayerList[MyNumber].HP;
         m_playerBattleStatus.SP = m_saveDataManager.SaveData.saveData.PlayerList[MyNumber].SP;
         m_playerBattleStatus.ATK = m_saveDataManager.SaveData.saveData.PlayerList[MyNumber].ATK;
         m_playerBattleStatus.DEF = m_saveDataManager.SaveData.saveData.PlayerList[MyNumber].DEF;
         m_playerBattleStatus.SPD = m_saveDataManager.SaveData.saveData.PlayerList[MyNumber].SPD;
         m_playerBattleStatus.LUCK = m_saveDataManager.SaveData.saveData.PlayerList[MyNumber].LUCK;
-#endif
+//#endif
     }
 
     private void FixedUpdate()

@@ -46,6 +46,8 @@ public class BattleManager : MonoBehaviour
     private float EnemySpriteSize = 450.0f;
     [SerializeField]
     private BattleButton[] BattleButton;
+    [SerializeField, Header("デバッグ")]
+    private GameObject gameObject;
 
     private const int MAX_ENEMY_NUM = 4;                        // バトルに出現するエネミーの最大数
     private const float ADD_SIZE = 1.6f;                        // エネミーの画像の乗算サイズ
@@ -183,7 +185,7 @@ public class BattleManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             //m_battleSystem.HitFlag = false;
-            GetComponent<AllOutAttackSystem>().CanStartFlag = true;
+            gameObject.GetComponent<AllOutAttackGauge>().AddPoint(AddState.enAttack);
         }
 #endif
         // ゲームが終了しているなら、これより以下の処理は実行されない
